@@ -2,12 +2,10 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { InitCommandArgs } from './define'
 import { useI18nAgg } from '../i18n-agg'
-import packageInfo from '@/utils/package-info'
 
 const $t = useI18nAgg().commands.t
 
 export default async function (args: InitCommandArgs) {
-  const projectRoot = path.join(__dirname, '..')
   const distDir = path.join(args.source)
   if (!fs.existsSync(distDir) || !fs.statSync(distDir).isDirectory()) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: distDir }))
@@ -15,12 +13,7 @@ export default async function (args: InitCommandArgs) {
     throw new Error($t('error.shouldBeEmptyDir{dir}', { dir: distDir }))
   }
 
-  copyFolderRecursive(path.join(projectRoot, 'templates'), distDir)
-  fs.writeFileSync(
-    path.join(distDir, 'RunWeb.bat'),
-    `pnpx ${packageInfo._id} -- runWeb --source=${distDir.replace(/\\/g, '/')}`,
-    'utf-8'
-  )
+  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir)
 }
 
 /**

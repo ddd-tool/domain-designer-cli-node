@@ -7,7 +7,7 @@ import { useI18nAgg } from '../i18n-agg'
 const $t = useI18nAgg().commands.t
 
 export default async function (args: RunWebCommandArgs) {
-  const webRoot = path.resolve(__dirname, '..').replace(/\\/g, '/')
+  const webRoot = args.webRoot
 
   console.log('================ 安装运行依赖: Starting... ================')
   spawnSync(`cd ${webRoot} && pnpm i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })

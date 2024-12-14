@@ -18,16 +18,22 @@ import { useI18nAgg } from '../i18n-agg'
 import executeInfo from './execute-info'
 import executeRunWeb from './execute-run-web'
 import executeInit from './execute-init'
+import path from 'node:path'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
+function getWebRoot() {
+  return path.resolve(path.dirname(process.argv[1]), '..').replace(/\\/g, '/')
+}
 
 const agg = createSingletonAgg(() => {
   const isReady = ref(false)
   const currentCommand = ref(SubcommandEnum.None)
   const debugMode = ref(false)
-  const initCommandArgs = reactive<InitCommandArgs>({ source: '' })
-  const updateCommandArgs = reactive<InitCommandArgs>({ source: '' })
-  const runWebCommandArgs = reactive<InitCommandArgs>({ source: '' })
+  const webRoot = getWebRoot()
+  const source = process.cwd()
+  const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
+  const updateCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
+  const runWebCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
 
   const program = new Command()
     .name('domain-designer-cli')

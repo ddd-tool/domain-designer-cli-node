@@ -7,13 +7,16 @@ export enum SubcommandEnum {
 }
 
 export type InitCommandArgs = {
+  webRoot: string
   source: string
 }
 
 export type UpdateCommandArgs = {
+  webRoot: string
   source: string
 }
 
 export type RunWebCommandArgs = {
+  webRoot: string
   source: string
 }
