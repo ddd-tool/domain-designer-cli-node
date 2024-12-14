@@ -1,1 +1,1 @@
-npx @ddd-tool/domain-designer-cli@0.0.0-alpha.1 -- runWeb --source=F:/vscode_projects/@ddd-tool/demo
+npx @ddd-tool/domain-designer-cli@0.0.0-alpha.2 -- runWeb --source=F:/vscode_projects/@ddd-tool/demo
