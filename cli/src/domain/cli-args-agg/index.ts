@@ -7,7 +7,7 @@ import { SubcommandEnum, InitCommandArgs } from './define'
 import {
   requireInitCommand,
   requireInfoCommand,
-  requireUpdateCommand,
+  // requireUpdateCommand,
   requireInitCommandArgs,
   requireHelloCommandArgs,
   requireUpdateCommandArgs,

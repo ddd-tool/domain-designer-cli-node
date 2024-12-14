@@ -14,7 +14,11 @@ export default async function (args: RunWebCommandArgs) {
   configSource(args.source)
   console.log('================ 装配代码文件: Succeeded ================')
   console.log('================ 运行Web服务: Starting... ================')
-  spawnSync('npm run dev', { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  spawnSync(`npm --prefix=${__dirname.replace(/\\/g, '/')} run dev`, {
+    encoding: 'utf-8',
+    stdio: 'inherit',
+    shell: true,
+  })
 }
 
 async function configSource(source: string) {
