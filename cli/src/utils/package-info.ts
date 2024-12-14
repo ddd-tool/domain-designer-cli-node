@@ -1,6 +1,6 @@
 export default {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.7",
+  "version": "0.0.0-alpha.8",
   "private": true,
   "type": "module",
   "files": [
@@ -15,5 +15,5 @@ export default {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.0.0-alpha.7"
+  "_id": "@ddd-tool/domain-designer-cli@0.0.0-alpha.8"
 }

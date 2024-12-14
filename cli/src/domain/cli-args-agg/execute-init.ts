@@ -1,5 +1,6 @@
 import path from 'node:path'
 import fs from 'node:fs'
+import os from 'node:os'
 import { InitCommandArgs } from './define'
 import { useI18nAgg } from '../i18n-agg'
 
@@ -14,6 +15,10 @@ export default async function (args: InitCommandArgs) {
   }
 
   copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir)
+  const runWebScript = getRunWebScript()
+  if (runWebScript) {
+    fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
+  }
 }
 
 /**
@@ -46,5 +51,47 @@ function copyFolderRecursive(src: string, dest: string) {
       // 如果是文件，直接复制
       fs.copyFileSync(srcPath, destPath)
     }
+  }
+}
+
+type Script = {
+  name: string
+  content: string
+}
+
+function getRunWebScript(): Script | undefined {
+  const winScript = `@echo off
+setlocal
+set "scriptPath=%~dp0"
+
+domain-designer-cli runWeb --source=%scriptPath%
+`
+
+  const linuxScript = `#!/bin/bash
+domain-designer-cli runWeb --source="$(pwd)"
+`
+
+  const macScript = `#!/bin/bash
+domain-designer-cli runWeb --source="$(pwd)"
+`
+
+  const osType = os.type()
+  if (osType === 'Windows_NT') {
+    return {
+      name: 'RunWeb.bat',
+      content: winScript,
+    }
+  } else if (osType === 'Linux') {
+    return {
+      name: 'RunWeb.sh',
+      content: linuxScript,
+    }
+  } else if (osType === 'Darwin') {
+    return {
+      name: 'RunWeb.sh',
+      content: macScript,
+    }
+  } else {
+    console.error(`Unsupported OS: ${osType}`)
   }
 }
