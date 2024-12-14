@@ -5,7 +5,7 @@
   "description": "",
   "type": "module",
   "bin": {
-    "create-oneboot": "./bin/domain-designer-cli.cjs"
+    "domain-designer-cli": "./bin/domain-designer-cli.cjs"
   },
   "files": [
     "./bin",
@@ -23,8 +23,8 @@
     "test": "run-p build:cli && run-p test:fun",
     "test:fun": "vitest",
     "verify": "tsc -p ./tsconfig.build-cli.json",
-    "hello": "echo 'hello!'",
-    "demo:init": "node ./bin/domain-designer-cli.cjs init --source=F:/vscode_projects/@ddd-tool/demo"
+    "demo:init": "node ./bin/domain-designer-cli.cjs init --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
+    "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo"
   },
   "keywords": [
     "domain-designer",

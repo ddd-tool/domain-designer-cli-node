@@ -13,6 +13,7 @@ export type I18nMessages = {
   'error.invalidArgs{str}': string
   'error.badArgs': string
   'error.shouldBeValidDir{dir}': string
+  'error.shouldBeEmptyDir{dir}': string
 }
 
 export type I18nMessagesKey = keyof I18nMessages

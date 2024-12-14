@@ -6,14 +6,14 @@ import { useI18nAgg } from '../i18n-agg'
 
 const $t = useI18nAgg().commands.t
 
-export function requireHelloCommand(params: { currentCommand: Ref<SubcommandEnum> }) {
+export function requireInfoCommand(params: { currentCommand: Ref<SubcommandEnum> }) {
   return new Command().name('hello').action(() => {
-    params.currentCommand.value = SubcommandEnum.Hello
+    params.currentCommand.value = SubcommandEnum.Info
   })
 }
 
-export async function requireHelloCommandArgs() {
-  // TODO
+export async function requireHelloCommandArgs(params: { currentCommand: Ref<SubcommandEnum> }) {
+  params.currentCommand.value = SubcommandEnum.Info
 }
 
 export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>; args: Reactive<InitCommandArgs> }) {

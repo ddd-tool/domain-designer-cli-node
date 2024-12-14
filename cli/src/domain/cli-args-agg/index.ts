@@ -6,7 +6,7 @@ import { createSingletonAgg } from 'vue-fn/domain-server'
 import { SubcommandEnum, InitCommandArgs } from './define'
 import {
   requireInitCommand,
-  requireHelloCommand,
+  requireInfoCommand,
   requireUpdateCommand,
   requireInitCommandArgs,
   requireHelloCommandArgs,
@@ -15,8 +15,9 @@ import {
   requireRunWebCommandArgs,
 } from './require-subcommand'
 import { useI18nAgg } from '../i18n-agg'
-import executeHello from './execute-hello'
+import executeInfo from './execute-info'
 import executeRunWeb from './execute-run-web'
+import executeInit from './execute-init'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
 
@@ -35,8 +36,8 @@ const agg = createSingletonAgg(() => {
       debugMode.value = options.debug
     })
     .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
-    .addCommand(requireHelloCommand({ currentCommand }))
-    .addCommand(requireUpdateCommand({ currentCommand, args: updateCommandArgs }))
+    .addCommand(requireInfoCommand({ currentCommand }))
+    // .addCommand(requireUpdateCommand({ currentCommand, args: updateCommandArgs }))
     .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
 
   function configArgsFromCommandLine() {
@@ -75,17 +76,17 @@ const agg = createSingletonAgg(() => {
               title: $t('question.subcommand.init'),
               value: SubcommandEnum.Init,
             },
-            {
-              title: $t('question.subcommand.updateDeps'),
-              value: SubcommandEnum.UpdateDeps,
-            },
+            // {
+            //   title: $t('question.subcommand.updateDeps'),
+            //   value: SubcommandEnum.UpdateDeps,
+            // },
             {
               title: $t('question.subcommand.runWeb'),
               value: SubcommandEnum.RunWeb,
             },
             {
               title: $t('question.subcommand.hello'),
-              value: SubcommandEnum.Hello,
+              value: SubcommandEnum.Info,
             },
           ],
         },
@@ -102,8 +103,8 @@ const agg = createSingletonAgg(() => {
       await requireUpdateCommandArgs()
     } else if (subcommand === SubcommandEnum.RunWeb) {
       await requireRunWebCommandArgs({ currentCommand, args: runWebCommandArgs })
-    } else if (subcommand === SubcommandEnum.Hello) {
-      await requireHelloCommandArgs()
+    } else if (subcommand === SubcommandEnum.Info) {
+      await requireHelloCommandArgs({ currentCommand })
     } else if (subcommand === SubcommandEnum.None) {
       return
     } else {
@@ -126,10 +127,17 @@ const agg = createSingletonAgg(() => {
       },
       async exec() {
         const c = currentCommand.value
-        if (c === SubcommandEnum.Hello) {
-          await executeHello()
+        if (c === SubcommandEnum.Info) {
+          await executeInfo()
+        } else if (c === SubcommandEnum.Init) {
+          await executeInit(initCommandArgs)
         } else if (c === SubcommandEnum.RunWeb) {
           await executeRunWeb(runWebCommandArgs)
+        } else if (c === SubcommandEnum.UpdateDeps) {
+          // await executeUpdate(updateCommandArgs)
+        } else if (c === SubcommandEnum.None) {
+        } else {
+          isNever(c)
         }
       },
     },

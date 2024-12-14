@@ -15,6 +15,7 @@ const enDict: I18nMessages = {
   'error.invalidArgs{str}': 'Invalid args: {str}',
   'error.badArgs': 'Bad args',
   'error.shouldBeValidDir{dir}': '{dir} should be a valid directory',
+  'error.shouldBeEmptyDir{dir}': '{dir} should be an empty directory',
 }
 
 export default enDict

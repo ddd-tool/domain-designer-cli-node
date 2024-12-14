@@ -15,6 +15,7 @@ const zhDict: I18nMessages = {
   'error.invalidArgs{str}': '无效的参数: {str}',
   'error.badArgs': '错误的参数',
   'error.shouldBeValidDir{dir}': '{dir} 应该是一个有效的目录',
+  'error.shouldBeEmptyDir{dir}': '{dir} 应该是一个空目录',
 }
 
 export default zhDict

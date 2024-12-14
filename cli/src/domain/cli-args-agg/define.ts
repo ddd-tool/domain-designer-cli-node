@@ -2,7 +2,7 @@ export enum SubcommandEnum {
   Init = 'init',
   UpdateDeps = 'update',
   RunWeb = 'runWeb',
-  Hello = 'hello',
+  Info = 'hello',
   None = 'none',
 }
 

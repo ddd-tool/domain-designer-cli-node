@@ -1,0 +1,1 @@
+npx domain-designer-cli runWeb --source=F:/vscode_projects/@ddd-tool/demo
