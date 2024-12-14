@@ -2,10 +2,12 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { InitCommandArgs } from './define'
 import { useI18nAgg } from '../i18n-agg'
+import { readPackageSync } from 'read-pkg'
 
 const $t = useI18nAgg().commands.t
 
 export default async function (args: InitCommandArgs) {
+  const packageInfo = readPackageSync()
   const projectRoot = path.join(__dirname, '..')
   const distDir = path.join(args.source)
   if (!fs.existsSync(distDir) || !fs.statSync(distDir).isDirectory()) {
@@ -15,6 +17,11 @@ export default async function (args: InitCommandArgs) {
   }
 
   copyFolderRecursive(path.join(projectRoot, 'templates'), distDir)
+  fs.writeFileSync(
+    path.join(distDir, 'RunWeb.bat'),
+    `npx ${packageInfo._id} -- runWeb --source=${distDir.replace(/\\/g, '/')}`,
+    'utf-8'
+  )
 }
 
 /**

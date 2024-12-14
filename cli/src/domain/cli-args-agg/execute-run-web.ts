@@ -8,7 +8,7 @@ const $t = useI18nAgg().commands.t
 
 export default async function (args: RunWebCommandArgs) {
   console.log('================ 安装运行依赖: Starting... ================')
-  spawnSync('npm i', { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  spawnSync(`npm --prefix=${__dirname.replace(/\\/g, '/')} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   console.log('================ 安装运行依赖: Succeeded ================')
   console.log('================ 装配代码文件: Starting... ================')
   configSource(args.source)

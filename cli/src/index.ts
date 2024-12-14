@@ -24,6 +24,7 @@ async function start() {
   console.log(`repository addr: ${packageInfo.repository.url.replace(/git\+/g, '')}`)
   console.log(`script version: ${packageInfo.version}`)
   console.log('')
+  console.log('args', process.argv.join(' '))
 
   await cliArgsAgg.commands.init()
   cliArgsAgg.commands.exec()
