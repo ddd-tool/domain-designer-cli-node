@@ -22,7 +22,7 @@ export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
       params.currentCommand.value = SubcommandEnum.Init
-      if (!options.source) {
+      if (options.source) {
         params.args.source = options.source
       }
     })
@@ -44,7 +44,7 @@ export function requireUpdateCommand(params: {
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
       params.currentCommand.value = SubcommandEnum.UpdateDeps
-      if (!options.source) {
+      if (options.source) {
         params.args.source = options.source
       }
     })
@@ -66,7 +66,7 @@ export function requireRunWebCommand(params: {
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
       params.currentCommand.value = SubcommandEnum.RunWeb
-      if (!options.source) {
+      if (options.source) {
         params.args.source = options.source
       }
     })

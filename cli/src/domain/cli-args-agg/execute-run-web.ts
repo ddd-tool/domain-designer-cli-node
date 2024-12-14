@@ -8,15 +8,16 @@ const $t = useI18nAgg().commands.t
 
 export default async function (args: RunWebCommandArgs) {
   const webRoot = args.webRoot
+  console.log('webRoot路径', webRoot)
 
   console.log('================ 安装运行依赖: Starting... ================')
-  spawnSync(`cd ${webRoot} && pnpm i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  spawnSync(`pnpm --prefix=${webRoot} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   console.log('================ 安装运行依赖: Succeeded ================')
   console.log('================ 装配代码文件: Starting... ================')
   configSource(webRoot, args.source)
   console.log('================ 装配代码文件: Succeeded ================')
   console.log('================ 运行Web服务: Starting... ================')
-  spawnSync(`cd ${webRoot} && pnpm dev`, {
+  spawnSync(`pnpm --prefix=${webRoot} dev`, {
     encoding: 'utf-8',
     stdio: 'inherit',
     shell: true,
