@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "private": false,
   "description": "",
   "type": "module",
@@ -44,6 +44,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "npm-run-all2": "^7.0.1",
+    "primeicons": "^7.0.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
     "vue": "^3.5.13",

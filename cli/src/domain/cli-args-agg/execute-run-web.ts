@@ -7,23 +7,23 @@ import { useI18nAgg } from '../i18n-agg'
 const $t = useI18nAgg().commands.t
 
 export default async function (args: RunWebCommandArgs) {
+  const webRoot = path.resolve(__dirname, '..').replace(/\\/g, '/')
+
   console.log('================ 安装运行依赖: Starting... ================')
-  spawnSync(`npm --prefix=${__dirname.replace(/\\/g, '/')} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  spawnSync(`pnpm --prefix=${webRoot} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   console.log('================ 安装运行依赖: Succeeded ================')
   console.log('================ 装配代码文件: Starting... ================')
-  configSource(args.source)
+  configSource(webRoot, args.source)
   console.log('================ 装配代码文件: Succeeded ================')
   console.log('================ 运行Web服务: Starting... ================')
-  spawnSync(`npm --prefix=${__dirname.replace(/\\/g, '/')} run dev`, {
+  spawnSync(`pnpm --prefix=${webRoot} run dev`, {
     encoding: 'utf-8',
     stdio: 'inherit',
     shell: true,
   })
 }
 
-async function configSource(source: string) {
-  const projectRoot = path.join(__dirname, '..')
-
+async function configSource(webRoot: string, source: string) {
   if (!fs.existsSync(source) || !fs.statSync(source).isDirectory()) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: source }))
   }
@@ -45,5 +45,5 @@ const data: Record<string, DomainDesigner> = {
 export default data
   `
 
-  fs.writeFileSync(path.join(projectRoot, 'src', 'views', 'index.ts'), mergedTsCode, { encoding: 'utf-8' })
+  fs.writeFileSync(path.join(webRoot, 'src', 'views', 'index.ts'), mergedTsCode, { encoding: 'utf-8' })
 }
