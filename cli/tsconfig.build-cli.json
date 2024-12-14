@@ -1,0 +1,30 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "include": [
+    "src/*",
+    "src/**/*",
+  ],
+  "exclude": [
+    "**/__tests__",
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "lib": [
+      "DOM"
+    ],
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

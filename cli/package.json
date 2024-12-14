@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "type": "module",
+  "files": [
+    "./src"
+  ],
+  "scripts": {
+    "build": "run-p build:cli",
+    "build:cli": "run-p verify && zx ./scripts/build-cli.mjs",
+    "test": "run-p build:cli && run-p test:fun",
+    "test:fun": "vitest",
+    "verify": "tsc -p ./tsconfig.build-cli.json",
+    "hello": "echo 'hello!'",
+    "demo:init": "node ./bin/domain-designer-cli.cjs init --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo"
+  },
+  "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
+  "devDependencies": {
+    "@ddd-tool/domain-designer-ui-component": "^0.0.0-alpha.1",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.10.2",
+    "@types/prompts": "^2.4.9",
+    "@vue/reactivity": "^3.5.13",
+    "commander": "^12.1.0",
+    "esbuild": "^0.24.0",
+    "npm-run-all2": "^7.0.1",
+    "prompts": "^2.4.2",
+    "read-pkg": "^9.0.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "vue-fn": "0.0.3-aplha.35",
+    "zx": "^8.2.4"
+  }
+}
