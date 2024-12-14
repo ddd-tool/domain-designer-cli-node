@@ -10,13 +10,13 @@ export default async function (args: RunWebCommandArgs) {
   const webRoot = path.resolve(__dirname, '..').replace(/\\/g, '/')
 
   console.log('================ 安装运行依赖: Starting... ================')
-  spawnSync(`pnpm --prefix=${webRoot} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  spawnSync(`cd ${webRoot} && pnpm i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   console.log('================ 安装运行依赖: Succeeded ================')
   console.log('================ 装配代码文件: Starting... ================')
   configSource(webRoot, args.source)
   console.log('================ 装配代码文件: Succeeded ================')
   console.log('================ 运行Web服务: Starting... ================')
-  spawnSync(`pnpm --prefix=${webRoot} run dev`, {
+  spawnSync(`cd ${webRoot} && pnpm dev`, {
     encoding: 'utf-8',
     stdio: 'inherit',
     shell: true,

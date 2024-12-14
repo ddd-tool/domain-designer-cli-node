@@ -26,8 +26,12 @@ export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>
     })
 }
 
-export async function requireInitCommandArgs() {
-  // TODO
+export async function requireInitCommandArgs(params: {
+  currentCommand: Ref<SubcommandEnum>
+  args: Reactive<InitCommandArgs>
+}) {
+  params.currentCommand.value = SubcommandEnum.Init
+  params.args.source = process.cwd()
 }
 
 export function requireUpdateCommand(params: {
@@ -43,8 +47,12 @@ export function requireUpdateCommand(params: {
     })
 }
 
-export async function requireUpdateCommandArgs() {
-  // TODO
+export async function requireUpdateCommandArgs(params: {
+  currentCommand: Ref<SubcommandEnum>
+  args: Reactive<UpdateCommandArgs>
+}) {
+  params.currentCommand.value = SubcommandEnum.UpdateDeps
+  params.args.source = process.cwd()
 }
 
 export function requireRunWebCommand(params: {

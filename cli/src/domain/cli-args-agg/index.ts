@@ -98,9 +98,9 @@ const agg = createSingletonAgg(() => {
     currentCommand.value = subcommand
 
     if (subcommand === SubcommandEnum.Init) {
-      await requireInitCommandArgs()
+      await requireInitCommandArgs({ currentCommand, args: initCommandArgs })
     } else if (subcommand === SubcommandEnum.UpdateDeps) {
-      await requireUpdateCommandArgs()
+      await requireUpdateCommandArgs({ currentCommand, args: updateCommandArgs })
     } else if (subcommand === SubcommandEnum.RunWeb) {
       await requireRunWebCommandArgs({ currentCommand, args: runWebCommandArgs })
     } else if (subcommand === SubcommandEnum.Info) {
