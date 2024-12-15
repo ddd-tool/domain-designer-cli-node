@@ -1,3 +1,5 @@
+// noinspection NonAsciiCharacters
+
 import { createDomainDesigner } from '@ddd-tool/domain-designer-core'
 
 const d = createDomainDesigner()
