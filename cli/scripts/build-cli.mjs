@@ -17,6 +17,11 @@ function writeEnvFile() {
   delete packageInfo.scripts
   delete packageInfo.devDependencies
   fs.writeFileSync(targetFilePath, `export default ${JSON.stringify(packageInfo, null, 2)}`, 'utf-8')
+  fs.writeFileSync(
+    path.join(__dirname, '..', '..', 'templates', 'node_modules', 'version.txt'),
+    packageInfo.version,
+    'utf-8'
+  )
 }
 
 function esBuild() {
