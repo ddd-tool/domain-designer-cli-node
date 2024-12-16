@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.9",
+  "version": "0.0.0-alpha.10",
   "private": false,
   "description": "",
   "type": "module",
@@ -38,7 +38,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@ddd-tool/domain-designer-core": "0.0.0-alpha.8",
-    "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.5",
+    "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.6",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.2.1",
