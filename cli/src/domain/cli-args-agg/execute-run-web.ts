@@ -29,22 +29,60 @@ async function configSource(webRoot: string, source: string) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: source }))
   }
 
-  const codes: string[] = []
+  const designs: { name: string; flag: string; importCode: string }[] = []
   const matcher = new RegExp(/(.+)\.ts$/)
+  let i = 0
   fs.readdirSync(source).forEach((file) => {
     if (matcher.test(file)) {
       const name = matcher.exec(file)![1]
-      codes.push(`'${name}': (await import('${path.join(source, name).replace(/\\/g, '/')}')).default,`)
+      designs.push({
+        name,
+        flag: `__d${++i}`,
+        importCode: `(await import('${path.join(source, name).replace(/\\/g, '/')}')).default`,
+      })
     }
   })
 
-  const mergedTsCode = `import type { DomainDesigner } from '@ddd-tool/domain-designer-core'
-const data: Record<string, DomainDesigner> = {
-  ${codes.join('\n  ')}
+  const mergedTsCode = `import { type DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
+
+${designs
+  .map((d) => {
+    return `const ${d.flag} = ${d.importCode}`
+  })
+  .join('\n')}
+
+const data: Record<string, DomainDesigner> = {}
+
+${designs
+  .map((d) => {
+    return `if (isDomainDesigner(${d.flag})) {
+  data['${d.name}'] = ${d.flag}
+}`
+  })
+  .join('\n')}
+
+export default data
+`
+
+  fs.writeFileSync(path.join(webRoot, 'src', 'views', 'index.ts'), mergedTsCode, { encoding: 'utf-8' })
+
+  /* 
+import { type DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
+
+const __d1 = (await import('F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo/cus')).default
+const __d2 = (await import('F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo/示例')).default
+
+const data: Record<string, DomainDesigner> = {}
+if (isDomainDesigner(__d1)) {
+  data.cus = __d1
+}
+if (isDomainDesigner(__d2)) {
+  data.示例 = __d2
 }
 
 export default data
-  `
 
-  fs.writeFileSync(path.join(webRoot, 'src', 'views', 'index.ts'), mergedTsCode, { encoding: 'utf-8' })
+  
+  
+  */
 }

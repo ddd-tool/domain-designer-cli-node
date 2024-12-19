@@ -1,10 +1,6 @@
 import { Command } from 'commander'
 import type { Reactive, Ref } from '@vue/reactivity'
-import { InitCommandArgs, RunWebCommandArgs, SubcommandEnum, UpdateCommandArgs } from './define'
-import prompts from 'prompts'
-import { useI18nAgg } from '../i18n-agg'
-
-const $t = useI18nAgg().commands.t
+import { InitCommandArgs, RunWebCommandArgs, SubcommandEnum, UpdateWorkspaceCommandArgs } from './define'
 
 export function requireInfoCommand(params: { currentCommand: Ref<SubcommandEnum> }) {
   return new Command().name('info').action(() => {
@@ -12,7 +8,7 @@ export function requireInfoCommand(params: { currentCommand: Ref<SubcommandEnum>
   })
 }
 
-export async function requireHelloCommandArgs(params: { currentCommand: Ref<SubcommandEnum> }) {
+export async function requireInfoCommandArgs(params: { currentCommand: Ref<SubcommandEnum> }) {
   params.currentCommand.value = SubcommandEnum.Info
 }
 
@@ -35,26 +31,26 @@ export async function requireInitCommandArgs(params: {
   params.currentCommand.value = SubcommandEnum.Init
 }
 
-export function requireUpdateCommand(params: {
+export function requireUpdateWorkspaceCommand(params: {
   currentCommand: Ref<SubcommandEnum>
-  args: Reactive<UpdateCommandArgs>
+  args: Reactive<UpdateWorkspaceCommandArgs>
 }) {
   return new Command()
     .name('update')
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
-      params.currentCommand.value = SubcommandEnum.UpdateDeps
+      params.currentCommand.value = SubcommandEnum.UpdateWorkspace
       if (options.source) {
         params.args.source = options.source
       }
     })
 }
 
-export async function requireUpdateCommandArgs(params: {
+export async function requireUpdateWorkspaceCommandArgs(params: {
   currentCommand: Ref<SubcommandEnum>
-  args: Reactive<UpdateCommandArgs>
+  args: Reactive<UpdateWorkspaceCommandArgs>
 }) {
-  params.currentCommand.value = SubcommandEnum.UpdateDeps
+  params.currentCommand.value = SubcommandEnum.UpdateWorkspace
 }
 
 export function requireRunWebCommand(params: {

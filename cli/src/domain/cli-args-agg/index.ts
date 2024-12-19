@@ -3,21 +3,22 @@ import { Command } from 'commander'
 import prompts from 'prompts'
 import * as BusinessUtil from '@/utils/business'
 import { createSingletonAgg } from 'vue-fn/domain-server'
-import { SubcommandEnum, InitCommandArgs } from './define'
+import { SubcommandEnum, InitCommandArgs, UpdateWorkspaceCommandArgs } from './define'
 import {
   requireInitCommand,
-  requireInfoCommand,
-  // requireUpdateCommand,
   requireInitCommandArgs,
-  requireHelloCommandArgs,
-  requireUpdateCommandArgs,
+  requireInfoCommand,
+  requireInfoCommandArgs,
+  requireUpdateWorkspaceCommand,
+  requireUpdateWorkspaceCommandArgs,
   requireRunWebCommand,
   requireRunWebCommandArgs,
 } from './require-subcommand'
 import { useI18nAgg } from '../i18n-agg'
 import executeInfo from './execute-info'
-import executeRunWeb from './execute-run-web'
 import executeInit from './execute-init'
+import executeRunWeb from './execute-run-web'
+import executeUpdate from './execute-update'
 import path from 'node:path'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
@@ -32,7 +33,7 @@ const agg = createSingletonAgg(() => {
   const webRoot = getWebRoot()
   const source = process.cwd()
   const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
-  const updateCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
+  const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({ webRoot, source })
   const runWebCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
 
   const program = new Command()
@@ -43,7 +44,7 @@ const agg = createSingletonAgg(() => {
     })
     .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
     .addCommand(requireInfoCommand({ currentCommand }))
-    // .addCommand(requireUpdateCommand({ currentCommand, args: updateCommandArgs }))
+    .addCommand(requireUpdateWorkspaceCommand({ currentCommand, args: updateWorkspaceCommandArgs }))
     .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
 
   function configArgsFromCommandLine() {
@@ -82,16 +83,16 @@ const agg = createSingletonAgg(() => {
               title: $t('question.subcommand.init'),
               value: SubcommandEnum.Init,
             },
-            // {
-            //   title: $t('question.subcommand.updateDeps'),
-            //   value: SubcommandEnum.UpdateDeps,
-            // },
+            {
+              title: $t('question.subcommand.updateWorkspace'),
+              value: SubcommandEnum.UpdateWorkspace,
+            },
             {
               title: $t('question.subcommand.runWeb'),
               value: SubcommandEnum.RunWeb,
             },
             {
-              title: $t('question.subcommand.hello'),
+              title: $t('question.subcommand.info'),
               value: SubcommandEnum.Info,
             },
           ],
@@ -105,12 +106,12 @@ const agg = createSingletonAgg(() => {
 
     if (subcommand === SubcommandEnum.Init) {
       await requireInitCommandArgs({ currentCommand, args: initCommandArgs })
-    } else if (subcommand === SubcommandEnum.UpdateDeps) {
-      await requireUpdateCommandArgs({ currentCommand, args: updateCommandArgs })
+    } else if (subcommand === SubcommandEnum.UpdateWorkspace) {
+      await requireUpdateWorkspaceCommandArgs({ currentCommand, args: updateWorkspaceCommandArgs })
     } else if (subcommand === SubcommandEnum.RunWeb) {
       await requireRunWebCommandArgs({ currentCommand, args: runWebCommandArgs })
     } else if (subcommand === SubcommandEnum.Info) {
-      await requireHelloCommandArgs({ currentCommand })
+      await requireInfoCommandArgs({ currentCommand })
     } else if (subcommand === SubcommandEnum.None) {
       return
     } else {
@@ -121,7 +122,7 @@ const agg = createSingletonAgg(() => {
   return {
     states: {
       initCommandArgs,
-      updateCommandArgs,
+      updateCommandArgs: updateWorkspaceCommandArgs,
     },
     commands: {
       async init() {
@@ -139,8 +140,8 @@ const agg = createSingletonAgg(() => {
           await executeInit(initCommandArgs)
         } else if (c === SubcommandEnum.RunWeb) {
           await executeRunWeb(runWebCommandArgs)
-        } else if (c === SubcommandEnum.UpdateDeps) {
-          // await executeUpdate(updateCommandArgs)
+        } else if (c === SubcommandEnum.UpdateWorkspace) {
+          await executeUpdate(updateWorkspaceCommandArgs)
         } else if (c === SubcommandEnum.None) {
         } else {
           isNever(c)

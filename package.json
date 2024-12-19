@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.10",
+  "version": "0.0.0-alpha.11",
   "private": false,
   "description": "",
   "type": "module",
@@ -24,7 +24,8 @@
     "test:fun": "vitest",
     "verify": "tsc -p ./tsconfig.build-cli.json",
     "demo:init": "node ./bin/domain-designer-cli.cjs init --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
-    "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo"
+    "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
+    "demo:update": "node ./bin/domain-designer-cli.cjs update --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo"
   },
   "keywords": [
     "domain-designer",
@@ -37,8 +38,8 @@
   "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@ddd-tool/domain-designer-core": "0.0.0-alpha.8",
-    "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.6",
+    "@ddd-tool/domain-designer-core": "0.0.0-alpha.11",
+    "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.10",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.2.1",
