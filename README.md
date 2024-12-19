@@ -2,7 +2,7 @@
 
 目标是作为 ddd 建模生产力工具
 
-## 前置依赖
+## 1 前置依赖
 
 [nodejs](https://nodejs.org/en/download/) >= 18
 
@@ -10,15 +10,15 @@
 
 - 确保有全局的`pnpm`指令
 
-## 安装
+## 2 安装
 
 ```bash
 pnpm i @ddd-tool/domain-designer-cli -g
 ```
 
-## 使用
+## 3 使用
 
-### 初始化一个工作空间
+### 3.1 初始化一个工作空间
 
 在一个空文件夹中执行命令
 
@@ -34,25 +34,25 @@ domain-designer-cli init
 
   - RunWeb 脚本。用于实时查看建模效果
 
-### 编写 ts 文件
+### 3.2 编写 ts 文件
 
 - 可以自行创建多个任意名称的 ts 文件
 
 - 多个 ts 文件会被 web 服务识别为多个数据源，可在 web 页面的设置中切换数据源
 
-### Web 端运行
+### 3.3 Web 端运行
 
 - 运行自动生成的`RunWeb`脚本文件，即可启动 web 服务
 
-### 更新版本
+### 3.4 更新版本
 
-#### 1、更新软件
+#### 3.4.1 更新软件
 
 ```bash
 pnpm i @ddd-tool/domain-designer-cli@latest -g
 ```
 
-#### 2、更新工作空间
+#### 3.4.2 更新工作空间
 
 在已有的工作空间中执行命令
 
@@ -60,7 +60,7 @@ pnpm i @ddd-tool/domain-designer-cli@latest -g
 domain-designer-cli init
 ```
 
-## 其他说明
+## 4 其他说明
 
 - 对于每个 ts 文件内的修改，刷新页面即可看到效果
 
