@@ -16,9 +16,25 @@
 pnpm i @ddd-tool/domain-designer-cli -g
 ```
 
-## 3 使用
+## 3 更新版本
 
-### 3.1 初始化一个工作空间
+#### 3.1 更新软件
+
+```bash
+pnpm i @ddd-tool/domain-designer-cli@latest -g
+```
+
+#### 3.2 更新工作空间
+
+在已有的工作空间中执行命令
+
+```bash
+domain-designer-cli init
+```
+
+## 4 使用
+
+### 4.1 初始化一个工作空间
 
 在一个空文件夹中执行命令
 
@@ -34,33 +50,17 @@ domain-designer-cli init
 
   - RunWeb 脚本。用于实时查看建模效果
 
-### 3.2 编写 ts 文件
+### 4.2 编写 ts 文件
 
 - 可以自行创建多个任意名称的 ts 文件
 
 - 多个 ts 文件会被 web 服务识别为多个数据源，可在 web 页面的设置中切换数据源
 
-### 3.3 Web 端运行
+### 4.3 Web 端运行
 
 - 运行自动生成的`RunWeb`脚本文件，即可启动 web 服务
 
-### 3.4 更新版本
-
-#### 3.4.1 更新软件
-
-```bash
-pnpm i @ddd-tool/domain-designer-cli@latest -g
-```
-
-#### 3.4.2 更新工作空间
-
-在已有的工作空间中执行命令
-
-```bash
-domain-designer-cli init
-```
-
-## 4 其他说明
+## 5 其他说明
 
 - 对于每个 ts 文件内的修改，刷新页面即可看到效果
 
