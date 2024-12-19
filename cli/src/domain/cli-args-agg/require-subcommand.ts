@@ -3,9 +3,13 @@ import type { Reactive, Ref } from '@vue/reactivity'
 import { InitCommandArgs, RunWebCommandArgs, SubcommandEnum, UpdateWorkspaceCommandArgs } from './define'
 
 export function requireInfoCommand(params: { currentCommand: Ref<SubcommandEnum> }) {
-  return new Command().name('info').action(() => {
-    params.currentCommand.value = SubcommandEnum.Info
-  })
+  return new Command()
+    .name('info')
+    .action(() => {
+      params.currentCommand.value = SubcommandEnum.Info
+    })
+    .addHelpText('before', 'Print info.\n')
+    .addHelpText('before', '打印信息\n')
 }
 
 export async function requireInfoCommandArgs(params: { currentCommand: Ref<SubcommandEnum> }) {
@@ -22,6 +26,8 @@ export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>
         params.args.source = options.source
       }
     })
+    .addHelpText('before', 'Initialize the workspace.\n')
+    .addHelpText('before', '初始化一个工作空间\n')
 }
 
 export async function requireInitCommandArgs(params: {
@@ -44,6 +50,8 @@ export function requireUpdateWorkspaceCommand(params: {
         params.args.source = options.source
       }
     })
+    .addHelpText('before', 'Update the workspace.\n')
+    .addHelpText('before', '更新工作空间\n')
 }
 
 export async function requireUpdateWorkspaceCommandArgs(params: {
@@ -66,6 +74,8 @@ export function requireRunWebCommand(params: {
         params.args.source = options.source
       }
     })
+    .addHelpText('before', 'Run web server.\n')
+    .addHelpText('before', '运行 web 服务\n')
 }
 
 export async function requireRunWebCommandArgs(params: {
