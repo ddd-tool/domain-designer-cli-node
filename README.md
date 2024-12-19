@@ -29,7 +29,7 @@ pnpm i @ddd-tool/domain-designer-cli@latest -g
 在已有的工作空间中执行命令
 
 ```bash
-domain-designer-cli init
+domain-designer-cli update
 ```
 
 ## 4 使用
