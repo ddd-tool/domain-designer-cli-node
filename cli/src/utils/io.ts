@@ -8,7 +8,7 @@ import path from 'node:path'
  * @param {object} opts 配置选项
  * @param {string[]} [opts.ignore] 要忽略的文件或文件夹名称
  */
-export function copyFolderRecursive(src: string, dest: string, opts: { ignore?: string[] } = {}) {
+export function copyFolderRecursive(src: string, dest: string, opts: { ignore?: string[]; pattern?: RegExp } = {}) {
   // 检查源文件夹是否存在
   if (!fs.existsSync(src)) {
     throw new Error(`Source folder does not exist: ${src}`)
@@ -29,6 +29,9 @@ export function copyFolderRecursive(src: string, dest: string, opts: { ignore?: 
     // 检查是否需要忽略
     if (opts.ignore && opts.ignore.includes(entry.name)) {
       continue // 跳过忽略的文件或文件夹
+    }
+    if (opts.pattern && !opts.pattern.test(entry.name)) {
+      continue // 跳过不匹配的文件或文件夹
     }
 
     if (entry.isDirectory()) {

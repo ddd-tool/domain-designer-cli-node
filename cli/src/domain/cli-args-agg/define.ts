@@ -1,4 +1,5 @@
 import os from 'node:os'
+import packageInfo from '@/utils/package-info'
 
 export enum SubcommandEnum {
   Init = 'init',
@@ -29,7 +30,13 @@ export type Script = {
 }
 
 export function getRunWebScript(): Script | undefined {
-  const winScript = `@echo off
+  const repoAddr = packageInfo.repository.url.replace(/git\+/g, '')
+
+  const winScript = `REM App Name: Domain Designer Cli
+REM Script Version: ${packageInfo.version}
+REM Repo Addr: ${repoAddr}
+
+@echo off
 setlocal
 set "scriptPath=%~dp0"
 
@@ -37,10 +44,18 @@ domain-designer-cli runWeb --source=%scriptPath%
 `
 
   const linuxScript = `#!/bin/bash
+# App Name: Domain Designer Cli
+# Script Version: ${packageInfo.version}
+# Repo Addr: ${repoAddr}
+
 domain-designer-cli runWeb --source="$(pwd)"
 `
 
   const macScript = `#!/bin/bash
+# App Name: Domain Designer Cli
+# Script Version: ${packageInfo.version}
+# Repo Addr: ${repoAddr}
+
 domain-designer-cli runWeb --source="$(pwd)"
 `
 

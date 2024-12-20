@@ -21,10 +21,10 @@ start()
 process.on('SIGINT', onCancel)
 
 async function start() {
-  console.log(`repository addr: ${packageInfo.repository.url.replace(/git\+/g, '')}`)
-  console.log(`script version: ${packageInfo.version}`)
+  console.log(`Repo Addr: ${packageInfo.repository.url.replace(/git\+/g, '')}`)
   console.log('')
-  console.log('args', process.argv.join(' '))
+  console.log(`Script Version: ${packageInfo.version}`)
+  console.log('')
 
   await cliArgsAgg.commands.init()
   cliArgsAgg.commands.exec()

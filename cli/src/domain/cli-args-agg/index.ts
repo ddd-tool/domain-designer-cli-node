@@ -1,5 +1,5 @@
 import { reactive, ref } from '@vue/reactivity'
-import { Command } from 'commander'
+import { Command, Option } from 'commander'
 import prompts from 'prompts'
 import * as BusinessUtil from '@/utils/business'
 import { createSingletonAgg } from 'vue-fn/domain-server'
@@ -15,6 +15,7 @@ import {
   requireRunWebCommandArgs,
 } from './require-subcommand'
 import { useI18nAgg } from '../i18n-agg'
+import packageInfo from '@/utils/package-info'
 import executeInfo from './execute-info'
 import executeInit from './execute-init'
 import executeRunWeb from './execute-run-web'
@@ -29,7 +30,6 @@ function getWebRoot() {
 const agg = createSingletonAgg(() => {
   const isReady = ref(false)
   const currentCommand = ref(SubcommandEnum.None)
-  const debugMode = ref(false)
   const webRoot = getWebRoot()
   const source = process.cwd()
   const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
@@ -38,22 +38,26 @@ const agg = createSingletonAgg(() => {
 
   const program = new Command()
     .name('domain-designer-cli')
-    .option('--debug', '调试模式', false)
-    .action((options) => {
-      debugMode.value = options.debug
+    .version(packageInfo.version)
+    .addOption(new Option('--debug', 'debug mode').default(false).env('DEBUG_MODE'))
+    .hook('preAction', (thisCommand) => {
+      console.log('调试模式', thisCommand.opts().debug)
+      process.env.DEBUG_MODE = thisCommand.opts().debug
     })
     .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
     .addCommand(requireInfoCommand({ currentCommand }))
     .addCommand(requireUpdateWorkspaceCommand({ currentCommand, args: updateWorkspaceCommandArgs }))
     .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
 
-  function configArgsFromCommandLine() {
-    program.parse(process.argv)
-    if (SubcommandEnum.None !== currentCommand.value) {
-      isReady.value = true
-    }
+  program.parse(process.argv)
+
+  if (SubcommandEnum.None !== currentCommand.value) {
+    isReady.value = true
   }
-  configArgsFromCommandLine()
+
+  if (process.env.DEBUG_MODE) {
+    console.log('- DEBUG: args信息：', `[\n${process.argv.join('\n\t')}\n]`)
+  }
 
   async function configArgsFromUserChoise(): Promise<void> {
     const { langurage } = await prompts(
