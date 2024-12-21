@@ -8,16 +8,16 @@ export default {
     console.error(this.error(...toString(...args)))
   },
   printSuccess(...args: any[]) {
-    console.log(chalk.green(...toString(...args)))
+    console.log(this.success(...toString(...args)))
   },
   printWarn(...args: any[]) {
-    console.log(chalk.yellow(...toString(...args)))
+    console.log(this.warn(...toString(...args)))
   },
   printInfo(...args: any[]) {
-    console.log(chalk.blue(...toString(...args)))
+    console.log(this.info(...toString(...args)))
   },
   printDebug(...args: any[]) {
-    console.log(chalk.gray(...toString(...args)))
+    console.log(this.debug(...toString(...args)))
   },
   error(...args: any[]) {
     return chalk.red(...toString(...args))
@@ -29,7 +29,7 @@ export default {
     return chalk.yellow(...toString(...args))
   },
   info(...args: any[]) {
-    return chalk.blue(...toString(...args))
+    return chalk.blueBright(...toString(...args))
   },
   debug(...args: any[]) {
     return chalk.gray(...toString(...args))
