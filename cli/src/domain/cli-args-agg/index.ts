@@ -1,6 +1,7 @@
 import { reactive, ref } from '@vue/reactivity'
 import { Command, Option } from 'commander'
 import prompts from 'prompts'
+import log from '@/utils/log'
 import * as BusinessUtil from '@/utils/business'
 import { createSingletonAgg } from 'vue-fn/domain-server'
 import { SubcommandEnum, InitCommandArgs, UpdateWorkspaceCommandArgs } from './define'
@@ -39,10 +40,15 @@ const agg = createSingletonAgg(() => {
   const program = new Command()
     .name('domain-designer-cli')
     .version(packageInfo.version)
-    .addOption(new Option('--debug', 'debug mode').default(false).env('DEBUG_MODE'))
+    .addOption(new Option('--debug', 'debug mode').default(false))
     .hook('preAction', (thisCommand) => {
-      console.log('调试模式', thisCommand.opts().debug)
-      process.env.DEBUG_MODE = thisCommand.opts().debug
+      const debugMode = thisCommand.opts().debug
+      if (debugMode === true) {
+        log.printDebug('调试模式已开启')
+        process.env.DEBUG_MODE === 'T'
+      } else {
+        process.env.DEBUG_MODE === 'F'
+      }
     })
     .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
     .addCommand(requireInfoCommand({ currentCommand }))
@@ -55,8 +61,9 @@ const agg = createSingletonAgg(() => {
     isReady.value = true
   }
 
-  if (process.env.DEBUG_MODE) {
-    console.log('- DEBUG: args信息：', `[\n${process.argv.join('\n\t')}\n]`)
+  if (process.env.DEBUG_MODE === 'T') {
+    log.printDebug(typeof process.env.DEBUG_MODE, process.env.DEBUG_MODE)
+    log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
   }
 
   async function configArgsFromUserChoise(): Promise<void> {

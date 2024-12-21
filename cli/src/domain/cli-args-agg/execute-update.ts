@@ -2,14 +2,15 @@ import { getRunWebScript, UpdateWorkspaceCommandArgs } from './define'
 import fs from 'node:fs'
 import path from 'node:path'
 import packageInfo from '@/utils/package-info'
+import log from '@/utils/log'
 import { copyFolderRecursive, deleteFolderRecursive } from '@/utils/io'
 
 export default function (args: Readonly<UpdateWorkspaceCommandArgs>) {
   const distDir = path.join(args.source)
-  console.log('================ 更新依赖: Starting... ================')
+  log.printInfo('================ 更新依赖: Starting... ================')
   if (!fs.existsSync(path.join(distDir, 'node_modules')) || fs.existsSync(path.join(args.source, 'package.json'))) {
-    console.log('该目录不是工作空间，无法更新')
-    console.log('================ 更新依赖: End ================')
+    log.printWarn('该目录不是工作空间，无法更新')
+    log.printWarn('================ 更新依赖: End ================')
     return
   }
 
@@ -21,11 +22,11 @@ export default function (args: Readonly<UpdateWorkspaceCommandArgs>) {
     : fs.readFileSync(versionFilePath).toString().trim()
 
   if (workspaceVer === packageInfo.version) {
-    console.log('工作目录已是最新版本，无需更新')
-    console.log('================ 更新依赖: Succeeded ================')
+    log.print('工作目录已是最新版本，无需更新')
+    log.printSuccess('================ 更新依赖: Succeeded ================')
     return
   }
-  console.log('工作目录版本：', workspaceVer)
+  log.print('工作目录版本：', workspaceVer)
 
   deleteFolderRecursive(path.join(distDir, 'node_modules'))
   const runWebScript = getRunWebScript()
@@ -38,7 +39,7 @@ export default function (args: Readonly<UpdateWorkspaceCommandArgs>) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
   }
 
-  console.log(`目录已更新至 ${packageInfo.version}`)
+  log.print(`目录已更新至 ${packageInfo.version}`)
 
-  console.log('================ 更新依赖: Succeeded ================')
+  log.printSuccess('================ 更新依赖: Succeeded ================')
 }

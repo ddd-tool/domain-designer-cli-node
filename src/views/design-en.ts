@@ -1,16 +1,17 @@
 import { createDomainDesigner } from '@ddd-tool/domain-designer-core'
 
 const d = createDomainDesigner()
+const i = d.info
 
 // user
 const user = d.actor('user', 'order user')
 
 // aggregation
-const userAccount = d.info.field.any('userAccount')
-const orderId = d.info.field.id('orderId')
-const orderTime = d.info.field.time('orderTime')
-const productPrice = d.info.field.num('productPrice')
-const productQuantity = d.info.field.num('productQuantity')
+const userAccount = i.valueObj('userAccount')
+const orderId = i.id('orderId')
+const orderTime = i.valueObj('orderTime')
+const productPrice = i.valueObj('productPrice')
+const productQuantity = i.valueObj('productQuantity')
 const orderAmount = d.info.func('orderAmount', [productPrice, productQuantity])
 const orderAggregation = d.agg(
   'orderAggregation',
@@ -19,10 +20,7 @@ const orderAggregation = d.agg(
 )
 
 // command
-const createOrder = d.command('createOrder', [
-  orderAggregation.inner.orderId,
-  userAccount,
-])
+const createOrder = d.command('createOrder', [orderAggregation.inner.orderId, userAccount])
 const autoDeduct = d.command('autoDeduct', [orderId])
 
 // event
@@ -42,10 +40,7 @@ rule 3:
   `
 )
 // service
-const autoDeductService = d.service(
-  'autoDeductService',
-  'initiate automatic payment based on payment rule'
-)
+const autoDeductService = d.service('autoDeductService', 'initiate automatic payment based on payment rule')
 // external system
 const logisticsSystem = d.system('logisticsSystem')
 const mailSystem = d.system('mailSystem')
@@ -57,9 +52,7 @@ const createOrderFailureWorkflow = d.startWorkflow('createOrderFailure')
 user.command(createOrder).agg(orderAggregation).event(orderFailure)
 orderFailure.system(mailSystem)
 
-const createOrderSuccess_AutoDeductFailureWorkflow = d.startWorkflow(
-  'createOrderSuccess_AutoDeductFailure'
-)
+const createOrderSuccess_AutoDeductFailureWorkflow = d.startWorkflow('createOrderSuccess_AutoDeductFailure')
 user
   .command(createOrder)
   .agg(orderAggregation)
@@ -72,9 +65,7 @@ user
 deductFailure.readModel(orderDetail)
 deductFailure.system(mailSystem)
 
-const createOrderSuccess_AutoDeductSuccessWorkflow = d.startWorkflow(
-  'createOrderSuccess_AutoDeductSuccess'
-)
+const createOrderSuccess_AutoDeductSuccessWorkflow = d.startWorkflow('createOrderSuccess_AutoDeductSuccess')
 user
   .command(createOrder)
   .agg(orderAggregation)
@@ -95,18 +86,14 @@ d.startWorkflow('readModel')
 const userRead = d.actor('user', 'user (read model)')
 userRead.readModel(orderDetail)
 
-d.defineUserStory(
-  'as a mall user, I want to place an order and implement automatic payment to get the goods',
-  [
-    createOrderFailureWorkflow,
-    createOrderSuccess_AutoDeductFailureWorkflow,
-    createOrderSuccess_AutoDeductSuccessWorkflow,
-  ]
-)
+d.defineUserStory('as a mall user, I want to place an order and implement automatic payment to get the goods', [
+  createOrderFailureWorkflow,
+  createOrderSuccess_AutoDeductFailureWorkflow,
+  createOrderSuccess_AutoDeductSuccessWorkflow,
+])
 
-d.defineUserStory(
-  'as a mall user, I want to view the order status, so I can know the order status',
-  [createOrderSuccess_AutoDeductSuccessWorkflow]
-)
+d.defineUserStory('as a mall user, I want to view the order status, so I can know the order status', [
+  createOrderSuccess_AutoDeductSuccessWorkflow,
+])
 
 export default d

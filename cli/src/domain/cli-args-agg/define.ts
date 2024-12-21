@@ -1,5 +1,6 @@
 import os from 'node:os'
 import packageInfo from '@/utils/package-info'
+import log from '@/utils/log'
 
 export enum SubcommandEnum {
   Init = 'init',
@@ -76,6 +77,6 @@ domain-designer-cli runWeb --source="$(pwd)"
       content: macScript,
     }
   } else {
-    console.error(`Unsupported OS: ${osType}`)
+    log.printError(`Unsupported OS: ${osType}`)
   }
 }
