@@ -38,7 +38,7 @@ async function configSource(webRoot: string, source: string) {
     !fs.statSync(versionFilePath).isFile() ||
     fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
   ) {
-    log.printWarn('工作目录版本与脚手架版本不匹配')
+    log.printWarn('检测到工作目录版本与脚手架版本不匹配')
     log.printWarn('请执行在工作目录执行update命令进行更新')
     log.print(chalk.bgYellow('domain-designer-cli update'))
   }
