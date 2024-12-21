@@ -4,6 +4,8 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { useI18nAgg } from '../i18n-agg'
 import log from '@/utils/log'
+import packageInfo from '@/utils/package-info'
+import chalk from 'chalk'
 
 const $t = useI18nAgg().commands.t
 
@@ -28,6 +30,17 @@ export default async function (args: RunWebCommandArgs) {
 async function configSource(webRoot: string, source: string) {
   if (!fs.existsSync(source) || !fs.statSync(source).isDirectory()) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: source }))
+  }
+
+  const versionFilePath = path.join(source, 'node_modules', 'version.txt')
+  if (
+    !fs.existsSync(versionFilePath) ||
+    !fs.statSync(versionFilePath).isFile() ||
+    fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
+  ) {
+    log.printWarn('工作目录版本与脚手架版本不匹配')
+    log.printWarn('请执行在工作目录执行update命令进行更新')
+    log.print(chalk.bgYellow('domain-designer-cli update'))
   }
 
   const designs: { name: string; flag: string; importCode: string }[] = []
