@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.18",
+  "version": "0.0.0-alpha.19",
   "private": true,
   "type": "module",
   "files": [
@@ -27,7 +27,7 @@
     "read-pkg": "^9.0.1",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8",
-    "vue-fn": "0.0.3-aplha.35",
+    "vue-fn": "0.0.3-alpha.37",
     "zx": "^8.2.4"
   }
 }

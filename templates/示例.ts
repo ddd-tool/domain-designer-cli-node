@@ -28,7 +28,7 @@ const 聚合 = d.agg(
   如: ${参与者}可以在执行${命令}时，可选地指定${命令.inner.不关心类型的信息}字段`
 )
 
-d.readModel('', ['id', ['name', d.desc``]])
+d.readModel('读模型', ['id', ['name', d.desc``]])
 
 const 工作流 = d.startWorkflow('开始一个工作流')
 参与者.command(命令).agg(聚合).event(事件).system(外部系统)
