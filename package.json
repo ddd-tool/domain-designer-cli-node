@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.19",
+  "version": "0.0.0-alpha.20",
   "private": false,
   "description": "",
   "type": "module",
@@ -25,7 +25,8 @@
     "verify": "tsc -p ./tsconfig.build-cli.json",
     "demo:init": "node ./bin/domain-designer-cli.cjs init --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
     "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
-    "demo:update": "node ./bin/domain-designer-cli.cjs update --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo"
+    "demo:update": "node ./bin/domain-designer-cli.cjs update --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
+    "demo:info": "node ./bin/domain-designer-cli.cjs info"
   },
   "keywords": [
     "domain-designer",

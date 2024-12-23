@@ -64,6 +64,7 @@ const agg = createSingletonAgg(() => {
   if (process.env.DEBUG_MODE === 'T') {
     log.printDebug(typeof process.env.DEBUG_MODE, process.env.DEBUG_MODE)
     log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
+    log.printDebug('- DEBUG: packageManager', process.env.PACKAGE_MANAGER)
   }
 
   async function configArgsFromUserChoise(): Promise<void> {

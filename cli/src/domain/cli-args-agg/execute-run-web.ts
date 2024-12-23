@@ -12,7 +12,7 @@ const $t = useI18nAgg().commands.t
 export default async function (args: RunWebCommandArgs) {
   const webRoot = args.webRoot
   log.printDebug('webRoot路径', webRoot)
-  const packageManager = process.env.packageManager!
+  const packageManager = process.env.PACKAGE_MANAGER!
 
   log.printInfo('================ 安装运行依赖: Starting... ================')
   spawnSync(`cd ${webRoot} && ${packageManager} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })

@@ -6,25 +6,29 @@
 
 [nodejs](https://nodejs.org/en/download/) >= 18
 
-[pnpm](https://pnpm.io/) >= 9
+[pnpm](https://pnpm.io/) >= 9 OR [bun](https://bun.sh/)
 
-- 确保有全局的`pnpm`指令
+- 确保有全局的`pnpm`或者`bun`指令
 
 ## 2 安装
 
 ```bash
 pnpm i @ddd-tool/domain-designer-cli -g
+# or
+bun i @ddd-tool/domain-designer-cli -g
 ```
 
 ## 3 更新版本
 
-#### 3.1 更新软件
+### 3.1 更新软件
 
 ```bash
 pnpm i @ddd-tool/domain-designer-cli@latest -g
+# or
+bun i @ddd-tool/domain-designer-cli@latest -g
 ```
 
-#### 3.2 更新工作空间
+### 3.2 更新工作空间
 
 在已有的工作空间中执行命令
 
