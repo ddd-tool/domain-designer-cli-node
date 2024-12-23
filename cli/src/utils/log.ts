@@ -44,7 +44,9 @@ function toString(...args: any[]): string[] {
     if (!item) {
       arr.push('')
     }
-    if (typeof item === 'string') {
+    if (item instanceof Error) {
+      arr.push(item.message + '\n' + item.stack)
+    } else if (typeof item === 'string') {
       arr.push(item)
     } else if (typeof item === 'object') {
       arr.push(JSON.stringify(item, null, 2))

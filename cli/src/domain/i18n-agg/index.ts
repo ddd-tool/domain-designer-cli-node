@@ -7,7 +7,7 @@ import { I18nMessages, I18nMessagesKey } from './messages'
 export const validLanguages = ['en', 'zh'] as const
 export type Language = (typeof validLanguages)[number]
 
-const store = createSingletonAgg(() => {
+const agg = createSingletonAgg(() => {
   const currentLang = ref<Language>('zh')
   const locale = ref<I18nMessages>(enUS)
 
@@ -54,5 +54,5 @@ const store = createSingletonAgg(() => {
 })
 
 export function useI18nAgg() {
-  return store.api
+  return agg.api
 }

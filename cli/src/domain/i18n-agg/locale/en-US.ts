@@ -16,6 +16,7 @@ const enDict: I18nMessages = {
   'error.badArgs': 'Bad args',
   'error.shouldBeValidDir{dir}': '{dir} should be a valid directory',
   'error.shouldBeEmptyDir{dir}': '{dir} should be an empty directory',
+  'error.noPackageManager': 'No package manager found, please install bun or pnpm',
 }
 
 export default enDict

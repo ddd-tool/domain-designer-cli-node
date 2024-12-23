@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process'
 import { RunWebCommandArgs } from './define'
-import path from 'node:path'
-import fs from 'node:fs'
+import path from 'path'
+import fs from 'fs'
 import { useI18nAgg } from '../i18n-agg'
 import log from '@/utils/log'
 import packageInfo from '@/utils/package-info'
@@ -12,15 +12,16 @@ const $t = useI18nAgg().commands.t
 export default async function (args: RunWebCommandArgs) {
   const webRoot = args.webRoot
   log.printDebug('webRoot路径', webRoot)
+  const packageManager = process.env.packageManager!
 
   log.printInfo('================ 安装运行依赖: Starting... ================')
-  spawnSync(`pnpm --prefix=${webRoot} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  spawnSync(`cd ${webRoot} && ${packageManager} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   log.printSuccess('================ 安装运行依赖: Succeeded ================')
   log.printInfo('================ 装配代码文件: Starting... ================')
   configSource(webRoot, args.source)
   log.printSuccess('================ 装配代码文件: Succeeded ================')
   log.printInfo('================ 运行Web服务: Starting... ================')
-  spawnSync(`pnpm --prefix=${webRoot} dev`, {
+  spawnSync(`cd ${webRoot} && ${packageManager} dev`, {
     encoding: 'utf-8',
     stdio: 'inherit',
     shell: true,

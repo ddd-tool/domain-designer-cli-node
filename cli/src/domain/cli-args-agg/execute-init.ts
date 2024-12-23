@@ -1,5 +1,5 @@
-import path from 'node:path'
-import fs from 'node:fs'
+import path from 'path'
+import fs from 'fs'
 
 import { getRunWebScript, InitCommandArgs } from './define'
 import { useI18nAgg } from '../i18n-agg'

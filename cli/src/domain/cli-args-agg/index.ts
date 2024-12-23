@@ -2,9 +2,9 @@ import { reactive, ref } from '@vue/reactivity'
 import { Command, Option } from 'commander'
 import prompts from 'prompts'
 import log from '@/utils/log'
-import * as BusinessUtil from '@/utils/business'
+import * as BusinessUtil from '@/utils/signal'
 import { createSingletonAgg } from 'vue-fn/domain-server'
-import { SubcommandEnum, InitCommandArgs, UpdateWorkspaceCommandArgs } from './define'
+import { SubcommandEnum, InitCommandArgs, UpdateWorkspaceCommandArgs, RunWebCommandArgs } from './define'
 import {
   requireInitCommand,
   requireInitCommandArgs,
@@ -21,7 +21,7 @@ import executeInfo from './execute-info'
 import executeInit from './execute-init'
 import executeRunWeb from './execute-run-web'
 import executeUpdate from './execute-update'
-import path from 'node:path'
+import path from 'path'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
 function getWebRoot() {
@@ -35,7 +35,7 @@ const agg = createSingletonAgg(() => {
   const source = process.cwd()
   const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
   const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({ webRoot, source })
-  const runWebCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
+  const runWebCommandArgs = reactive<RunWebCommandArgs>({ webRoot, source })
 
   const program = new Command()
     .name('domain-designer-cli')

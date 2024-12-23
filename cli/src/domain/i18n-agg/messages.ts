@@ -14,6 +14,7 @@ export type I18nMessages = {
   'error.badArgs': string
   'error.shouldBeValidDir{dir}': string
   'error.shouldBeEmptyDir{dir}': string
+  'error.noPackageManager': string
 }
 
 export type I18nMessagesKey = keyof I18nMessages

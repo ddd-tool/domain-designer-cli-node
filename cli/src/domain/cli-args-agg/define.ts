@@ -1,6 +1,6 @@
-import os from 'node:os'
 import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
+import { checkOS } from '@/utils/check-env'
 
 export enum SubcommandEnum {
   Init = 'init',
@@ -36,6 +36,7 @@ export function getRunWebScript(): Script | undefined {
   const winScript = `REM App Name: Domain Designer Cli
 REM Script Version: ${packageInfo.version}
 REM Repo Addr: ${repoAddr}
+REM Package Manager: ${process.env.PACKAGE_MANAGER}
 
 @echo off
 setlocal
@@ -48,30 +49,32 @@ domain-designer-cli runWeb --source=%scriptPath%
 # App Name: Domain Designer Cli
 # Script Version: ${packageInfo.version}
 # Repo Addr: ${repoAddr}
+# Package Manager: ${process.env.PACKAGE_MANAGER}
 
-domain-designer-cli runWeb --source="$(pwd)"
+domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
   const macScript = `#!/bin/bash
 # App Name: Domain Designer Cli
 # Script Version: ${packageInfo.version}
 # Repo Addr: ${repoAddr}
+# Package Manager: ${process.env.PACKAGE_MANAGER}
 
-domain-designer-cli runWeb --source="$(pwd)"
+domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
-  const osType = os.type()
-  if (osType === 'Windows_NT') {
+  const osType = checkOS()
+  if (osType === 'windows') {
     return {
       name: 'RunWeb.bat',
       content: winScript,
     }
-  } else if (osType === 'Linux') {
+  } else if (osType === 'linux') {
     return {
       name: 'RunWeb.sh',
       content: linuxScript,
     }
-  } else if (osType === 'Darwin') {
+  } else if (osType === 'mac') {
     return {
       name: 'RunWeb.sh',
       content: macScript,

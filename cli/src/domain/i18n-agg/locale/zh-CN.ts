@@ -16,6 +16,7 @@ const zhDict: I18nMessages = {
   'error.badArgs': '错误的参数',
   'error.shouldBeValidDir{dir}': '{dir} 应该是一个有效的目录',
   'error.shouldBeEmptyDir{dir}': '{dir} 应该是一个空目录',
+  'error.noPackageManager': '未找到包管理器,请安装 bun 或 pnpm',
 }
 
 export default zhDict
