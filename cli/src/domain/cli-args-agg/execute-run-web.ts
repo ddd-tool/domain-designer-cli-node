@@ -15,17 +15,35 @@ export default async function (args: RunWebCommandArgs) {
   const packageManager = process.env.PACKAGE_MANAGER!
 
   log.printInfo('================ 安装运行依赖: Starting... ================')
-  spawnSync(`cd ${webRoot} && ${packageManager} i`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  if (packageManager === 'bun') {
+    spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else if (packageManager === 'pnpm') {
+    spawnSync(`pnpm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else {
+    isNever(packageManager)
+  }
   log.printSuccess('================ 安装运行依赖: Succeeded ================')
+
   log.printInfo('================ 装配代码文件: Starting... ================')
   configSource(webRoot, args.source)
   log.printSuccess('================ 装配代码文件: Succeeded ================')
+
   log.printInfo('================ 运行Web服务: Starting... ================')
-  spawnSync(`cd ${webRoot} && ${packageManager} dev`, {
-    encoding: 'utf-8',
-    stdio: 'inherit',
-    shell: true,
-  })
+  if (packageManager === 'bun') {
+    spawnSync(`bun --cwd "${webRoot}" dev`, {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    })
+  } else if (packageManager === 'pnpm') {
+    spawnSync(`pnpm --prefix "${webRoot}" dev`, {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    })
+  } else {
+    isNever(packageManager)
+  }
 }
 
 async function configSource(webRoot: string, source: string) {
