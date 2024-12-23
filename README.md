@@ -6,9 +6,9 @@
 
 [nodejs](https://nodejs.org/en/download/) >= 18
 
-[pnpm](https://pnpm.io/) >= 9 OR [bun](https://bun.sh/)
+[bun](https://bun.sh/) OR [pnpm](https://pnpm.io/) >= 9
 
-- 确保有全局的`pnpm`或者`bun`指令
+- 确保有全局的 `bun` 或者 `pnpm` 指令 bun
 
 - 本程序会优先使用 bun 运行，如果没有则切换为 pnpm
 
