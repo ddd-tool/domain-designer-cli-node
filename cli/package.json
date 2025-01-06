@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.28",
+  "version": "0.0.0-alpha.29",
   "private": true,
   "type": "module",
   "files": [
@@ -14,10 +14,9 @@
     "verify": "tsc -p ./tsconfig.build-cli.json"
   },
   "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
-  "dependencies": {
-    "@ddd-tool/domain-designer-core": "0.0.0-alpha.30"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@ddd-tool/domain-designer-core": "0.0.0-alpha.30",
     "@ddd-tool/domain-designer-generator": "0.0.0-alpha.6",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.10.2",

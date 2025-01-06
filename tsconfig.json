@@ -24,6 +24,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@ddd-tool/domain-designer-core": [
+        "./node_modules/@ddd-tool/domain-designer-core"
+      ]
     }
   }
 }

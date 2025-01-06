@@ -106,7 +106,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   deleteFolderRecursive(`${sourcePath.replace(/\\/g, '/')}/.output/${args.language}`)
 
   for (const file of files) {
-    if (fs.statSync(path.join(sourcePath, '.output', 'esm', file)).isDirectory()) {
+    if (fs.statSync(path.join(sourcePath, '.output', 'esm', file)).isDirectory() || !file.endsWith('.mjs')) {
       continue
     }
     const m = await import(`file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`)
