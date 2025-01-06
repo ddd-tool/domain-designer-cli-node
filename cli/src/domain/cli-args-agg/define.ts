@@ -32,7 +32,11 @@ export type GenCodeCommandArgs = {
   webRoot: string
   source: string
   language?: Language
-  context?: define.GeneratorContext<define.Language.Java>
+  context?:
+    | define.GeneratorContext<define.Language.Java>
+    | define.GeneratorContext<define.Language.Kotlin>
+    | define.GeneratorContext<define.Language.Go>
+    | define.GeneratorContext<define.Language.Kotlin>
 }
 
 export type Script = {
@@ -87,6 +91,60 @@ domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
   } else if (osType === 'mac') {
     return {
       name: 'RunWeb.sh',
+      content: macScript,
+    }
+  } else {
+    log.printError(`Unsupported OS: ${osType}`)
+  }
+}
+
+export function getGenCodeScript(): Script | undefined {
+  const repoAddr = packageInfo.repository.url.replace(/git\+/g, '')
+
+  const winScript = `REM App Name: Domain Designer Cli
+REM Script Version: ${packageInfo.version}
+REM Repo Addr: ${repoAddr}
+REM Package Manager: ${process.env.PACKAGE_MANAGER}
+
+@echo off
+setlocal
+set "scriptPath=%~dp0"
+
+domain-designer-cli genCode --source=%scriptPath%
+`
+
+  const linuxScript = `#!/bin/bash
+# App Name: Domain Designer Cli
+# Script Version: ${packageInfo.version}
+# Repo Addr: ${repoAddr}
+# Package Manager: ${process.env.PACKAGE_MANAGER}
+
+domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
+`
+
+  const macScript = `#!/bin/bash
+# App Name: Domain Designer Cli
+# Script Version: ${packageInfo.version}
+# Repo Addr: ${repoAddr}
+# Package Manager: ${process.env.PACKAGE_MANAGER}
+
+domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
+`
+
+  const osType = checkOS()
+  if (osType === 'windows') {
+    return {
+      name: 'GenCode.bat',
+      content: winScript,
+    }
+  } else if (osType === 'linux') {
+    return {
+      name: 'GenCode.sh',
+      content: linuxScript,
+    }
+  } else if (osType === 'mac') {
+    return {
+      name: 'GenCode.sh',
       content: macScript,
     }
   } else {

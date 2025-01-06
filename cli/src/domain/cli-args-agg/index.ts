@@ -11,26 +11,18 @@ import {
   RunWebCommandArgs,
   GenCodeCommandArgs,
 } from './define'
-import {
-  requireInitCommand,
-  requireInitCommandArgs,
-  requireInfoCommand,
-  requireInfoCommandArgs,
-  requireUpdateWorkspaceCommand,
-  requireUpdateWorkspaceCommandArgs,
-  requireRunWebCommand,
-  requireRunWebCommandArgs,
-  requireGenCodeCommandArgs,
-  requireGenCodeCommand,
-} from './require-subcommand'
 import { useI18nAgg } from '../i18n-agg'
 import packageInfo from '@/utils/package-info'
-import executeInfo from './execute-info'
-import executeInit from './execute-init'
-import executeRunWeb from './execute-run-web'
-import executeUpdate from './execute-update'
 import path from 'path'
-import executeGenCode from './execute-gen-code'
+import { requireInitCommand, requireInitCommandArgs, execute as executeInit } from './cmd-init'
+import { requireInfoCommand, requireInfoCommandArgs, execute as executeInfo } from './cmd-info'
+import {
+  requireUpdateWorkspaceCommand,
+  requireUpdateWorkspaceCommandArgs,
+  execute as executeUpdate,
+} from './cmd-update'
+import { requireRunWebCommand, requireRunWebCommandArgs, execute as executeRunWeb } from './cmd-run-web'
+import { requireGenCodeCommand, requireGenCodeCommandArgs, execute as executeGenCode } from './cmd-gen-code'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
 function getWebRoot() {

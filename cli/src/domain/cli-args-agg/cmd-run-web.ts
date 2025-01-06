@@ -1,15 +1,41 @@
 import { spawnSync } from 'child_process'
-import { RunWebCommandArgs } from './define'
+import { RunWebCommandArgs, SubcommandEnum } from './define'
 import path from 'path'
 import fs from 'fs'
 import { useI18nAgg } from '../i18n-agg'
 import log from '@/utils/log'
 import packageInfo from '@/utils/package-info'
 import chalk from 'chalk'
+import { Reactive, Ref } from '@vue/reactivity'
+import { Command } from 'commander'
 
 const $t = useI18nAgg().commands.t
 
-export default async function (args: RunWebCommandArgs) {
+export function requireRunWebCommand(params: {
+  currentCommand: Ref<SubcommandEnum>
+  args: Reactive<RunWebCommandArgs>
+}) {
+  return new Command()
+    .name('runWeb')
+    .option('--source <sourceDir>', "ts files' dir")
+    .action((options) => {
+      params.currentCommand.value = SubcommandEnum.RunWeb
+      if (options.source) {
+        params.args.source = options.source
+      }
+    })
+    .addHelpText('before', 'Run web server.\n')
+    .addHelpText('before', '运行 web 服务\n')
+}
+
+export async function requireRunWebCommandArgs(params: {
+  currentCommand: Ref<SubcommandEnum>
+  args: Reactive<RunWebCommandArgs>
+}) {
+  params.currentCommand.value = SubcommandEnum.RunWeb
+}
+
+export async function execute(args: RunWebCommandArgs) {
   const webRoot = args.webRoot
   log.printDebug('webRoot路径', webRoot)
   const packageManager = process.env.PACKAGE_MANAGER!

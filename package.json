@@ -40,7 +40,7 @@
   "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@ddd-tool/domain-designer-core": "0.0.0-alpha.28",
+    "@ddd-tool/domain-designer-core": "0.0.0-alpha.30",
     "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.18",
     "@primevue/themes": "^4.2.5",
     "@types/node": "^22.10.5",
