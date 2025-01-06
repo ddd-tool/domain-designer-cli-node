@@ -74,8 +74,19 @@ export async function requireGenCodeCommandArgs(params: {
 export async function execute(args: Required<GenCodeCommandArgs>) {
   const webRoot = args.webRoot
   const sourcePath = args.source
-  log.printInfo('================ Compliling ts code: Starting... ================')
   const packageManager = process.env.PACKAGE_MANAGER!
+
+  log.printInfo('================ 安装运行依赖: Starting... ================')
+  if (packageManager === 'bun') {
+    spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else if (packageManager === 'pnpm') {
+    spawnSync(`pnpm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else {
+    isNever(packageManager)
+  }
+  log.printSuccess('================ 安装运行依赖: Succeeded ================')
+
+  log.printInfo('================ Compliling ts code: Starting... ================')
   const exeCmd = packageManager === 'bun' ? 'bunx' : 'pnpx'
   // spawnSync(`pnpx zx ${webRoot.replace('\\', '/')}/scripts/build-ts.mjs --source=${sourcePath}`, {
   spawnSync(`${exeCmd} zx ${webRoot.replace(/\\/g, '/')}/scripts/build-ts.mjs --source=${sourcePath}`, {

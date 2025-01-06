@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 
-import { getGenCodeScript, getRunWebScript, InitCommandArgs, SubcommandEnum } from './define'
+import { getGenCodeScript, getGitignore, getRunWebScript, InitCommandArgs, SubcommandEnum } from './define'
 import { useI18nAgg } from '../i18n-agg'
 import { copyFolderRecursive } from '@/utils/io'
 import log from '@/utils/log'
@@ -49,6 +49,8 @@ export async function execute(args: InitCommandArgs) {
   if (genCodeScript) {
     fs.writeFileSync(path.join(distDir, genCodeScript.name), genCodeScript.content, 'utf-8')
   }
+  const gitignore = getGitignore()
+  fs.writeFileSync(path.join(distDir, gitignore.name), gitignore.content, 'utf-8')
 
   log.printSuccess('================ 初始化工作空间: Succeeded ================')
 }

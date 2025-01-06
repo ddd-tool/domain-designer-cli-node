@@ -151,3 +151,15 @@ domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
     log.printError(`Unsupported OS: ${osType}`)
   }
 }
+
+export function getGitignore(): Script {
+  return {
+    name: '.gitignore',
+    content: `!node_modules
+.output
+
+!*.bat
+!*.sh
+`,
+  }
+}

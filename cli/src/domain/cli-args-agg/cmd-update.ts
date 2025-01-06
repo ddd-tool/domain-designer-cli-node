@@ -1,5 +1,5 @@
 import { Reactive, Ref } from '@vue/reactivity'
-import { SubcommandEnum, UpdateWorkspaceCommandArgs, getGenCodeScript, getRunWebScript } from './define'
+import { SubcommandEnum, UpdateWorkspaceCommandArgs, getGenCodeScript, getGitignore, getRunWebScript } from './define'
 import { Command } from 'commander'
 import fs from 'fs'
 import path from 'path'
@@ -63,14 +63,19 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
   if (genCodeScript && fs.existsSync(path.join(distDir, genCodeScript.name))) {
     fs.rmSync(path.join(distDir, genCodeScript.name))
   }
+  const gitignore = getGitignore()
+  if (fs.existsSync(path.join(distDir, gitignore.name))) {
+    fs.rmSync(path.join(distDir, gitignore.name))
+  }
 
-  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir, { ignore: ['示例.ts', '示例-聚合.ts'] })
+  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir, { ignore: ['example.ts', 'example-agg.ts'] })
   if (runWebScript) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
   }
   if (genCodeScript) {
     fs.writeFileSync(path.join(distDir, genCodeScript.name), genCodeScript.content, 'utf-8')
   }
+  fs.writeFileSync(path.join(distDir, gitignore.name), gitignore.content, 'utf-8')
 
   log.print(`目录已更新至 ${packageInfo.version}`)
 
