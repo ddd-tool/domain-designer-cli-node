@@ -35,6 +35,7 @@ for (const file of files) {
     console.log('compile', `${sourcePath.replaceAll('\\', '/')}/${file}`)
     esbuild.build({
       bundle: true,
+      external: ['@ddd-tool/domain-designer-core'],
       entryPoints: [`${sourcePath.replaceAll('\\', '/')}/${file}`],
       drop: ['debugger'],
       minify: true,
