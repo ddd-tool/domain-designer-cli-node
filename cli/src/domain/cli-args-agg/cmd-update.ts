@@ -1,5 +1,5 @@
 import { Reactive, Ref } from '@vue/reactivity'
-import { SubcommandEnum, UpdateWorkspaceCommandArgs, getRunWebScript } from './define'
+import { SubcommandEnum, UpdateWorkspaceCommandArgs, getGenCodeScript, getRunWebScript } from './define'
 import { Command } from 'commander'
 import fs from 'fs'
 import path from 'path'
@@ -59,10 +59,17 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
   if (runWebScript) {
     fs.rmSync(path.join(distDir, runWebScript.name))
   }
+  const genCodeScript = getGenCodeScript()
+  if (genCodeScript) {
+    fs.rmSync(path.join(distDir, genCodeScript.name))
+  }
 
   copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir, { ignore: ['示例.ts', '示例-聚合.ts'] })
   if (runWebScript) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
+  }
+  if (genCodeScript) {
+    fs.writeFileSync(path.join(distDir, genCodeScript.name), genCodeScript.content, 'utf-8')
   }
 
   log.print(`目录已更新至 ${packageInfo.version}`)
