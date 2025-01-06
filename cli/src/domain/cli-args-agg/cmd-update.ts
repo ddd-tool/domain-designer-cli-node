@@ -56,11 +56,11 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
 
   deleteFolderRecursive(path.join(distDir, 'node_modules'))
   const runWebScript = getRunWebScript()
-  if (runWebScript) {
+  if (runWebScript && fs.existsSync(path.join(distDir, runWebScript.name))) {
     fs.rmSync(path.join(distDir, runWebScript.name))
   }
   const genCodeScript = getGenCodeScript()
-  if (genCodeScript) {
+  if (genCodeScript && fs.existsSync(path.join(distDir, genCodeScript.name))) {
     fs.rmSync(path.join(distDir, genCodeScript.name))
   }
 
