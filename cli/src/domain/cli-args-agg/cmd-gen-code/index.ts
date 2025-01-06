@@ -76,7 +76,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   const sourcePath = args.source
   const packageManager = process.env.PACKAGE_MANAGER!
 
-  log.printInfo('================ 安装运行依赖: Starting... ================')
+  log.printInfo('================ Install dependencies: Starting... ================')
   if (packageManager === 'bun') {
     spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   } else if (packageManager === 'pnpm') {
@@ -84,7 +84,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   } else {
     isNever(packageManager)
   }
-  log.printSuccess('================ 安装运行依赖: Succeeded ================')
+  log.printSuccess('================ Install dependencies: Succeeded ================')
 
   log.printInfo('================ Compliling ts code: Starting... ================')
   const exeCmd = packageManager === 'bun' ? 'bunx' : 'pnpx'
@@ -103,9 +103,12 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   let agg: ReturnType<typeof useGeneratorAgg>
   let pluginLoaded = false
 
-  deleteFolderRecursive(`${sourcePath.replace(/\\/g, '/')}/.output/esm/${args.language}`)
+  deleteFolderRecursive(`${sourcePath.replace(/\\/g, '/')}/.output/${args.language}`)
 
   for (const file of files) {
+    if (fs.statSync(path.join(sourcePath, '.output', 'esm', file)).isDirectory()) {
+      continue
+    }
     const m = await import(`file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`)
     if (!isDomainDesigner(m.default)) {
       continue
