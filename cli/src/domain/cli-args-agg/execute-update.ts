@@ -5,7 +5,7 @@ import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
 import { copyFolderRecursive, deleteFolderRecursive } from '@/utils/io'
 
-export default function (args: Readonly<UpdateWorkspaceCommandArgs>) {
+export default async function (args: Readonly<UpdateWorkspaceCommandArgs>) {
   const distDir = path.join(args.source)
   log.printInfo('================ 更新依赖: Starting... ================')
   if (!fs.existsSync(path.join(distDir, 'node_modules')) || fs.existsSync(path.join(args.source, 'package.json'))) {

@@ -26,7 +26,8 @@
     "demo:init": "node ./bin/domain-designer-cli.cjs init --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
     "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
     "demo:update": "node ./bin/domain-designer-cli.cjs update --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo",
-    "demo:info": "node ./bin/domain-designer-cli.cjs info"
+    "demo:info": "node ./bin/domain-designer-cli.cjs info",
+    "demo:genCode": "node ./bin/domain-designer-cli.cjs genCode --source=F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo"
   },
   "keywords": [
     "domain-designer",
@@ -39,20 +40,22 @@
   "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@ddd-tool/domain-designer-core": "0.0.0-alpha.16",
-    "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.15",
+    "@ddd-tool/domain-designer-core": "0.0.0-alpha.28",
+    "@ddd-tool/domain-designer-ui-component": "0.0.0-alpha.18",
     "@primevue/themes": "^4.2.5",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.5",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "esbuild": "^0.24.2",
     "npm-run-all2": "^7.0.2",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5",
     "typescript": "^5.7.2",
-    "vite": "^6.0.5",
+    "vite": "^6.0.7",
     "vite-plugin-top-level-await": "^1.4.4",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.2.0",
+    "zx": "^8.3.0"
   },
   "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
 }

@@ -4,6 +4,11 @@ export type I18nMessages = {
   'signal.exitWithError': string
   'signal.{str}': string
   'question.subcommand': string
+  'question.subcommand.genCode': string
+  'question.subcommand.genCode.language': string
+  'question.subcommand.genCode.package': string
+  'question.subcommand.genCode.namespace': string
+  'question.subcommand.genCode.additions': string
   'question.subcommand.init': string
   'question.subcommand.updateWorkspace': string
   'question.subcommand.runWeb': string

@@ -2,9 +2,15 @@ import { reactive, ref } from '@vue/reactivity'
 import { Command, Option } from 'commander'
 import prompts from 'prompts'
 import log from '@/utils/log'
-import * as BusinessUtil from '@/utils/signal'
+import * as signal from '@/utils/signal'
 import { createSingletonAgg } from 'vue-fn/domain-server'
-import { SubcommandEnum, InitCommandArgs, UpdateWorkspaceCommandArgs, RunWebCommandArgs } from './define'
+import {
+  SubcommandEnum,
+  InitCommandArgs,
+  UpdateWorkspaceCommandArgs,
+  RunWebCommandArgs,
+  GenCodeCommandArgs,
+} from './define'
 import {
   requireInitCommand,
   requireInitCommandArgs,
@@ -14,6 +20,8 @@ import {
   requireUpdateWorkspaceCommandArgs,
   requireRunWebCommand,
   requireRunWebCommandArgs,
+  requireGenCodeCommandArgs,
+  requireGenCodeCommand,
 } from './require-subcommand'
 import { useI18nAgg } from '../i18n-agg'
 import packageInfo from '@/utils/package-info'
@@ -22,6 +30,7 @@ import executeInit from './execute-init'
 import executeRunWeb from './execute-run-web'
 import executeUpdate from './execute-update'
 import path from 'path'
+import executeGenCode from './execute-gen-code'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
 function getWebRoot() {
@@ -36,6 +45,7 @@ const agg = createSingletonAgg(() => {
   const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
   const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({ webRoot, source })
   const runWebCommandArgs = reactive<RunWebCommandArgs>({ webRoot, source })
+  const genCodeCommandArgs = reactive<GenCodeCommandArgs>({ webRoot, source })
 
   const program = new Command()
     .name('domain-designer-cli')
@@ -54,10 +64,11 @@ const agg = createSingletonAgg(() => {
     .addCommand(requireInfoCommand({ currentCommand }))
     .addCommand(requireUpdateWorkspaceCommand({ currentCommand, args: updateWorkspaceCommandArgs }))
     .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
+    .addCommand(requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }))
 
   program.parse(process.argv)
 
-  if (SubcommandEnum.None !== currentCommand.value) {
+  if (SubcommandEnum.GenCode !== currentCommand.value && SubcommandEnum.None !== currentCommand.value) {
     isReady.value = true
   }
 
@@ -80,41 +91,46 @@ const agg = createSingletonAgg(() => {
           ],
         },
       ],
-      { onCancel: BusinessUtil.onCancel }
+      { onCancel: signal.onCancel }
     )
     setCurrentLang(langurage)
 
-    const result = await prompts(
-      [
-        {
-          name: 'subcommand',
-          type: 'select',
-          message: $t('question.subcommand'),
-          choices: [
-            {
-              title: $t('question.subcommand.init'),
-              value: SubcommandEnum.Init,
-            },
-            {
-              title: $t('question.subcommand.updateWorkspace'),
-              value: SubcommandEnum.UpdateWorkspace,
-            },
-            {
-              title: $t('question.subcommand.runWeb'),
-              value: SubcommandEnum.RunWeb,
-            },
-            {
-              title: $t('question.subcommand.info'),
-              value: SubcommandEnum.Info,
-            },
-          ],
-        },
-      ],
-      { onCancel: BusinessUtil.onCancel }
-    )
-
-    const subcommand = result.subcommand as SubcommandEnum
-    currentCommand.value = subcommand
+    if (currentCommand.value === SubcommandEnum.None) {
+      const result = await prompts(
+        [
+          {
+            name: 'subcommand',
+            type: 'select',
+            message: $t('question.subcommand'),
+            choices: [
+              {
+                title: $t('question.subcommand.genCode'),
+                value: SubcommandEnum.GenCode,
+              },
+              {
+                title: $t('question.subcommand.init'),
+                value: SubcommandEnum.Init,
+              },
+              {
+                title: $t('question.subcommand.updateWorkspace'),
+                value: SubcommandEnum.UpdateWorkspace,
+              },
+              {
+                title: $t('question.subcommand.runWeb'),
+                value: SubcommandEnum.RunWeb,
+              },
+              {
+                title: $t('question.subcommand.info'),
+                value: SubcommandEnum.Info,
+              },
+            ],
+          },
+        ],
+        { onCancel: signal.onCancel }
+      )
+      currentCommand.value = result.subcommand
+    }
+    const subcommand = currentCommand.value
 
     if (subcommand === SubcommandEnum.Init) {
       await requireInitCommandArgs({ currentCommand, args: initCommandArgs })
@@ -124,6 +140,8 @@ const agg = createSingletonAgg(() => {
       await requireRunWebCommandArgs({ currentCommand, args: runWebCommandArgs })
     } else if (subcommand === SubcommandEnum.Info) {
       await requireInfoCommandArgs({ currentCommand })
+    } else if (subcommand === SubcommandEnum.GenCode) {
+      await requireGenCodeCommandArgs({ currentCommand, args: genCodeCommandArgs })
     } else if (subcommand === SubcommandEnum.None) {
       return
     } else {
@@ -154,6 +172,8 @@ const agg = createSingletonAgg(() => {
           await executeRunWeb(runWebCommandArgs)
         } else if (c === SubcommandEnum.UpdateWorkspace) {
           await executeUpdate(updateWorkspaceCommandArgs)
+        } else if (c === SubcommandEnum.GenCode) {
+          await executeGenCode(genCodeCommandArgs as Required<GenCodeCommandArgs>)
         } else if (c === SubcommandEnum.None) {
         } else {
           isNever(c)

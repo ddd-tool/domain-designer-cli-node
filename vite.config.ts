@@ -20,9 +20,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@ddd-tool/domain-designer-core': fileURLToPath(
-        new URL('./node_modules/@ddd-tool/domain-designer-core', import.meta.url)
-      ),
     },
   },
 })

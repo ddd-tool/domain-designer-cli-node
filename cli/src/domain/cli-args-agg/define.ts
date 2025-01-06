@@ -1,12 +1,15 @@
 import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
 import { checkOS } from '@/utils/check-env'
+import { define } from '@ddd-tool/domain-designer-generator'
+import { Language } from '../i18n-agg'
 
 export enum SubcommandEnum {
   Init = 'init',
   UpdateWorkspace = 'updateWorkspace',
   RunWeb = 'runWeb',
   Info = 'info',
+  GenCode = 'GenCode',
   None = 'none',
 }
 
@@ -23,6 +26,13 @@ export type UpdateWorkspaceCommandArgs = {
 export type RunWebCommandArgs = {
   webRoot: string
   source: string
+}
+
+export type GenCodeCommandArgs = {
+  webRoot: string
+  source: string
+  language?: Language
+  context?: define.GeneratorContext<define.Language.Java>
 }
 
 export type Script = {
