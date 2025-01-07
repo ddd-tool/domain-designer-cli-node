@@ -66,6 +66,8 @@ domain-designer-cli init
 
   - RunWeb 脚本：用于实时查看建模效果
 
+  - GenCode 脚本：用于代码生成
+
 ### 4.2 编写 ts 文件
 
 - 可以自行创建多个任意名称的 ts 文件
@@ -77,6 +79,20 @@ domain-designer-cli init
 ### 4.3 Web 端运行
 
 - 运行自动生成的`RunWeb`脚本文件，即可启动 web 服务
+
+### 4.4 代码生成
+
+- 运行自动生成的`GenCode`脚本文件，根据实际需求进行命令行交互
+
+- 支持编程语言列表（开发中...）
+
+  - [x] Java
+
+  - [x] Kotlin
+
+  - [ ] C#
+
+  - [ ] GoLang
 
 ## 5 其他说明
 
