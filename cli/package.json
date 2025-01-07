@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.29",
+  "version": "0.0.0-alpha.30",
   "private": true,
   "type": "module",
   "files": [
@@ -17,7 +17,7 @@
   "dependencies": {},
   "devDependencies": {
     "@ddd-tool/domain-designer-core": "0.0.0-alpha.30",
-    "@ddd-tool/domain-designer-generator": "0.0.0-alpha.6",
+    "@ddd-tool/domain-designer-generator": "0.0.0-alpha.8",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.10.2",
     "@types/prompts": "^2.4.9",

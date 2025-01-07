@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.29",
+  "version": "0.0.0-alpha.30",
   "private": false,
   "description": "",
   "type": "module",

@@ -9,6 +9,10 @@ export type I18nMessages = {
   'question.subcommand.genCode.namespace': string
   'question.subcommand.genCode.package': string
   'question.subcommand.genCode.csharp.additions': string
+  'question.subcommand.genCode.kotlin.additions': string
+  'question.subcommand.genCode.kotlin.additions.commandHandler': string
+  'question.subcommand.genCode.kotlin.additions.valueClass': string
+  'question.subcommand.genCode.kotlin.additions.timezone': string
   'question.subcommand.genCode.java.additions': string
   'question.subcommand.genCode.java.additions.springFramework': string
   'question.subcommand.genCode.java.additions.lombok': string
@@ -16,8 +20,8 @@ export type I18nMessages = {
   'question.subcommand.genCode.java.additions.commandHandler': string
   'question.subcommand.genCode.java.additions.recordVakueObject': string
   'question.subcommand.genCode.java.additions.timezone': string
-  'question.subcommand.genCode.java.additions.hint': string
   'question.subcommand.genCode.java.nonNullAnnotation': string
+  'question.subcommand.genCode.additions.hint': string
   'question.subcommand.init': string
   'question.subcommand.updateWorkspace': string
   'question.subcommand.runWeb': string

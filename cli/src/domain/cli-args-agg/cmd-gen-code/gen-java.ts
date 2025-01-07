@@ -55,7 +55,7 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
             description: $t('question.subcommand.genCode.java.additions.timezone'),
           },
         ],
-        hint: $t('question.subcommand.genCode.java.additions.hint'),
+        hint: $t('question.subcommand.genCode.additions.hint'),
       },
     ],
     { onCancel: signal.onCancel }

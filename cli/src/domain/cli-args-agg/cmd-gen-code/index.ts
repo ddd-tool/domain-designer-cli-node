@@ -8,6 +8,7 @@ import {
   useGeneratorAgg,
   GeneratorPliginHelper,
   GENERATOR_JAVA_PLUGIN,
+  GENERATOR_KOTLIN_PLUGIN,
   define,
 } from '@ddd-tool/domain-designer-generator'
 import { useI18nAgg } from '../../i18n-agg'
@@ -17,6 +18,7 @@ import prompts from 'prompts'
 import * as signal from '@/utils/signal'
 import { requireGenJavaContext } from './gen-java'
 import { deleteFolderRecursive } from '@/utils/io'
+import { requireGenKotlinContext } from './gen-kotlin'
 
 const { t: $t } = useI18nAgg().commands
 
@@ -41,33 +43,40 @@ export async function requireGenCodeCommandArgs(params: {
   currentCommand: Ref<SubcommandEnum>
   args: Reactive<GenCodeCommandArgs>
 }) {
-  const Language = define.Language
-  const { language } = await prompts(
-    [
-      {
-        name: 'language',
-        type: 'select',
-        message: $t('question.subcommand.genCode.language'),
-        choices: [
-          {
-            title: Language.Java,
-            value: Language.Java,
-          },
-          // {
-          //   title: Language.Kotlin,
-          //   value: Language.Kotlin,
-          // },
-        ],
-      },
-    ],
-    { onCancel: signal.onCancel }
-  )
+  const language: define.Language = (
+    await prompts(
+      [
+        {
+          name: 'language',
+          type: 'select',
+          message: $t('question.subcommand.genCode.language'),
+          choices: [
+            {
+              title: define.Language.Java,
+              value: define.Language.Java,
+            },
+            {
+              title: define.Language.Kotlin,
+              value: define.Language.Kotlin,
+            },
+          ],
+        },
+      ],
+      { onCancel: signal.onCancel }
+    )
+  ).language
   params.args.language = language
 
-  if (language === Language.Java) {
+  if (language === define.Language.Java) {
     params.args.context = await requireGenJavaContext()
+  } else if (language === define.Language.Kotlin) {
+    params.args.context = await requireGenKotlinContext()
+  } else if (language === define.Language.CSharp) {
+    throw new Error('C# not support, yet...')
+  } else if (language === define.Language.Go) {
+    throw new Error('GoLang not support, yet...')
   } else {
-    throw new Error('language not support')
+    isNever(language)
   }
 }
 
@@ -115,7 +124,17 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     }
     const designer = m.default as DomainDesigner
     if (!pluginLoaded) {
-      GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)
+      if (args.language === define.Language.Java) {
+        GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)
+      } else if (args.language === define.Language.Kotlin) {
+        GeneratorPliginHelper.registerPlugin(GENERATOR_KOTLIN_PLUGIN)
+      } else if (args.language === define.Language.CSharp) {
+        throw new Error('C# not support, yet...')
+      } else if (args.language === define.Language.Go) {
+        throw new Error('GoLang not support, yet...')
+      } else {
+        isNever(args.language)
+      }
       pluginLoaded = true
     }
     agg = useGeneratorAgg(designer)

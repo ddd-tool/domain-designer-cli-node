@@ -2,7 +2,6 @@ import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
 import { checkOS } from '@/utils/check-env'
 import { define } from '@ddd-tool/domain-designer-generator'
-import { Language } from '../i18n-agg'
 
 export enum SubcommandEnum {
   Init = 'init',
@@ -31,7 +30,7 @@ export type RunWebCommandArgs = {
 export type GenCodeCommandArgs = {
   webRoot: string
   source: string
-  language?: Language
+  language?: define.Language
   context?:
     | define.GeneratorContext<define.Language.Java>
     | define.GeneratorContext<define.Language.Kotlin>
