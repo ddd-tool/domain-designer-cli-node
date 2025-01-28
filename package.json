@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.0.0-alpha.31",
+  "version": "0.0.0-alpha.32",
   "private": false,
   "description": "",
   "type": "module",
@@ -18,8 +18,6 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "run-p build:cli",
-    "build:cli": "run-p verify && zx ./scripts/build-cli.mjs",
     "test": "run-p build:cli && run-p test:fun",
     "test:fun": "vitest",
     "verify": "tsc -p ./tsconfig.json",
