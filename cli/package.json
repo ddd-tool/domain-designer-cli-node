@@ -14,10 +14,9 @@
     "verify": "tsc -p ./tsconfig.build-cli.json"
   },
   "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
-  "dependencies": {},
   "devDependencies": {
-    "@ddd-tool/domain-designer-core": "0.0.0-alpha.30",
-    "@ddd-tool/domain-designer-generator": "0.0.0-alpha.8",
+    "@ddd-tool/domain-designer-core": "0.0.0-alpha.31",
+    "@ddd-tool/domain-designer-generator": "0.0.0-alpha.10",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.10.2",
     "@types/prompts": "^2.4.9",

@@ -36,7 +36,7 @@ const 下单成功事件 = d.event('orderSucceedEvent', [订单聚合.inner.orde
 const 自动扣款服务 = d.service('autoDeductService', '根据支付规则进行自动扣款')
 const 支付规则 = d.policy(
   'paymentPolicy',
-  d.desc`
+  d.note`
 如果 ${订单聚合.inner.userAccount}启用了自动扣款服务,那么开始自动扣款
 规则 1:
 规则 2:

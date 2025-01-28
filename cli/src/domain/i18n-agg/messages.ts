@@ -9,6 +9,13 @@ export type I18nMessages = {
   'question.subcommand.genCode.namespace': string
   'question.subcommand.genCode.package': string
   'question.subcommand.genCode.csharp.additions': string
+  'question.subcommand.genCode.csharp.additions.timezone': string
+  'question.subcommand.genCode.csharp.additions.recordStruct': string
+  'question.subcommand.genCode.csharp.additions.primaryConstructor': string
+  'question.subcommand.genCode.csharp.additions.commandHandlerInterface': string
+  'question.subcommand.genCode.csharp.additions.commandHandlerInterface.hint': string
+  'question.subcommand.genCode.csharp.additions.aggInterface': string
+  'question.subcommand.genCode.csharp.additions.aggInterface.hint': string
   'question.subcommand.genCode.kotlin.additions': string
   'question.subcommand.genCode.kotlin.additions.commandHandler': string
   'question.subcommand.genCode.kotlin.additions.valueClass': string

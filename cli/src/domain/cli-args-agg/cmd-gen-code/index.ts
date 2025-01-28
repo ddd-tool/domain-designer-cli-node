@@ -10,6 +10,8 @@ import {
   GENERATOR_JAVA_PLUGIN,
   GENERATOR_KOTLIN_PLUGIN,
   define,
+  GENERATOR_CSHARP_PLUGIN,
+  GENERATOR_GO_PLUGIN,
 } from '@ddd-tool/domain-designer-generator'
 import { useI18nAgg } from '../../i18n-agg'
 import { Command } from 'commander'
@@ -19,6 +21,8 @@ import * as signal from '@/utils/signal'
 import { requireGenJavaContext } from './gen-java'
 import { deleteFolderRecursive } from '@/utils/io'
 import { requireGenKotlinContext } from './gen-kotlin'
+import { requireGenCsharpContext } from './gen-csharp'
+import { requireGenGoContext } from './gen-go'
 
 const { t: $t } = useI18nAgg().commands
 
@@ -52,6 +56,14 @@ export async function requireGenCodeCommandArgs(params: {
           message: $t('question.subcommand.genCode.language'),
           choices: [
             {
+              title: define.Language.CSharp,
+              value: define.Language.CSharp,
+            },
+            {
+              title: define.Language.Go,
+              value: define.Language.Go,
+            },
+            {
               title: define.Language.Java,
               value: define.Language.Java,
             },
@@ -72,9 +84,9 @@ export async function requireGenCodeCommandArgs(params: {
   } else if (language === define.Language.Kotlin) {
     params.args.context = await requireGenKotlinContext()
   } else if (language === define.Language.CSharp) {
-    throw new Error('C# not support, yet...')
+    params.args.context = await requireGenCsharpContext()
   } else if (language === define.Language.Go) {
-    throw new Error('GoLang not support, yet...')
+    params.args.context = await requireGenGoContext()
   } else {
     isNever(language)
   }
@@ -129,9 +141,9 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
       } else if (args.language === define.Language.Kotlin) {
         GeneratorPliginHelper.registerPlugin(GENERATOR_KOTLIN_PLUGIN)
       } else if (args.language === define.Language.CSharp) {
-        throw new Error('C# not support, yet...')
+        GeneratorPliginHelper.registerPlugin(GENERATOR_CSHARP_PLUGIN)
       } else if (args.language === define.Language.Go) {
-        throw new Error('GoLang not support, yet...')
+        GeneratorPliginHelper.registerPlugin(GENERATOR_GO_PLUGIN)
       } else {
         isNever(args.language)
       }

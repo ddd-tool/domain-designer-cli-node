@@ -10,7 +10,6 @@ export default {
     "type": "git",
     "url": "git+https://github.com/ddd-tool/domain-designer-cli-node.git"
   },
-  "dependencies": {},
   "bugs": {
     "url": "https://github.com/ddd-tool/domain-designer-cli-node/issues"
   },

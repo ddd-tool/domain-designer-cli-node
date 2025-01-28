@@ -35,7 +35,7 @@ export type GenCodeCommandArgs = {
     | define.GeneratorContext<define.Language.Java>
     | define.GeneratorContext<define.Language.Kotlin>
     | define.GeneratorContext<define.Language.Go>
-    | define.GeneratorContext<define.Language.Kotlin>
+    | define.GeneratorContext<define.Language.CSharp>
 }
 
 export type Script = {

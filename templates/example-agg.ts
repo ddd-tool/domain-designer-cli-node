@@ -19,7 +19,7 @@ export function createOrderAgg(d: DomainDesigner) {
     i.func(
       'orderAmount',
       [productPrice, productQuantity],
-      d.desc`订单金额 = 商品单价${productPrice} x 商品数量${productQuantity}`
+      d.note`订单金额 = 商品单价${productPrice} x 商品数量${productQuantity}`
     ),
     i.version('updateTime'),
   ])
