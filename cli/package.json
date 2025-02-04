@@ -18,18 +18,18 @@
     "@ddd-tool/domain-designer-core": "0.0.0-alpha.31",
     "@ddd-tool/domain-designer-generator": "0.0.0-alpha.10",
     "@tsconfig/node22": "^22.0.0",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.13.0",
     "@types/prompts": "^2.4.9",
     "@vue/reactivity": "^3.5.13",
-    "chalk": "^5.4.0",
+    "chalk": "^5.4.1",
     "commander": "^12.1.0",
-    "esbuild": "^0.24.0",
-    "npm-run-all2": "^7.0.1",
+    "esbuild": "^0.24.2",
+    "npm-run-all2": "^7.0.2",
     "prompts": "^2.4.2",
     "read-pkg": "^9.0.1",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "vitest": "^2.1.8",
-    "vue-fn": "0.0.3-alpha.37",
-    "zx": "^8.2.4"
+    "vue-fn": "0.0.3-alpha.38",
+    "zx": "^8.3.2"
   }
 }
