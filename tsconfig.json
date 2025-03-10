@@ -1,12 +1,5 @@
 {
-  "include": [
-    "src/*",
-    "src/**/*",
-    "__tests__",
-    "scripts",
-    "src-cli/*",
-    "src-cli/**/*",
-  ],
+  "include": ["src/*", "src/**/*", "__tests__", "scripts", "src-cli/*", "src-cli/**/*"],
   "compilerOptions": {
     "strict": true,
     "moduleResolution": "Bundler",
@@ -14,19 +7,11 @@
     "target": "ESNext",
     "esModuleInterop": true,
     "sourceMap": true,
-    "lib": [
-      "DOM"
-    ],
-    "types": [
-      "node"
-    ],
+    "lib": ["DOM"],
+    "types": ["node"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@ddd-tool/domain-designer-core": [
-        "./node_modules/@ddd-tool/domain-designer-core"
-      ]
+      "@/*": ["./src/*"],
+      "@ddd-tool/domain-designer-core": ["./node_modules/@ddd-tool/domain-designer-core"]
     }
   }
 }

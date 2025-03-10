@@ -97,7 +97,7 @@ async function configSource(webRoot: string, source: string) {
       designs.push({
         name,
         flag: `__d${++i}`,
-        importCode: `(await import('${path.join(source, name).replace(/\\/g, '/')}')).default`,
+        importCode: `(await import('${path.resolve(source, name).replace(/\\/g, '/')}')).default`,
       })
     }
   })
