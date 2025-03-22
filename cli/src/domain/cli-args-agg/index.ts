@@ -13,7 +13,6 @@ import {
 } from './define'
 import { useI18nAgg } from '../i18n-agg'
 import packageInfo from '@/utils/package-info'
-import path from 'path'
 import { requireInitCommand, requireInitCommandArgs, execute as executeInit } from './cmd-init'
 import { requireInfoCommand, requireInfoCommandArgs, execute as executeInfo } from './cmd-info'
 import {
@@ -30,42 +29,57 @@ const { t: $t, setCurrentLang } = useI18nAgg().commands
 const agg = createSingletonAgg(() => {
   const isReady = ref(false)
   const currentCommand = ref(SubcommandEnum.None)
-  const webRoot = getWebRoot()
+  let webRoot = ''
   const source = process.cwd()
   const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
   const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({ webRoot, source })
   const runWebCommandArgs = reactive<RunWebCommandArgs>({ webRoot, source })
   const genCodeCommandArgs = reactive<GenCodeCommandArgs>({ webRoot, source })
 
-  const program = new Command()
-    .name('domain-designer-cli')
-    .version(packageInfo.version)
-    .addOption(new Option('--debug', 'debug mode').default(false))
-    .hook('preAction', (thisCommand) => {
-      const debugMode = thisCommand.opts().debug
-      if (debugMode === true) {
-        log.printDebug('调试模式已开启')
-        process.env.DEBUG_MODE === 'T'
-      } else {
-        process.env.DEBUG_MODE === 'F'
-      }
-    })
-    .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
-    .addCommand(requireInfoCommand({ currentCommand }))
-    .addCommand(requireUpdateWorkspaceCommand({ currentCommand, args: updateWorkspaceCommandArgs }))
-    .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
-    .addCommand(requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }))
+  async function init() {
+    if (isReady.value) {
+      return
+    }
+    const program = new Command()
+      .name('domain-designer-cli')
+      .version(packageInfo.version)
+      .addOption(new Option('--debug', 'debug mode').default(false))
+      .hook('preAction', (thisCommand) => {
+        const debugMode = thisCommand.opts().debug
+        if (debugMode === true) {
+          log.printDebug('调试模式已开启')
+          process.env.DEBUG_MODE = 'T'
+        } else {
+          process.env.DEBUG_MODE = 'F'
+        }
+      })
+      .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
+      .addCommand(requireInfoCommand({ currentCommand }))
+      .addCommand(requireUpdateWorkspaceCommand({ currentCommand, args: updateWorkspaceCommandArgs }))
+      .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
+      .addCommand(requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }))
 
-  program.parse(process.argv)
+    program.parse(process.argv)
 
-  if (SubcommandEnum.GenCode !== currentCommand.value && SubcommandEnum.None !== currentCommand.value) {
+    webRoot = getWebRoot()
+    initCommandArgs.webRoot = webRoot
+    updateWorkspaceCommandArgs.webRoot = webRoot
+    runWebCommandArgs.webRoot = webRoot
+    genCodeCommandArgs.webRoot = webRoot
+
+    if (SubcommandEnum.GenCode !== currentCommand.value && SubcommandEnum.None !== currentCommand.value) {
+      isReady.value = true
+      return
+    }
+
+    if (process.env.DEBUG_MODE === 'T') {
+      log.printDebug(typeof process.env.DEBUG_MODE, process.env.DEBUG_MODE)
+      log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
+      log.printDebug('- DEBUG: packageManager', process.env.PACKAGE_MANAGER)
+    }
+
+    await configArgsFromUserChoise()
     isReady.value = true
-  }
-
-  if (process.env.DEBUG_MODE === 'T') {
-    log.printDebug(typeof process.env.DEBUG_MODE, process.env.DEBUG_MODE)
-    log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
-    log.printDebug('- DEBUG: packageManager', process.env.PACKAGE_MANAGER)
   }
 
   async function configArgsFromUserChoise(): Promise<void> {
@@ -145,13 +159,7 @@ const agg = createSingletonAgg(() => {
       updateCommandArgs: updateWorkspaceCommandArgs,
     },
     commands: {
-      async init() {
-        if (isReady.value) {
-          return
-        }
-        await configArgsFromUserChoise()
-        isReady.value = true
-      },
+      init,
       async exec() {
         const c = currentCommand.value
         if (c === SubcommandEnum.Info) {

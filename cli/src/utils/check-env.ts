@@ -3,6 +3,9 @@ import os from 'os'
 import path from 'path'
 
 export function getWebRoot() {
+  if (process.env.DEBUG_MODE === 'T') {
+    return path.resolve(path.dirname(process.argv[1]), '..').replace(/\\/g, '/')
+  }
   if (process.env.PACKAGE_MANAGER === 'bun') {
     return path
       .resolve(

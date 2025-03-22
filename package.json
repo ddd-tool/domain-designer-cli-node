@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "private": false,
   "description": "",
   "type": "module",
@@ -21,11 +21,11 @@
     "test": "run-p build:cli && run-p test:fun",
     "test:fun": "vitest",
     "verify": "tsc -p ./tsconfig.json",
-    "demo:init": "node ./bin/domain-designer-cli.cjs init --source=./demo",
-    "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=./demo",
-    "demo:update": "node ./bin/domain-designer-cli.cjs update --source=./demo",
-    "demo:info": "node ./bin/domain-designer-cli.cjs info",
-    "demo:genCode": "node ./bin/domain-designer-cli.cjs genCode --source=./demo"
+    "demo:init": "node ./bin/domain-designer-cli.cjs init --source=./demo --debug",
+    "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=./demo --debug",
+    "demo:update": "node ./bin/domain-designer-cli.cjs update --source=./demo --debug",
+    "demo:info": "node ./bin/domain-designer-cli.cjs info --debug",
+    "demo:genCode": "node ./bin/domain-designer-cli.cjs genCode --source=./demo --debug"
   },
   "keywords": [
     "domain-designer",
