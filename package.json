@@ -39,7 +39,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@ddd-tool/domain-designer-core": "0.1.0-beta.2",
-    "@ddd-tool/domain-designer-ui-component": "0.1.0-beta.2",
+    "@ddd-tool/domain-designer-ui-component": "0.1.0-beta.3",
     "@primeuix/themes": "^1.0.0",
     "@types/node": "^22.13.10",
     "@vitejs/plugin-vue": "^5.2.3",
