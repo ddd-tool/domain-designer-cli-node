@@ -17,7 +17,7 @@ export function requireUpdateWorkspaceCommand(params: {
     .action((options) => {
       params.currentCommand.value = SubcommandEnum.UpdateWorkspace
       if (options.source) {
-        params.args.source = options.source
+        params.args.source = path.resolve(options.source)
       }
     })
     .addHelpText('before', 'Update the workspace.\n')

@@ -84,8 +84,10 @@ async function configSource(webRoot: string, source: string) {
     fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
   ) {
     log.printWarn('检测到工作目录版本与脚手架版本不匹配')
-    log.printWarn('请执行在工作目录执行update命令进行更新')
-    log.print(chalk.bgYellow('domain-designer-cli update'))
+    log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
+    log.printWarn('脚手架版本：      ', packageInfo.version)
+    log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
+    log.print(chalk.bgYellow(`${process.env.PACKAGE_MANAGER! === 'bun' ? 'bunx ' : ''}domain-designer-cli update`))
   }
 
   const designs: { name: string; flag: string; importCode: string }[] = []

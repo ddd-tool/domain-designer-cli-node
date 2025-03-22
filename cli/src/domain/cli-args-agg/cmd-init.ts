@@ -17,7 +17,7 @@ export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>
     .action((options) => {
       params.currentCommand.value = SubcommandEnum.Init
       if (options.source) {
-        params.args.source = options.source
+        params.args.source = path.resolve(options.source)
       }
     })
     .addHelpText('before', 'Initialize the workspace.\n')
@@ -35,12 +35,20 @@ export async function execute(args: InitCommandArgs) {
   const distDir = path.join(args.source)
   if (!fs.existsSync(distDir) || !fs.statSync(distDir).isDirectory()) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: distDir }))
-  } else if (fs.readdirSync(distDir).length > 0) {
-    throw new Error($t('error.shouldBeEmptyDir{dir}', { dir: distDir }))
+  }
+  const existsFiles = fs.readdirSync(distDir)
+  const copyIgnores: string[] = []
+  if (existsFiles.length > 0) {
+    if (existsFiles.filter((name) => name.endsWith('.ts')).length === 0) {
+      throw new Error($t('error.shouldBeValidWorkspaceOrEmptyDir{dir}', { dir: distDir }))
+    }
+    copyIgnores.push('example-agg.ts')
+    copyIgnores.push('example.ts')
+    copyIgnores.push('node_modules')
   }
 
   log.printInfo('================ 初始化工作空间: Starting... ================')
-  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir)
+  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir, { ignore: copyIgnores })
   const runWebScript = getRunWebScript()
   if (runWebScript) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')

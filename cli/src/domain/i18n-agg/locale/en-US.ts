@@ -41,6 +41,7 @@ const enDict: I18nMessages = {
   'error.invalidArgs{str}': 'Invalid args: {str}',
   'error.badArgs': 'Bad args',
   'error.shouldBeValidDir{dir}': '{dir} should be a valid directory',
+  'error.shouldBeValidWorkspaceOrEmptyDir{dir}': '{dir} should be a valid workspace or an empty directory',
   'error.shouldBeEmptyDir{dir}': '{dir} should be an empty directory',
   'error.noPackageManager': 'No package manager found, please install bun or pnpm',
 }

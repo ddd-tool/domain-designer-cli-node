@@ -38,6 +38,7 @@ export type I18nMessages = {
   'error.invalidArgs{str}': string
   'error.badArgs': string
   'error.shouldBeValidDir{dir}': string
+  'error.shouldBeValidWorkspaceOrEmptyDir{dir}': string
   'error.shouldBeEmptyDir{dir}': string
   'error.noPackageManager': string
 }

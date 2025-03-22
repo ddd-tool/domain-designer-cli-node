@@ -23,6 +23,8 @@ import { deleteFolderRecursive } from '@/utils/io'
 import { requireGenKotlinContext } from './gen-kotlin'
 import { requireGenCsharpContext } from './gen-csharp'
 import { requireGenGoContext } from './gen-go'
+import chalk from 'chalk'
+import packageInfo from '@/utils/package-info'
 
 const { t: $t } = useI18nAgg().commands
 
@@ -36,7 +38,7 @@ export function requireGenCodeCommand(params: {
     .action((options) => {
       params.currentCommand.value = SubcommandEnum.GenCode
       if (options.source) {
-        params.args.source = options.source
+        params.args.source = path.resolve(options.source)
       }
     })
     .addHelpText('before', 'Generate code.\n')
@@ -97,6 +99,19 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   const sourcePath = args.source
   const packageManager = process.env.PACKAGE_MANAGER!
 
+  const versionFilePath = path.join(sourcePath, 'node_modules', 'version.txt')
+  if (
+    !fs.existsSync(versionFilePath) ||
+    !fs.statSync(versionFilePath).isFile() ||
+    fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
+  ) {
+    log.printWarn('检测到工作目录版本与脚手架版本不匹配')
+    log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
+    log.printWarn('脚手架版本：      ', packageInfo.version)
+    log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
+    log.print(chalk.bgYellow(`${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli update`))
+  }
+
   log.printInfo('================ Install dependencies: Starting... ================')
   if (packageManager === 'bun') {
     spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
@@ -131,7 +146,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
       continue
     }
     const m = await import(`file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`)
-    if (!isDomainDesigner(m.default)) {
+    if (!m || !isDomainDesigner(m.default)) {
       continue
     }
     const designer = m.default as DomainDesigner
