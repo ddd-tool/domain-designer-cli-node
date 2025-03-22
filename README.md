@@ -43,6 +43,8 @@ pnpm i @ddd-tool/domain-designer-cli@latest -g
 在已有的工作空间中执行命令
 
 ```bash
+bunx domain-designer-cli update
+# or
 domain-designer-cli update
 ```
 
@@ -53,6 +55,8 @@ domain-designer-cli update
 在一个空文件夹中执行命令
 
 ```bash
+bunx domain-designer-cli init
+# or
 domain-designer-cli init
 ```
 

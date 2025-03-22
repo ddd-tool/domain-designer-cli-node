@@ -57,7 +57,7 @@ function esBuild() {
     target: 'node18',
     tsconfig: path.join(__dirname, '..', 'tsconfig.build-cli.json'),
     banner: {
-      js: '#!/bin/bash',
+      js: '#!/usr/bin/env node',
     },
   })
 }

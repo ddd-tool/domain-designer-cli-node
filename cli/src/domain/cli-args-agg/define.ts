@@ -55,7 +55,7 @@ REM Package Manager: ${process.env.PACKAGE_MANAGER}
 setlocal
 set "scriptPath=%~dp0"
 
-domain-designer-cli runWeb --source=%scriptPath%
+${process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source=%scriptPath%
 `
 
   const linuxScript = `#!/bin/bash
@@ -64,7 +64,9 @@ domain-designer-cli runWeb --source=%scriptPath%
 # Repo Addr: ${repoAddr}
 # Package Manager: ${process.env.PACKAGE_MANAGER}
 
-domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
+${
+  process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''
+}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
   const macScript = `#!/bin/bash
@@ -73,7 +75,9 @@ domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 # Repo Addr: ${repoAddr}
 # Package Manager: ${process.env.PACKAGE_MANAGER}
 
-domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
+${
+  process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''
+}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
   const osType = checkOS()

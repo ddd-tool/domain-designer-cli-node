@@ -1,5 +1,23 @@
 import { spawnSync } from 'child_process'
 import os from 'os'
+import path from 'path'
+
+export function getWebRoot() {
+  if (process.env.PACKAGE_MANAGER === 'bun') {
+    return path
+      .resolve(
+        path.dirname(process.argv[1]),
+        '..',
+        'install',
+        'global',
+        'node_modules',
+        '@ddd-tool',
+        'domain-designer-cli'
+      )
+      .replace(/\\/g, '/')
+  }
+  return path.resolve(path.dirname(process.argv[1]), '..').replace(/\\/g, '/')
+}
 
 export function checkBun(): boolean {
   const osType = checkOS()

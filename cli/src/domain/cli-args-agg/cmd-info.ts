@@ -1,4 +1,5 @@
 import log from '@/utils/log'
+import { getWebRoot } from '@/utils/check-env'
 import { spawnSync } from 'child_process'
 import { SubcommandEnum } from './define'
 import { Command } from 'commander'
@@ -34,6 +35,8 @@ export async function execute() {
   log.print(log.info('cwd():'), process.cwd())
   log.print('')
   log.print(log.info('PACKAGE_MANAGER:'), process.env.PACKAGE_MANAGER)
+  log.print('')
+  log.print(log.info('webRoot:'), getWebRoot())
   log.print('')
 
   log.printSuccess('================ Print info: Succeeded ================')

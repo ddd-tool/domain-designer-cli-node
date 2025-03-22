@@ -23,11 +23,9 @@ import {
 } from './cmd-update'
 import { requireRunWebCommand, requireRunWebCommandArgs, execute as executeRunWeb } from './cmd-run-web'
 import { requireGenCodeCommand, requireGenCodeCommandArgs, execute as executeGenCode } from './cmd-gen-code'
+import { getWebRoot } from '@/utils/check-env'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
-function getWebRoot() {
-  return path.resolve(path.dirname(process.argv[1]), '..').replace(/\\/g, '/')
-}
 
 const agg = createSingletonAgg(() => {
   const isReady = ref(false)
