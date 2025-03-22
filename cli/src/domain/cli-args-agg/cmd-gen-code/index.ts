@@ -151,7 +151,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     }
     agg = useGeneratorAgg(designer)
     agg.commands.setDomainDesigner(designer)
-    args.context.moduleName = designer._getContext().getModuleName() || file.split('.')[0]
+    args.context.moduleName = designer._getContext().getDesignerOptions().moduleName || file.split('.')[0]
     agg.commands.setContext(args.context)
     const codeFiles = agg.commands.genCodeFiles()
     for (const codeFile of codeFiles) {
