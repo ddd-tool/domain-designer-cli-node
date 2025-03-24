@@ -3,7 +3,6 @@ import { useI18nAgg } from '@/domain/i18n-agg'
 import { onCancel } from '@/utils/signal'
 import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
-import { checkBun, checkPnpm } from './utils/check-env'
 
 const $t = useI18nAgg().commands.t
 
@@ -27,16 +26,6 @@ async function start() {
   log.print('')
   log.print(`Script Version:`, log.info(packageInfo.version))
   log.print('')
-
-  if (checkBun()) {
-    process.env.PACKAGE_MANAGER = 'bun'
-    log.printDebug('Package Manager: bun detected')
-  } else if (checkPnpm()) {
-    process.env.PACKAGE_MANAGER = 'pnpm'
-    log.printDebug('Package Manager: pnpm detected')
-  } else {
-    throw new Error($t('error.noPackageManager'))
-  }
 
   await cliArgsAgg.commands.init()
 

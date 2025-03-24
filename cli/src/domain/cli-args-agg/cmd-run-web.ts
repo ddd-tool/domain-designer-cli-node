@@ -8,8 +8,11 @@ import packageInfo from '@/utils/package-info'
 import chalk from 'chalk'
 import { Reactive, Ref } from '@vue/reactivity'
 import { Command } from 'commander'
+import { useEnvironmentAgg } from '../environment-agg'
+import { PackageManager } from '../environment-agg/define'
 
 const $t = useI18nAgg().commands.t
+const environmentAgg = useEnvironmentAgg()
 
 export function requireRunWebCommand(params: {
   currentCommand: Ref<SubcommandEnum>
@@ -36,15 +39,17 @@ export async function requireRunWebCommandArgs(params: {
 }
 
 export async function execute(args: RunWebCommandArgs) {
-  const webRoot = args.webRoot
+  const webRoot = environmentAgg.states.webRoot.value
   log.printDebug('webRoot路径', webRoot)
-  const packageManager = process.env.PACKAGE_MANAGER!
+  const packageManager = environmentAgg.states.packageManager.value
 
   log.printInfo('================ 安装运行依赖: Starting... ================')
   if (packageManager === 'bun') {
     spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   } else if (packageManager === 'pnpm') {
     spawnSync(`pnpm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else if (packageManager === 'npm') {
+    spawnSync(`npm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   } else {
     isNever(packageManager)
   }
@@ -63,6 +68,12 @@ export async function execute(args: RunWebCommandArgs) {
     })
   } else if (packageManager === 'pnpm') {
     spawnSync(`pnpm --prefix "${webRoot}" dev`, {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    })
+  } else if (packageManager === 'npm') {
+    spawnSync(`npm --prefix "${webRoot}" dev`, {
       encoding: 'utf-8',
       stdio: 'inherit',
       shell: true,
@@ -87,7 +98,9 @@ async function configSource(webRoot: string, source: string) {
     log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
     log.printWarn('脚手架版本：      ', packageInfo.version)
     log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
-    log.print(chalk.bgYellow(`${process.env.PACKAGE_MANAGER! === 'bun' ? 'bunx ' : ''}domain-designer-cli update`))
+    log.print(
+      chalk.bgYellow(`${environmentAgg.states.packageManager.value === 'bun' ? 'bunx ' : ''}domain-designer-cli update`)
+    )
   }
 
   const designs: { name: string; flag: string; importCode: string }[] = []

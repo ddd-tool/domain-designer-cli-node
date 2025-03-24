@@ -1,7 +1,7 @@
 import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
-import { checkOS } from '@/utils/check-env'
 import { define } from '@ddd-tool/domain-designer-generator'
+import { useEnvironmentAgg } from '../environment-agg'
 
 export enum SubcommandEnum {
   Init = 'init',
@@ -13,22 +13,18 @@ export enum SubcommandEnum {
 }
 
 export type InitCommandArgs = {
-  webRoot: string
   source: string
 }
 
 export type UpdateWorkspaceCommandArgs = {
-  webRoot: string
   source: string
 }
 
 export type RunWebCommandArgs = {
-  webRoot: string
   source: string
 }
 
 export type GenCodeCommandArgs = {
-  webRoot: string
   source: string
   language?: define.Language
   context?:
@@ -44,43 +40,41 @@ export type Script = {
 }
 
 export function getRunWebScript(): Script | undefined {
+  const environmentAgg = useEnvironmentAgg()
+  const packageManager = environmentAgg.states.packageManager.value
   const repoAddr = packageInfo.repository.url.replace(/git\+/g, '')
 
   const winScript = `REM App Name: Domain Designer Cli
 REM Script Version: ${packageInfo.version}
 REM Repo Addr: ${repoAddr}
-REM Package Manager: ${process.env.PACKAGE_MANAGER}
+REM Package Manager: ${packageManager}
 
 @echo off
 setlocal
 set "scriptPath=%~dp0"
 
-${process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source=%scriptPath%
+${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source=%scriptPath%
 `
 
   const linuxScript = `#!/bin/bash
 # App Name: Domain Designer Cli
 # Script Version: ${packageInfo.version}
 # Repo Addr: ${repoAddr}
-# Package Manager: ${process.env.PACKAGE_MANAGER}
+# Package Manager: ${packageManager}
 
-${
-  process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''
-}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
+${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
   const macScript = `#!/bin/bash
 # App Name: Domain Designer Cli
 # Script Version: ${packageInfo.version}
 # Repo Addr: ${repoAddr}
-# Package Manager: ${process.env.PACKAGE_MANAGER}
+# Package Manager: ${packageManager}
 
-${
-  process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''
-}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
+${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
-  const osType = checkOS()
+  const osType = environmentAgg.commands.checkOS()
   if (osType === 'windows') {
     return {
       name: 'RunWeb.bat',
@@ -102,43 +96,41 @@ ${
 }
 
 export function getGenCodeScript(): Script | undefined {
+  const environmentAgg = useEnvironmentAgg()
+  const packageManager = environmentAgg.states.packageManager.value
   const repoAddr = packageInfo.repository.url.replace(/git\+/g, '')
 
   const winScript = `REM App Name: Domain Designer Cli
 REM Script Version: ${packageInfo.version}
 REM Repo Addr: ${repoAddr}
-REM Package Manager: ${process.env.PACKAGE_MANAGER}
+REM Package Manager: ${packageManager}
 
 @echo off
 setlocal
 set "scriptPath=%~dp0"
 
-${process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''}domain-designer-cli genCode --source=%scriptPath%
+${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli genCode --source=%scriptPath%
 `
 
   const linuxScript = `#!/bin/bash
 # App Name: Domain Designer Cli
 # Script Version: ${packageInfo.version}
 # Repo Addr: ${repoAddr}
-# Package Manager: ${process.env.PACKAGE_MANAGER}
+# Package Manager: ${packageManager}
 
-${
-  process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''
-}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
+${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
 `
 
   const macScript = `#!/bin/bash
 # App Name: Domain Designer Cli
 # Script Version: ${packageInfo.version}
 # Repo Addr: ${repoAddr}
-# Package Manager: ${process.env.PACKAGE_MANAGER}
+# Package Manager: ${packageManager}
 
-${
-  process.env.PACKAGE_MANAGER === 'bun' ? 'bunx ' : ''
-}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
+${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
 `
 
-  const osType = checkOS()
+  const osType = environmentAgg.commands.checkOS()
   if (osType === 'windows') {
     return {
       name: 'GenCode.bat',

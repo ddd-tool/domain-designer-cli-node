@@ -25,8 +25,10 @@ import { requireGenCsharpContext } from './gen-csharp'
 import { requireGenGoContext } from './gen-go'
 import chalk from 'chalk'
 import packageInfo from '@/utils/package-info'
+import { useEnvironmentAgg } from '@/domain/environment-agg'
 
 const { t: $t } = useI18nAgg().commands
+const environmentAgg = useEnvironmentAgg()
 
 export function requireGenCodeCommand(params: {
   currentCommand: Ref<SubcommandEnum>
@@ -95,9 +97,9 @@ export async function requireGenCodeCommandArgs(params: {
 }
 
 export async function execute(args: Required<GenCodeCommandArgs>) {
-  const webRoot = args.webRoot
+  const webRoot = environmentAgg.states.webRoot.value
   const sourcePath = args.source
-  const packageManager = process.env.PACKAGE_MANAGER!
+  const packageManager = environmentAgg.states.packageManager.value
 
   const versionFilePath = path.join(sourcePath, 'node_modules', 'version.txt')
   if (
@@ -117,6 +119,8 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   } else if (packageManager === 'pnpm') {
     spawnSync(`pnpm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else if (packageManager === 'npm') {
+    spawnSync(`npm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
   } else {
     isNever(packageManager)
   }

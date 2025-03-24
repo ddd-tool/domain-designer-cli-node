@@ -1,9 +1,11 @@
 import log from '@/utils/log'
-import { getWebRoot } from '@/utils/check-env'
 import { spawnSync } from 'child_process'
 import { SubcommandEnum } from './define'
 import { Command } from 'commander'
 import { Ref } from '@vue/reactivity'
+import { useEnvironmentAgg } from '../environment-agg'
+
+const environmentAgg = useEnvironmentAgg()
 
 export function requireInfoCommand(params: { currentCommand: Ref<SubcommandEnum> }) {
   return new Command()
@@ -23,20 +25,17 @@ export async function execute() {
   log.printInfo('================ Print info: Starting... ================')
   spawnSync('echo "print domain-designer info"', { encoding: 'utf-8', stdio: 'inherit', shell: true })
   log.print('')
-  // 获取环境变量中的语言设置
-  const lang = process.env.LANG || process.env.LANGUAGE || process.env.LC_ALL || process.env.LC_MESSAGES || false
-
-  log.print(log.info('DEBUG_MODE:'), process.env.DEBUG_MODE)
+  log.print(log.info('DEBUG_MODE:'), environmentAgg.states.debugMode.value)
   log.print('')
-  log.print(log.info('lang:'), lang)
+  log.print(log.info('lang:'), environmentAgg.states.osLanguage.value)
   log.print('')
   log.print(log.info('__dirname:'), __dirname)
   log.print('')
   log.print(log.info('cwd():'), process.cwd())
   log.print('')
-  log.print(log.info('PACKAGE_MANAGER:'), process.env.PACKAGE_MANAGER)
+  log.print(log.info('PACKAGE_MANAGER:'), environmentAgg.states.packageManager.value)
   log.print('')
-  log.print(log.info('webRoot:'), getWebRoot())
+  log.print(log.info('webRoot:'), environmentAgg.states.webRoot.value)
   log.print('')
 
   log.printSuccess('================ Print info: Succeeded ================')

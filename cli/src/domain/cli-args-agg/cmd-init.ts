@@ -7,8 +7,10 @@ import { copyFolderRecursive } from '@/utils/io'
 import log from '@/utils/log'
 import { Reactive, Ref } from '@vue/reactivity'
 import { Command } from 'commander'
+import { useEnvironmentAgg } from '../environment-agg'
 
 const $t = useI18nAgg().commands.t
+const environmentAgg = useEnvironmentAgg()
 
 export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>; args: Reactive<InitCommandArgs> }) {
   return new Command()
@@ -48,7 +50,7 @@ export async function execute(args: InitCommandArgs) {
   }
 
   log.printInfo('================ 初始化工作空间: Starting... ================')
-  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir, { ignore: copyIgnores })
+  copyFolderRecursive(path.join(environmentAgg.states.webRoot.value, 'templates'), distDir, { ignore: copyIgnores })
   const runWebScript = getRunWebScript()
   if (runWebScript) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')

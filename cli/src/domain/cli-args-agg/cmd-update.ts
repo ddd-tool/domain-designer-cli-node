@@ -6,6 +6,9 @@ import path from 'path'
 import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
 import { copyFolderRecursive, deleteFolderRecursive } from '@/utils/io'
+import { useEnvironmentAgg } from '../environment-agg'
+
+const environmentAgg = useEnvironmentAgg()
 
 export function requireUpdateWorkspaceCommand(params: {
   currentCommand: Ref<SubcommandEnum>
@@ -68,7 +71,9 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
     fs.rmSync(path.join(distDir, gitignore.name))
   }
 
-  copyFolderRecursive(path.join(args.webRoot, 'templates'), distDir, { ignore: ['example.ts', 'example-agg.ts'] })
+  copyFolderRecursive(path.join(environmentAgg.states.webRoot.value, 'templates'), distDir, {
+    ignore: ['example.ts', 'example-agg.ts'],
+  })
   if (runWebScript) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
   }

@@ -22,19 +22,19 @@ import {
 } from './cmd-update'
 import { requireRunWebCommand, requireRunWebCommandArgs, execute as executeRunWeb } from './cmd-run-web'
 import { requireGenCodeCommand, requireGenCodeCommandArgs, execute as executeGenCode } from './cmd-gen-code'
-import { getWebRoot } from '@/utils/check-env'
+import { useEnvironmentAgg } from '../environment-agg'
 
 const { t: $t, setCurrentLang } = useI18nAgg().commands
+const environmentAgg = useEnvironmentAgg()
 
 const agg = createSingletonAgg(() => {
   const isReady = ref(false)
   const currentCommand = ref(SubcommandEnum.None)
-  let webRoot = ''
   const source = process.cwd()
-  const initCommandArgs = reactive<InitCommandArgs>({ webRoot, source })
-  const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({ webRoot, source })
-  const runWebCommandArgs = reactive<RunWebCommandArgs>({ webRoot, source })
-  const genCodeCommandArgs = reactive<GenCodeCommandArgs>({ webRoot, source })
+  const initCommandArgs = reactive<InitCommandArgs>({ source })
+  const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({ source })
+  const runWebCommandArgs = reactive<RunWebCommandArgs>({ source })
+  const genCodeCommandArgs = reactive<GenCodeCommandArgs>({ source })
 
   async function init() {
     if (isReady.value) {
@@ -48,9 +48,9 @@ const agg = createSingletonAgg(() => {
         const debugMode = thisCommand.opts().debug
         if (debugMode === true) {
           log.printDebug('调试模式已开启')
-          process.env.DEBUG_MODE = 'T'
+          environmentAgg.commands.setDebugMode(true)
         } else {
-          process.env.DEBUG_MODE = 'F'
+          environmentAgg.commands.setDebugMode(false)
         }
       })
       .addCommand(requireInitCommand({ currentCommand, args: initCommandArgs }))
@@ -61,21 +61,14 @@ const agg = createSingletonAgg(() => {
 
     program.parse(process.argv)
 
-    webRoot = getWebRoot()
-    initCommandArgs.webRoot = webRoot
-    updateWorkspaceCommandArgs.webRoot = webRoot
-    runWebCommandArgs.webRoot = webRoot
-    genCodeCommandArgs.webRoot = webRoot
+    if (environmentAgg.states.debugMode.value === true) {
+      log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
+      log.printDebug('- DEBUG: packageManager', environmentAgg.states.packageManager.value)
+    }
 
     if (SubcommandEnum.GenCode !== currentCommand.value && SubcommandEnum.None !== currentCommand.value) {
       isReady.value = true
       return
-    }
-
-    if (process.env.DEBUG_MODE === 'T') {
-      log.printDebug(typeof process.env.DEBUG_MODE, process.env.DEBUG_MODE)
-      log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
-      log.printDebug('- DEBUG: packageManager', process.env.PACKAGE_MANAGER)
     }
 
     await configArgsFromUserChoise()
@@ -83,21 +76,29 @@ const agg = createSingletonAgg(() => {
   }
 
   async function configArgsFromUserChoise(): Promise<void> {
-    const { langurage } = await prompts(
-      [
-        {
-          name: 'langurage',
-          type: 'select',
-          message: 'Choose The language during this creation process',
-          choices: [
-            { title: '中文', value: 'zh' },
-            { title: 'English', value: 'en' },
-          ],
-        },
-      ],
-      { onCancel: signal.onCancel }
-    )
-    setCurrentLang(langurage)
+    let lang = environmentAgg.states.osLanguage.value as 'zh' | 'en'
+    if (lang.startsWith('zh')) {
+      lang = 'zh'
+    } else if (lang.startsWith('en')) {
+      lang = 'en'
+    } else {
+      const { language } = await prompts(
+        [
+          {
+            name: 'language',
+            type: 'select',
+            message: 'Choose The language during this creation process',
+            choices: [
+              { title: '中文', value: 'zh' },
+              { title: 'English', value: 'en' },
+            ],
+          },
+        ],
+        { onCancel: signal.onCancel }
+      )
+      lang = language
+    }
+    setCurrentLang(lang)
 
     if (currentCommand.value === SubcommandEnum.None) {
       const result = await prompts(
