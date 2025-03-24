@@ -44,6 +44,12 @@ bun i @ddd-tool/domain-designer-cli@latest -g
 pnpm i @ddd-tool/domain-designer-cli@latest -g
 ```
 
+对于 linux / macOS 系统：
+
+```bash
+chmod +x *.sh
+```
+
 ### 3.2 更新工作空间
 
 在已有的工作空间中执行命令
