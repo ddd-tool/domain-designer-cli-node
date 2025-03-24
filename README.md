@@ -28,6 +28,12 @@ bun i @ddd-tool/domain-designer-cli -g
 pnpm i @ddd-tool/domain-designer-cli -g
 ```
 
+对于 linux / macOS 系统：
+
+```bash
+chmod +x *.sh
+```
+
 ## 3 更新版本
 
 ### 3.1 更新软件
