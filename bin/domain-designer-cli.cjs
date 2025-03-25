@@ -13507,7 +13507,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.4",
+  "version": "0.1.0-beta.5",
   "private": true,
   "type": "module",
   "files": [
@@ -13522,7 +13522,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.4"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.5"
 };
 
 // src/domain/environment-agg/index.ts
@@ -13554,23 +13554,39 @@ function findWebRoot(osType, packageManager) {
         if (result.status !== 0) {
           throw new Error("domain-designer-cli not found");
         }
-        let p = import_path.default.resolve(import_path.default.dirname(result.stdout.split("\n")[0].trim()), "..");
-        if (!verifyWebRoot(p)) {
+        const paths = import_path.default.dirname(result.stdout.split("\n")[0].trim());
+        for (let p of paths.split("\n")) {
+          p = import_path.default.resolve(p.trim(), "..");
+          if (verifyWebRoot(p)) {
+            webRoot = p;
+            break;
+          }
           p = import_path.default.resolve(p, "lib", "node_modules", "@ddd-tool", "domain-designer-cli");
-          mustBeWebRoot(p);
+          if (verifyWebRoot(p)) {
+            webRoot = p;
+            break;
+          }
         }
-        webRoot = p;
+        mustBeWebRoot(webRoot);
       } else if (osType === "linux" || osType === "mac") {
         const result = (0, import_child_process.spawnSync)("whereis domain-designer-cli", { encoding: "utf-8", shell: true });
         if (result.status !== 0) {
           throw new Error("domain-designer-cli not found");
         }
-        let p = import_path.default.resolve(import_path.default.dirname(result.stdout.split("\n")[0].split(":")[1].trim()), "..");
-        if (!verifyWebRoot(p)) {
+        const paths = result.stdout.split("\n")[0].split(":")[1].trim();
+        for (let p of paths.split(" ")) {
+          p = import_path.default.resolve(import_path.default.dirname(p.trim()), "..");
+          if (verifyWebRoot(p)) {
+            webRoot = p;
+            break;
+          }
           p = import_path.default.resolve(p, "lib", "node_modules", "@ddd-tool", "domain-designer-cli");
-          mustBeWebRoot(p);
+          if (verifyWebRoot(p)) {
+            webRoot = p;
+            break;
+          }
         }
-        webRoot = p;
+        mustBeWebRoot(webRoot);
       } else if (osType === "undefined") {
         throw new Error("unknown os type");
       } else {

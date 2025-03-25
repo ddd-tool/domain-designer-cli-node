@@ -24,23 +24,41 @@ export function findWebRoot(osType: OsType, packageManager: PackageManager): str
         if (result.status !== 0) {
           throw new Error('domain-designer-cli not found')
         }
-        let p = path.resolve(path.dirname(result.stdout.split('\n')[0].trim()), '..')
-        if (!verifyWebRoot(p)) {
+        const paths = path.dirname(result.stdout.split('\n')[0].trim())
+        for (let p of paths.split('\n')) {
+          p = path.resolve(p.trim(), '..')
+          if (verifyWebRoot(p)) {
+            webRoot = p
+            break
+          }
+          // fnm
           p = path.resolve(p, 'lib', 'node_modules', '@ddd-tool', 'domain-designer-cli')
-          mustBeWebRoot(p)
+          if (verifyWebRoot(p)) {
+            webRoot = p
+            break
+          }
         }
-        webRoot = p
+        mustBeWebRoot(webRoot)
       } else if (osType === 'linux' || osType === 'mac') {
         const result = spawnSync('whereis domain-designer-cli', { encoding: 'utf-8', shell: true })
         if (result.status !== 0) {
           throw new Error('domain-designer-cli not found')
         }
-        let p = path.resolve(path.dirname(result.stdout.split('\n')[0].split(':')[1].trim()), '..')
-        if (!verifyWebRoot(p)) {
+        const paths = result.stdout.split('\n')[0].split(':')[1].trim()
+        for (let p of paths.split(' ')) {
+          p = path.resolve(path.dirname(p.trim()), '..')
+          if (verifyWebRoot(p)) {
+            webRoot = p
+            break
+          }
+          // fnm
           p = path.resolve(p, 'lib', 'node_modules', '@ddd-tool', 'domain-designer-cli')
-          mustBeWebRoot(p)
+          if (verifyWebRoot(p)) {
+            webRoot = p
+            break
+          }
         }
-        webRoot = p
+        mustBeWebRoot(webRoot)
       } else if (osType === 'undefined') {
         throw new Error('unknown os type')
       } else {
