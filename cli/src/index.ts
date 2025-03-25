@@ -26,6 +26,8 @@ async function start() {
   log.print('')
   log.print(`Script Version:`, log.info(packageInfo.version))
   log.print('')
+  log.printDebug('argv:', process.argv)
+  log.print('')
 
   await cliArgsAgg.commands.init()
 

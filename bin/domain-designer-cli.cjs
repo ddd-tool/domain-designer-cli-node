@@ -13507,7 +13507,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.6",
+  "version": "0.1.0-beta.7",
   "private": true,
   "type": "module",
   "files": [
@@ -13522,7 +13522,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.6"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.7"
 };
 
 // src/domain/environment-agg/index.ts
@@ -13636,7 +13636,7 @@ var agg2 = X(() => {
   );
   const executable = import_path2.default.basename(process.argv[0]);
   const packageManager = (0, import_reactivity3.ref)("npm" /* NPM */);
-  if (executable.includes("bun")) {
+  if (executable.includes("bun") || process.argv[1].includes("/.bun/")) {
     packageManager.value = "bun" /* BUN */;
   } else if (executable.includes("node")) {
     if (checkPnpm()) {
@@ -18384,6 +18384,8 @@ async function start() {
   log_default.print(`Repo Addr:`, log_default.info(package_info_default.repository.url.replace(/git\+/g, "")));
   log_default.print("");
   log_default.print(`Script Version:`, log_default.info(package_info_default.version));
+  log_default.print("");
+  log_default.printDebug("argv:", process.argv);
   log_default.print("");
   await cliArgsAgg.commands.init();
   await cliArgsAgg.commands.exec();
