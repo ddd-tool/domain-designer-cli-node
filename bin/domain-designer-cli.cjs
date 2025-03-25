@@ -13507,7 +13507,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0-beta.6",
   "private": true,
   "type": "module",
   "files": [
@@ -13522,7 +13522,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.5"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.6"
 };
 
 // src/domain/environment-agg/index.ts
@@ -14156,7 +14156,7 @@ var import_fs6 = __toESM(require("fs"), 1);
 var import_path7 = __toESM(require("path"), 1);
 var import_child_process5 = require("child_process");
 
-// node_modules/.pnpm/@ddd-tool+domain-designer-core@0.1.0-beta.2/node_modules/@ddd-tool/domain-designer-core/index.js
+// node_modules/.pnpm/@ddd-tool+domain-designer-core@0.1.0-beta.5/node_modules/@ddd-tool/domain-designer-core/index.js
 function tr(t) {
   const e = t;
   return e && typeof e.actor == "function" && typeof e.startWorkflow == "function" && typeof e.defineUserStory == "function" && typeof e._getContext == "function" && typeof e.note == "function" && typeof e.info == "object" && typeof e.command == "function" && typeof e.facadeCmd == "function" && typeof e.agg == "function" && typeof e.event == "function" && typeof e.system == "function" && typeof e.policy == "function" && typeof e.service == "function" && typeof e.readModel == "function";
@@ -14890,7 +14890,7 @@ function Mn() {
 }
 process.env.NODE_ENV !== "production" && Mn();
 
-// node_modules/.pnpm/@ddd-tool+domain-designer-g_362d88813f3b0dfc824996070056c685/node_modules/@ddd-tool/domain-designer-generator/index.js
+// node_modules/.pnpm/@ddd-tool+domain-designer-g_df80efa3415c88fc496f78b3e9988a46/node_modules/@ddd-tool/domain-designer-generator/index.js
 // @__NO_SIDE_EFFECTS__
 function Kn(e) {
   const n = /* @__PURE__ */ Object.create(null);
