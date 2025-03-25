@@ -4,3 +4,9 @@ export enum PackageManager {
   // YARN = 'yarn',
   BUN = 'bun',
 }
+export enum OsType {
+  Windows = 'windows',
+  Linux = 'linux',
+  Mac = 'mac',
+  Undefined = 'undefined',
+}

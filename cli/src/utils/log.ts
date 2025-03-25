@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import { useEnvironmentAgg } from '../domain/environment-agg'
 
 export default {
   print(...args: any[]) {
@@ -18,8 +17,7 @@ export default {
     console.log(this.info(...toString(...args)))
   },
   printDebug(...args: any[]) {
-    const environmentAgg = useEnvironmentAgg()
-    if (environmentAgg.states.debugMode.value) {
+    if (process.argv.includes('--debug')) {
       console.log(this.debug(...toString(...args)))
     }
   },

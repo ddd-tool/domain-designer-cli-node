@@ -41,6 +41,7 @@ export type I18nMessages = {
   'error.shouldBeValidWorkspaceOrEmptyDir{dir}': string
   'error.shouldBeEmptyDir{dir}': string
   'error.noPackageManager': string
+  'warning.needUpdate{workspaceVer}{scriptVer}': string
 }
 
 export type I18nMessagesKey = keyof I18nMessages

@@ -43,7 +43,7 @@ function esBuild() {
     bundle: true,
     entryPoints: [path.join(__dirname, '..', 'src', 'index.ts')],
     drop: ['debugger'],
-    minify: true,
+    minify: false,
     outfile: path.join(__dirname, '..', '..', 'bin', 'domain-designer-cli.cjs'),
     // sourcemap: true,
     loader: {

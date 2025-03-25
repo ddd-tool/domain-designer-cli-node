@@ -1,13 +1,28 @@
 import { spawnSync } from 'child_process'
-import fs from 'fs'
 import os from 'os'
 import path from 'path'
 import { ref } from '@vue/reactivity'
 import { createSingletonAgg } from 'vue-fn/domain-server'
-import { PackageManager } from './define'
+import { OsType, PackageManager } from './define'
+import { findWebRoot } from './web-root'
+import log from '@/utils/log'
 
 const agg = createSingletonAgg(() => {
   const debugMode = ref(false)
+  const osType = ref(
+    (function () {
+      const osType = os.type()
+      if (osType === 'Windows_NT') {
+        return OsType.Windows
+      } else if (osType === 'Linux') {
+        return OsType.Linux
+      } else if (osType === 'Darwin') {
+        return OsType.Mac
+      }
+      return OsType.Undefined
+    })()
+  )
+
   const executable = path.basename(process.argv[0])
   const packageManager = ref<PackageManager>(PackageManager.NPM)
   if (executable.includes('bun')) {
@@ -20,28 +35,6 @@ const agg = createSingletonAgg(() => {
     }
   } else {
     throw new Error('unknown package manager')
-  }
-
-  const webRoot = ref(path.resolve(path.dirname(process.argv[1]), '..').replace(/\\/g, '/'))
-  if (
-    !fs.existsSync(path.join(webRoot.value, 'templates')) ||
-    !fs.statSync(path.join(webRoot.value, 'templates')).isDirectory()
-  ) {
-    if (packageManager.value === PackageManager.BUN) {
-      webRoot.value = path
-        .resolve(
-          path.dirname(process.argv[1]),
-          '..',
-          'install',
-          'global',
-          'node_modules',
-          '@ddd-tool',
-          'domain-designer-cli'
-        )
-        .replace(/\\/g, '/')
-    } else {
-      throw new Error('unknown webRoot manager')
-    }
   }
 
   const osLanguage = ref(
@@ -66,68 +59,74 @@ const agg = createSingletonAgg(() => {
     })()
   )
 
+  const webRoot = ref(findWebRoot(osType.value, packageManager.value))
+
   function checkBun(): boolean {
-    const osType = checkOS()
     let status: number | null = null
-    if (osType === 'windows') {
-      status = spawnSync('where.exe bun', { encoding: 'utf-8', shell: true }).status
-    } else if (osType === 'linux') {
-      status = spawnSync('hash bun', { encoding: 'utf-8', shell: true }).status
-    } else if (osType === 'mac') {
-      status = spawnSync('hash bun', { encoding: 'utf-8', shell: true }).status
+    if (osType.value === 'windows') {
+      const cmd = 'where.exe bun'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
+    } else if (osType.value === 'linux') {
+      const cmd = 'hash bun'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
+    } else if (osType.value === 'mac') {
+      const cmd = 'hash bun'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
     }
     return status === 0
   }
 
   function checkPnpm(): boolean {
-    const osType = checkOS()
     let status: number | null = null
-    if (osType === 'windows') {
-      status = spawnSync('where.exe pnpm', { encoding: 'utf-8', shell: true }).status
-    } else if (osType === 'linux') {
-      status = spawnSync('hash pnpm', { encoding: 'utf-8', shell: true }).status
-    } else if (osType === 'mac') {
-      status = spawnSync('hash pnpm', { encoding: 'utf-8', shell: true }).status
+    if (osType.value === 'windows') {
+      const cmd = 'where.exe pnpm'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
+    } else if (osType.value === 'linux') {
+      const cmd = 'hash pnpm'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
+    } else if (osType.value === 'mac') {
+      const cmd = 'hash pnpm'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
     }
     return status === 0
   }
 
   function checkNpm(): boolean {
-    const osType = checkOS()
     let status: number | null = null
-    if (osType === 'windows') {
-      status = spawnSync('where.exe npm', { encoding: 'utf-8', shell: true }).status
-    } else if (osType === 'linux') {
-      status = spawnSync('hash npm', { encoding: 'utf-8', shell: true }).status
-    } else if (osType === 'mac') {
-      status = spawnSync('hash npm', { encoding: 'utf-8', shell: true }).status
+    if (osType.value === 'windows') {
+      const cmd = 'where.exe npm'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
+    } else if (osType.value === 'linux') {
+      const cmd = 'hash npm'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
+    } else if (osType.value === 'mac') {
+      const cmd = 'hash npm'
+      log.printDebug(cmd)
+      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
     }
     return status === 0
   }
 
-  function checkOS() {
-    const osType = os.type()
-    if (osType === 'Windows_NT') {
-      return 'windows'
-    } else if (osType === 'Linux') {
-      return 'linux'
-    } else if (osType === 'Darwin') {
-      return 'mac'
-    }
-    return 'undefined'
-  }
   return {
     states: {
       packageManager,
       webRoot,
       osLanguage,
       debugMode,
+      osType,
     },
     commands: {
       checkBun,
       checkNpm,
       checkPnpm,
-      checkOS,
       setDebugMode(v: boolean) {
         debugMode.value = v
       },

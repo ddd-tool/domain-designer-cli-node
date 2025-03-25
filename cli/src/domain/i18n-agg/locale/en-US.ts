@@ -44,6 +44,8 @@ const enDict: I18nMessages = {
   'error.shouldBeValidWorkspaceOrEmptyDir{dir}': '{dir} should be a valid workspace or an empty directory',
   'error.shouldBeEmptyDir{dir}': '{dir} should be an empty directory',
   'error.noPackageManager': 'No package manager found, please install bun or pnpm',
+  'warning.needUpdate{workspaceVer}{scriptVer}':
+    'The version between workspace and script is not the same.\nCurrent workspace version: {workspaceVer}\nCurrent script version:    {scriptVer}\nIf you want to use the local script version, please execute the update command in the workspace',
 }
 
 export default enDict

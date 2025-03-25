@@ -44,12 +44,18 @@ export async function execute(args: RunWebCommandArgs) {
   const packageManager = environmentAgg.states.packageManager.value
 
   log.printInfo('================ 安装运行依赖: Starting... ================')
-  if (packageManager === 'bun') {
-    spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
-  } else if (packageManager === 'pnpm') {
-    spawnSync(`pnpm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
-  } else if (packageManager === 'npm') {
-    spawnSync(`npm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  if (packageManager === PackageManager.BUN) {
+    const cmd = `bun i --cwd "${webRoot}"`
+    log.printDebug(cmd)
+    spawnSync(cmd, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else if (packageManager === PackageManager.PNPM) {
+    const cmd = `pnpm i --prefix "${webRoot}"`
+    log.printDebug(cmd)
+    spawnSync(cmd, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+  } else if (packageManager === PackageManager.NPM) {
+    const cmd = `npm i --prefix "${webRoot}"`
+    log.printDebug(cmd)
+    spawnSync(cmd)
   } else {
     isNever(packageManager)
   }
@@ -60,20 +66,26 @@ export async function execute(args: RunWebCommandArgs) {
   log.printSuccess('================ 装配代码文件: Succeeded ================')
 
   log.printInfo('================ 运行Web服务: Starting... ================')
-  if (packageManager === 'bun') {
-    spawnSync(`bun --cwd "${webRoot}" dev`, {
+  if (packageManager === PackageManager.BUN) {
+    const cmd = `bun --cwd "${webRoot}" dev`
+    log.printDebug(cmd)
+    spawnSync(cmd, {
       encoding: 'utf-8',
       stdio: 'inherit',
       shell: true,
     })
-  } else if (packageManager === 'pnpm') {
-    spawnSync(`pnpm --prefix "${webRoot}" dev`, {
+  } else if (packageManager === PackageManager.PNPM) {
+    const cmd = `pnpm --prefix "${webRoot}" dev`
+    log.printDebug(cmd)
+    spawnSync(cmd, {
       encoding: 'utf-8',
       stdio: 'inherit',
       shell: true,
     })
-  } else if (packageManager === 'npm') {
-    spawnSync(`npm --prefix "${webRoot}" dev`, {
+  } else if (packageManager === PackageManager.NPM) {
+    const cmd = `npm --prefix "${webRoot}" run dev`
+    log.printDebug(cmd)
+    spawnSync(cmd, {
       encoding: 'utf-8',
       stdio: 'inherit',
       shell: true,
@@ -94,10 +106,12 @@ async function configSource(webRoot: string, source: string) {
     !fs.statSync(versionFilePath).isFile() ||
     fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
   ) {
-    log.printWarn('检测到工作目录版本与脚手架版本不匹配')
-    log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
-    log.printWarn('脚手架版本：      ', packageInfo.version)
-    log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
+    log.printWarn(
+      $t('warning.needUpdate{workspaceVer}{scriptVer}', {
+        workspaceVer: fs.readFileSync(versionFilePath, 'utf-8').trim(),
+        scriptVer: packageInfo.version,
+      })
+    )
     log.print(
       chalk.bgYellow(`${environmentAgg.states.packageManager.value === 'bun' ? 'bunx ' : ''}domain-designer-cli update`)
     )

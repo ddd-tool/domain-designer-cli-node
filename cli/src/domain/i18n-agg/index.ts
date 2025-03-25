@@ -3,6 +3,7 @@ import { createSingletonAgg } from 'vue-fn/domain-server'
 import enUS from './locale/en-US'
 import zhCN from './locale/zh-CN'
 import { I18nMessages, I18nMessagesKey } from './messages'
+import log from '@/utils/log'
 
 export const validLanguages = ['en', 'zh'] as const
 export type Language = (typeof validLanguages)[number]
@@ -23,6 +24,7 @@ const agg = createSingletonAgg(() => {
       }
     }
     if (!v) {
+      log.printWarn(`i18n not found: ${key}`)
       return ''
     }
     if (typeof attr1 === 'object') {

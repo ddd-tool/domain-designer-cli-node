@@ -44,6 +44,8 @@ const zhDict: I18nMessages = {
   'error.shouldBeValidWorkspaceOrEmptyDir{dir}': '{dir} 应该是 一个空目录 或者 一个有效的工作区',
   'error.shouldBeEmptyDir{dir}': '{dir} 应该是一个空目录',
   'error.noPackageManager': '未找到包管理器,请安装 bun 或 pnpm',
+  'warning.needUpdate{workspaceVer}{scriptVer}':
+    '检测到工作目录版本与脚手架版本不匹配\n当前工作目录版本： {workspaceVer}\n脚手架版本：       {scriptVer}\n如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新',
 }
 
 export default zhDict

@@ -74,7 +74,7 @@ ${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source="$
 ${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
 `
 
-  const osType = environmentAgg.commands.checkOS()
+  const osType = environmentAgg.states.osType.value
   if (osType === 'windows') {
     return {
       name: 'RunWeb.bat',
@@ -130,7 +130,7 @@ ${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli genCode --source="
 ${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
 `
 
-  const osType = environmentAgg.commands.checkOS()
+  const osType = environmentAgg.states.osType.value
   if (osType === 'windows') {
     return {
       name: 'GenCode.bat',
