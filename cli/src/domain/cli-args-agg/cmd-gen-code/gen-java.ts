@@ -27,6 +27,12 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
             description: $t('question.subcommand.genCode.java.additions.springFramework'),
           },
           {
+            title: define.java.JavaGeneratorAddition.Jpa,
+            value: define.java.JavaGeneratorAddition.Jpa,
+            selected: false,
+            description: $t('question.subcommand.genCode.java.additions.jpa'),
+          },
+          {
             title: define.java.JavaGeneratorAddition.Lombok,
             value: define.java.JavaGeneratorAddition.Lombok,
             selected: true,
@@ -44,9 +50,9 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
             description: $t('question.subcommand.genCode.java.additions.commandHandler'),
           },
           {
-            title: define.java.JavaGeneratorAddition.RecordVakueObject,
-            value: define.java.JavaGeneratorAddition.RecordVakueObject,
-            description: $t('question.subcommand.genCode.java.additions.recordVakueObject'),
+            title: define.java.JavaGeneratorAddition.RecordValueObject,
+            value: define.java.JavaGeneratorAddition.RecordValueObject,
+            description: $t('question.subcommand.genCode.java.additions.recordValueObject'),
           },
           {
             title: define.java.JavaGeneratorAddition.Timezone,
@@ -83,6 +89,27 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
         { onCancel: signal.onCancel }
       )
     ).nonNullAnnotation
+  }
+
+  if ((additions as define.java.JavaGeneratorAddition[]).includes(define.java.JavaGeneratorAddition.Jpa)) {
+    const { idGenStrategy } = await prompts(
+      [
+        {
+          name: 'idGenStrategy',
+          type: 'select',
+          message: $t('question.subcommand.genCode.java.idGenStrategy'),
+          choices: [
+            { title: 'TABLE', value: define.java.IdGenStrategy.TABLE },
+            { title: 'SEQUENCE', value: define.java.IdGenStrategy.SEQUENCE },
+            { title: 'IDENTITY', value: define.java.IdGenStrategy.IDENTITY },
+            { title: 'UUID', value: define.java.IdGenStrategy.UUID },
+            { title: 'AUTO', value: define.java.IdGenStrategy.AUTO },
+          ],
+        },
+      ],
+      { onCancel: signal.onCancel }
+    )
+    context.idGenStrategy = idGenStrategy as define.java.IdGenStrategy
   }
 
   context.namespace = namespace

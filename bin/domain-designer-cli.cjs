@@ -13380,12 +13380,14 @@ var enDict = {
   "question.subcommand.genCode.kotlin.additions.timezone": "Use [OffsetDateTime] to represent time",
   "question.subcommand.genCode.java.additions": "Select additional options",
   "question.subcommand.genCode.java.additions.springFramework": "Use spring container for development",
+  "question.subcommand.genCode.java.additions.jpa": "Use jpa for persistence",
   "question.subcommand.genCode.java.additions.lombok": "Use [@Getter, @RequiredArgsConstructor...] of lombok",
   "question.subcommand.genCode.java.additions.lombokBuilder": "Use [@Builder] of lombok to avoid long parameter lists",
   "question.subcommand.genCode.java.additions.commandHandler": "Generate CommandHandler for each command",
-  "question.subcommand.genCode.java.additions.recordVakueObject": "Use [java record] to generate value object (JDK16+)",
+  "question.subcommand.genCode.java.additions.recordValueObject": "Use [java record] to generate value object (JDK16+)",
   "question.subcommand.genCode.java.additions.timezone": "Use [OffsetDateTime] to represent time",
   "question.subcommand.genCode.java.nonNullAnnotation": "Select non-null annotation",
+  "question.subcommand.genCode.java.idGenStrategy": "Select ID generation strategy",
   "question.subcommand.genCode.additions.hint": "- Space to select. Return to submit",
   "question.subcommand.init": "Initialize project",
   "question.subcommand.updateWorkspace": "Update Workspace",
@@ -13428,12 +13430,14 @@ var zhDict = {
   "question.subcommand.genCode.kotlin.additions.timezone": "\u4F7F\u7528\u5E26\u65F6\u533A\u7684OffsetDateTime\u8868\u793A\u65F6\u95F4",
   "question.subcommand.genCode.java.additions": "\u9009\u62E9\u9644\u52A0\u9009\u9879",
   "question.subcommand.genCode.java.additions.springFramework": "\u4F7F\u7528spring\u5BB9\u5668\u8FDB\u884C\u5F00\u53D1",
+  "question.subcommand.genCode.java.additions.jpa": "\u4F7F\u7528jpa\u8FDB\u884C\u6301\u4E45\u5316",
   "question.subcommand.genCode.java.additions.lombok": "\u4F7F\u7528lombok\u5E38\u7528\u7684Getter\u7B49\u6CE8\u89E3",
   "question.subcommand.genCode.java.additions.lombokBuilder": "\u4F7F\u7528lombok\u7684Builder\u6CE8\u89E3\u907F\u514D\u957F\u53C2\u6570\u5217\u8868",
   "question.subcommand.genCode.java.additions.commandHandler": "\u4E3A\u6BCF\u4E2A\u547D\u4EE4\u751F\u6210CommandHandler",
-  "question.subcommand.genCode.java.additions.recordVakueObject": "\u4F7F\u7528record\u7C7B\u751F\u6210\u503C\u5BF9\u8C61\uFF08JDK16+\uFF09",
+  "question.subcommand.genCode.java.additions.recordValueObject": "\u4F7F\u7528record\u7C7B\u751F\u6210\u503C\u5BF9\u8C61\uFF08JDK16+\uFF09",
   "question.subcommand.genCode.java.additions.timezone": "\u4F7F\u7528\u5E26\u65F6\u533A\u7684OffsetDateTime\u8868\u793A\u65F6\u95F4",
   "question.subcommand.genCode.java.nonNullAnnotation": "\u9009\u62E9\u975E\u7A7A\u6CE8\u89E3",
+  "question.subcommand.genCode.java.idGenStrategy": "\u9009\u62E9ID\u751F\u6210\u7B56\u7565",
   "question.subcommand.genCode.additions.hint": "- \u7A7A\u683C\u52FE\u9009\uFF0C\u56DE\u8F66\u63D0\u4EA4",
   "question.subcommand.init": "\u521D\u59CB\u5316\u9879\u76EE",
   "question.subcommand.updateWorkspace": "\u66F4\u65B0\u4F9D\u8D56",
@@ -13507,7 +13511,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.7",
+  "version": "0.1.0-beta.8",
   "private": true,
   "type": "module",
   "files": [
@@ -13522,7 +13526,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.7"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.8"
 };
 
 // src/domain/environment-agg/index.ts
@@ -14890,70 +14894,70 @@ function Mn() {
 }
 process.env.NODE_ENV !== "production" && Mn();
 
-// node_modules/.pnpm/@ddd-tool+domain-designer-g_df80efa3415c88fc496f78b3e9988a46/node_modules/@ddd-tool/domain-designer-generator/index.js
+// node_modules/.pnpm/@ddd-tool+domain-designer-g_65c72307a129f35df6ab1b69bad098eb/node_modules/@ddd-tool/domain-designer-generator/index.js
 // @__NO_SIDE_EFFECTS__
-function Kn(e) {
+function Bn(e) {
   const n = /* @__PURE__ */ Object.create(null);
   for (const t of e.split(",")) n[t] = 1;
   return (t) => t in n;
 }
 process.env.NODE_ENV !== "production" && Object.freeze({});
 process.env.NODE_ENV !== "production" && Object.freeze([]);
-var Fe = Object.assign;
-var zn = Object.prototype.hasOwnProperty;
-var Ve2 = (e, n) => zn.call(e, n);
-var J = Array.isArray;
-var ne2 = (e) => pn2(e) === "[object Map]";
-var Bn = (e) => typeof e == "function";
-var Un = (e) => typeof e == "string";
-var ce2 = (e) => typeof e == "symbol";
-var ye = (e) => e !== null && typeof e == "object";
-var Gn = Object.prototype.toString;
-var pn2 = (e) => Gn.call(e);
-var dn2 = (e) => pn2(e).slice(8, -1);
-var Je = (e) => Un(e) && e !== "NaN" && e[0] !== "-" && "" + parseInt(e, 10) === e;
+var Pe = Object.assign;
+var Gn = Object.prototype.hasOwnProperty;
+var Ve2 = (e, n) => Gn.call(e, n);
+var Y = Array.isArray;
+var te = (e) => dn2(e) === "[object Map]";
+var Un = (e) => typeof e == "function";
+var zn = (e) => typeof e == "string";
+var ue = (e) => typeof e == "symbol";
+var je = (e) => e !== null && typeof e == "object";
+var Jn = Object.prototype.toString;
+var dn2 = (e) => Jn.call(e);
+var mn2 = (e) => dn2(e).slice(8, -1);
+var Ye = (e) => zn(e) && e !== "NaN" && e[0] !== "-" && "" + parseInt(e, 10) === e;
 var Wn = (e) => {
   const n = /* @__PURE__ */ Object.create(null);
   return (t) => n[t] || (n[t] = e(t));
 };
-var Jn = Wn((e) => e.charAt(0).toUpperCase() + e.slice(1));
-var Y = (e, n) => !Object.is(e, n);
+var Yn = Wn((e) => e.charAt(0).toUpperCase() + e.slice(1));
+var q = (e, n) => !Object.is(e, n);
 function X3(e, ...n) {
 }
-var S2;
+var A;
 var fn2 = 0;
-var te;
 var oe2;
-function Yn(e, n = false) {
+var se2;
+function qn(e, n = false) {
   if (e.flags |= 8, n) {
-    e.next = oe2, oe2 = e;
+    e.next = se2, se2 = e;
     return;
   }
-  e.next = te, te = e;
+  e.next = oe2, oe2 = e;
 }
-function Ye() {
+function qe() {
   fn2++;
 }
 function Ze() {
   if (--fn2 > 0)
     return;
-  if (oe2) {
-    let n = oe2;
-    for (oe2 = void 0; n; ) {
+  if (se2) {
+    let n = se2;
+    for (se2 = void 0; n; ) {
       const t = n.next;
       n.next = void 0, n.flags &= -9, n = t;
     }
   }
   let e;
-  for (; te; ) {
-    let n = te;
-    for (te = void 0; n; ) {
+  for (; oe2; ) {
+    let n = oe2;
+    for (oe2 = void 0; n; ) {
       const t = n.next;
       if (n.next = void 0, n.flags &= -9, n.flags & 1)
         try {
           n.trigger();
-        } catch (o) {
-          e || (e = o);
+        } catch (r2) {
+          e || (e = r2);
         }
       n = t;
     }
@@ -14964,102 +14968,102 @@ function Zn(e) {
   for (let n = e.deps; n; n = n.nextDep)
     n.version = -1, n.prevActiveLink = n.dep.activeLink, n.dep.activeLink = n;
 }
-function qn(e) {
-  let n, t = e.depsTail, o = t;
-  for (; o; ) {
-    const s = o.prevDep;
-    o.version === -1 ? (o === t && (t = s), hn2(o), Qn(o)) : n = o, o.dep.activeLink = o.prevActiveLink, o.prevActiveLink = void 0, o = s;
+function Qn(e) {
+  let n, t = e.depsTail, r2 = t;
+  for (; r2; ) {
+    const o = r2.prevDep;
+    r2.version === -1 ? (r2 === t && (t = o), vn2(r2), et(r2)) : n = r2, r2.dep.activeLink = r2.prevActiveLink, r2.prevActiveLink = void 0, r2 = o;
   }
   e.deps = n, e.depsTail = t;
 }
 function Xn(e) {
   for (let n = e.deps; n; n = n.nextDep)
-    if (n.dep.version !== n.version || n.dep.computed && (mn2(n.dep.computed) || n.dep.version !== n.version))
+    if (n.dep.version !== n.version || n.dep.computed && (hn2(n.dep.computed) || n.dep.version !== n.version))
       return true;
   return !!e._dirty;
 }
-function mn2(e) {
-  if (e.flags & 4 && !(e.flags & 16) || (e.flags &= -17, e.globalVersion === se2))
+function hn2(e) {
+  if (e.flags & 4 && !(e.flags & 16) || (e.flags &= -17, e.globalVersion === re2))
     return;
-  e.globalVersion = se2;
+  e.globalVersion = re2;
   const n = e.dep;
   if (e.flags |= 2, n.version > 0 && !e.isSSR && e.deps && !Xn(e)) {
     e.flags &= -3;
     return;
   }
-  const t = S2, o = R2;
-  S2 = e, R2 = true;
+  const t = A, r2 = R2;
+  A = e, R2 = true;
   try {
     Zn(e);
-    const s = e.fn(e._value);
-    (n.version === 0 || Y(s, e._value)) && (e._value = s, n.version++);
-  } catch (s) {
-    throw n.version++, s;
+    const o = e.fn(e._value);
+    (n.version === 0 || q(o, e._value)) && (e._value = o, n.version++);
+  } catch (o) {
+    throw n.version++, o;
   } finally {
-    S2 = t, R2 = o, qn(e), e.flags &= -3;
+    A = t, R2 = r2, Qn(e), e.flags &= -3;
   }
 }
-function hn2(e, n = false) {
-  const { dep: t, prevSub: o, nextSub: s } = e;
-  if (o && (o.nextSub = s, e.prevSub = void 0), s && (s.prevSub = o, e.nextSub = void 0), process.env.NODE_ENV !== "production" && t.subsHead === e && (t.subsHead = s), t.subs === e && (t.subs = o, !o && t.computed)) {
+function vn2(e, n = false) {
+  const { dep: t, prevSub: r2, nextSub: o } = e;
+  if (r2 && (r2.nextSub = o, e.prevSub = void 0), o && (o.prevSub = r2, e.nextSub = void 0), process.env.NODE_ENV !== "production" && t.subsHead === e && (t.subsHead = o), t.subs === e && (t.subs = r2, !r2 && t.computed)) {
     t.computed.flags &= -5;
-    for (let a = t.computed.deps; a; a = a.nextDep)
-      hn2(a, true);
+    for (let s = t.computed.deps; s; s = s.nextDep)
+      vn2(s, true);
   }
   !n && !--t.sc && t.map && t.map.delete(t.key);
 }
-function Qn(e) {
+function et(e) {
   const { prevDep: n, nextDep: t } = e;
   n && (n.nextDep = t, e.prevDep = void 0), t && (t.prevDep = n, e.nextDep = void 0);
 }
 var R2 = true;
 var gn2 = [];
-function et() {
+function nt() {
   gn2.push(R2), R2 = false;
 }
-function nt() {
+function tt() {
   const e = gn2.pop();
   R2 = e === void 0 ? true : e;
 }
-var se2 = 0;
-var tt = class {
+var re2 = 0;
+var ot2 = class {
   constructor(n, t) {
     this.sub = n, this.dep = t, this.version = t.version, this.nextDep = this.prevDep = this.nextSub = this.prevSub = this.prevActiveLink = void 0;
   }
 };
-var qe = class {
+var Qe = class {
   constructor(n) {
     this.computed = n, this.version = 0, this.activeLink = void 0, this.subs = void 0, this.map = void 0, this.key = void 0, this.sc = 0, process.env.NODE_ENV !== "production" && (this.subsHead = void 0);
   }
   track(n) {
-    if (!S2 || !R2 || S2 === this.computed)
+    if (!A || !R2 || A === this.computed)
       return;
     let t = this.activeLink;
-    if (t === void 0 || t.sub !== S2)
-      t = this.activeLink = new tt(S2, this), S2.deps ? (t.prevDep = S2.depsTail, S2.depsTail.nextDep = t, S2.depsTail = t) : S2.deps = S2.depsTail = t, vn2(t);
+    if (t === void 0 || t.sub !== A)
+      t = this.activeLink = new ot2(A, this), A.deps ? (t.prevDep = A.depsTail, A.depsTail.nextDep = t, A.depsTail = t) : A.deps = A.depsTail = t, _n2(t);
     else if (t.version === -1 && (t.version = this.version, t.nextDep)) {
-      const o = t.nextDep;
-      o.prevDep = t.prevDep, t.prevDep && (t.prevDep.nextDep = o), t.prevDep = S2.depsTail, t.nextDep = void 0, S2.depsTail.nextDep = t, S2.depsTail = t, S2.deps === t && (S2.deps = o);
+      const r2 = t.nextDep;
+      r2.prevDep = t.prevDep, t.prevDep && (t.prevDep.nextDep = r2), t.prevDep = A.depsTail, t.nextDep = void 0, A.depsTail.nextDep = t, A.depsTail = t, A.deps === t && (A.deps = r2);
     }
-    return process.env.NODE_ENV !== "production" && S2.onTrack && S2.onTrack(
-      Fe(
+    return process.env.NODE_ENV !== "production" && A.onTrack && A.onTrack(
+      Pe(
         {
-          effect: S2
+          effect: A
         },
         n
       )
     ), t;
   }
   trigger(n) {
-    this.version++, se2++, this.notify(n);
+    this.version++, re2++, this.notify(n);
   }
   notify(n) {
-    Ye();
+    qe();
     try {
       if (process.env.NODE_ENV !== "production")
         for (let t = this.subsHead; t; t = t.nextSub)
           t.sub.onTrigger && !(t.sub.flags & 8) && t.sub.onTrigger(
-            Fe(
+            Pe(
               {
                 effect: t.sub
               },
@@ -15073,300 +15077,300 @@ var qe = class {
     }
   }
 };
-function vn2(e) {
+function _n2(e) {
   if (e.dep.sc++, e.sub.flags & 4) {
     const n = e.dep.computed;
     if (n && !e.dep.subs) {
       n.flags |= 20;
-      for (let o = n.deps; o; o = o.nextDep)
-        vn2(o);
+      for (let r2 = n.deps; r2; r2 = r2.nextDep)
+        _n2(r2);
     }
     const t = e.dep.subs;
     t !== e && (e.prevSub = t, t && (t.nextSub = e)), process.env.NODE_ENV !== "production" && e.dep.subsHead === void 0 && (e.dep.subsHead = e), e.dep.subs = e;
   }
 }
 var Re2 = /* @__PURE__ */ new WeakMap();
-var M3 = Symbol(
+var K2 = Symbol(
   process.env.NODE_ENV !== "production" ? "Object iterate" : ""
 );
-var ke = Symbol(
+var He = Symbol(
   process.env.NODE_ENV !== "production" ? "Map keys iterate" : ""
 );
-var re2 = Symbol(
+var ae2 = Symbol(
   process.env.NODE_ENV !== "production" ? "Array iterate" : ""
 );
-function I2(e, n, t) {
-  if (R2 && S2) {
-    let o = Re2.get(e);
-    o || Re2.set(e, o = /* @__PURE__ */ new Map());
-    let s = o.get(t);
-    s || (o.set(t, s = new qe()), s.map = o, s.key = t), process.env.NODE_ENV !== "production" ? s.track({
+function T(e, n, t) {
+  if (R2 && A) {
+    let r2 = Re2.get(e);
+    r2 || Re2.set(e, r2 = /* @__PURE__ */ new Map());
+    let o = r2.get(t);
+    o || (r2.set(t, o = new Qe()), o.map = r2, o.key = t), process.env.NODE_ENV !== "production" ? o.track({
       target: e,
       type: n,
       key: t
-    }) : s.track();
+    }) : o.track();
   }
 }
-function V2(e, n, t, o, s, a) {
-  const c = Re2.get(e);
-  if (!c) {
-    se2++;
+function V2(e, n, t, r2, o, s) {
+  const p = Re2.get(e);
+  if (!p) {
+    re2++;
     return;
   }
-  const g2 = (v) => {
-    v && (process.env.NODE_ENV !== "production" ? v.trigger({
+  const _ = (C2) => {
+    C2 && (process.env.NODE_ENV !== "production" ? C2.trigger({
       target: e,
       type: n,
       key: t,
-      newValue: o,
-      oldValue: s,
-      oldTarget: a
-    }) : v.trigger());
+      newValue: r2,
+      oldValue: o,
+      oldTarget: s
+    }) : C2.trigger());
   };
-  if (Ye(), n === "clear")
-    c.forEach(g2);
+  if (qe(), n === "clear")
+    p.forEach(_);
   else {
-    const v = J(e), d = v && Je(t);
-    if (v && t === "length") {
-      const r2 = Number(o);
-      c.forEach((i, l2) => {
-        (l2 === "length" || l2 === re2 || !ce2(l2) && l2 >= r2) && g2(i);
+    const C2 = Y(e), d = C2 && Ye(t);
+    if (C2 && t === "length") {
+      const i = Number(r2);
+      p.forEach((a, l2) => {
+        (l2 === "length" || l2 === ae2 || !ue(l2) && l2 >= i) && _(a);
       });
     } else
-      switch ((t !== void 0 || c.has(void 0)) && g2(c.get(t)), d && g2(c.get(re2)), n) {
+      switch ((t !== void 0 || p.has(void 0)) && _(p.get(t)), d && _(p.get(ae2)), n) {
         case "add":
-          v ? d && g2(c.get("length")) : (g2(c.get(M3)), ne2(e) && g2(c.get(ke)));
+          C2 ? d && _(p.get("length")) : (_(p.get(K2)), te(e) && _(p.get(He)));
           break;
         case "delete":
-          v || (g2(c.get(M3)), ne2(e) && g2(c.get(ke)));
+          C2 || (_(p.get(K2)), te(e) && _(p.get(He)));
           break;
         case "set":
-          ne2(e) && g2(c.get(M3));
+          te(e) && _(p.get(K2));
           break;
       }
   }
   Ze();
 }
-function U(e) {
+function J(e) {
   const n = E2(e);
-  return n === e ? n : (I2(n, "iterate", re2), k2(e) ? n : n.map(A));
+  return n === e ? n : (T(n, "iterate", ae2), H(e) ? n : n.map(O2));
 }
 function Xe(e) {
-  return I2(e = E2(e), "iterate", re2), e;
+  return T(e = E2(e), "iterate", ae2), e;
 }
-var ot2 = {
+var st2 = {
   __proto__: null,
   [Symbol.iterator]() {
-    return Oe(this, Symbol.iterator, A);
+    return Ie2(this, Symbol.iterator, O2);
   },
   concat(...e) {
-    return U(this).concat(
-      ...e.map((n) => J(n) ? U(n) : n)
+    return J(this).concat(
+      ...e.map((n) => Y(n) ? J(n) : n)
     );
   },
   entries() {
-    return Oe(this, "entries", (e) => (e[1] = A(e[1]), e));
+    return Ie2(this, "entries", (e) => (e[1] = O2(e[1]), e));
   },
   every(e, n) {
-    return P3(this, "every", e, n, void 0, arguments);
+    return D2(this, "every", e, n, void 0, arguments);
   },
   filter(e, n) {
-    return P3(this, "filter", e, n, (t) => t.map(A), arguments);
+    return D2(this, "filter", e, n, (t) => t.map(O2), arguments);
   },
   find(e, n) {
-    return P3(this, "find", e, n, A, arguments);
+    return D2(this, "find", e, n, O2, arguments);
   },
   findIndex(e, n) {
-    return P3(this, "findIndex", e, n, void 0, arguments);
+    return D2(this, "findIndex", e, n, void 0, arguments);
   },
   findLast(e, n) {
-    return P3(this, "findLast", e, n, A, arguments);
+    return D2(this, "findLast", e, n, O2, arguments);
   },
   findLastIndex(e, n) {
-    return P3(this, "findLastIndex", e, n, void 0, arguments);
+    return D2(this, "findLastIndex", e, n, void 0, arguments);
   },
   // flat, flatMap could benefit from ARRAY_ITERATE but are not straight-forward to implement
   forEach(e, n) {
-    return P3(this, "forEach", e, n, void 0, arguments);
+    return D2(this, "forEach", e, n, void 0, arguments);
   },
   includes(...e) {
-    return Ae2(this, "includes", e);
+    return Oe(this, "includes", e);
   },
   indexOf(...e) {
-    return Ae2(this, "indexOf", e);
+    return Oe(this, "indexOf", e);
   },
   join(e) {
-    return U(this).join(e);
+    return J(this).join(e);
   },
   // keys() iterator only reads `length`, no optimisation required
   lastIndexOf(...e) {
-    return Ae2(this, "lastIndexOf", e);
+    return Oe(this, "lastIndexOf", e);
   },
   map(e, n) {
-    return P3(this, "map", e, n, void 0, arguments);
+    return D2(this, "map", e, n, void 0, arguments);
   },
   pop() {
-    return ee2(this, "pop");
+    return ne2(this, "pop");
   },
   push(...e) {
-    return ee2(this, "push", e);
+    return ne2(this, "push", e);
   },
   reduce(e, ...n) {
-    return an2(this, "reduce", e, n);
+    return cn2(this, "reduce", e, n);
   },
   reduceRight(e, ...n) {
-    return an2(this, "reduceRight", e, n);
+    return cn2(this, "reduceRight", e, n);
   },
   shift() {
-    return ee2(this, "shift");
+    return ne2(this, "shift");
   },
   // slice could use ARRAY_ITERATE but also seems to beg for range tracking
   some(e, n) {
-    return P3(this, "some", e, n, void 0, arguments);
+    return D2(this, "some", e, n, void 0, arguments);
   },
   splice(...e) {
-    return ee2(this, "splice", e);
+    return ne2(this, "splice", e);
   },
   toReversed() {
-    return U(this).toReversed();
+    return J(this).toReversed();
   },
   toSorted(e) {
-    return U(this).toSorted(e);
+    return J(this).toSorted(e);
   },
   toSpliced(...e) {
-    return U(this).toSpliced(...e);
+    return J(this).toSpliced(...e);
   },
   unshift(...e) {
-    return ee2(this, "unshift", e);
+    return ne2(this, "unshift", e);
   },
   values() {
-    return Oe(this, "values", A);
+    return Ie2(this, "values", O2);
   }
 };
-function Oe(e, n, t) {
-  const o = Xe(e), s = o[n]();
-  return o !== e && !k2(e) && (s._next = s.next, s.next = () => {
-    const a = s._next();
-    return a.value && (a.value = t(a.value)), a;
-  }), s;
+function Ie2(e, n, t) {
+  const r2 = Xe(e), o = r2[n]();
+  return r2 !== e && !H(e) && (o._next = o.next, o.next = () => {
+    const s = o._next();
+    return s.value && (s.value = t(s.value)), s;
+  }), o;
 }
-var st2 = Array.prototype;
-function P3(e, n, t, o, s, a) {
-  const c = Xe(e), g2 = c !== e && !k2(e), v = c[n];
-  if (v !== st2[n]) {
-    const i = v.apply(e, a);
-    return g2 ? A(i) : i;
+var rt = Array.prototype;
+function D2(e, n, t, r2, o, s) {
+  const p = Xe(e), _ = p !== e && !H(e), C2 = p[n];
+  if (C2 !== rt[n]) {
+    const a = C2.apply(e, s);
+    return _ ? O2(a) : a;
   }
   let d = t;
-  c !== e && (g2 ? d = function(i, l2) {
-    return t.call(this, A(i), l2, e);
-  } : t.length > 2 && (d = function(i, l2) {
-    return t.call(this, i, l2, e);
+  p !== e && (_ ? d = function(a, l2) {
+    return t.call(this, O2(a), l2, e);
+  } : t.length > 2 && (d = function(a, l2) {
+    return t.call(this, a, l2, e);
   }));
-  const r2 = v.call(c, d, o);
-  return g2 && s ? s(r2) : r2;
+  const i = C2.call(p, d, r2);
+  return _ && o ? o(i) : i;
 }
-function an2(e, n, t, o) {
-  const s = Xe(e);
-  let a = t;
-  return s !== e && (k2(e) ? t.length > 3 && (a = function(c, g2, v) {
-    return t.call(this, c, g2, v, e);
-  }) : a = function(c, g2, v) {
-    return t.call(this, c, A(g2), v, e);
-  }), s[n](a, ...o);
+function cn2(e, n, t, r2) {
+  const o = Xe(e);
+  let s = t;
+  return o !== e && (H(e) ? t.length > 3 && (s = function(p, _, C2) {
+    return t.call(this, p, _, C2, e);
+  }) : s = function(p, _, C2) {
+    return t.call(this, p, O2(_), C2, e);
+  }), o[n](s, ...r2);
 }
-function Ae2(e, n, t) {
-  const o = E2(e);
-  I2(o, "iterate", re2);
-  const s = o[n](...t);
-  return (s === -1 || s === false) && Ct(t[0]) ? (t[0] = E2(t[0]), o[n](...t)) : s;
+function Oe(e, n, t) {
+  const r2 = E2(e);
+  T(r2, "iterate", ae2);
+  const o = r2[n](...t);
+  return (o === -1 || o === false) && $t5(t[0]) ? (t[0] = E2(t[0]), r2[n](...t)) : o;
 }
-function ee2(e, n, t = []) {
-  et(), Ye();
-  const o = E2(e)[n].apply(e, t);
-  return Ze(), nt(), o;
+function ne2(e, n, t = []) {
+  nt(), qe();
+  const r2 = E2(e)[n].apply(e, t);
+  return Ze(), tt(), r2;
 }
-var rt = /* @__PURE__ */ Kn("__proto__,__v_isRef,__isVue");
-var _n2 = new Set(
-  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((e) => e !== "arguments" && e !== "caller").map((e) => Symbol[e]).filter(ce2)
+var at2 = /* @__PURE__ */ Bn("__proto__,__v_isRef,__isVue");
+var Cn2 = new Set(
+  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((e) => e !== "arguments" && e !== "caller").map((e) => Symbol[e]).filter(ue)
 );
-function at2(e) {
-  ce2(e) || (e = String(e));
+function it(e) {
+  ue(e) || (e = String(e));
   const n = E2(this);
-  return I2(n, "has", e), n.hasOwnProperty(e);
+  return T(n, "has", e), n.hasOwnProperty(e);
 }
-var Cn2 = class {
+var $n = class {
   constructor(n = false, t = false) {
     this._isReadonly = n, this._isShallow = t;
   }
-  get(n, t, o) {
+  get(n, t, r2) {
     if (t === "__v_skip") return n.__v_skip;
-    const s = this._isReadonly, a = this._isShallow;
+    const o = this._isReadonly, s = this._isShallow;
     if (t === "__v_isReactive")
-      return !s;
+      return !o;
     if (t === "__v_isReadonly")
-      return s;
+      return o;
     if (t === "__v_isShallow")
-      return a;
+      return s;
     if (t === "__v_raw")
-      return o === (s ? a ? Nn2 : wn2 : a ? gt2 : bn2).get(n) || // receiver is not the reactive proxy, but has the same prototype
+      return r2 === (o ? s ? yn2 : Nn2 : s ? gt2 : wn2).get(n) || // receiver is not the reactive proxy, but has the same prototype
       // this means the receiver is a user proxy of the reactive proxy
-      Object.getPrototypeOf(n) === Object.getPrototypeOf(o) ? n : void 0;
-    const c = J(n);
-    if (!s) {
-      let v;
-      if (c && (v = ot2[t]))
-        return v;
+      Object.getPrototypeOf(n) === Object.getPrototypeOf(r2) ? n : void 0;
+    const p = Y(n);
+    if (!o) {
+      let C2;
+      if (p && (C2 = st2[t]))
+        return C2;
       if (t === "hasOwnProperty")
-        return at2;
+        return it;
     }
-    const g2 = Reflect.get(
+    const _ = Reflect.get(
       n,
       t,
       // if this is a proxy wrapping a ref, return methods using the raw ref
       // as receiver so that we don't have to call `toRaw` on the ref in all
       // its class methods
-      Z2(n) ? n : o
+      Z2(n) ? n : r2
     );
-    return (ce2(t) ? _n2.has(t) : rt(t)) || (s || I2(n, "get", t), a) ? g2 : Z2(g2) ? c && Je(t) ? g2 : g2.value : ye(g2) ? s ? he2(g2) : yn2(g2) : g2;
+    return (ue(t) ? Cn2.has(t) : at2(t)) || (o || T(n, "get", t), s) ? _ : Z2(_) ? p && Ye(t) ? _ : _.value : je(_) ? o ? ve(_) : jn(_) : _;
   }
 };
-var it = class extends Cn2 {
+var ct2 = class extends $n {
   constructor(n = false) {
     super(false, n);
   }
-  set(n, t, o, s) {
-    let a = n[t];
+  set(n, t, r2, o) {
+    let s = n[t];
     if (!this._isShallow) {
-      const v = Q2(a);
-      if (!k2(o) && !Q2(o) && (a = E2(a), o = E2(o)), !J(n) && Z2(a) && !Z2(o))
-        return v ? false : (a.value = o, true);
+      const C2 = ee2(s);
+      if (!H(r2) && !ee2(r2) && (s = E2(s), r2 = E2(r2)), !Y(n) && Z2(s) && !Z2(r2))
+        return C2 ? false : (s.value = r2, true);
     }
-    const c = J(n) && Je(t) ? Number(t) < n.length : Ve2(n, t), g2 = Reflect.set(
+    const p = Y(n) && Ye(t) ? Number(t) < n.length : Ve2(n, t), _ = Reflect.set(
       n,
       t,
-      o,
-      Z2(n) ? n : s
+      r2,
+      Z2(n) ? n : o
     );
-    return n === E2(s) && (c ? Y(o, a) && V2(n, "set", t, o, a) : V2(n, "add", t, o)), g2;
+    return n === E2(o) && (p ? q(r2, s) && V2(n, "set", t, r2, s) : V2(n, "add", t, r2)), _;
   }
   deleteProperty(n, t) {
-    const o = Ve2(n, t), s = n[t], a = Reflect.deleteProperty(n, t);
-    return a && o && V2(n, "delete", t, void 0, s), a;
+    const r2 = Ve2(n, t), o = n[t], s = Reflect.deleteProperty(n, t);
+    return s && r2 && V2(n, "delete", t, void 0, o), s;
   }
   has(n, t) {
-    const o = Reflect.has(n, t);
-    return (!ce2(t) || !_n2.has(t)) && I2(n, "has", t), o;
+    const r2 = Reflect.has(n, t);
+    return (!ue(t) || !Cn2.has(t)) && T(n, "has", t), r2;
   }
   ownKeys(n) {
-    return I2(
+    return T(
       n,
       "iterate",
-      J(n) ? "length" : M3
+      Y(n) ? "length" : K2
     ), Reflect.ownKeys(n);
   }
 };
-var $n = class extends Cn2 {
+var bn2 = class extends $n {
   constructor(n = false) {
     super(true, n);
   }
@@ -15383,24 +15387,24 @@ var $n = class extends Cn2 {
     ), true;
   }
 };
-var ct2 = /* @__PURE__ */ new it();
-var ut2 = /* @__PURE__ */ new $n();
-var lt2 = /* @__PURE__ */ new $n(true);
-var He = (e) => e;
-var le2 = (e) => Reflect.getPrototypeOf(e);
-function pt(e, n, t) {
-  return function(...o) {
-    const s = this.__v_raw, a = E2(s), c = ne2(a), g2 = e === "entries" || e === Symbol.iterator && c, v = e === "keys" && c, d = s[e](...o), r2 = t ? He : n ? Me2 : A;
-    return !n && I2(
-      a,
+var ut2 = /* @__PURE__ */ new ct2();
+var lt2 = /* @__PURE__ */ new bn2();
+var pt = /* @__PURE__ */ new bn2(true);
+var Le = (e) => e;
+var pe2 = (e) => Reflect.getPrototypeOf(e);
+function dt2(e, n, t) {
+  return function(...r2) {
+    const o = this.__v_raw, s = E2(o), p = te(s), _ = e === "entries" || e === Symbol.iterator && p, C2 = e === "keys" && p, d = o[e](...r2), i = t ? Le : n ? Me2 : O2;
+    return !n && T(
+      s,
       "iterate",
-      v ? ke : M3
+      C2 ? He : K2
     ), {
       // iterator protocol
       next() {
-        const { value: i, done: l2 } = d.next();
-        return l2 ? { value: i, done: l2 } : {
-          value: g2 ? [r2(i[0]), r2(i[1])] : r2(i),
+        const { value: a, done: l2 } = d.next();
+        return l2 ? { value: a, done: l2 } : {
+          value: _ ? [i(a[0]), i(a[1])] : i(a),
           done: l2
         };
       },
@@ -15411,80 +15415,80 @@ function pt(e, n, t) {
     };
   };
 }
-function pe2(e) {
+function de2(e) {
   return function(...n) {
     if (process.env.NODE_ENV !== "production") {
       const t = n[0] ? `on key "${n[0]}" ` : "";
       X3(
-        `${Jn(e)} operation ${t}failed: target is readonly.`,
+        `${Yn(e)} operation ${t}failed: target is readonly.`,
         E2(this)
       );
     }
     return e === "delete" ? false : e === "clear" ? void 0 : this;
   };
 }
-function dt2(e, n) {
+function mt2(e, n) {
   const t = {
-    get(s) {
-      const a = this.__v_raw, c = E2(a), g2 = E2(s);
-      e || (Y(s, g2) && I2(c, "get", s), I2(c, "get", g2));
-      const { has: v } = le2(c), d = n ? He : e ? Me2 : A;
-      if (v.call(c, s))
-        return d(a.get(s));
-      if (v.call(c, g2))
-        return d(a.get(g2));
-      a !== c && a.get(s);
+    get(o) {
+      const s = this.__v_raw, p = E2(s), _ = E2(o);
+      e || (q(o, _) && T(p, "get", o), T(p, "get", _));
+      const { has: C2 } = pe2(p), d = n ? Le : e ? Me2 : O2;
+      if (C2.call(p, o))
+        return d(s.get(o));
+      if (C2.call(p, _))
+        return d(s.get(_));
+      s !== p && s.get(o);
     },
     get size() {
-      const s = this.__v_raw;
-      return !e && I2(E2(s), "iterate", M3), Reflect.get(s, "size", s);
+      const o = this.__v_raw;
+      return !e && T(E2(o), "iterate", K2), Reflect.get(o, "size", o);
     },
-    has(s) {
-      const a = this.__v_raw, c = E2(a), g2 = E2(s);
-      return e || (Y(s, g2) && I2(c, "has", s), I2(c, "has", g2)), s === g2 ? a.has(s) : a.has(s) || a.has(g2);
+    has(o) {
+      const s = this.__v_raw, p = E2(s), _ = E2(o);
+      return e || (q(o, _) && T(p, "has", o), T(p, "has", _)), o === _ ? s.has(o) : s.has(o) || s.has(_);
     },
-    forEach(s, a) {
-      const c = this, g2 = c.__v_raw, v = E2(g2), d = n ? He : e ? Me2 : A;
-      return !e && I2(v, "iterate", M3), g2.forEach((r2, i) => s.call(a, d(r2), d(i), c));
+    forEach(o, s) {
+      const p = this, _ = p.__v_raw, C2 = E2(_), d = n ? Le : e ? Me2 : O2;
+      return !e && T(C2, "iterate", K2), _.forEach((i, a) => o.call(s, d(i), d(a), p));
     }
   };
-  return Fe(
+  return Pe(
     t,
     e ? {
-      add: pe2("add"),
-      set: pe2("set"),
-      delete: pe2("delete"),
-      clear: pe2("clear")
+      add: de2("add"),
+      set: de2("set"),
+      delete: de2("delete"),
+      clear: de2("clear")
     } : {
-      add(s) {
-        !n && !k2(s) && !Q2(s) && (s = E2(s));
-        const a = E2(this);
-        return le2(a).has.call(a, s) || (a.add(s), V2(a, "add", s, s)), this;
+      add(o) {
+        !n && !H(o) && !ee2(o) && (o = E2(o));
+        const s = E2(this);
+        return pe2(s).has.call(s, o) || (s.add(o), V2(s, "add", o, o)), this;
       },
-      set(s, a) {
-        !n && !k2(a) && !Q2(a) && (a = E2(a));
-        const c = E2(this), { has: g2, get: v } = le2(c);
-        let d = g2.call(c, s);
-        d ? process.env.NODE_ENV !== "production" && cn2(c, g2, s) : (s = E2(s), d = g2.call(c, s));
-        const r2 = v.call(c, s);
-        return c.set(s, a), d ? Y(a, r2) && V2(c, "set", s, a, r2) : V2(c, "add", s, a), this;
+      set(o, s) {
+        !n && !H(s) && !ee2(s) && (s = E2(s));
+        const p = E2(this), { has: _, get: C2 } = pe2(p);
+        let d = _.call(p, o);
+        d ? process.env.NODE_ENV !== "production" && un2(p, _, o) : (o = E2(o), d = _.call(p, o));
+        const i = C2.call(p, o);
+        return p.set(o, s), d ? q(s, i) && V2(p, "set", o, s, i) : V2(p, "add", o, s), this;
       },
-      delete(s) {
-        const a = E2(this), { has: c, get: g2 } = le2(a);
-        let v = c.call(a, s);
-        v ? process.env.NODE_ENV !== "production" && cn2(a, c, s) : (s = E2(s), v = c.call(a, s));
-        const d = g2 ? g2.call(a, s) : void 0, r2 = a.delete(s);
-        return v && V2(a, "delete", s, void 0, d), r2;
+      delete(o) {
+        const s = E2(this), { has: p, get: _ } = pe2(s);
+        let C2 = p.call(s, o);
+        C2 ? process.env.NODE_ENV !== "production" && un2(s, p, o) : (o = E2(o), C2 = p.call(s, o));
+        const d = _ ? _.call(s, o) : void 0, i = s.delete(o);
+        return C2 && V2(s, "delete", o, void 0, d), i;
       },
       clear() {
-        const s = E2(this), a = s.size !== 0, c = process.env.NODE_ENV !== "production" ? ne2(s) ? new Map(s) : new Set(s) : void 0, g2 = s.clear();
-        return a && V2(
-          s,
+        const o = E2(this), s = o.size !== 0, p = process.env.NODE_ENV !== "production" ? te(o) ? new Map(o) : new Set(o) : void 0, _ = o.clear();
+        return s && V2(
+          o,
           "clear",
           void 0,
           void 0,
-          c
-        ), g2;
+          p
+        ), _;
       }
     }
   ), [
@@ -15492,41 +15496,41 @@ function dt2(e, n) {
     "values",
     "entries",
     Symbol.iterator
-  ].forEach((s) => {
-    t[s] = pt(s, e, n);
+  ].forEach((o) => {
+    t[o] = dt2(o, e, n);
   }), t;
 }
-function Qe(e, n) {
-  const t = dt2(e, n);
-  return (o, s, a) => s === "__v_isReactive" ? !e : s === "__v_isReadonly" ? e : s === "__v_raw" ? o : Reflect.get(
-    Ve2(t, s) && s in o ? t : o,
-    s,
-    a
+function en2(e, n) {
+  const t = mt2(e, n);
+  return (r2, o, s) => o === "__v_isReactive" ? !e : o === "__v_isReadonly" ? e : o === "__v_raw" ? r2 : Reflect.get(
+    Ve2(t, o) && o in r2 ? t : r2,
+    o,
+    s
   );
 }
 var ft2 = {
-  get: /* @__PURE__ */ Qe(false, false)
-};
-var mt2 = {
-  get: /* @__PURE__ */ Qe(true, false)
+  get: /* @__PURE__ */ en2(false, false)
 };
 var ht = {
-  get: /* @__PURE__ */ Qe(true, true)
+  get: /* @__PURE__ */ en2(true, false)
 };
-function cn2(e, n, t) {
-  const o = E2(t);
-  if (o !== t && n.call(e, o)) {
-    const s = dn2(e);
+var vt = {
+  get: /* @__PURE__ */ en2(true, true)
+};
+function un2(e, n, t) {
+  const r2 = E2(t);
+  if (r2 !== t && n.call(e, r2)) {
+    const o = mn2(e);
     X3(
-      `Reactive ${s} contains both the raw and reactive versions of the same object${s === "Map" ? " as keys" : ""}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`
+      `Reactive ${o} contains both the raw and reactive versions of the same object${o === "Map" ? " as keys" : ""}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`
     );
   }
 }
-var bn2 = /* @__PURE__ */ new WeakMap();
-var gt2 = /* @__PURE__ */ new WeakMap();
 var wn2 = /* @__PURE__ */ new WeakMap();
+var gt2 = /* @__PURE__ */ new WeakMap();
 var Nn2 = /* @__PURE__ */ new WeakMap();
-function vt(e) {
+var yn2 = /* @__PURE__ */ new WeakMap();
+function _t(e) {
   switch (e) {
     case "Object":
     case "Array":
@@ -15540,29 +15544,20 @@ function vt(e) {
       return 0;
   }
 }
-function _t(e) {
-  return e.__v_skip || !Object.isExtensible(e) ? 0 : vt(dn2(e));
+function Ct(e) {
+  return e.__v_skip || !Object.isExtensible(e) ? 0 : _t(mn2(e));
 }
-function yn2(e) {
-  return Q2(e) ? e : en2(
+function jn(e) {
+  return ee2(e) ? e : nn2(
     e,
     false,
-    ct2,
-    ft2,
-    bn2
-  );
-}
-function he2(e) {
-  return en2(
-    e,
-    true,
     ut2,
-    mt2,
+    ft2,
     wn2
   );
 }
-function fe2(e) {
-  return en2(
+function ve(e) {
+  return nn2(
     e,
     true,
     lt2,
@@ -15570,8 +15565,17 @@ function fe2(e) {
     Nn2
   );
 }
-function en2(e, n, t, o, s) {
-  if (!ye(e))
+function fe2(e) {
+  return nn2(
+    e,
+    true,
+    pt,
+    vt,
+    yn2
+  );
+}
+function nn2(e, n, t, r2, o) {
+  if (!je(e))
     return process.env.NODE_ENV !== "production" && X3(
       `value cannot be made ${n ? "readonly" : "reactive"}: ${String(
         e
@@ -15579,45 +15583,45 @@ function en2(e, n, t, o, s) {
     ), e;
   if (e.__v_raw && !(n && e.__v_isReactive))
     return e;
-  const a = s.get(e);
-  if (a)
-    return a;
-  const c = _t(e);
-  if (c === 0)
+  const s = o.get(e);
+  if (s)
+    return s;
+  const p = Ct(e);
+  if (p === 0)
     return e;
-  const g2 = new Proxy(
+  const _ = new Proxy(
     e,
-    c === 2 ? o : t
+    p === 2 ? r2 : t
   );
-  return s.set(e, g2), g2;
+  return o.set(e, _), _;
 }
-function Q2(e) {
+function ee2(e) {
   return !!(e && e.__v_isReadonly);
 }
-function k2(e) {
+function H(e) {
   return !!(e && e.__v_isShallow);
 }
-function Ct(e) {
+function $t5(e) {
   return e ? !!e.__v_raw : false;
 }
 function E2(e) {
   const n = e && e.__v_raw;
   return n ? E2(n) : e;
 }
-var A = (e) => ye(e) ? yn2(e) : e;
-var Me2 = (e) => ye(e) ? he2(e) : e;
+var O2 = (e) => je(e) ? jn(e) : e;
+var Me2 = (e) => je(e) ? ve(e) : e;
 function Z2(e) {
   return e ? e.__v_isRef === true : false;
 }
 function ge2(e) {
-  return $t5(e, false);
+  return bt2(e, false);
 }
-function $t5(e, n) {
-  return Z2(e) ? e : new bt2(e, n);
+function bt2(e, n) {
+  return Z2(e) ? e : new wt(e, n);
 }
-var bt2 = class {
+var wt = class {
   constructor(n, t) {
-    this.dep = new qe(), this.__v_isRef = true, this.__v_isShallow = false, this._rawValue = t ? n : E2(n), this._value = t ? n : A(n), this.__v_isShallow = t;
+    this.dep = new Qe(), this.__v_isRef = true, this.__v_isShallow = false, this._rawValue = t ? n : E2(n), this._value = t ? n : O2(n), this.__v_isShallow = t;
   }
   get value() {
     return process.env.NODE_ENV !== "production" ? this.dep.track({
@@ -15627,8 +15631,8 @@ var bt2 = class {
     }) : this.dep.track(), this._value;
   }
   set value(n) {
-    const t = this._rawValue, o = this.__v_isShallow || k2(n) || Q2(n);
-    n = o ? n : E2(n), Y(n, t) && (this._rawValue = n, this._value = o ? n : A(n), process.env.NODE_ENV !== "production" ? this.dep.trigger({
+    const t = this._rawValue, r2 = this.__v_isShallow || H(n) || ee2(n);
+    n = r2 ? n : E2(n), q(n, t) && (this._rawValue = n, this._value = r2 ? n : O2(n), process.env.NODE_ENV !== "production" ? this.dep.trigger({
       target: this,
       type: "set",
       key: "value",
@@ -15637,17 +15641,17 @@ var bt2 = class {
     }) : this.dep.trigger());
   }
 };
-var wt = class {
-  constructor(n, t, o) {
-    this.fn = n, this.setter = t, this._value = void 0, this.dep = new qe(this), this.__v_isRef = true, this.deps = void 0, this.depsTail = void 0, this.flags = 16, this.globalVersion = se2 - 1, this.next = void 0, this.effect = this, this.__v_isReadonly = !t, this.isSSR = o;
+var Nt2 = class {
+  constructor(n, t, r2) {
+    this.fn = n, this.setter = t, this._value = void 0, this.dep = new Qe(this), this.__v_isRef = true, this.deps = void 0, this.depsTail = void 0, this.flags = 16, this.globalVersion = re2 - 1, this.next = void 0, this.effect = this, this.__v_isReadonly = !t, this.isSSR = r2;
   }
   /**
    * @internal
    */
   notify() {
     if (this.flags |= 16, !(this.flags & 8) && // avoid infinite self recursion
-    S2 !== this)
-      return Yn(this, true), true;
+    A !== this)
+      return qn(this, true), true;
     process.env.NODE_ENV;
   }
   get value() {
@@ -15656,230 +15660,230 @@ var wt = class {
       type: "get",
       key: "value"
     }) : this.dep.track();
-    return mn2(this), n && (n.version = this.dep.version), this._value;
+    return hn2(this), n && (n.version = this.dep.version), this._value;
   }
   set value(n) {
     this.setter ? this.setter(n) : process.env.NODE_ENV !== "production" && X3("Write operation failed: computed value is readonly");
   }
 };
-function Le(e, n, t = false) {
-  let o, s;
-  Bn(e) ? o = e : (o = e.get, s = e.set);
-  const a = new wt(o, s, t);
-  return process.env.NODE_ENV, a;
+function Ke(e, n, t = false) {
+  let r2, o;
+  Un(e) ? r2 = e : (r2 = e.get, o = e.set);
+  const s = new Nt2(r2, o, t);
+  return process.env.NODE_ENV, s;
 }
-var Nt2 = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
-var yt2 = (e = 21) => {
+var yt2 = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
+var jt = (e = 21) => {
   let n = "", t = crypto.getRandomValues(new Uint8Array(e |= 0));
   for (; e--; )
-    n += Nt2[t[e] & 63];
+    n += yt2[t[e] & 63];
   return n;
 };
 function Et(e, n = true, t = false) {
-  const o = ge2();
-  let s;
-  const a = ge2(false);
-  let c = () => {
+  const r2 = ge2();
+  let o;
+  const s = ge2(false);
+  let p = () => {
   };
-  const g2 = new Proxy(e, {
-    apply: function(r2, i, l2) {
-      let m2;
+  const _ = new Proxy(e, {
+    apply: function(i, a, l2) {
+      let f;
       try {
-        m2 = r2(...l2);
-      } catch (C2) {
-        m2 = C2;
+        f = i(...l2);
+      } catch (b2) {
+        f = b2;
       }
-      if (m2 instanceof Error) {
-        if (o.value = m2, s = m2, n)
-          throw c(), m2;
+      if (f instanceof Error) {
+        if (r2.value = f, o = f, n)
+          throw p(), f;
       } else
-        a.value = true, o.value = void 0, s = true, c();
+        s.value = true, r2.value = void 0, o = true, p();
     }
-  }), v = () => {
+  }), C2 = () => {
   }, d = new Proxy(
-    (r2) => {
-      o.value = r2;
+    (i) => {
+      r2.value = i;
     },
     {
-      apply: function(r2, i, l2) {
-        r2(...l2), v(...l2);
+      apply: function(i, a, l2) {
+        i(...l2), C2(...l2);
       }
     }
   );
   return {
-    promise: new Promise((r2, i) => {
-      if (n && s instanceof Error) {
-        i(s);
+    promise: new Promise((i, a) => {
+      if (n && o instanceof Error) {
+        a(o);
         return;
-      } else if (s === true) {
-        r2();
+      } else if (o === true) {
+        i();
         return;
       }
       let l2;
       t && (l2 = setTimeout(() => {
-        const m2 = new Error("timeout!");
-        o.value = m2, n && i(m2);
-      }, t)), c = () => {
-        l2 && (clearTimeout(l2), l2 = void 0), r2();
+        const f = new Error("timeout!");
+        r2.value = f, n && a(f);
+      }, t)), p = () => {
+        l2 && (clearTimeout(l2), l2 = void 0), i();
       };
     }),
-    callback: g2,
+    callback: _,
     onError: d,
-    resolved: Le(() => a.value),
-    error: Le(() => o.value)
+    resolved: Ke(() => s.value),
+    error: Ke(() => r2.value)
   };
 }
-function Ke() {
-  return yt2();
+function Be() {
+  return jt();
 }
-function St() {
-  const e = {}, n = {}, t = /* @__PURE__ */ new WeakMap(), o = {};
+function At2() {
+  const e = {}, n = {}, t = /* @__PURE__ */ new WeakMap(), r2 = {};
   return Object.freeze({
-    registerAgg(s) {
-      if (s.isInitialized.value)
+    registerAgg(o) {
+      if (o.isInitialized.value)
         throw new Error("Agg must register before initialized");
-      if (o[s.__id])
+      if (r2[o.__id])
         throw new Error("Agg already registered");
-      s.type === "MultiInstance" && s.api.events.destroyed.watchPublish(() => {
-        delete o[s.__id];
-      }), o[s.__id] = s;
-      const a = [];
-      for (const c of Object.values(e))
-        c.mount({ api: s.api, __aggId: s.__id, isInitialized: s.isInitialized });
-      for (const c of Object.values(n))
-        c.mount({ api: s.api, __aggId: s.__id }), a.push(c.__id);
-      t.set(s, a);
+      o.type === "MultiInstance" && o.api.events.destroyed.watchPublish(() => {
+        delete r2[o.__id];
+      }), r2[o.__id] = o;
+      const s = [];
+      for (const p of Object.values(e))
+        p.mount({ api: o.api, __aggId: o.__id, isInitialized: o.isInitialized });
+      for (const p of Object.values(n))
+        p.mount({ api: o.api, __aggId: o.__id }), s.push(p.__id);
+      t.set(o, s);
     },
-    createSetupPlugin(s) {
-      let a;
-      return s instanceof Function ? a = s() : a = s, Object.freeze({
-        __id: Ke(),
+    createSetupPlugin(o) {
+      let s;
+      return o instanceof Function ? s = o() : s = o, Object.freeze({
+        __id: Be(),
         type: "Setup",
-        mount(c) {
-          if (c.isInitialized.value)
+        mount(p) {
+          if (p.isInitialized.value)
             throw new Error("Can not setup after initialized");
-          a.mount({ api: c.api, __aggId: c.__aggId });
+          s.mount({ api: p.api, __aggId: p.__aggId });
         }
       });
     },
-    createHotSwapPlugin(s) {
-      let a;
-      return s instanceof Function ? a = s() : a = s, Object.freeze({
-        __id: Ke(),
+    createHotSwapPlugin(o) {
+      let s;
+      return o instanceof Function ? s = o() : s = o, Object.freeze({
+        __id: Be(),
         type: "HotSwap",
-        mount: a.mount,
-        unmount: a.unmount
+        mount: s.mount,
+        unmount: s.unmount
       });
     },
-    registerPlugin(s) {
-      if (s.type === "Setup") {
-        if (e[s.__id])
+    registerPlugin(o) {
+      if (o.type === "Setup") {
+        if (e[o.__id])
           throw new Error("Plugin already registered");
-        e[s.__id] = s;
-        for (const a in o)
-          s.mount({
-            api: o[a].api,
-            __aggId: o[a].__id,
-            isInitialized: o[a].isInitialized
+        e[o.__id] = o;
+        for (const s in r2)
+          o.mount({
+            api: r2[s].api,
+            __aggId: r2[s].__id,
+            isInitialized: r2[s].isInitialized
           });
-      } else if (s.type === "HotSwap") {
-        n[s.__id] = s;
-        for (const a in o)
-          t.has(o[a]) && !t.get(o[a]).includes(s.__id) && (s.mount({ api: o[a].api, __aggId: o[a].__id }), t.get(o[a]).push(s.__id));
+      } else if (o.type === "HotSwap") {
+        n[o.__id] = o;
+        for (const s in r2)
+          t.has(r2[s]) && !t.get(r2[s]).includes(o.__id) && (o.mount({ api: r2[s].api, __aggId: r2[s].__id }), t.get(r2[s]).push(o.__id));
       } else
-        isNever(s);
+        isNever(o);
     },
-    unregisterPlugin(s) {
-      if (s.type === "Setup")
+    unregisterPlugin(o) {
+      if (o.type === "Setup")
         throw new Error("Can not unregister setup plugin");
-      if (s.type === "HotSwap") {
-        for (const a in o)
-          t.has(o[a]) && t.get(o[a]).includes(s.__id) && s.unmount({ api: o[a].api, __aggId: o[a].__id });
-        delete n[s.__id];
+      if (o.type === "HotSwap") {
+        for (const s in r2)
+          t.has(r2[s]) && t.get(r2[s]).includes(o.__id) && o.unmount({ api: r2[s].api, __aggId: r2[s].__id });
+        delete n[o.__id];
       } else
-        isNever(s);
+        isNever(o);
     }
   });
 }
-function jt(e) {
-  return St();
+function St(e) {
+  return At2();
 }
-function Ot2(e) {
-  const n = At2(e);
+function It2(e) {
+  const n = Ot2(e);
   return fe2({
     states: n.states,
     commands: n.commands,
     events: n.events
   });
 }
-function At2(e) {
+function Ot2(e) {
   const n = e.states;
-  for (const c of Object.keys(e.states))
-    n[c] = he2(n[c]);
-  const t = fe2(e.states), o = he2(e.commands), s = {}, a = e.events;
-  for (const c in e.events)
-    s[c] = a[c].api;
+  for (const p of Object.keys(e.states))
+    n[p] = ve(n[p]);
+  const t = fe2(e.states), r2 = ve(e.commands), o = {}, s = e.events;
+  for (const p in e.events)
+    o[p] = s[p].api;
   return fe2({
     states: t,
-    commands: o,
-    events: fe2(s),
+    commands: r2,
+    events: fe2(o),
     destroy: e.destroy
   });
 }
-function It2(e) {
+function Tt(e) {
   const {
     callback: n,
     onError: t,
-    promise: o,
-    resolved: s
+    promise: r2,
+    resolved: o
   } = Et(() => {
   }, false, 5e3);
-  function a(i) {
-    if (s.value === true)
+  function s(a) {
+    if (o.value === true)
       throw new Error("Agg already initialized");
-    c.push(i());
+    p.push(a());
   }
-  const c = [], g2 = e({
-    onCreated(i) {
-      Promise.resolve().then(i);
+  const p = [], _ = e({
+    onCreated(a) {
+      Promise.resolve().then(a);
     },
-    onBeforeInitialize: a,
-    isInitialized: Le(() => s.value),
-    untilInitialized: o
+    onBeforeInitialize: s,
+    isInitialized: Ke(() => o.value),
+    untilInitialized: r2
   });
   setTimeout(
-    () => Promise.all(c).then(() => {
+    () => Promise.all(p).then(() => {
       n();
-    }).catch((i) => {
-      t(i);
+    }).catch((a) => {
+      t(a);
     }),
     0
   );
-  const v = g2.states || {}, d = g2.commands || {}, r2 = g2.events || {};
+  const C2 = _.states || {}, d = _.commands || {}, i = _.events || {};
   return {
-    __id: Ke(),
+    __id: Be(),
     type: "Singleton",
-    api: Ot2({
-      states: v,
+    api: It2({
+      states: C2,
       commands: d,
-      events: r2,
+      events: i,
       destroy: () => {
       }
     }),
-    isInitialized: s,
+    isInitialized: o,
     async untilInitialized() {
-      return await o.catch((i) => {
-        throw new Error(`Failed to initialize Agg: ${i.message}
-Stack : ${i.stack || "unkown"}`);
+      return await r2.catch((a) => {
+        throw new Error(`Failed to initialize Agg: ${a.message}
+Stack : ${a.stack || "unkown"}`);
       });
     }
   };
 }
-var de2;
+var me;
 function xt2(e) {
-  return It2(() => {
+  return Tt(() => {
     const n = ge2(e), t = ge2({});
-    let o = () => [], s = () => [], a = () => [], c = () => [], g2 = () => [], v = () => [], d = () => [];
+    let r2 = () => [], o = () => [], s = () => [], p = () => [], _ = () => [], C2 = () => [], d = () => [];
     return {
       states: {
         designer: n,
@@ -15891,131 +15895,131 @@ function xt2(e) {
         },
         clearCaches() {
         },
-        setContext(r2) {
-          t.value = r2;
+        setContext(i) {
+          t.value = i;
         },
-        setDomainDesigner(r2) {
-          this.clearCaches(), n.value = r2;
+        setDomainDesigner(i) {
+          this.clearCaches(), n.value = i;
         },
-        _genInfoCode(...r2) {
-          return o(...r2);
+        _genInfoCode(...i) {
+          return r2(...i);
         },
-        _setInfoCodeProvider(r2) {
-          o = r2;
+        _setInfoCodeProvider(i) {
+          r2 = i;
         },
-        _genCommandCode(...r2) {
-          return s(...r2);
+        _genCommandCode(...i) {
+          return o(...i);
         },
-        _setCommandCodeProvider(r2) {
-          s = r2;
+        _setCommandCodeProvider(i) {
+          o = i;
         },
-        _genFacadeCommandCode(...r2) {
-          return a(...r2);
+        _genFacadeCommandCode(...i) {
+          return s(...i);
         },
-        _setFacadeCommandCodeProvider(r2) {
-          a = r2;
+        _setFacadeCommandCodeProvider(i) {
+          s = i;
         },
-        _genAggCode(...r2) {
-          return c(...r2);
+        _genAggCode(...i) {
+          return p(...i);
         },
-        _setAggCodeProvider(r2) {
-          c = r2;
+        _setAggCodeProvider(i) {
+          p = i;
         },
-        _genEventCode(...r2) {
-          return g2(...r2);
+        _genEventCode(...i) {
+          return _(...i);
         },
-        _setEventCodeProvider(r2) {
-          g2 = r2;
+        _setEventCodeProvider(i) {
+          _ = i;
         },
-        _genReadModelCode(...r2) {
-          return v(...r2);
+        _genReadModelCode(...i) {
+          return C2(...i);
         },
-        _setReadModelCodeProvider(r2) {
-          v = r2;
+        _setReadModelCodeProvider(i) {
+          C2 = i;
         },
-        _setCodeFileProvider(r2) {
-          d = r2;
+        _setCodeFileProvider(i) {
+          d = i;
         }
       }
     };
   });
 }
-var ue = jt();
-function So(e) {
-  if (!de2) {
+var le2 = St();
+function Ao(e) {
+  if (!me) {
     if (!e)
       throw new Error("designer is required");
-    de2 = xt2(e), ue.registerAgg(de2);
+    me = xt2(e), le2.registerAgg(me);
   }
-  return de2.api;
+  return me.api;
 }
 function Ee(e) {
   return e && e._attributes && e._attributes.rule === "Info";
 }
-function Dt(e) {
+function kt(e) {
   return e && e._attributes && e._attributes.rule === "Agg";
 }
-function Pt(e) {
+function Dt(e) {
   return e && e._attributes && e._attributes.rule === "Command";
 }
-function Tt(e) {
+function Ft2(e) {
   return e && e._attributes && e._attributes.rule === "FacadeCommand";
 }
-function Ft2(e) {
+function Pt(e) {
   return e && e._attributes && e._attributes.rule === "Event";
 }
 function Vt(e) {
   return e && e._attributes && e._attributes.rule === "ReadModel";
 }
-var ze = process.env.NODE_ENV !== "production" ? Object.freeze({}) : {};
+var Ge = process.env.NODE_ENV !== "production" ? Object.freeze({}) : {};
 process.env.NODE_ENV !== "production" && Object.freeze([]);
 var Rt2 = () => {
 };
-var kt = (e) => e.charCodeAt(0) === 111 && e.charCodeAt(1) === 110 && // uppercase letter
+var Ht2 = (e) => e.charCodeAt(0) === 111 && e.charCodeAt(1) === 110 && // uppercase letter
 (e.charCodeAt(2) > 122 || e.charCodeAt(2) < 97);
-var Se = Object.assign;
-var D2 = Array.isArray;
-var B2 = (e) => typeof e == "function";
-var H = (e) => typeof e == "string";
-var Ht2 = (e) => typeof e == "symbol";
-var L2 = (e) => e !== null && typeof e == "object";
-var un2;
-var je = () => un2 || (un2 = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
-function nn2(e) {
-  if (D2(e)) {
+var Ae2 = Object.assign;
+var k2 = Array.isArray;
+var z = (e) => typeof e == "function";
+var L2 = (e) => typeof e == "string";
+var Lt2 = (e) => typeof e == "symbol";
+var B2 = (e) => e !== null && typeof e == "object";
+var ln2;
+var Se = () => ln2 || (ln2 = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
+function tn2(e) {
+  if (k2(e)) {
     const n = {};
     for (let t = 0; t < e.length; t++) {
-      const o = e[t], s = H(o) ? zt(o) : nn2(o);
-      if (s)
-        for (const a in s)
-          n[a] = s[a];
+      const r2 = e[t], o = L2(r2) ? Gt(r2) : tn2(r2);
+      if (o)
+        for (const s in o)
+          n[s] = o[s];
     }
     return n;
-  } else if (H(e) || L2(e))
+  } else if (L2(e) || B2(e))
     return e;
 }
 var Mt2 = /;(?![^(]*\))/g;
-var Lt2 = /:([^]+)/;
-var Kt = /\/\*[^]*?\*\//g;
-function zt(e) {
+var Kt = /:([^]+)/;
+var Bt = /\/\*[^]*?\*\//g;
+function Gt(e) {
   const n = {};
-  return e.replace(Kt, "").split(Mt2).forEach((t) => {
+  return e.replace(Bt, "").split(Mt2).forEach((t) => {
     if (t) {
-      const o = t.split(Lt2);
-      o.length > 1 && (n[o[0].trim()] = o[1].trim());
+      const r2 = t.split(Kt);
+      r2.length > 1 && (n[r2[0].trim()] = r2[1].trim());
     }
   }), n;
 }
-function tn2(e) {
+function on2(e) {
   let n = "";
-  if (H(e))
+  if (L2(e))
     n = e;
-  else if (D2(e))
+  else if (k2(e))
     for (let t = 0; t < e.length; t++) {
-      const o = tn2(e[t]);
-      o && (n += o + " ");
+      const r2 = on2(e[t]);
+      r2 && (n += r2 + " ");
     }
-  else if (L2(e))
+  else if (B2(e))
     for (const t in e)
       e[t] && (n += t + " ");
   return n.trim();
@@ -16030,67 +16034,67 @@ Symbol(
   process.env.NODE_ENV !== "production" ? "Array iterate" : ""
 );
 new Set(
-  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((e) => e !== "arguments" && e !== "caller").map((e) => Symbol[e]).filter(Ht2)
+  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((e) => e !== "arguments" && e !== "caller").map((e) => Symbol[e]).filter(Lt2)
 );
 function En2(e) {
-  return Be(e) ? En2(e.__v_raw) : !!(e && e.__v_isReactive);
-}
-function Be(e) {
-  return !!(e && e.__v_isReadonly);
-}
-function Ie2(e) {
-  return !!(e && e.__v_isShallow);
+  return Ue(e) ? En2(e.__v_raw) : !!(e && e.__v_isReactive);
 }
 function Ue(e) {
+  return !!(e && e.__v_isReadonly);
+}
+function Te(e) {
+  return !!(e && e.__v_isShallow);
+}
+function ze(e) {
   return e ? !!e.__v_raw : false;
 }
-function K2(e) {
+function G(e) {
   const n = e && e.__v_raw;
-  return n ? K2(n) : e;
+  return n ? G(n) : e;
 }
-function on2(e) {
+function sn2(e) {
   return e ? e.__v_isRef === true : false;
 }
-var z = [];
-function Bt(e) {
-  z.push(e);
+var U = [];
+function Ut(e) {
+  U.push(e);
 }
-function Ut() {
-  z.pop();
+function zt() {
+  U.pop();
 }
 var xe2 = false;
-function ae2(e, ...n) {
+function ie2(e, ...n) {
   if (xe2) return;
   xe2 = true;
-  const t = z.length ? z[z.length - 1].component : null, o = t && t.appContext.config.warnHandler, s = Gt();
-  if (o)
-    sn2(
-      o,
+  const t = U.length ? U[U.length - 1].component : null, r2 = t && t.appContext.config.warnHandler, o = Jt();
+  if (r2)
+    rn2(
+      r2,
       t,
       11,
       [
         // eslint-disable-next-line no-restricted-syntax
-        e + n.map((a) => {
-          var c, g2;
-          return (g2 = (c = a.toString) == null ? void 0 : c.call(a)) != null ? g2 : JSON.stringify(a);
+        e + n.map((s) => {
+          var p, _;
+          return (_ = (p = s.toString) == null ? void 0 : p.call(s)) != null ? _ : JSON.stringify(s);
         }).join(""),
         t && t.proxy,
-        s.map(
-          ({ vnode: a }) => `at <${Hn(t, a.type)}>`
+        o.map(
+          ({ vnode: s }) => `at <${Ln(t, s.type)}>`
         ).join(`
 `),
-        s
+        o
       ]
     );
   else {
-    const a = [`[Vue warn]: ${e}`, ...n];
-    s.length && a.push(`
-`, ...Wt(s));
+    const s = [`[Vue warn]: ${e}`, ...n];
+    o.length && s.push(`
+`, ...Wt(o));
   }
   xe2 = false;
 }
-function Gt() {
-  let e = z[z.length - 1];
+function Jt() {
+  let e = U[U.length - 1];
   if (!e)
     return [];
   const n = [];
@@ -16100,36 +16104,36 @@ function Gt() {
       vnode: e,
       recurseCount: 0
     });
-    const o = e.component && e.component.parent;
-    e = o && o.vnode;
+    const r2 = e.component && e.component.parent;
+    e = r2 && r2.vnode;
   }
   return n;
 }
 function Wt(e) {
   const n = [];
-  return e.forEach((t, o) => {
-    n.push(...o === 0 ? [] : [`
-`], ...Jt(t));
+  return e.forEach((t, r2) => {
+    n.push(...r2 === 0 ? [] : [`
+`], ...Yt2(t));
   }), n;
 }
-function Jt({ vnode: e, recurseCount: n }) {
-  const t = n > 0 ? `... (${n} recursive calls)` : "", o = e.component ? e.component.parent == null : false, s = ` at <${Hn(
+function Yt2({ vnode: e, recurseCount: n }) {
+  const t = n > 0 ? `... (${n} recursive calls)` : "", r2 = e.component ? e.component.parent == null : false, o = ` at <${Ln(
     e.component,
     e.type,
-    o
-  )}`, a = ">" + t;
-  return e.props ? [s, ...Yt2(e.props), a] : [s + a];
+    r2
+  )}`, s = ">" + t;
+  return e.props ? [o, ...qt2(e.props), s] : [o + s];
 }
-function Yt2(e) {
+function qt2(e) {
   const n = [], t = Object.keys(e);
-  return t.slice(0, 3).forEach((o) => {
-    n.push(...Sn2(o, e[o]));
+  return t.slice(0, 3).forEach((r2) => {
+    n.push(...An2(r2, e[r2]));
   }), t.length > 3 && n.push(" ..."), n;
 }
-function Sn2(e, n, t) {
-  return H(n) ? (n = JSON.stringify(n), t ? n : [`${e}=${n}`]) : typeof n == "number" || typeof n == "boolean" || n == null ? t ? n : [`${e}=${n}`] : on2(n) ? (n = Sn2(e, K2(n.value), true), t ? n : [`${e}=Ref<`, n, ">"]) : B2(n) ? [`${e}=fn${n.name ? `<${n.name}>` : ""}`] : (n = K2(n), t ? n : [`${e}=`, n]);
+function An2(e, n, t) {
+  return L2(n) ? (n = JSON.stringify(n), t ? n : [`${e}=${n}`]) : typeof n == "number" || typeof n == "boolean" || n == null ? t ? n : [`${e}=${n}`] : sn2(n) ? (n = An2(e, G(n.value), true), t ? n : [`${e}=Ref<`, n, ">"]) : z(n) ? [`${e}=fn${n.name ? `<${n.name}>` : ""}`] : (n = G(n), t ? n : [`${e}=`, n]);
 }
-var jn = {
+var Sn2 = {
   sp: "serverPrefetch hook",
   bc: "beforeCreate hook",
   c: "created hook",
@@ -16162,102 +16166,102 @@ var jn = {
   15: "component update",
   16: "app unmount cleanup function"
 };
-function sn2(e, n, t, o) {
+function rn2(e, n, t, r2) {
   try {
-    return o ? e(...o) : e();
-  } catch (s) {
-    On2(s, n, t);
+    return r2 ? e(...r2) : e();
+  } catch (o) {
+    In2(o, n, t);
   }
 }
-function On2(e, n, t, o = true) {
-  const s = n ? n.vnode : null, { errorHandler: a, throwUnhandledErrorInProduction: c } = n && n.appContext.config || ze;
+function In2(e, n, t, r2 = true) {
+  const o = n ? n.vnode : null, { errorHandler: s, throwUnhandledErrorInProduction: p } = n && n.appContext.config || Ge;
   if (n) {
-    let g2 = n.parent;
-    const v = n.proxy, d = process.env.NODE_ENV !== "production" ? jn[t] : `https://vuejs.org/error-reference/#runtime-${t}`;
-    for (; g2; ) {
-      const r2 = g2.ec;
-      if (r2) {
-        for (let i = 0; i < r2.length; i++)
-          if (r2[i](e, v, d) === false)
+    let _ = n.parent;
+    const C2 = n.proxy, d = process.env.NODE_ENV !== "production" ? Sn2[t] : `https://vuejs.org/error-reference/#runtime-${t}`;
+    for (; _; ) {
+      const i = _.ec;
+      if (i) {
+        for (let a = 0; a < i.length; a++)
+          if (i[a](e, C2, d) === false)
             return;
       }
-      g2 = g2.parent;
+      _ = _.parent;
     }
-    if (a) {
-      sn2(a, null, 10, [
+    if (s) {
+      rn2(s, null, 10, [
         e,
-        v,
+        C2,
         d
       ]);
       return;
     }
   }
-  Zt(e, t, s, o, c);
+  Zt(e, t, o, r2, p);
 }
-function Zt(e, n, t, o = true, s = false) {
+function Zt(e, n, t, r2 = true, o = false) {
   if (process.env.NODE_ENV !== "production") {
-    const a = jn[n];
-    if (t && Bt(t), ae2(`Unhandled error${a ? ` during execution of ${a}` : ""}`), t && Ut(), o)
+    const s = Sn2[n];
+    if (t && Ut(t), ie2(`Unhandled error${s ? ` during execution of ${s}` : ""}`), t && zt(), r2)
       throw e;
-  } else if (s)
+  } else if (o)
     throw e;
 }
 var x2 = [];
-var T = -1;
-var q = [];
-var F3 = null;
+var F3 = -1;
+var Q2 = [];
+var P3 = null;
 var W2 = 0;
-var qt2 = /* @__PURE__ */ Promise.resolve();
-var Ge = null;
+var Qt = /* @__PURE__ */ Promise.resolve();
+var Je = null;
 var Xt = 100;
-function Qt(e) {
-  let n = T + 1, t = x2.length;
+function eo(e) {
+  let n = F3 + 1, t = x2.length;
   for (; n < t; ) {
-    const o = n + t >>> 1, s = x2[o], a = ie2(s);
-    a < e || a === e && s.flags & 2 ? n = o + 1 : t = o;
+    const r2 = n + t >>> 1, o = x2[r2], s = ce2(o);
+    s < e || s === e && o.flags & 2 ? n = r2 + 1 : t = r2;
   }
   return n;
 }
-function eo(e) {
+function no(e) {
   if (!(e.flags & 1)) {
-    const n = ie2(e), t = x2[x2.length - 1];
+    const n = ce2(e), t = x2[x2.length - 1];
     !t || // fast path when the job id is larger than the tail
-    !(e.flags & 2) && n >= ie2(t) ? x2.push(e) : x2.splice(Qt(n), 0, e), e.flags |= 1, An2();
+    !(e.flags & 2) && n >= ce2(t) ? x2.push(e) : x2.splice(eo(n), 0, e), e.flags |= 1, On2();
   }
 }
-function An2() {
-  Ge || (Ge = qt2.then(In2));
-}
-function no(e) {
-  D2(e) ? q.push(...e) : F3 && e.id === -1 ? F3.splice(W2 + 1, 0, e) : e.flags & 1 || (q.push(e), e.flags |= 1), An2();
+function On2() {
+  Je || (Je = Qt.then(Tn2));
 }
 function to(e) {
-  if (q.length) {
-    const n = [...new Set(q)].sort(
-      (t, o) => ie2(t) - ie2(o)
+  k2(e) ? Q2.push(...e) : P3 && e.id === -1 ? P3.splice(W2 + 1, 0, e) : e.flags & 1 || (Q2.push(e), e.flags |= 1), On2();
+}
+function oo(e) {
+  if (Q2.length) {
+    const n = [...new Set(Q2)].sort(
+      (t, r2) => ce2(t) - ce2(r2)
     );
-    if (q.length = 0, F3) {
-      F3.push(...n);
+    if (Q2.length = 0, P3) {
+      P3.push(...n);
       return;
     }
-    for (F3 = n, process.env.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map()), W2 = 0; W2 < F3.length; W2++) {
-      const t = F3[W2];
+    for (P3 = n, process.env.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map()), W2 = 0; W2 < P3.length; W2++) {
+      const t = P3[W2];
       process.env.NODE_ENV !== "production" && xn2(e, t) || (t.flags & 4 && (t.flags &= -2), t.flags & 8 || t(), t.flags &= -2);
     }
-    F3 = null, W2 = 0;
+    P3 = null, W2 = 0;
   }
 }
-var ie2 = (e) => e.id == null ? e.flags & 2 ? -1 : 1 / 0 : e.id;
-function In2(e) {
+var ce2 = (e) => e.id == null ? e.flags & 2 ? -1 : 1 / 0 : e.id;
+function Tn2(e) {
   process.env.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map());
   const n = process.env.NODE_ENV !== "production" ? (t) => xn2(e, t) : Rt2;
   try {
-    for (T = 0; T < x2.length; T++) {
-      const t = x2[T];
+    for (F3 = 0; F3 < x2.length; F3++) {
+      const t = x2[F3];
       if (t && !(t.flags & 8)) {
         if (process.env.NODE_ENV !== "production" && n(t))
           continue;
-        t.flags & 4 && (t.flags &= -2), sn2(
+        t.flags & 4 && (t.flags &= -2), rn2(
           t,
           t.i,
           t.i ? 15 : 14
@@ -16265,69 +16269,69 @@ function In2(e) {
       }
     }
   } finally {
-    for (; T < x2.length; T++) {
-      const t = x2[T];
+    for (; F3 < x2.length; F3++) {
+      const t = x2[F3];
       t && (t.flags &= -2);
     }
-    T = -1, x2.length = 0, to(e), Ge = null, (x2.length || q.length) && In2(e);
+    F3 = -1, x2.length = 0, oo(e), Je = null, (x2.length || Q2.length) && Tn2(e);
   }
 }
 function xn2(e, n) {
   const t = e.get(n) || 0;
   if (t > Xt) {
-    const o = n.i, s = o && kn(o.type);
-    return On2(
-      `Maximum recursive updates exceeded${s ? ` in component <${s}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`,
+    const r2 = n.i, o = r2 && Hn(r2.type);
+    return In2(
+      `Maximum recursive updates exceeded${o ? ` in component <${o}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`,
       null,
       10
     ), true;
   }
   return e.set(n, t + 1), false;
 }
-var De2 = /* @__PURE__ */ new Map();
-process.env.NODE_ENV !== "production" && (je().__VUE_HMR_RUNTIME__ = {
-  createRecord: Pe(oo),
-  rerender: Pe(so),
-  reload: Pe(ro)
+var ke = /* @__PURE__ */ new Map();
+process.env.NODE_ENV !== "production" && (Se().__VUE_HMR_RUNTIME__ = {
+  createRecord: De2(so),
+  rerender: De2(ro),
+  reload: De2(ao)
 });
-var ve = /* @__PURE__ */ new Map();
-function oo(e, n) {
-  return ve.has(e) ? false : (ve.set(e, {
-    initialDef: _e2(n),
+var _e2 = /* @__PURE__ */ new Map();
+function so(e, n) {
+  return _e2.has(e) ? false : (_e2.set(e, {
+    initialDef: Ce(n),
     instances: /* @__PURE__ */ new Set()
   }), true);
 }
-function _e2(e) {
+function Ce(e) {
   return Mn2(e) ? e.__vccOpts : e;
 }
-function so(e, n) {
-  const t = ve.get(e);
-  t && (t.initialDef.render = n, [...t.instances].forEach((o) => {
-    n && (o.render = n, _e2(o.type).render = n), o.renderCache = [], o.update();
+function ro(e, n) {
+  const t = _e2.get(e);
+  t && (t.initialDef.render = n, [...t.instances].forEach((r2) => {
+    n && (r2.render = n, Ce(r2.type).render = n), r2.renderCache = [], r2.update();
   }));
 }
-function ro(e, n) {
-  const t = ve.get(e);
+function ao(e, n) {
+  const t = _e2.get(e);
   if (!t) return;
-  n = _e2(n), ln2(t.initialDef, n);
-  const o = [...t.instances];
-  for (let s = 0; s < o.length; s++) {
-    const a = o[s], c = _e2(a.type);
-    let g2 = De2.get(c);
-    g2 || (c !== t.initialDef && ln2(c, n), De2.set(c, g2 = /* @__PURE__ */ new Set())), g2.add(a), a.appContext.propsCache.delete(a.type), a.appContext.emitsCache.delete(a.type), a.appContext.optionsCache.delete(a.type), a.ceReload ? (g2.add(a), a.ceReload(n.styles), g2.delete(a)) : a.parent ? eo(() => {
-      a.parent.update(), g2.delete(a);
-    }) : a.appContext.reload ? a.appContext.reload() : typeof window < "u" && window.location.reload(), a.root.ce && a !== a.root && a.root.ce._removeChildStyle(c);
+  n = Ce(n), pn2(t.initialDef, n);
+  const r2 = [...t.instances];
+  for (let o = 0; o < r2.length; o++) {
+    const s = r2[o], p = Ce(s.type);
+    let _ = ke.get(p);
+    _ || (p !== t.initialDef && pn2(p, n), ke.set(p, _ = /* @__PURE__ */ new Set())), _.add(s), s.appContext.propsCache.delete(s.type), s.appContext.emitsCache.delete(s.type), s.appContext.optionsCache.delete(s.type), s.ceReload ? (_.add(s), s.ceReload(n.styles), _.delete(s)) : s.parent ? no(() => {
+      s.parent.update(), _.delete(s);
+    }) : s.appContext.reload ? s.appContext.reload() : typeof window < "u" && window.location.reload(), s.root.ce && s !== s.root && s.root.ce._removeChildStyle(p);
   }
-  no(() => {
-    De2.clear();
+  to(() => {
+    ke.clear();
   });
 }
-function ln2(e, n) {
-  Se(e, n);
+function pn2(e, n) {
+  Ae2(e, n);
   for (const t in e)
     t !== "__file" && !(t in n) && delete e[t];
 }
-function Pe(e) {
+function De2(e) {
   return (n, t) => {
     try {
       return e(n, t);
@@ -16335,43 +16339,43 @@ function Pe(e) {
     }
   };
 }
-var Ce = null;
-var ao = null;
-var io = (e) => e.__isTeleport;
-function Dn2(e, n) {
-  e.shapeFlag & 6 && e.component ? (e.transition = n, Dn2(e.component.subTree, n)) : e.shapeFlag & 128 ? (e.ssContent.transition = n.clone(e.ssContent), e.ssFallback.transition = n.clone(e.ssFallback)) : e.transition = n;
+var $e2 = null;
+var io = null;
+var co = (e) => e.__isTeleport;
+function kn(e, n) {
+  e.shapeFlag & 6 && e.component ? (e.transition = n, kn(e.component.subTree, n)) : e.shapeFlag & 128 ? (e.ssContent.transition = n.clone(e.ssContent), e.ssFallback.transition = n.clone(e.ssFallback)) : e.transition = n;
 }
-je().requestIdleCallback;
-je().cancelIdleCallback;
-var co = Symbol.for("v-ndc");
+Se().requestIdleCallback;
+Se().cancelIdleCallback;
+var uo = Symbol.for("v-ndc");
 process.env.NODE_ENV;
-var uo = {};
-var Pn = (e) => Object.getPrototypeOf(e) === uo;
-var lo = (e) => e.__isSuspense;
-var Tn2 = Symbol.for("v-fgt");
-var po = Symbol.for("v-txt");
+var lo = {};
+var Dn2 = (e) => Object.getPrototypeOf(e) === lo;
+var po = (e) => e.__isSuspense;
+var Fn2 = Symbol.for("v-fgt");
+var mo = Symbol.for("v-txt");
 var fo = Symbol.for("v-cmt");
-function mo(e) {
+function ho(e) {
   return e ? e.__v_isVNode === true : false;
 }
-var ho = (...e) => Vn2(
+var vo = (...e) => Vn2(
   ...e
 );
-var Fn2 = ({ key: e }) => e ?? null;
-var me = ({
+var Pn = ({ key: e }) => e ?? null;
+var he2 = ({
   ref: e,
   ref_key: n,
   ref_for: t
-}) => (typeof e == "number" && (e = "" + e), e != null ? H(e) || on2(e) || B2(e) ? { i: Ce, r: e, k: n, f: !!t } : e : null);
-function go(e, n = null, t = null, o = 0, s = null, a = e === Tn2 ? 0 : 1, c = false, g2 = false) {
-  const v = {
+}) => (typeof e == "number" && (e = "" + e), e != null ? L2(e) || sn2(e) || z(e) ? { i: $e2, r: e, k: n, f: !!t } : e : null);
+function go(e, n = null, t = null, r2 = 0, o = null, s = e === Fn2 ? 0 : 1, p = false, _ = false) {
+  const C2 = {
     __v_isVNode: true,
     __v_skip: true,
     type: e,
     props: n,
-    key: n && Fn2(n),
-    ref: n && me(n),
-    scopeId: ao,
+    key: n && Pn(n),
+    ref: n && he2(n),
+    scopeId: io,
     slotScopeIds: null,
     children: t,
     component: null,
@@ -16386,33 +16390,33 @@ function go(e, n = null, t = null, o = 0, s = null, a = e === Tn2 ? 0 : 1, c = f
     targetStart: null,
     targetAnchor: null,
     staticCount: 0,
-    shapeFlag: a,
-    patchFlag: o,
-    dynamicProps: s,
+    shapeFlag: s,
+    patchFlag: r2,
+    dynamicProps: o,
     dynamicChildren: null,
     appContext: null,
-    ctx: Ce
+    ctx: $e2
   };
-  return g2 ? (rn2(v, t), a & 128 && e.normalize(v)) : t && (v.shapeFlag |= H(t) ? 8 : 16), process.env.NODE_ENV !== "production" && v.key !== v.key && ae2("VNode created with invalid key (NaN). VNode type:", v.type), v;
+  return _ ? (an2(C2, t), s & 128 && e.normalize(C2)) : t && (C2.shapeFlag |= L2(t) ? 8 : 16), process.env.NODE_ENV !== "production" && C2.key !== C2.key && ie2("VNode created with invalid key (NaN). VNode type:", C2.type), C2;
 }
-var vo = process.env.NODE_ENV !== "production" ? ho : Vn2;
-function Vn2(e, n = null, t = null, o = 0, s = null, a = false) {
-  if ((!e || e === co) && (process.env.NODE_ENV !== "production" && !e && ae2(`Invalid vnode type when creating vnode: ${e}.`), e = fo), mo(e)) {
-    const g2 = $e2(
+var _o = process.env.NODE_ENV !== "production" ? vo : Vn2;
+function Vn2(e, n = null, t = null, r2 = 0, o = null, s = false) {
+  if ((!e || e === uo) && (process.env.NODE_ENV !== "production" && !e && ie2(`Invalid vnode type when creating vnode: ${e}.`), e = fo), ho(e)) {
+    const _ = be2(
       e,
       n,
       true
       /* mergeRef: true */
     );
-    return t && rn2(g2, t), g2.patchFlag = -2, g2;
+    return t && an2(_, t), _.patchFlag = -2, _;
   }
   if (Mn2(e) && (e = e.__vccOpts), n) {
-    n = _o(n);
-    let { class: g2, style: v } = n;
-    g2 && !H(g2) && (n.class = tn2(g2)), L2(v) && (Ue(v) && !D2(v) && (v = Se({}, v)), n.style = nn2(v));
+    n = Co(n);
+    let { class: _, style: C2 } = n;
+    _ && !L2(_) && (n.class = on2(_)), B2(C2) && (ze(C2) && !k2(C2) && (C2 = Ae2({}, C2)), n.style = tn2(C2));
   }
-  const c = H(e) ? 1 : lo(e) ? 128 : io(e) ? 64 : L2(e) ? 4 : B2(e) ? 2 : 0;
-  return process.env.NODE_ENV !== "production" && c & 4 && Ue(e) && (e = K2(e), ae2(
+  const p = L2(e) ? 1 : po(e) ? 128 : co(e) ? 64 : B2(e) ? 4 : z(e) ? 2 : 0;
+  return process.env.NODE_ENV !== "production" && p & 4 && ze(e) && (e = G(e), ie2(
     "Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`.",
     `
 Component that was made reactive: `,
@@ -16421,32 +16425,32 @@ Component that was made reactive: `,
     e,
     n,
     t,
+    r2,
     o,
+    p,
     s,
-    c,
-    a,
     true
   );
 }
-function _o(e) {
-  return e ? Ue(e) || Pn(e) ? Se({}, e) : e : null;
+function Co(e) {
+  return e ? ze(e) || Dn2(e) ? Ae2({}, e) : e : null;
 }
-function $e2(e, n, t = false, o = false) {
-  const { props: s, ref: a, patchFlag: c, children: g2, transition: v } = e, d = n ? $o(s || {}, n) : s, r2 = {
+function be2(e, n, t = false, r2 = false) {
+  const { props: o, ref: s, patchFlag: p, children: _, transition: C2 } = e, d = n ? bo(o || {}, n) : o, i = {
     __v_isVNode: true,
     __v_skip: true,
     type: e.type,
     props: d,
-    key: d && Fn2(d),
+    key: d && Pn(d),
     ref: n && n.ref ? (
       // #2078 in the case of <component :is="vnode" ref="extra"/>
       // if the vnode itself already has a ref, cloneVNode will need to merge
       // the refs so the single vnode can be set on multiple refs
-      t && a ? D2(a) ? a.concat(me(n)) : [a, me(n)] : me(n)
-    ) : a,
+      t && s ? k2(s) ? s.concat(he2(n)) : [s, he2(n)] : he2(n)
+    ) : s,
     scopeId: e.scopeId,
     slotScopeIds: e.slotScopeIds,
-    children: process.env.NODE_ENV !== "production" && c === -1 && D2(g2) ? g2.map(Rn2) : g2,
+    children: process.env.NODE_ENV !== "production" && p === -1 && k2(_) ? _.map(Rn2) : _,
     target: e.target,
     targetStart: e.targetStart,
     targetAnchor: e.targetAnchor,
@@ -16456,75 +16460,75 @@ function $e2(e, n, t = false, o = false) {
     // existing patch flag to be reliable and need to add the FULL_PROPS flag.
     // note: preserve flag for fragments since they use the flag for children
     // fast paths only.
-    patchFlag: n && e.type !== Tn2 ? c === -1 ? 16 : c | 16 : c,
+    patchFlag: n && e.type !== Fn2 ? p === -1 ? 16 : p | 16 : p,
     dynamicProps: e.dynamicProps,
     dynamicChildren: e.dynamicChildren,
     appContext: e.appContext,
     dirs: e.dirs,
-    transition: v,
+    transition: C2,
     // These should technically only be non-null on mounted VNodes. However,
     // they *should* be copied for kept-alive vnodes. So we just always copy
     // them since them being non-null during a mount doesn't affect the logic as
     // they will simply be overwritten.
     component: e.component,
     suspense: e.suspense,
-    ssContent: e.ssContent && $e2(e.ssContent),
-    ssFallback: e.ssFallback && $e2(e.ssFallback),
+    ssContent: e.ssContent && be2(e.ssContent),
+    ssFallback: e.ssFallback && be2(e.ssFallback),
     el: e.el,
     anchor: e.anchor,
     ctx: e.ctx,
     ce: e.ce
   };
-  return v && o && Dn2(
-    r2,
-    v.clone(r2)
-  ), r2;
+  return C2 && r2 && kn(
+    i,
+    C2.clone(i)
+  ), i;
 }
 function Rn2(e) {
-  const n = $e2(e);
-  return D2(e.children) && (n.children = e.children.map(Rn2)), n;
+  const n = be2(e);
+  return k2(e.children) && (n.children = e.children.map(Rn2)), n;
 }
-function Co(e = " ", n = 0) {
-  return vo(po, null, e, n);
+function $o(e = " ", n = 0) {
+  return _o(mo, null, e, n);
 }
-function rn2(e, n) {
+function an2(e, n) {
   let t = 0;
-  const { shapeFlag: o } = e;
+  const { shapeFlag: r2 } = e;
   if (n == null)
     n = null;
-  else if (D2(n))
+  else if (k2(n))
     t = 16;
   else if (typeof n == "object")
-    if (o & 65) {
-      const s = n.default;
-      s && (s._c && (s._d = false), rn2(e, s()), s._c && (s._d = true));
+    if (r2 & 65) {
+      const o = n.default;
+      o && (o._c && (o._d = false), an2(e, o()), o._c && (o._d = true));
       return;
     } else
-      t = 32, !n._ && !Pn(n) && (n._ctx = Ce);
-  else B2(n) ? (n = { default: n, _ctx: Ce }, t = 32) : (n = String(n), o & 64 ? (t = 16, n = [Co(n)]) : t = 8);
+      t = 32, !n._ && !Dn2(n) && (n._ctx = $e2);
+  else z(n) ? (n = { default: n, _ctx: $e2 }, t = 32) : (n = String(n), r2 & 64 ? (t = 16, n = [$o(n)]) : t = 8);
   e.children = n, e.shapeFlag |= t;
 }
-function $o(...e) {
+function bo(...e) {
   const n = {};
   for (let t = 0; t < e.length; t++) {
-    const o = e[t];
-    for (const s in o)
-      if (s === "class")
-        n.class !== o.class && (n.class = tn2([n.class, o.class]));
-      else if (s === "style")
-        n.style = nn2([n.style, o.style]);
-      else if (kt(s)) {
-        const a = n[s], c = o[s];
-        c && a !== c && !(D2(a) && a.includes(c)) && (n[s] = a ? [].concat(a, c) : c);
-      } else s !== "" && (n[s] = o[s]);
+    const r2 = e[t];
+    for (const o in r2)
+      if (o === "class")
+        n.class !== r2.class && (n.class = on2([n.class, r2.class]));
+      else if (o === "style")
+        n.style = tn2([n.style, r2.style]);
+      else if (Ht2(o)) {
+        const s = n[o], p = r2[o];
+        p && s !== p && !(k2(s) && s.includes(p)) && (n[o] = s ? [].concat(s, p) : p);
+      } else o !== "" && (n[o] = r2[o]);
   }
   return n;
 }
 {
-  const e = je(), n = (t, o) => {
-    let s;
-    return (s = e[t]) || (s = e[t] = []), s.push(o), (a) => {
-      s.length > 1 ? s.forEach((c) => c(a)) : s[0](a);
+  const e = Se(), n = (t, r2) => {
+    let o;
+    return (o = e[t]) || (o = e[t] = []), o.push(r2), (s) => {
+      o.length > 1 ? o.forEach((p) => p(s)) : o[0](s);
     };
   };
   n(
@@ -16536,95 +16540,95 @@ function $o(...e) {
   );
 }
 process.env.NODE_ENV;
-var bo = /(?:^|[-_])(\w)/g;
-var wo = (e) => e.replace(bo, (n) => n.toUpperCase()).replace(/[-_]/g, "");
-function kn(e, n = true) {
-  return B2(e) ? e.displayName || e.name : e.name || n && e.__name;
+var wo = /(?:^|[-_])(\w)/g;
+var No = (e) => e.replace(wo, (n) => n.toUpperCase()).replace(/[-_]/g, "");
+function Hn(e, n = true) {
+  return z(e) ? e.displayName || e.name : e.name || n && e.__name;
 }
-function Hn(e, n, t = false) {
-  let o = kn(n);
-  if (!o && n.__file) {
-    const s = n.__file.match(/([^/\\]+)\.\w+$/);
-    s && (o = s[1]);
+function Ln(e, n, t = false) {
+  let r2 = Hn(n);
+  if (!r2 && n.__file) {
+    const o = n.__file.match(/([^/\\]+)\.\w+$/);
+    o && (r2 = o[1]);
   }
-  if (!o && e && e.parent) {
-    const s = (a) => {
-      for (const c in a)
-        if (a[c] === n)
-          return c;
+  if (!r2 && e && e.parent) {
+    const o = (s) => {
+      for (const p in s)
+        if (s[p] === n)
+          return p;
     };
-    o = s(
+    r2 = o(
       e.components || e.parent.type.components
-    ) || s(e.appContext.components);
+    ) || o(e.appContext.components);
   }
-  return o ? wo(o) : t ? "App" : "Anonymous";
+  return r2 ? No(r2) : t ? "App" : "Anonymous";
 }
 function Mn2(e) {
-  return B2(e) && "__vccOpts" in e;
+  return z(e) && "__vccOpts" in e;
 }
-function No() {
+function yo() {
   if (process.env.NODE_ENV === "production" || typeof window > "u")
     return;
-  const e = { style: "color:#3ba776" }, n = { style: "color:#1677ff" }, t = { style: "color:#f5222d" }, o = { style: "color:#eb2f96" }, s = {
+  const e = { style: "color:#3ba776" }, n = { style: "color:#1677ff" }, t = { style: "color:#f5222d" }, r2 = { style: "color:#eb2f96" }, o = {
     __vue_custom_formatter: true,
-    header(i) {
-      return L2(i) ? i.__isVue ? ["div", e, "VueInstance"] : on2(i) ? [
+    header(a) {
+      return B2(a) ? a.__isVue ? ["div", e, "VueInstance"] : sn2(a) ? [
         "div",
         {},
-        ["span", e, r2(i)],
+        ["span", e, i(a)],
         "<",
         // avoid debugger accessing value affecting behavior
-        g2("_value" in i ? i._value : i),
+        _("_value" in a ? a._value : a),
         ">"
-      ] : En2(i) ? [
+      ] : En2(a) ? [
         "div",
         {},
-        ["span", e, Ie2(i) ? "ShallowReactive" : "Reactive"],
+        ["span", e, Te(a) ? "ShallowReactive" : "Reactive"],
         "<",
-        g2(i),
-        `>${Be(i) ? " (readonly)" : ""}`
-      ] : Be(i) ? [
+        _(a),
+        `>${Ue(a) ? " (readonly)" : ""}`
+      ] : Ue(a) ? [
         "div",
         {},
-        ["span", e, Ie2(i) ? "ShallowReadonly" : "Readonly"],
+        ["span", e, Te(a) ? "ShallowReadonly" : "Readonly"],
         "<",
-        g2(i),
+        _(a),
         ">"
       ] : null : null;
     },
-    hasBody(i) {
-      return i && i.__isVue;
+    hasBody(a) {
+      return a && a.__isVue;
     },
-    body(i) {
-      if (i && i.__isVue)
+    body(a) {
+      if (a && a.__isVue)
         return [
           "div",
           {},
-          ...a(i.$)
+          ...s(a.$)
         ];
     }
   };
-  function a(i) {
+  function s(a) {
     const l2 = [];
-    i.type.props && i.props && l2.push(c("props", K2(i.props))), i.setupState !== ze && l2.push(c("setup", i.setupState)), i.data !== ze && l2.push(c("data", K2(i.data)));
-    const m2 = v(i, "computed");
-    m2 && l2.push(c("computed", m2));
-    const C2 = v(i, "inject");
-    return C2 && l2.push(c("injected", C2)), l2.push([
+    a.type.props && a.props && l2.push(p("props", G(a.props))), a.setupState !== Ge && l2.push(p("setup", a.setupState)), a.data !== Ge && l2.push(p("data", G(a.data)));
+    const f = C2(a, "computed");
+    f && l2.push(p("computed", f));
+    const b2 = C2(a, "inject");
+    return b2 && l2.push(p("injected", b2)), l2.push([
       "div",
       {},
       [
         "span",
         {
-          style: o.style + ";opacity:0.66"
+          style: r2.style + ";opacity:0.66"
         },
         "$ (internal): "
       ],
-      ["object", { object: i }]
+      ["object", { object: a }]
     ]), l2;
   }
-  function c(i, l2) {
-    return l2 = Se({}, l2), Object.keys(l2).length ? [
+  function p(a, l2) {
+    return l2 = Ae2({}, l2), Object.keys(l2).length ? [
       "div",
       { style: "line-height:1.25em;margin-bottom:0.6em" },
       [
@@ -16632,56 +16636,56 @@ function No() {
         {
           style: "color:#476582"
         },
-        i
+        a
       ],
       [
         "div",
         {
           style: "padding-left:1.25em"
         },
-        ...Object.keys(l2).map((m2) => [
+        ...Object.keys(l2).map((f) => [
           "div",
           {},
-          ["span", o, m2 + ": "],
-          g2(l2[m2], false)
+          ["span", r2, f + ": "],
+          _(l2[f], false)
         ])
       ]
     ] : ["span", {}];
   }
-  function g2(i, l2 = true) {
-    return typeof i == "number" ? ["span", n, i] : typeof i == "string" ? ["span", t, JSON.stringify(i)] : typeof i == "boolean" ? ["span", o, i] : L2(i) ? ["object", { object: l2 ? K2(i) : i }] : ["span", t, String(i)];
+  function _(a, l2 = true) {
+    return typeof a == "number" ? ["span", n, a] : typeof a == "string" ? ["span", t, JSON.stringify(a)] : typeof a == "boolean" ? ["span", r2, a] : B2(a) ? ["object", { object: l2 ? G(a) : a }] : ["span", t, String(a)];
   }
-  function v(i, l2) {
-    const m2 = i.type;
-    if (B2(m2))
+  function C2(a, l2) {
+    const f = a.type;
+    if (z(f))
       return;
-    const C2 = {};
-    for (const p in i.ctx)
-      d(m2, p, l2) && (C2[p] = i.ctx[p]);
-    return C2;
+    const b2 = {};
+    for (const g2 in a.ctx)
+      d(f, g2, l2) && (b2[g2] = a.ctx[g2]);
+    return b2;
   }
-  function d(i, l2, m2) {
-    const C2 = i[m2];
-    if (D2(C2) && C2.includes(l2) || L2(C2) && l2 in C2 || i.extends && d(i.extends, l2, m2) || i.mixins && i.mixins.some((p) => d(p, l2, m2)))
+  function d(a, l2, f) {
+    const b2 = a[f];
+    if (k2(b2) && b2.includes(l2) || B2(b2) && l2 in b2 || a.extends && d(a.extends, l2, f) || a.mixins && a.mixins.some((g2) => d(g2, l2, f)))
       return true;
   }
-  function r2(i) {
-    return Ie2(i) ? "ShallowRef" : i.effect ? "ComputedRef" : "Ref";
+  function i(a) {
+    return Te(a) ? "ShallowRef" : a.effect ? "ComputedRef" : "Ref";
   }
-  window.devtoolsFormatters ? window.devtoolsFormatters.push(s) : window.devtoolsFormatters = [s];
+  window.devtoolsFormatters ? window.devtoolsFormatters.push(o) : window.devtoolsFormatters = [o];
 }
 process.env.NODE_ENV;
 process.env.NODE_ENV;
 process.env.NODE_ENV;
-function yo() {
-  No();
+function jo() {
+  yo();
 }
-process.env.NODE_ENV !== "production" && yo();
+process.env.NODE_ENV !== "production" && jo();
 function Eo(e) {
-  return Pt(e) || Tt(e) || Dt(e) || Ft2(e) || Vt(e);
+  return Dt(e) || Ft2(e) || kt(e) || Pt(e) || Vt(e);
 }
-var Ln = /* @__PURE__ */ ((e) => (e.Java = "java", e.Kotlin = "kotlin", e.CSharp = "csharp", e.Go = "go", e))(Ln || {});
-var j3 = class {
+var Kn = /* @__PURE__ */ ((e) => (e.Java = "java", e.Kotlin = "kotlin", e.CSharp = "csharp", e.Go = "go", e))(Kn || {});
+var S2 = class {
   imports = /* @__PURE__ */ new Set();
   parentDir;
   name;
@@ -16722,875 +16726,1001 @@ var j3 = class {
     this.parentDir = n;
   }
 };
-var be2;
-((e) => {
-  ((n) => {
-    n.Lombok = "Lombok", n.LombokBuilder = "LombokBuilder", n.RecordVakueObject = "RecordVakueObject", n.CommandHandler = "CommandHandler", n.Jpa = "Jpa", n.Timezone = "Timezone", n.SpringFramework = "SpringFramework";
-  })(e.JavaGeneratorAddition || (e.JavaGeneratorAddition = {}));
-})(be2 || (be2 = {}));
 var we;
 ((e) => {
   ((n) => {
-    n.ValueClass = "ValueClass", n.CommandHandler = "CommandHandler", n.Timezone = "Timezone";
-  })(e.KotlinGeneratorAddition || (e.KotlinGeneratorAddition = {}));
+    n.Lombok = "Lombok", n.LombokBuilder = "LombokBuilder", n.RecordValueObject = "RecordValueObject", n.CommandHandler = "CommandHandler", n.Jpa = "Jpa", n.Timezone = "Timezone", n.SpringFramework = "SpringFramework";
+  })(e.JavaGeneratorAddition || (e.JavaGeneratorAddition = {})), ((n) => {
+    n.TABLE = "TABLE", n.SEQUENCE = "SEQUENCE", n.IDENTITY = "IDENTITY", n.UUID = "UUID", n.AUTO = "AUTO";
+  })(e.IdGenStrategy || (e.IdGenStrategy = {}));
 })(we || (we = {}));
 var Ne;
 ((e) => {
   ((n) => {
+    n.ValueClass = "ValueClass", n.CommandHandler = "CommandHandler", n.Timezone = "Timezone";
+  })(e.KotlinGeneratorAddition || (e.KotlinGeneratorAddition = {}));
+})(Ne || (Ne = {}));
+var ye;
+((e) => {
+  ((n) => {
     n.Timezone = "Timezone", n.RecordStruct = "RecordStruct", n.PrimaryConstructor = "PrimaryConstructor", n.CommandHandlerInterface = "CommandHandlerInterface", n.AggInterface = "AggInterface";
   })(e.CSharpGeneratorAddition || (e.CSharpGeneratorAddition = {}));
-})(Ne || (Ne = {}));
+})(ye || (ye = {}));
 var We;
 ((e) => {
   ((n) => {
     n.SinglePackageEachDesigner = "SinglePackageEachDesigner";
   })(e.GoGeneratorAddition || (e.GoGeneratorAddition = {}));
 })(We || (We = {}));
-var jo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+var So = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  CodeFile: j3,
-  Language: Ln,
+  CodeFile: S2,
+  Language: Kn,
   get csharp() {
-    return Ne;
+    return ye;
   },
   get go() {
     return We;
   },
   isStruct: Eo,
   get java() {
-    return be2;
+    return we;
   },
   get kotlin() {
-    return we;
+    return Ne;
   }
 }, Symbol.toStringTag, { value: "Module" }));
 var N2;
 ((e) => {
   function n(d) {
-    return d.trim().split(d.includes("_") ? /_|\s/ : /(?=[A-Z])/g).map((r2) => r2.charAt(0).toUpperCase() + r2.toLowerCase().slice(1)).join("");
+    return d.trim().split(d.includes("_") || d.includes("-") || d.includes(" ") ? /_|\s|-/ : /(?=[A-Z])/g).map((i) => i.charAt(0).toUpperCase() + i.toLowerCase().slice(1)).join("");
   }
   e.stringToUpperCamel = n;
   function t(d) {
-    let r2 = true;
-    return d.trim().split(d.includes("_") ? /_|\s/ : /(?=[A-Z])/g).map((i) => r2 ? (r2 = false, i.toLowerCase()) : i.charAt(0).toUpperCase() + i.toLowerCase().slice(1)).join("");
+    let i = true;
+    return d.trim().split(d.includes("_") || d.includes("-") || d.includes(" ") ? /_|\s|-/ : /(?=[A-Z])/g).map((a) => i ? (i = false, a.toLowerCase()) : a.charAt(0).toUpperCase() + a.toLowerCase().slice(1)).join("");
   }
   e.stringToLowerCamel = t;
-  function o(d) {
-    return d.includes("_") ? d.toLowerCase() : a(d);
+  function r2(d) {
+    return d = d.trim(), d.includes("_") ? d.toLowerCase() : d.includes(" ") || d.includes("-") ? d.split(/\s|-/).join("_").toLowerCase() : s(d);
   }
-  e.stringToLowerSnake = o;
-  function s(d) {
+  e.stringToLowerSnake = r2;
+  function o(d) {
     return d.trim().split(/(?=[A-Z])/g).join("_").toUpperCase();
   }
-  e.camelToUpperSnake = s;
-  function a(d) {
+  e.camelToUpperSnake = o;
+  function s(d) {
     return d.trim().split(/(?=[A-Z])/g).join("_").toLowerCase();
   }
-  e.camelToLowerSnake = a;
-  function c(d) {
-    return d.trim().split("_").map((r2) => r2.charAt(0).toUpperCase() + r2.slice(1)).join("");
+  e.camelToLowerSnake = s;
+  function p(d) {
+    return d.trim().split("_").map((i) => i.charAt(0).toUpperCase() + i.slice(1)).join("");
   }
-  e.snakeToUpperCamel = c;
-  function g2(d) {
+  e.snakeToUpperCamel = p;
+  function _(d) {
     return d.trim().charAt(0).toLowerCase() + d.slice(1);
   }
-  e.lowerFirst = g2;
-  function v(d) {
+  e.lowerFirst = _;
+  function C2(d) {
     return d.trim().charAt(0).toUpperCase() + d.slice(1);
   }
-  e.upperFirst = v;
+  e.upperFirst = C2;
 })(N2 || (N2 = {}));
-var O2 = be2.JavaGeneratorAddition;
-var Oo = ue.createHotSwapPlugin(() => {
-  const e = "value";
-  function n(t) {
-    return N2.stringToUpperCamel(t._attributes.name);
+var j3 = we.JavaGeneratorAddition;
+var Io = le2.createHotSwapPlugin(() => {
+  const e = "value", n = "command", t = "event";
+  function r2(o) {
+    return N2.stringToUpperCamel(o._attributes.name);
   }
   return {
-    unmount({ api: t }) {
-      t.commands.clearCaches(), t.commands._setCommandCodeProvider(() => []), t.commands._setFacadeCommandCodeProvider(() => []), t.commands._setAggCodeProvider(() => []), t.commands._setEventCodeProvider(() => []), t.commands._setReadModelCodeProvider(() => []), t.commands._setCodeFileProvider(() => []), t.commands.setContext({});
+    unmount({ api: o }) {
+      o.commands.clearCaches(), o.commands._setCommandCodeProvider(() => []), o.commands._setFacadeCommandCodeProvider(() => []), o.commands._setAggCodeProvider(() => []), o.commands._setEventCodeProvider(() => []), o.commands._setReadModelCodeProvider(() => []), o.commands._setCodeFileProvider(() => []), o.commands.setContext({});
     },
-    mount({ api: t }) {
-      const o = t.states.context, s = t.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((r2) => N2.stringToLowerCamel(r2));
-      function a(r2) {
-        return !s.includes(N2.stringToLowerCamel(r2._attributes.name));
+    mount({ api: o }) {
+      const s = o.states.context, p = o.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((a) => N2.stringToLowerCamel(a));
+      function _(a) {
+        return !p.includes(N2.stringToLowerCamel(a._attributes.name));
       }
-      function c(r2, i) {
-        return a(i) ? N2.stringToUpperCamel(i._attributes.name) : v(r2, i);
+      function C2(a, l2) {
+        return _(l2) ? N2.stringToUpperCamel(l2._attributes.name) : i(a, l2);
       }
-      function g2(r2, i) {
-        for (const l2 of i) {
-          if (!a(l2)) {
-            v(r2, l2);
+      function d(a, l2) {
+        for (const f of l2) {
+          if (!_(f)) {
+            i(a, f);
             continue;
           }
-          r2.add(
-            `${o.value.namespace}.${o.value.moduleName}.${e}.${n(l2)}`
+          a.add(
+            `${s.value.namespace}.${s.value.moduleName}.${e}.${r2(f)}`
           );
         }
       }
-      function v(r2, i) {
-        const l2 = o.value.additions, m2 = N2.stringToLowerSnake(i._attributes.name).replace(/_/, " ");
-        return /\b(time|timestamp|date|deadline|expire)\b/.test(m2) ? l2.has(O2.Timezone) ? (r2.add("java.time.OffsetDateTime"), "OffsetDateTime") : (r2.add("java.time.LocalDateTime"), "LocalDateTime") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(m2) ? "Integer" : /\b(price)$/.test(m2) ? (r2.add("java.math.BigDecimal"), "BigDecimal") : /^(if|is)\b/.test(m2) ? "Boolean" : Ee(i) && (i._attributes.type === "Id" || i._attributes.type === "Version") ? "Long" : "String";
+      function i(a, l2) {
+        const f = s.value.additions, b2 = N2.stringToLowerSnake(l2._attributes.name).replace(/_/, " ");
+        return /\b(time|timestamp|date|deadline|expire)\b/.test(b2) ? f.has(j3.Timezone) ? (a.add("java.time.OffsetDateTime"), "OffsetDateTime") : (a.add("java.time.LocalDateTime"), "LocalDateTime") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(b2) ? "Integer" : /\b(price)$/.test(b2) ? (a.add("java.math.BigDecimal"), "BigDecimal") : /^(if|is)\b/.test(b2) ? "Boolean" : Ee(l2) && (l2._attributes.type === "Id" || l2._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(b2)) ? "Long" : "String";
       }
-      t.commands._setInfoCodeProvider(
-        (r2) => {
-          const i = /* @__PURE__ */ new Set();
-          i.add(o.value.nonNullAnnotation);
-          const l2 = o.value.nonNullAnnotation.split(".").pop(), m2 = n(r2), C2 = o.value.additions, p = [];
-          return C2.has(O2.RecordVakueObject) ? (p.push(`public record ${m2}(@${l2} ${v(i, r2)} value) {`), p.push(`    public ${m2} {`), p.push("        // HACK check value"), p.push("    }"), p.push("}")) : C2.has(O2.Lombok) ? (p.push("@lombok.Getter"), p.push(`public class ${m2} {`), p.push(`    private final ${v(i, r2)} value;`), p.push(""), p.push(`    public ${m2} (@${l2} ${v(i, r2)} value) {`), p.push("        // HACK check value"), p.push("        this.value = value;"), p.push("    }"), p.push("}")) : (p.push(`public class ${n(r2)} {`), p.push(`    private final ${v(i, r2)} value;`), p.push(""), p.push(`    public ${m2} (@${l2} ${v(i, r2)} value) {`), p.push("        // HACK check value"), p.push("        this.value = value;"), p.push("    }"), p.push(""), p.push(`    public ${v(i, r2)} getValue() {`), p.push("        return this.value;"), p.push("    }"), p.push("}")), [
+      o.commands._setInfoCodeProvider(
+        (a) => {
+          const l2 = /* @__PURE__ */ new Set();
+          l2.add(s.value.nonNullAnnotation);
+          const f = s.value.nonNullAnnotation.split(".").pop(), b2 = r2(a), g2 = s.value.additions, u = [];
+          return g2.has(j3.RecordValueObject) ? (g2.has(j3.Jpa) && (l2.add(
+            s.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
+          ), u.push("@Embeddable")), u.push(`public record ${b2}(@${f} ${i(l2, a)} value) {`), u.push(`    public ${b2} {`), u.push("        // HACK check value"), u.push("    }"), u.push("}")) : g2.has(j3.Lombok) ? (u.push("@lombok.Getter"), g2.has(j3.Jpa) && (l2.add(
+            s.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
+          ), u.push("@Embeddable")), u.push(`public class ${b2} {`), u.push(`    private final ${i(l2, a)} value;`), u.push(""), u.push(`    public ${b2} (@${f} ${i(l2, a)} value) {`), u.push("        // HACK check value"), u.push("        this.value = value;"), u.push("    }"), u.push("}")) : (g2.has(j3.Jpa) && (l2.add(
+            s.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
+          ), u.push("@Embeddable")), u.push(`public class ${r2(a)} {`), u.push(`    private final ${i(l2, a)} value;`), u.push(""), u.push(`    public ${b2} (@${f} ${i(l2, a)} value) {`), u.push("        // HACK check value"), u.push("        this.value = value;"), u.push("    }"), u.push(""), u.push(`    public ${i(l2, a)} getValue() {`), u.push("        return this.value;"), u.push("    }"), u.push("}")), [
             {
               type: "Info",
-              imports: i,
-              content: p.join(`
+              imports: l2,
+              content: u.join(`
 `)
             }
           ];
         }
-      );
-      function d(r2) {
-        const i = [], l2 = o.value.additions, m2 = o.value.nonNullAnnotation.split(".").pop();
-        {
-          const C2 = /* @__PURE__ */ new Set();
-          C2.add(o.value.nonNullAnnotation);
-          const p = n(r2), f = [], $2 = Object.values(r2.inner);
-          if (g2(C2, $2), l2.has(O2.RecordVakueObject)) {
-            l2.has(O2.LombokBuilder) && f.push("@lombok.Builder(toBuilder = true)"), f.push(`public record ${p}(`);
-            const _ = [];
-            for (const b2 of $2) {
-              const h2 = n(b2);
-              _.push(
-                `        @${m2}
-        ${c(
-                  C2,
-                  b2
-                )} ${N2.lowerFirst(h2)}`
-              );
-            }
-            f.push(_.join(`,
-`)), f.push(") {"), f.push(`    public ${p} {`), f.push("        // HACK check value"), f.push("    }"), f.push("}");
-          } else if (l2.has(O2.Lombok)) {
-            f.push("@lombok.AllArgsConstructor"), f.push("@lombok.Getter"), l2.has(O2.LombokBuilder) && f.push("@lombok.Builder(toBuilder = true)"), f.push(`public class ${p} {`);
-            for (const _ of $2) {
-              const b2 = n(_);
-              f.push(`    @${m2}`), f.push(
-                `    private final ${c(C2, _)} ${N2.lowerFirst(b2)};`
-              );
-            }
-            f.push("}");
-          } else {
-            f.push(`public class ${p} {`);
-            for (const h2 of $2) {
-              const u = n(h2);
-              f.push(`    @${m2}`), f.push(
-                `    private final ${c(C2, h2)} ${N2.lowerFirst(u)};`
-              );
-            }
-            f.push("");
-            const _ = [], b2 = [];
-            for (const h2 of $2) {
-              const u = n(h2);
-              _.push(
-                `@${m2} ${v(C2, h2)} ${N2.lowerFirst(u)}`
-              ), b2.push(`this.${N2.lowerFirst(u)} = ${N2.lowerFirst(u)};`);
-            }
-            f.push(`    public ${p}(${_.join(", ")}) {`), f.push(`        ${b2.join(`
-        `)}`), f.push("    }");
-            for (const h2 of $2) {
-              const u = n(h2);
-              f.push(""), f.push(`    public ${c(C2, h2)} get${u} () {`), f.push(`        return this.${N2.lowerFirst(u)};`), f.push("    }");
-            }
-            f.push("}");
-          }
-          i.push({
-            type: "Command",
-            imports: C2,
-            content: f.join(`
-`)
-          });
-        }
-        if (!l2.has(O2.CommandHandler))
-          return i;
-        {
-          const C2 = /* @__PURE__ */ new Set();
-          C2.add(o.value.nonNullAnnotation);
-          const p = n(r2), f = [];
-          l2.has(O2.SpringFramework) && (C2.add("org.springframework.stereotype.Component"), f.push("@Component")), l2.has(O2.Lombok) && f.push("@lombok.RequiredArgsConstructor"), f.push(`public class ${p}Handler {`);
-          const $2 = [...t.states.designer.value._getContext().getAssociationMap()[r2._attributes.__id]].filter(
-            (_) => _._attributes.rule === "Agg"
-          );
-          for (const _ of $2)
-            C2.add(`${o.value.namespace}.${o.value.moduleName}.${n(_)}`), f.push(`    public ${n(_)} handle(@${m2} ${p} command) {`), f.push("        // HACK Implement"), f.push("    }");
-          f.push("}"), i.push({
-            type: "CommandHandler",
-            imports: C2,
-            content: f.join(`
-`)
-          });
-        }
-        return i;
-      }
-      t.commands._setCommandCodeProvider(d), t.commands._setFacadeCommandCodeProvider(d), t.commands._setAggCodeProvider(
-        (r2) => {
-          const i = o.value.additions, l2 = t.states.designer.value, m2 = o.value.nonNullAnnotation.split(".").pop(), C2 = n(r2), p = [];
+      ), o.commands._setCommandCodeProvider(
+        (a) => {
+          const l2 = [], f = s.value.additions, b2 = s.value.nonNullAnnotation.split(".").pop();
           {
-            const f = /* @__PURE__ */ new Set();
-            f.add(o.value.nonNullAnnotation);
-            const $2 = [], _ = [], b2 = [...l2._getContext().getAssociationMap()[r2._attributes.__id]].filter((h2) => h2._attributes.rule === "Command" || h2._attributes.rule === "FacadeCommand");
-            for (const h2 of b2) {
-              const u = n(h2);
-              _.push(`public void handle${u}(@${m2} ${u} command);`);
-            }
-            $2.push(`public interface ${C2} {`), $2.push(`    ${_.join(`
-
-    `)}`), $2.push("}"), p.push({
-              type: "Agg",
-              imports: f,
-              content: $2.join(`
-`)
-            });
-          }
-          {
-            const f = /* @__PURE__ */ new Set();
-            f.add(o.value.nonNullAnnotation);
-            const $2 = [], _ = Object.values(r2.inner);
-            if (g2(f, _), i.has(O2.Lombok)) {
-              $2.push("@lombok.AllArgsConstructor"), $2.push("@lombok.Getter"), $2.push(`public class ${C2}Impl implements ${C2} {`);
-              for (const h2 of _) {
-                const u = n(h2);
-                $2.push(`    @${m2}`), $2.push(`    private ${c(f, h2)} ${N2.lowerFirst(u)};`);
+            const g2 = /* @__PURE__ */ new Set();
+            g2.add(s.value.nonNullAnnotation);
+            const u = r2(a), v = [], m2 = Object.values(a.inner);
+            if (d(g2, m2), f.has(j3.RecordValueObject)) {
+              f.has(j3.LombokBuilder) && v.push("@lombok.Builder(toBuilder = true)"), v.push(`public record ${u}(`);
+              const $2 = [];
+              for (const w2 of m2) {
+                const c = r2(w2);
+                $2.push(
+                  `        @${b2}
+        ${C2(
+                    g2,
+                    w2
+                  )} ${N2.lowerFirst(c)}`
+                );
               }
-              const b2 = [...l2._getContext().getAssociationMap()[r2._attributes.__id]].filter((h2) => h2._attributes.rule === "Command" || h2._attributes.rule === "FacadeCommand");
-              for (const h2 of b2) {
-                const u = n(h2);
-                $2.push(""), $2.push(
-                  `    public void handle${u}(@${m2} ${u} ${N2.lowerFirst(
-                    u
-                  )}) {`
-                ), $2.push("        // HACK need implement"), $2.push("    }");
+              v.push($2.join(`,
+`)), v.push(") {"), v.push(`    public ${u} {`), v.push("        // HACK check value"), v.push("    }"), v.push("}");
+            } else if (f.has(j3.Lombok)) {
+              v.push("@lombok.AllArgsConstructor"), v.push("@lombok.Getter"), f.has(j3.LombokBuilder) && v.push("@lombok.Builder(toBuilder = true)"), v.push(`public class ${u} {`);
+              for (const $2 of m2) {
+                const w2 = r2($2);
+                v.push(`    @${b2}`), v.push(
+                  `    private final ${C2(g2, $2)} ${N2.lowerFirst(w2)};`
+                );
               }
-              $2.push("}");
+              v.push("}");
             } else {
-              $2.push(`public class ${C2}Impl implements ${C2} {`);
-              for (const w2 of _) {
-                const y3 = n(w2);
-                $2.push(`    @${m2}`), $2.push(`    private ${c(f, w2)} ${N2.lowerFirst(y3)};`);
+              v.push(`public class ${u} {`);
+              for (const c of m2) {
+                const h2 = r2(c);
+                v.push(`    @${b2}`), v.push(
+                  `    private final ${C2(g2, c)} ${N2.lowerFirst(h2)};`
+                );
               }
-              $2.push("");
-              const b2 = [], h2 = [];
-              for (const w2 of _) {
-                const y3 = n(w2);
-                b2.push(
-                  `@${m2} ${c(f, w2)} ${N2.lowerFirst(y3)}`
-                ), h2.push(`this.${N2.lowerFirst(y3)} = ${N2.lowerFirst(y3)};`);
+              v.push("");
+              const $2 = [], w2 = [];
+              for (const c of m2) {
+                const h2 = r2(c);
+                $2.push(
+                  `@${b2} ${i(g2, c)} ${N2.lowerFirst(h2)}`
+                ), w2.push(`this.${N2.lowerFirst(h2)} = ${N2.lowerFirst(h2)};`);
               }
-              $2.push(`    public ${C2}(${b2.join(", ")}) {`), $2.push(`        ${h2.join(`
-        `)}`), $2.push("    }");
-              for (const w2 of _) {
-                const y3 = n(w2);
-                $2.push(""), $2.push(`    @${m2}`), $2.push(`    public ${c(f, w2)} get${y3}() {`), $2.push(`        return this.${N2.lowerFirst(y3)};`), $2.push("    }");
+              v.push(`    public ${u}(${$2.join(", ")}) {`), v.push(`        ${w2.join(`
+        `)}`), v.push("    }");
+              for (const c of m2) {
+                const h2 = r2(c);
+                v.push(""), v.push(`    public ${C2(g2, c)} get${h2} () {`), v.push(`        return this.${N2.lowerFirst(h2)};`), v.push("    }");
               }
-              const u = [...l2._getContext().getAssociationMap()[r2._attributes.__id]].filter(
-                (w2) => w2._attributes.rule === "Command" || w2._attributes.rule === "FacadeCommand"
-              );
-              for (const w2 of u) {
-                const y3 = n(w2);
-                $2.push(""), $2.push(
-                  `    public void handle${y3}(@${m2} ${y3} ${N2.lowerFirst(
-                    y3
-                  )}) {`
-                ), $2.push("        // HACK need implement"), $2.push("    }");
-              }
-              $2.push("}");
+              v.push("}");
             }
-            p.push({
-              type: "AggImpl",
-              imports: f,
-              content: $2.join(`
+            l2.push({
+              type: "Command",
+              imports: g2,
+              content: v.join(`
 `)
             });
           }
-          return p;
+          if (!f.has(j3.CommandHandler))
+            return l2;
+          {
+            const g2 = /* @__PURE__ */ new Set();
+            g2.add(s.value.nonNullAnnotation);
+            const u = r2(a), v = [];
+            f.has(j3.SpringFramework) && (g2.add("org.springframework.stereotype.Component"), v.push("@Component")), f.has(j3.Lombok) && v.push("@lombok.RequiredArgsConstructor"), v.push(`public class ${u}Handler {`);
+            const m2 = [...o.states.designer.value._getContext().getAssociationMap()[a._attributes.__id]].filter(
+              ($2) => $2._attributes.rule === "Agg"
+            );
+            for (const $2 of m2)
+              g2.add(`${s.value.namespace}.${s.value.moduleName}.${r2($2)}`), v.push(`    public ${r2($2)} handle(@${b2} ${u} command) {`), v.push("        // HACK Implement"), v.push("    }");
+            v.push("}"), l2.push({
+              type: "CommandHandler",
+              imports: g2,
+              content: v.join(`
+`)
+            });
+          }
+          return l2;
         }
-      ), t.commands._setEventCodeProvider(
-        (r2) => {
-          const i = /* @__PURE__ */ new Set();
-          i.add(o.value.nonNullAnnotation);
-          const l2 = o.value.nonNullAnnotation.split(".").pop(), m2 = o.value.additions, C2 = n(r2), p = [], f = Object.values(r2.inner);
-          if (g2(i, f), m2.has(O2.RecordVakueObject)) {
-            m2.has(O2.LombokBuilder) && p.push("@lombok.Builder(toBuilder = true)"), p.push(`public record ${C2}(`);
+      ), o.commands._setFacadeCommandCodeProvider((a) => {
+        const l2 = [], f = s.value.additions, b2 = s.value.nonNullAnnotation.split(".").pop();
+        {
+          const g2 = /* @__PURE__ */ new Set();
+          g2.add(s.value.nonNullAnnotation);
+          const u = r2(a), v = [], m2 = Object.values(a.inner);
+          if (d(g2, m2), f.has(j3.RecordValueObject)) {
+            f.has(j3.LombokBuilder) && v.push("@lombok.Builder(toBuilder = true)"), v.push(`public record ${u}(`);
             const $2 = [];
-            for (const _ of f) {
-              const b2 = n(_);
+            for (const w2 of m2) {
+              const c = r2(w2);
               $2.push(
-                `        @${l2}
-        ${c(
-                  i,
-                  _
-                )} ${N2.lowerFirst(b2)}`
+                `        @${b2}
+        ${C2(
+                  g2,
+                  w2
+                )} ${N2.lowerFirst(c)}`
               );
             }
-            p.push($2.join(`,
-`)), p.push(") {"), p.push(`    public ${C2} {`), p.push("        // HACK check value"), p.push("    }"), p.push("}");
-          } else if (m2.has(O2.Lombok)) {
-            p.push("@lombok.AllArgsConstructor"), p.push("@lombok.Getter"), m2.has(O2.LombokBuilder) && p.push("@lombok.Builder(toBuilder = true)"), p.push(`public class ${C2} {`);
-            for (const $2 of f) {
-              const _ = n($2);
-              p.push(`    @${l2}`), p.push(
-                `    private final ${c(i, $2)} ${N2.lowerFirst(_)};`
+            v.push($2.join(`,
+`)), v.push(") {"), v.push(`    public ${u} {`), v.push("        // HACK check value"), v.push("    }"), v.push("}");
+          } else if (f.has(j3.Lombok)) {
+            v.push("@lombok.AllArgsConstructor"), v.push("@lombok.Getter"), f.has(j3.LombokBuilder) && v.push("@lombok.Builder(toBuilder = true)"), v.push(`public class ${u} {`);
+            for (const $2 of m2) {
+              const w2 = r2($2);
+              v.push(`    @${b2}`), v.push(
+                `    private final ${C2(g2, $2)} ${N2.lowerFirst(w2)};`
               );
             }
-            p.push("}");
+            v.push("}");
           } else {
-            p.push(`public class ${C2} {`);
-            for (const b2 of f) {
-              const h2 = n(b2);
-              p.push(`    @${l2}`), p.push(`    private final ${h2} ${N2.lowerFirst(h2)};`);
+            v.push(`public class ${u} {`);
+            for (const c of m2) {
+              const h2 = r2(c);
+              v.push(`    @${b2}`), v.push(
+                `    private final ${C2(g2, c)} ${N2.lowerFirst(h2)};`
+              );
             }
-            p.push("");
-            const $2 = [], _ = [];
-            for (const b2 of f) {
-              const h2 = n(b2);
+            v.push("");
+            const $2 = [], w2 = [];
+            for (const c of m2) {
+              const h2 = r2(c);
               $2.push(
-                `@${l2} ${v(i, b2)} ${N2.lowerFirst(h2)}`
-              ), _.push(`this.${N2.lowerFirst(h2)} = ${N2.lowerFirst(h2)};`);
+                `@${b2} ${i(g2, c)} ${N2.lowerFirst(h2)}`
+              ), w2.push(`this.${N2.lowerFirst(h2)} = ${N2.lowerFirst(h2)};`);
             }
-            p.push(`    public ${C2}(${$2.join(", ")}) {`), p.push(`        ${_.join(`
-        `)}`), p.push("    }");
-            for (const b2 of f) {
-              const h2 = n(b2);
-              p.push(""), p.push(`    public ${h2} get${h2} () {`), p.push(`        return this.${N2.lowerFirst(h2)};`), p.push("    }");
+            v.push(`    public ${u}(${$2.join(", ")}) {`), v.push(`        ${w2.join(`
+        `)}`), v.push("    }");
+            for (const c of m2) {
+              const h2 = r2(c);
+              v.push(""), v.push(`    public ${C2(g2, c)} get${h2} () {`), v.push(`        return this.${N2.lowerFirst(h2)};`), v.push("    }");
             }
-            p.push("}");
+            v.push("}");
+          }
+          l2.push({
+            type: "FacadeCommand",
+            imports: g2,
+            content: v.join(`
+`)
+          });
+        }
+        if (!f.has(j3.CommandHandler))
+          return l2;
+        {
+          const g2 = /* @__PURE__ */ new Set();
+          g2.add(s.value.nonNullAnnotation);
+          const u = r2(a), v = [];
+          f.has(j3.SpringFramework) && (g2.add("org.springframework.stereotype.Component"), v.push("@Component")), f.has(j3.Lombok) && v.push("@lombok.RequiredArgsConstructor"), v.push(`public class ${u}Handler {`);
+          const m2 = [...o.states.designer.value._getContext().getAssociationMap()[a._attributes.__id]].filter(
+            ($2) => $2._attributes.rule === "Agg"
+          );
+          for (const $2 of m2)
+            g2.add(`${s.value.namespace}.${s.value.moduleName}.${r2($2)}`), v.push(`    public ${r2($2)} handle(@${b2} ${u} command) {`), v.push("        // HACK Implement"), v.push("    }");
+          v.push("}"), l2.push({
+            type: "FacadeCommandHandler",
+            imports: g2,
+            content: v.join(`
+`)
+          });
+        }
+        return l2;
+      }), o.commands._setAggCodeProvider(
+        (a) => {
+          const l2 = s.value.additions, f = o.states.designer.value, b2 = s.value.nonNullAnnotation.split(".").pop(), g2 = r2(a), u = [];
+          {
+            const v = /* @__PURE__ */ new Set();
+            v.add(s.value.nonNullAnnotation);
+            const m2 = [], $2 = [], w2 = [...f._getContext().getAssociationMap()[a._attributes.__id]].filter((c) => c._attributes.rule === "Command" || c._attributes.rule === "FacadeCommand");
+            for (const c of w2) {
+              const h2 = r2(c);
+              v.add(`${s.value.namespace}.${s.value.moduleName}.${n}.${h2}`), $2.push(`public void handle${h2}(@${b2} ${h2} command);`);
+            }
+            m2.push(`public interface ${g2} {`), m2.push(`    ${$2.join(`
+
+    `)}`), m2.push("}"), u.push({
+              type: "Agg",
+              imports: v,
+              content: m2.join(`
+`)
+            });
+          }
+          {
+            const v = /* @__PURE__ */ new Set();
+            v.add(s.value.nonNullAnnotation);
+            const m2 = [], $2 = Object.values(a.inner);
+            if (d(v, $2), l2.has(j3.Lombok)) {
+              m2.push(
+                l2.has(j3.Jpa) ? "@lombok.NoArgsConstructor" : "@lombok.AllArgsConstructor"
+              ), m2.push("@lombok.Getter"), l2.has(j3.Jpa) && (v.add(
+                s.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
+              ), m2.push("@Entity"), v.add(s.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table"), m2.push(`@Table(name = "${N2.camelToLowerSnake(g2)}")`)), m2.push(`public class ${g2}Impl implements ${g2} {`);
+              for (const c of $2) {
+                const h2 = r2(c);
+                m2.push(`    @${b2}`), l2.has(j3.Jpa) && (c._attributes.type === "Id" && (v.add(s.value.jdkVersion === "8" ? "javax.persistence.Id" : "jakarta.persistence.Id"), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.GeneratedValue" : "jakarta.persistence.GeneratedValue"
+                ), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.GenerationType" : "jakarta.persistence.GenerationType"
+                ), m2.push(`    @GeneratedValue(strategy = GenerationType.${s.value.idGenStrategy})`), m2.push("    @Id")), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
+                ), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), m2.push(
+                  `    @AttributeOverride(name = "value", column = @Column(name = "${N2.camelToLowerSnake(
+                    h2
+                  )}"))`
+                )), m2.push(`    private ${C2(v, c)} ${N2.lowerFirst(h2)};`);
+              }
+              const w2 = [...f._getContext().getAssociationMap()[a._attributes.__id]].filter((c) => c._attributes.rule === "Command" || c._attributes.rule === "FacadeCommand");
+              for (const c of w2) {
+                const h2 = r2(c);
+                v.add(`${s.value.namespace}.${s.value.moduleName}.${n}.${h2}`), m2.push(""), m2.push(
+                  `    public void handle${h2}(@${b2} ${h2} ${N2.lowerFirst(
+                    h2
+                  )}) {`
+                ), m2.push("        // HACK need implement"), m2.push("    }");
+              }
+              m2.push("}");
+            } else {
+              l2.has(j3.Jpa) && (v.add(
+                s.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
+              ), m2.push("@Entity"), v.add(s.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table"), m2.push(`@Table(name = "${N2.camelToLowerSnake(g2)}")`)), m2.push(`public class ${g2}Impl implements ${g2} {`);
+              for (const y3 of $2) {
+                const I2 = r2(y3);
+                m2.push(`    @${b2}`), l2.has(j3.Jpa) && (y3._attributes.type === "Id" && (v.add(s.value.jdkVersion === "8" ? "javax.persistence.Id" : "jakarta.persistence.Id"), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.GeneratedValue" : "jakarta.persistence.GeneratedValue"
+                ), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.GenerationType" : "jakarta.persistence.GenerationType"
+                ), m2.push(`    @GeneratedValue(strategy = GenerationType.${s.value.idGenStrategy})`), m2.push("    @Id")), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
+                ), v.add(
+                  s.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), m2.push(
+                  `    @AttributeOverride(name = "value", column = @Column(name = "${N2.camelToLowerSnake(
+                    I2
+                  )}"))`
+                )), m2.push(`    private ${C2(v, y3)} ${N2.lowerFirst(I2)};`);
+              }
+              m2.push("");
+              const w2 = [], c = [];
+              for (const y3 of $2) {
+                if (l2.has(j3.Jpa))
+                  break;
+                const I2 = r2(y3);
+                w2.push(
+                  `@${b2} ${C2(v, y3)} ${N2.lowerFirst(I2)}`
+                ), c.push(`this.${N2.lowerFirst(I2)} = ${N2.lowerFirst(I2)};`);
+              }
+              m2.push(`    public ${g2}Impl(${w2.join(", ")}) {`), m2.push(`        ${c.join(`
+        `)}`), m2.push("    }");
+              for (const y3 of $2) {
+                const I2 = r2(y3);
+                m2.push(""), m2.push(`    @${b2}`), m2.push(`    public ${C2(v, y3)} get${I2}() {`), m2.push(`        return this.${N2.lowerFirst(I2)};`), m2.push("    }");
+              }
+              const h2 = [...f._getContext().getAssociationMap()[a._attributes.__id]].filter(
+                (y3) => y3._attributes.rule === "Command" || y3._attributes.rule === "FacadeCommand"
+              );
+              for (const y3 of h2) {
+                const I2 = r2(y3);
+                v.add(`${s.value.namespace}.${s.value.moduleName}.${n}.${I2}`), m2.push(""), m2.push(
+                  `    public void handle${I2}(@${b2} ${I2} ${N2.lowerFirst(
+                    I2
+                  )}) {`
+                ), m2.push("        // HACK need implement"), m2.push("    }");
+              }
+              m2.push("}");
+            }
+            u.push({
+              type: "AggImpl",
+              imports: v,
+              content: m2.join(`
+`)
+            });
+          }
+          return u;
+        }
+      ), o.commands._setEventCodeProvider(
+        (a) => {
+          const l2 = /* @__PURE__ */ new Set();
+          l2.add(s.value.nonNullAnnotation);
+          const f = s.value.nonNullAnnotation.split(".").pop(), b2 = s.value.additions, g2 = r2(a), u = [], v = Object.values(a.inner);
+          if (d(l2, v), b2.has(j3.RecordValueObject)) {
+            b2.has(j3.LombokBuilder) && u.push("@lombok.Builder(toBuilder = true)"), u.push(`public record ${g2}(`);
+            const m2 = [];
+            for (const $2 of v) {
+              const w2 = r2($2);
+              m2.push(
+                `        @${f}
+        ${C2(
+                  l2,
+                  $2
+                )} ${N2.lowerFirst(w2)}`
+              );
+            }
+            u.push(m2.join(`,
+`)), u.push(") {"), u.push(`    public ${g2} {`), u.push("        // HACK check value"), u.push("    }"), u.push("}");
+          } else if (b2.has(j3.Lombok)) {
+            u.push("@lombok.AllArgsConstructor"), u.push("@lombok.Getter"), b2.has(j3.LombokBuilder) && u.push("@lombok.Builder(toBuilder = true)"), u.push(`public class ${g2} {`);
+            for (const m2 of v) {
+              const $2 = r2(m2);
+              u.push(`    @${f}`), u.push(
+                `    private final ${C2(l2, m2)} ${N2.lowerFirst($2)};`
+              );
+            }
+            u.push("}");
+          } else {
+            u.push(`public class ${g2} {`);
+            for (const w2 of v) {
+              const c = r2(w2);
+              u.push(`    @${f}`), u.push(`    private final ${c} ${N2.lowerFirst(c)};`);
+            }
+            u.push("");
+            const m2 = [], $2 = [];
+            for (const w2 of v) {
+              const c = r2(w2);
+              m2.push(
+                `@${f} ${i(l2, w2)} ${N2.lowerFirst(c)}`
+              ), $2.push(`this.${N2.lowerFirst(c)} = ${N2.lowerFirst(c)};`);
+            }
+            u.push(`    public ${g2}(${m2.join(", ")}) {`), u.push(`        ${$2.join(`
+        `)}`), u.push("    }");
+            for (const w2 of v) {
+              const c = r2(w2);
+              u.push(""), u.push(`    public ${c} get${c} () {`), u.push(`        return this.${N2.lowerFirst(c)};`), u.push("    }");
+            }
+            u.push("}");
           }
           return [
             {
               type: "Event",
-              imports: i,
-              content: p.join(`
+              imports: l2,
+              content: u.join(`
 `)
             }
           ];
         }
-      ), t.commands._setReadModelCodeProvider(() => []), t.commands._setCodeFileProvider(() => {
-        const r2 = [], i = {};
-        function l2($2) {
-          for (const _ of Object.values($2)) {
-            if (!a(_))
+      ), o.commands._setReadModelCodeProvider(() => []), o.commands._setCodeFileProvider(() => {
+        const a = [], l2 = {};
+        function f(m2) {
+          for (const $2 of Object.values(m2)) {
+            if (!_($2))
               continue;
-            const b2 = [...o.value.namespace.split(/\./), o.value.moduleName, e], h2 = n(_) + ".java";
-            if (i[`${b2.join("/")}/${h2}`] === true)
+            const w2 = [...s.value.namespace.split(/\./), s.value.moduleName, e], c = r2($2) + ".java";
+            if (l2[`${w2.join("/")}/${c}`] === true)
               continue;
-            const u = t.commands._genInfoCode(_);
-            if (u.length === 0)
+            const h2 = o.commands._genInfoCode($2);
+            if (h2.length === 0)
               continue;
-            const w2 = new j3(b2, h2);
-            w2.appendContentln(`package ${o.value.namespace}.${o.value.moduleName}.${e};`), w2.appendContentln("");
-            for (const y3 of u[0].imports)
-              w2.appendContentln(`import ${y3};`);
-            w2.appendContentln(""), w2.appendContentln(u[0].content), r2.push(w2), i[`${b2.join("/")}/${h2}`] = true;
+            const y3 = new S2(w2, c);
+            y3.appendContentln(`package ${s.value.namespace}.${s.value.moduleName}.${e};`), y3.appendContentln("");
+            for (const I2 of h2[0].imports)
+              y3.appendContentln(`import ${I2};`);
+            y3.appendContentln(""), y3.appendContentln(h2[0].content), a.push(y3), l2[`${w2.join("/")}/${c}`] = true;
           }
         }
-        const m2 = t.states.designer.value._getContext().getCommands();
-        for (const $2 of m2) {
-          l2($2.inner);
-          const _ = t.commands._genCommandCode($2), b2 = [...o.value.namespace.split(/\./), o.value.moduleName];
-          _.forEach((h2) => {
-            if (h2.type === "Command") {
-              const u = new j3(b2, n($2) + ".java");
-              u.appendContentln(`package ${o.value.namespace}.${o.value.moduleName};`), u.appendContentln(""), u.addImports(h2.imports);
-              for (const w2 of h2.imports)
-                u.appendContentln(`import ${w2};`);
-              u.appendContentln(""), u.appendContentln(h2.content), r2.push(u);
-            } else if (h2.type === "CommandHandler") {
-              const u = new j3(b2, n($2) + "Handler.java");
-              u.appendContentln(`package ${o.value.namespace}.${o.value.moduleName};`), u.appendContentln(""), u.addImports(h2.imports);
-              for (const w2 of h2.imports)
-                u.appendContentln(`import ${w2};`);
-              u.appendContentln(""), u.appendContentln(h2.content), r2.push(u);
+        const b2 = o.states.designer.value._getContext().getCommands();
+        for (const m2 of b2) {
+          f(m2.inner);
+          const $2 = o.commands._genCommandCode(m2), w2 = [...s.value.namespace.split(/\./), s.value.moduleName, n];
+          $2.forEach((c) => {
+            if (c.type === "Command") {
+              const h2 = new S2(w2, r2(m2) + ".java");
+              h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName}.${n};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y3 of c.imports)
+                h2.appendContentln(`import ${y3};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else if (c.type === "CommandHandler") {
+              const h2 = new S2(w2, r2(m2) + "Handler.java");
+              h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName}.${n};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y3 of c.imports)
+                h2.appendContentln(`import ${y3};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
             } else
-              isNever(h2.type);
+              isNever(c.type);
           });
         }
-        const C2 = t.states.designer.value._getContext().getFacadeCommands();
-        for (const $2 of C2) {
-          l2($2.inner);
-          const _ = t.commands._genFacadeCommandCode($2), b2 = [...o.value.namespace.split(/\./), o.value.moduleName];
-          _.forEach((h2) => {
-            if (h2.type === "FacadeCommand") {
-              const u = new j3(b2, n($2) + ".java");
-              u.appendContentln(`package ${o.value.namespace}.${o.value.moduleName};`), u.appendContentln(""), u.addImports(h2.imports);
-              for (const w2 of h2.imports)
-                u.appendContentln(`import ${w2};`);
-              u.appendContentln(""), u.appendContentln(h2.content), r2.push(u);
+        const g2 = o.states.designer.value._getContext().getFacadeCommands();
+        for (const m2 of g2) {
+          f(m2.inner);
+          const $2 = o.commands._genFacadeCommandCode(m2), w2 = [...s.value.namespace.split(/\./), s.value.moduleName, n];
+          $2.forEach((c) => {
+            if (c.type === "FacadeCommand") {
+              const h2 = new S2(w2, r2(m2) + ".java");
+              h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName}.${n};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y3 of c.imports)
+                h2.appendContentln(`import ${y3};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else if (c.type === "FacadeCommandHandler") {
+              const h2 = new S2(w2, r2(m2) + "Handler.java");
+              h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName}.${n};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y3 of c.imports)
+                h2.appendContentln(`import ${y3};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
             } else
-              isNever(h2.type);
+              isNever(c.type);
           });
         }
-        const p = t.states.designer.value._getContext().getAggs();
-        for (const $2 of p) {
-          l2($2.inner);
-          const _ = t.commands._genAggCode($2), b2 = [...o.value.namespace.split(/\./), o.value.moduleName];
-          _.forEach((h2) => {
-            if (h2.type === "Agg") {
-              const u = new j3(b2, n($2) + ".java");
-              u.appendContentln(`package ${o.value.namespace}.${o.value.moduleName};`), u.appendContentln(""), u.addImports(h2.imports);
-              for (const w2 of h2.imports)
-                u.appendContentln(`import ${w2};`);
-              u.appendContentln(""), u.appendContentln(h2.content), r2.push(u);
-            } else if (h2.type === "AggImpl") {
-              const u = new j3(b2, n($2) + "Impl.java");
-              u.appendContentln(`package ${o.value.namespace}.${o.value.moduleName};`), u.appendContentln(""), u.addImports(h2.imports);
-              for (const w2 of h2.imports)
-                u.appendContentln(`import ${w2};`);
-              u.appendContentln(""), u.appendContentln(h2.content), r2.push(u);
+        const u = o.states.designer.value._getContext().getAggs();
+        for (const m2 of u) {
+          f(m2.inner);
+          const $2 = o.commands._genAggCode(m2), w2 = [...s.value.namespace.split(/\./), s.value.moduleName];
+          $2.forEach((c) => {
+            if (c.type === "Agg") {
+              const h2 = new S2(w2, r2(m2) + ".java");
+              h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y3 of c.imports)
+                h2.appendContentln(`import ${y3};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else if (c.type === "AggImpl") {
+              const h2 = new S2(w2, r2(m2) + "Impl.java");
+              h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y3 of c.imports)
+                h2.appendContentln(`import ${y3};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
             } else
-              isNever(h2.type);
+              isNever(c.type);
           });
         }
-        const f = t.states.designer.value._getContext().getEvents();
-        for (const $2 of f) {
-          l2($2.inner);
-          const _ = t.commands._genEventCode($2), b2 = [...o.value.namespace.split(/\./), o.value.moduleName];
-          _.forEach((h2) => {
-            const u = new j3(b2, n($2) + ".java");
-            u.appendContentln(`package ${o.value.namespace}.${o.value.moduleName};`), u.appendContentln(""), u.addImports(h2.imports);
-            for (const w2 of h2.imports)
-              u.appendContentln(`import ${w2};`);
-            u.appendContentln(""), u.appendContentln(h2.content), r2.push(u);
+        const v = o.states.designer.value._getContext().getEvents();
+        for (const m2 of v) {
+          f(m2.inner);
+          const $2 = o.commands._genEventCode(m2), w2 = [...s.value.namespace.split(/\./), s.value.moduleName, t];
+          $2.forEach((c) => {
+            const h2 = new S2(w2, r2(m2) + ".java");
+            h2.appendContentln(`package ${s.value.namespace}.${s.value.moduleName}.${t};`), h2.appendContentln(""), h2.addImports(c.imports);
+            for (const y3 of c.imports)
+              h2.appendContentln(`import ${y3};`);
+            h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
           });
         }
-        return r2;
+        return a;
       });
     }
   };
 });
-var Te = we.KotlinGeneratorAddition;
-var Ao = ue.createHotSwapPlugin(() => ({
+var Fe = Ne.KotlinGeneratorAddition;
+var Oo = le2.createHotSwapPlugin(() => ({
   unmount({ api: e }) {
     e.commands.clearCaches(), e.commands._setCommandCodeProvider(() => []), e.commands._setFacadeCommandCodeProvider(() => []), e.commands._setAggCodeProvider(() => []), e.commands._setEventCodeProvider(() => []), e.commands._setReadModelCodeProvider(() => []), e.commands._setCodeFileProvider(() => []), e.commands.setContext({});
   },
   mount({ api: e }) {
-    const n = "value", t = e.states.context, o = e.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((d) => N2.stringToLowerCamel(d));
-    function s(d) {
-      return !o.includes(N2.stringToLowerCamel(d._attributes.name));
+    const n = "value", t = e.states.context, r2 = e.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((d) => N2.stringToLowerCamel(d));
+    function o(d) {
+      return !r2.includes(N2.stringToLowerCamel(d._attributes.name));
     }
-    function a(d, r2) {
-      return s(r2) ? N2.stringToUpperCamel(r2._attributes.name) : v(d, r2);
+    function s(d, i) {
+      return o(i) ? N2.stringToUpperCamel(i._attributes.name) : C2(d, i);
     }
-    function c(d) {
+    function p(d) {
       return N2.stringToUpperCamel(d._attributes.name);
     }
-    function g2(d, r2) {
-      for (const i of r2) {
-        if (!s(i)) {
-          v(d, i);
+    function _(d, i) {
+      for (const a of i) {
+        if (!o(a)) {
+          C2(d, a);
           continue;
         }
         d.add(
-          `${t.value.namespace}.${t.value.moduleName}.${n}.${c(i)}`
+          `${t.value.namespace}.${t.value.moduleName}.${n}.${p(a)}`
         );
       }
     }
-    function v(d, r2) {
-      const i = t.value.additions, l2 = N2.stringToLowerSnake(r2._attributes.name).replace(/_/, " ");
-      return /\b(time|timestamp|date|deadline|expire)\b/.test(l2) ? i.has(Te.Timezone) ? (d.add("java.time.OffsetDateTime"), "OffsetDateTime") : (d.add("java.time.LocalDateTime"), "LocalDateTime") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(l2) ? "Integer" : /\b(price)$/.test(l2) ? (d.add("java.math.BigDecimal"), "BigDecimal") : /^(if|is)\b/.test(l2) ? "Boolean" : Ee(r2) && (r2._attributes.type === "Id" || r2._attributes.type === "Version") ? "Long" : "String";
+    function C2(d, i) {
+      const a = t.value.additions, l2 = N2.stringToLowerSnake(i._attributes.name).replace(/_/, " ");
+      return /\b(time|timestamp|date|deadline|expire)\b/.test(l2) ? a.has(Fe.Timezone) ? (d.add("java.time.OffsetDateTime"), "OffsetDateTime") : (d.add("java.time.LocalDateTime"), "LocalDateTime") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(l2) ? "Integer" : /\b(price)$/.test(l2) ? (d.add("java.math.BigDecimal"), "BigDecimal") : /^(if|is)\b/.test(l2) ? "Boolean" : Ee(i) && (i._attributes.type === "Id" || i._attributes.type === "Version") || /\b(id|identifier|ver|version)$/.test(l2) ? "Long" : "String";
     }
     e.commands._setInfoCodeProvider(
       (d) => {
-        const r2 = /* @__PURE__ */ new Set(), i = c(d), l2 = t.value.additions, m2 = [];
-        return l2.has(Te.ValueClass) ? (r2.add("kotlin.jvm.JvmInline"), m2.push("@JvmInline"), m2.push(`value class ${i}(val value: ${v(r2, d)})`)) : m2.push(`data class ${i}(val value: ${v(r2, d)})`), [
+        const i = /* @__PURE__ */ new Set(), a = p(d), l2 = t.value.additions, f = [];
+        return l2.has(Fe.ValueClass) ? (i.add("kotlin.jvm.JvmInline"), f.push("@JvmInline"), f.push(`value class ${a}(val value: ${C2(i, d)})`)) : f.push(`data class ${a}(val value: ${C2(i, d)})`), [
           {
             type: "Info",
-            imports: r2,
-            content: m2.join(`
+            imports: i,
+            content: f.join(`
 `)
           }
         ];
       }
     ), e.commands._setCommandCodeProvider(
       (d) => {
-        const r2 = [], i = t.value.additions;
+        const i = [], a = t.value.additions;
         {
-          const l2 = /* @__PURE__ */ new Set(), m2 = c(d), C2 = [], p = Object.values(d.inner);
-          g2(l2, p);
-          const f = [];
-          for (const $2 of p) {
-            const _ = c($2);
-            f.push(`val ${N2.lowerFirst(_)}: ${a(l2, $2)}`);
+          const l2 = /* @__PURE__ */ new Set(), f = p(d), b2 = [], g2 = Object.values(d.inner);
+          _(l2, g2);
+          const u = [];
+          for (const v of g2) {
+            const m2 = p(v);
+            u.push(`val ${N2.lowerFirst(m2)}: ${s(l2, v)}`);
           }
-          C2.push(`data class ${m2}(${f.join(", ")})`), r2.push({
+          b2.push(`data class ${f}(${u.join(", ")})`), i.push({
             type: "Command",
             imports: l2,
-            content: C2.join(`
+            content: b2.join(`
 `)
           });
         }
-        if (!i.has(Te.CommandHandler))
-          return r2;
+        if (!a.has(Fe.CommandHandler))
+          return i;
         {
-          const l2 = /* @__PURE__ */ new Set(), m2 = c(d), C2 = [];
-          C2.push(`class ${m2}Handler {`);
-          const p = [...e.states.designer.value._getContext().getAssociationMap()[d._attributes.__id]].filter(
-            (f) => f._attributes.rule === "Agg"
+          const l2 = /* @__PURE__ */ new Set(), f = p(d), b2 = [];
+          b2.push(`class ${f}Handler {`);
+          const g2 = [...e.states.designer.value._getContext().getAssociationMap()[d._attributes.__id]].filter(
+            (u) => u._attributes.rule === "Agg"
           );
-          for (const f of p)
-            l2.add(`${t.value.namespace}.${t.value.moduleName}.${c(f)}`), C2.push(`    fun handle(command: ${m2}): ${c(f)} {`), C2.push("        // HACK Implement"), C2.push("    }");
-          C2.push("}"), r2.push({
+          for (const u of g2)
+            l2.add(`${t.value.namespace}.${t.value.moduleName}.${p(u)}`), b2.push(`    fun handle(command: ${f}): ${p(u)} {`), b2.push("        // HACK Implement"), b2.push("    }");
+          b2.push("}"), i.push({
             type: "CommandHandler",
             imports: l2,
-            content: C2.join(`
+            content: b2.join(`
 `)
           });
         }
-        return r2;
+        return i;
       }
     ), e.commands._setFacadeCommandCodeProvider(
       (d) => {
-        const r2 = /* @__PURE__ */ new Set(), i = c(d), l2 = [], m2 = Object.values(d.inner);
-        g2(r2, m2);
-        const C2 = [];
-        for (const p of m2) {
-          const f = c(p);
-          C2.push(`val ${N2.lowerFirst(f)}: ${a(r2, p)}`);
+        const i = /* @__PURE__ */ new Set(), a = p(d), l2 = [], f = Object.values(d.inner);
+        _(i, f);
+        const b2 = [];
+        for (const g2 of f) {
+          const u = p(g2);
+          b2.push(`val ${N2.lowerFirst(u)}: ${s(i, g2)}`);
         }
-        return l2.push(`data class ${i}(${C2.join(", ")})`), [
+        return l2.push(`data class ${a}(${b2.join(", ")})`), [
           {
             type: "FacadeCommand",
-            imports: r2,
+            imports: i,
             content: l2.join(`
 `)
           }
         ];
       }
     ), e.commands._setAggCodeProvider((d) => {
-      const r2 = /* @__PURE__ */ new Set(), i = e.states.designer.value, l2 = c(d), m2 = [], C2 = Object.values(d.inner);
-      g2(r2, C2);
-      const p = [], f = [...i._getContext().getAssociationMap()[d._attributes.__id]].filter((_) => _._attributes.rule === "Command" || _._attributes.rule === "FacadeCommand");
-      for (const _ of f) {
-        const b2 = c(_);
-        p.push(`fun handle(command: ${b2})`);
+      const i = /* @__PURE__ */ new Set(), a = e.states.designer.value, l2 = p(d), f = [], b2 = Object.values(d.inner);
+      _(i, b2);
+      const g2 = [], u = [...a._getContext().getAssociationMap()[d._attributes.__id]].filter((m2) => m2._attributes.rule === "Command" || m2._attributes.rule === "FacadeCommand");
+      for (const m2 of u) {
+        const $2 = p(m2);
+        g2.push(`fun handle(command: ${$2})`);
       }
-      m2.push(`interface ${l2} {`), m2.push(`    ${p.join(`
-    `)}`), m2.push("}"), m2.push(""), m2.push(`class ${l2}Impl(`);
-      const $2 = [];
-      for (const _ of C2) {
-        const b2 = c(_);
-        $2.push(`val ${N2.lowerFirst(b2)}: ${a(r2, _)}`);
+      f.push(`interface ${l2} {`), f.push(`    ${g2.join(`
+    `)}`), f.push("}"), f.push(""), f.push(`class ${l2}Impl(`);
+      const v = [];
+      for (const m2 of b2) {
+        const $2 = p(m2);
+        v.push(`val ${N2.lowerFirst($2)}: ${s(i, m2)}`);
       }
-      m2.push(`    ${$2.join(`,
-    `)}`), m2.push(`): ${l2} {`);
-      for (const _ of f) {
-        const b2 = c(_);
-        m2.push(`    override fun handle(command: ${b2}) {`), m2.push("        // HACK Implement"), m2.push("    }");
+      f.push(`    ${v.join(`,
+    `)}`), f.push(`): ${l2} {`);
+      for (const m2 of u) {
+        const $2 = p(m2);
+        f.push(`    override fun handle(command: ${$2}) {`), f.push("        // HACK Implement"), f.push("    }");
       }
-      return m2.push("}"), [
+      return f.push("}"), [
         {
           type: "Agg",
-          imports: r2,
-          content: m2.join(`
+          imports: i,
+          content: f.join(`
 `)
         }
       ];
     }), e.commands._setEventCodeProvider(
       (d) => {
-        const r2 = /* @__PURE__ */ new Set(), i = c(d), l2 = [], m2 = Object.values(d.inner);
-        g2(r2, m2);
-        const C2 = [];
-        for (const p of m2) {
-          const f = c(p);
-          C2.push(`val ${N2.lowerFirst(f)}: ${a(r2, p)}`);
+        const i = /* @__PURE__ */ new Set(), a = p(d), l2 = [], f = Object.values(d.inner);
+        _(i, f);
+        const b2 = [];
+        for (const g2 of f) {
+          const u = p(g2);
+          b2.push(`val ${N2.lowerFirst(u)}: ${s(i, g2)}`);
         }
-        return l2.push(`data class ${i}(${C2.join(", ")})`), [
+        return l2.push(`data class ${a}(${b2.join(", ")})`), [
           {
             type: "Event",
-            imports: r2,
+            imports: i,
             content: l2.join(`
 `)
           }
         ];
       }
     ), e.commands._setReadModelCodeProvider(() => []), e.commands._setCodeFileProvider(() => {
-      const d = [], r2 = {};
-      function i(f) {
-        for (const $2 of Object.values(f)) {
-          if (!s($2))
+      const d = [], i = {};
+      function a(u) {
+        for (const v of Object.values(u)) {
+          if (!o(v))
             continue;
-          const _ = [...t.value.namespace.split(/\./), t.value.moduleName, n], b2 = c($2) + ".kt";
-          if (r2[`${_.join("/")}/${b2}`] === true)
+          const m2 = [...t.value.namespace.split(/\./), t.value.moduleName, n], $2 = p(v) + ".kt";
+          if (i[`${m2.join("/")}/${$2}`] === true)
             continue;
-          const h2 = e.commands._genInfoCode($2);
-          if (h2.length === 0)
+          const w2 = e.commands._genInfoCode(v);
+          if (w2.length === 0)
             continue;
-          const u = new j3(_, b2);
-          u.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}.${n}`), u.appendContentln("");
-          for (const w2 of h2[0].imports)
-            u.appendContentln(`import ${w2}`);
-          u.appendContentln(""), u.appendContentln(h2[0].content), d.push(u), r2[`${_.join("/")}/${b2}`] = true;
+          const c = new S2(m2, $2);
+          c.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}.${n}`), c.appendContentln("");
+          for (const h2 of w2[0].imports)
+            c.appendContentln(`import ${h2}`);
+          c.appendContentln(""), c.appendContentln(w2[0].content), d.push(c), i[`${m2.join("/")}/${$2}`] = true;
         }
       }
       const l2 = e.states.designer.value._getContext().getCommands();
-      for (const f of l2) {
-        i(f.inner);
-        const $2 = e.commands._genCommandCode(f), _ = [...t.value.namespace.split(/\./), t.value.moduleName], b2 = new j3(_, c(f) + ".kt"), h2 = [];
-        b2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), b2.appendContentln(""), $2.forEach((u) => {
-          u.type === "Command" || u.type === "CommandHandler" ? (b2.addImports(u.imports), h2.push(u.content)) : isNever(u.type);
+      for (const u of l2) {
+        a(u.inner);
+        const v = e.commands._genCommandCode(u), m2 = [...t.value.namespace.split(/\./), t.value.moduleName], $2 = new S2(m2, p(u) + ".kt"), w2 = [];
+        $2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), $2.appendContentln(""), v.forEach((c) => {
+          c.type === "Command" || c.type === "CommandHandler" ? ($2.addImports(c.imports), w2.push(c.content)) : isNever(c.type);
         });
-        for (const u of b2.getImports())
-          b2.appendContentln(`import ${u}`);
-        b2.appendContentln("");
-        for (const u of h2)
-          b2.appendContentln(u);
-        d.push(b2);
+        for (const c of $2.getImports())
+          $2.appendContentln(`import ${c}`);
+        $2.appendContentln("");
+        for (const c of w2)
+          $2.appendContentln(c);
+        d.push($2);
       }
-      const m2 = e.states.designer.value._getContext().getFacadeCommands();
-      for (const f of m2) {
-        i(f.inner);
-        const $2 = e.commands._genFacadeCommandCode(f), _ = [...t.value.namespace.split(/\./), t.value.moduleName];
-        $2.forEach((b2) => {
-          if (b2.type === "FacadeCommand") {
-            const h2 = new j3(_, c(f) + ".kt");
-            h2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), h2.appendContentln(""), h2.addImports(b2.imports);
-            for (const u of b2.imports)
-              h2.appendContentln(`import ${u}`);
-            h2.appendContentln(""), h2.appendContentln(b2.content), d.push(h2);
+      const f = e.states.designer.value._getContext().getFacadeCommands();
+      for (const u of f) {
+        a(u.inner);
+        const v = e.commands._genFacadeCommandCode(u), m2 = [...t.value.namespace.split(/\./), t.value.moduleName], $2 = new S2(m2, p(u) + ".kt"), w2 = [];
+        $2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), $2.appendContentln(""), v.forEach((c) => {
+          c.type === "FacadeCommand" || c.type === "FacadeCommandHandler" ? ($2.addImports(c.imports), w2.push(c.content)) : isNever(c.type);
+        });
+        for (const c of $2.getImports())
+          $2.appendContentln(`import ${c}`);
+        $2.appendContentln("");
+        for (const c of w2)
+          $2.appendContentln(c);
+        d.push($2);
+      }
+      const b2 = e.states.designer.value._getContext().getAggs();
+      for (const u of b2) {
+        a(u.inner);
+        const v = e.commands._genAggCode(u), m2 = [...t.value.namespace.split(/\./), t.value.moduleName], $2 = new S2(m2, p(u) + ".kt"), w2 = [];
+        $2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), $2.appendContentln(""), v.forEach((c) => {
+          c.type === "Agg" || c.type === "AggImpl" ? ($2.addImports(c.imports), w2.push(c.content)) : isNever(c.type);
+        });
+        for (const c of $2.getImports())
+          $2.appendContentln(`import ${c}`);
+        $2.appendContentln("");
+        for (const c of w2)
+          $2.appendContentln(c);
+        d.push($2);
+      }
+      const g2 = e.states.designer.value._getContext().getEvents();
+      for (const u of g2) {
+        a(u.inner);
+        const v = e.commands._genEventCode(u), m2 = [...t.value.namespace.split(/\./), t.value.moduleName];
+        v.forEach(($2) => {
+          if ($2.type === "Event") {
+            const w2 = new S2(m2, p(u) + ".kt");
+            w2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), w2.appendContentln(""), w2.addImports($2.imports);
+            for (const c of $2.imports)
+              w2.appendContentln(`import ${c}`);
+            w2.appendContentln(""), w2.appendContentln($2.content), d.push(w2);
           } else
-            isNever(b2.type);
-        });
-      }
-      const C2 = e.states.designer.value._getContext().getAggs();
-      for (const f of C2) {
-        i(f.inner);
-        const $2 = e.commands._genAggCode(f), _ = [...t.value.namespace.split(/\./), t.value.moduleName], b2 = new j3(_, c(f) + ".kt"), h2 = [];
-        b2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), b2.appendContentln(""), $2.forEach((u) => {
-          u.type === "Agg" || u.type === "AggImpl" ? (b2.addImports(u.imports), h2.push(u.content)) : isNever(u.type);
-        });
-        for (const u of b2.getImports())
-          b2.appendContentln(`import ${u}`);
-        b2.appendContentln("");
-        for (const u of h2)
-          b2.appendContentln(u);
-        d.push(b2);
-      }
-      const p = e.states.designer.value._getContext().getEvents();
-      for (const f of p) {
-        i(f.inner);
-        const $2 = e.commands._genEventCode(f), _ = [...t.value.namespace.split(/\./), t.value.moduleName];
-        $2.forEach((b2) => {
-          if (b2.type === "Event") {
-            const h2 = new j3(_, c(f) + ".kt");
-            h2.appendContentln(`package ${t.value.namespace}.${t.value.moduleName}`), h2.appendContentln(""), h2.addImports(b2.imports);
-            for (const u of b2.imports)
-              h2.appendContentln(`import ${u}`);
-            h2.appendContentln(""), h2.appendContentln(b2.content), d.push(h2);
-          } else
-            isNever(b2.type);
+            isNever($2.type);
         });
       }
       return d;
     });
   }
 }));
-var Io = ue.createHotSwapPlugin(() => ({
+var To = le2.createHotSwapPlugin(() => ({
   unmount({ api: e }) {
     e.commands.clearCaches(), e.commands._setCommandCodeProvider(() => []), e.commands._setFacadeCommandCodeProvider(() => []), e.commands._setAggCodeProvider(() => []), e.commands._setEventCodeProvider(() => []), e.commands._setReadModelCodeProvider(() => []), e.commands._setCodeFileProvider(() => []), e.commands.setContext({});
   },
   mount({ api: e }) {
-    const n = e.states.context, t = e.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((v) => N2.stringToLowerCamel(v));
-    function o(v) {
-      return !t.includes(N2.stringToLowerCamel(v._attributes.name));
+    const n = e.states.context, t = e.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((C2) => N2.stringToLowerCamel(C2));
+    function r2(C2) {
+      return !t.includes(N2.stringToLowerCamel(C2._attributes.name));
     }
-    function s(v, d) {
-      return o(d) ? N2.stringToUpperCamel(d._attributes.name) : g2(v, d);
+    function o(C2, d) {
+      return r2(d) ? N2.stringToUpperCamel(d._attributes.name) : _(C2, d);
     }
-    function a(v) {
-      return N2.stringToUpperCamel(v._attributes.name);
+    function s(C2) {
+      return N2.stringToUpperCamel(C2._attributes.name);
     }
-    function c(v) {
-      return N2.stringToLowerCamel(v._attributes.name);
+    function p(C2) {
+      return N2.stringToLowerCamel(C2._attributes.name);
     }
-    function g2(v, d) {
-      const r2 = N2.stringToLowerSnake(d._attributes.name).replace(/_/, " ");
-      return /\b(time|timestamp|date|deadline|expire)\b/.test(r2) ? (v.add("time"), "time.Time") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(r2) ? "int" : /\b(price)$/.test(r2) ? "string" : /^(if|is)\b/.test(r2) ? "bool" : Ee(d) && (d._attributes.type === "Id" || d._attributes.type === "Version") ? "int64" : "string";
+    function _(C2, d) {
+      const i = N2.stringToLowerSnake(d._attributes.name).replace(/_/, " ");
+      return /\b(time|timestamp|date|deadline|expire)\b/.test(i) ? (C2.add("time"), "time.Time") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(i) ? "int" : /\b(price)$/.test(i) ? "string" : /^(if|is)\b/.test(i) ? "bool" : Ee(d) && (d._attributes.type === "Id" || d._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(i)) ? "int64" : "string";
     }
     e.commands._setInfoCodeProvider(
-      (v) => {
-        const d = /* @__PURE__ */ new Set(), r2 = [];
-        return r2.push(`type ${a(v)} struct {`), r2.push(`    value ${g2(d, v)}`), r2.push("}"), r2.push(""), r2.push(
-          `func New${a(v)}(value ${g2(
+      (C2) => {
+        const d = /* @__PURE__ */ new Set(), i = [];
+        return i.push(`type ${s(C2)} struct {`), i.push(`    value ${_(d, C2)}`), i.push("}"), i.push(""), i.push(
+          `func New${s(C2)}(value ${_(
             d,
-            v
-          )}) ${a(v)} {`
-        ), r2.push("    // HACK check value"), r2.push(`    return ${a(v)}{value}`), r2.push("}"), r2.push(
-          `func (${c(v)} ${a(v)}) GetValue() ${g2(
+            C2
+          )}) ${s(C2)} {`
+        ), i.push("    // HACK check value"), i.push(`    return ${s(C2)}{value}`), i.push("}"), i.push(
+          `func (${p(C2)} ${s(C2)}) GetValue() ${_(
             d,
-            v
+            C2
           )} {`
-        ), r2.push(`    return ${c(v)}.value`), r2.push("}"), [{ type: "Info", imports: d, content: r2.join(`
+        ), i.push(`    return ${p(C2)}.value`), i.push("}"), [{ type: "Info", imports: d, content: i.join(`
 `) }];
       }
     ), e.commands._setCommandCodeProvider(
-      (v) => {
-        const d = a(v), r2 = c(v), i = /* @__PURE__ */ new Set(), l2 = [];
+      (C2) => {
+        const d = s(C2), i = p(C2), a = /* @__PURE__ */ new Set(), l2 = [];
         l2.push(`type ${d} struct {`);
-        const m2 = Object.values(v.inner);
-        for (const f of m2)
-          l2.push(`    ${c(f)} ${s(i, f)}`);
+        const f = Object.values(C2.inner);
+        for (const u of f)
+          l2.push(`    ${p(u)} ${o(a, u)}`);
         l2.push("}");
-        for (const f of m2)
+        for (const u of f)
           l2.push(
-            `func (${r2} ${d}) Get${a(f)} () ${s(
-              i,
-              f
+            `func (${i} ${d}) Get${s(u)} () ${o(
+              a,
+              u
             )} {`
-          ), l2.push(`    return ${r2}.${c(f)}`), l2.push("}");
-        const C2 = [], p = [];
-        for (const f of m2)
-          C2.push(`${c(f)} ${s(i, f)}`), p.push(c(f));
-        return l2.push(`func New${d}(${C2.join(", ")}) ${d} {`), l2.push("    // HACK check value"), l2.push(`    return ${d}{`), l2.push(`        ${p.join(`,
-        `)},`), l2.push("    }"), l2.push("}"), [{ type: "Command", imports: i, content: l2.join(`
+          ), l2.push(`    return ${i}.${p(u)}`), l2.push("}");
+        const b2 = [], g2 = [];
+        for (const u of f)
+          b2.push(`${p(u)} ${o(a, u)}`), g2.push(p(u));
+        return l2.push(`func New${d}(${b2.join(", ")}) ${d} {`), l2.push("    // HACK check value"), l2.push(`    return ${d}{`), l2.push(`        ${g2.join(`,
+        `)},`), l2.push("    }"), l2.push("}"), [{ type: "Command", imports: a, content: l2.join(`
 `) }];
       }
     ), e.commands._setFacadeCommandCodeProvider(
-      (v) => {
-        const d = a(v), r2 = c(v), i = Object.values(v.inner), l2 = /* @__PURE__ */ new Set(), m2 = [];
-        m2.push(`type ${d} struct {`);
-        for (const f of i)
-          m2.push(`    ${c(f)} ${s(l2, f)}`);
-        m2.push("}");
-        for (const f of i)
-          m2.push(
-            `func (${r2} ${d}) Get${a(f)} () ${s(
+      (C2) => {
+        const d = s(C2), i = p(C2), a = Object.values(C2.inner), l2 = /* @__PURE__ */ new Set(), f = [];
+        f.push(`type ${d} struct {`);
+        for (const u of a)
+          f.push(`    ${p(u)} ${o(l2, u)}`);
+        f.push("}");
+        for (const u of a)
+          f.push(
+            `func (${i} ${d}) Get${s(u)} () ${o(
               l2,
-              f
+              u
             )} {`
-          ), m2.push(`    return ${r2}.${c(f)}`), m2.push("}");
-        const C2 = [], p = [];
-        for (const f of i)
-          C2.push(`${c(f)} ${s(l2, f)}`), p.push(c(f));
-        return m2.push(`func New${d}(${C2.join(", ")}) ${d} {`), m2.push("    // HACK check value"), m2.push(`    return ${d}{`), m2.push(`        ${p.join(`,
-        `)},`), m2.push("    }"), m2.push("}"), [
+          ), f.push(`    return ${i}.${p(u)}`), f.push("}");
+        const b2 = [], g2 = [];
+        for (const u of a)
+          b2.push(`${p(u)} ${o(l2, u)}`), g2.push(p(u));
+        return f.push(`func New${d}(${b2.join(", ")}) ${d} {`), f.push("    // HACK check value"), f.push(`    return ${d}{`), f.push(`        ${g2.join(`,
+        `)},`), f.push("    }"), f.push("}"), [
           {
             type: "FacadeCommand",
             imports: l2,
-            content: m2.join(`
+            content: f.join(`
 `)
           }
         ];
       }
-    ), e.commands._setAggCodeProvider((v) => {
-      const d = e.states.designer.value, r2 = a(v), i = c(v), l2 = Object.values(v.inner), m2 = /* @__PURE__ */ new Set(), C2 = [];
-      C2.push(`type ${r2} struct {`);
-      for (const _ of l2)
-        C2.push(`    ${c(_)} ${s(m2, _)}`);
-      C2.push("}");
-      for (const _ of l2)
-        C2.push(
-          `func (${i} ${r2}) Get${a(_)} () ${s(
-            m2,
-            _
+    ), e.commands._setAggCodeProvider((C2) => {
+      const d = e.states.designer.value, i = s(C2), a = p(C2), l2 = Object.values(C2.inner), f = /* @__PURE__ */ new Set(), b2 = [];
+      b2.push(`type ${i} struct {`);
+      for (const m2 of l2)
+        b2.push(`    ${p(m2)} ${o(f, m2)}`);
+      b2.push("}");
+      for (const m2 of l2)
+        b2.push(
+          `func (${a} ${i}) Get${s(m2)} () ${o(
+            f,
+            m2
           )} {`
-        ), C2.push(`    return ${i}.${c(_)}`), C2.push("}");
-      const p = [], f = [];
-      for (const _ of l2)
-        p.push(`${c(_)} ${s(m2, _)}`), f.push(c(_));
-      C2.push(`func New${r2}(${p.join(", ")}) ${r2} {`), C2.push("    // HACK check value"), C2.push(`    return ${r2}{`), C2.push(`        ${f.join(`,
-        `)},`), C2.push("    }"), C2.push("}"), C2.push("");
-      const $2 = [...d._getContext().getAssociationMap()[v._attributes.__id]].filter((_) => _._attributes.rule === "Command" || _._attributes.rule === "FacadeCommand");
-      for (const _ of $2) {
-        const b2 = a(_), h2 = c(_);
-        C2.push(`func (${i} ${r2}) Handle${b2} (${h2} ${b2}) {`), C2.push("    // HACK implement"), C2.push("}");
+        ), b2.push(`    return ${a}.${p(m2)}`), b2.push("}");
+      const g2 = [], u = [];
+      for (const m2 of l2)
+        g2.push(`${p(m2)} ${o(f, m2)}`), u.push(p(m2));
+      b2.push(`func New${i}(${g2.join(", ")}) ${i} {`), b2.push("    // HACK check value"), b2.push(`    return ${i}{`), b2.push(`        ${u.join(`,
+        `)},`), b2.push("    }"), b2.push("}"), b2.push("");
+      const v = [...d._getContext().getAssociationMap()[C2._attributes.__id]].filter((m2) => m2._attributes.rule === "Command" || m2._attributes.rule === "FacadeCommand");
+      for (const m2 of v) {
+        const $2 = s(m2), w2 = p(m2);
+        b2.push(`func (${a} ${i}) Handle${$2} (${w2} ${$2}) {`), b2.push("    // HACK implement"), b2.push("}");
       }
       return [
         {
           type: "Agg",
-          imports: m2,
-          content: C2.join(`
+          imports: f,
+          content: b2.join(`
 `)
         }
       ];
     }), e.commands._setEventCodeProvider(
-      (v) => {
-        const d = [], r2 = /* @__PURE__ */ new Set(), i = Object.values(v.inner), l2 = a(v), m2 = c(v);
+      (C2) => {
+        const d = [], i = /* @__PURE__ */ new Set(), a = Object.values(C2.inner), l2 = s(C2), f = p(C2);
         d.push(`type ${l2} struct {`);
-        for (const f of i)
-          d.push(`    ${c(f)} ${s(r2, f)}`);
+        for (const u of a)
+          d.push(`    ${p(u)} ${o(i, u)}`);
         d.push("}");
-        for (const f of i)
+        for (const u of a)
           d.push(
-            `func (${m2} ${l2}) Get${a(f)} () ${s(
-              r2,
-              f
+            `func (${f} ${l2}) Get${s(u)} () ${o(
+              i,
+              u
             )} {`
-          ), d.push(`    return ${m2}.${c(f)}`), d.push("}");
-        const C2 = [], p = [];
-        for (const f of i)
-          C2.push(`${c(f)} ${s(r2, f)}`), p.push(c(f));
-        return d.push(`func New${l2}(${C2.join(", ")}) ${l2} {`), d.push("    // HACK check value"), d.push(`    return ${l2}{`), d.push(`        ${p.join(`,
+          ), d.push(`    return ${f}.${p(u)}`), d.push("}");
+        const b2 = [], g2 = [];
+        for (const u of a)
+          b2.push(`${p(u)} ${o(i, u)}`), g2.push(p(u));
+        return d.push(`func New${l2}(${b2.join(", ")}) ${l2} {`), d.push("    // HACK check value"), d.push(`    return ${l2}{`), d.push(`        ${g2.join(`,
         `)},`), d.push("    }"), d.push("}"), [
           {
             type: "Event",
-            imports: r2,
+            imports: i,
             content: d.join(`
 `)
           }
         ];
       }
     ), e.commands._setCodeFileProvider(() => {
-      const v = [], d = {}, r2 = [...n.value.namespace.split(/\./), n.value.moduleName], i = new j3(r2, `${n.value.moduleName}.go`), l2 = [], m2 = new j3(r2, `${n.value.moduleName}_value_object.go`), C2 = [];
-      function p(h2) {
-        for (const u of Object.values(h2)) {
-          if (!o(u))
+      const C2 = [], d = {}, i = [...n.value.namespace.split(/\./), n.value.moduleName], a = new S2(i, `${n.value.moduleName}.go`), l2 = [], f = new S2(i, `${n.value.moduleName}_value_object.go`), b2 = [];
+      function g2(w2) {
+        for (const c of Object.values(w2)) {
+          if (!r2(c))
             continue;
-          const w2 = a(u);
-          if (d[`${r2.join("/")}/${w2}`] === true)
+          const h2 = s(c);
+          if (d[`${i.join("/")}/${h2}`] === true)
             continue;
-          const y3 = e.commands._genInfoCode(u);
-          y3.length !== 0 && (m2.addImports(y3[0].imports), C2.push(y3[0].content), C2.push(""), d[`${r2.join("/")}/${w2}`] = true);
+          const y3 = e.commands._genInfoCode(c);
+          y3.length !== 0 && (f.addImports(y3[0].imports), b2.push(y3[0].content), b2.push(""), d[`${i.join("/")}/${h2}`] = true);
         }
       }
-      const f = e.states.designer.value._getContext().getCommands();
-      for (const h2 of f) {
-        p(h2.inner);
-        const u = e.commands._genCommandCode(h2);
-        for (const w2 of u)
-          d[w2.content] !== true && (i.addImports(w2.imports), l2.push(w2.content));
+      const u = e.states.designer.value._getContext().getCommands();
+      for (const w2 of u) {
+        g2(w2.inner);
+        const c = e.commands._genCommandCode(w2);
+        for (const h2 of c)
+          d[h2.content] !== true && (a.addImports(h2.imports), l2.push(h2.content));
       }
-      const $2 = e.states.designer.value._getContext().getFacadeCommands();
-      for (const h2 of $2) {
-        p(h2.inner);
-        const u = e.commands._genFacadeCommandCode(h2);
-        for (const w2 of u)
-          d[w2.content] !== true && (i.addImports(w2.imports), l2.push(w2.content));
+      const v = e.states.designer.value._getContext().getFacadeCommands();
+      for (const w2 of v) {
+        g2(w2.inner);
+        const c = e.commands._genFacadeCommandCode(w2);
+        for (const h2 of c)
+          d[h2.content] !== true && (a.addImports(h2.imports), l2.push(h2.content));
       }
-      const _ = e.states.designer.value._getContext().getAggs();
-      for (const h2 of _) {
-        p(h2.inner);
-        const u = e.commands._genAggCode(h2);
-        for (const w2 of u)
-          d[w2.content] !== true && (i.addImports(w2.imports), l2.push(w2.content));
+      const m2 = e.states.designer.value._getContext().getAggs();
+      for (const w2 of m2) {
+        g2(w2.inner);
+        const c = e.commands._genAggCode(w2);
+        for (const h2 of c)
+          d[h2.content] !== true && (a.addImports(h2.imports), l2.push(h2.content));
       }
-      const b2 = e.states.designer.value._getContext().getEvents();
-      for (const h2 of b2) {
-        p(h2.inner);
-        const u = e.commands._genEventCode(h2);
-        for (const w2 of u)
-          d[w2.content] !== true && (i.addImports(w2.imports), l2.push(w2.content));
+      const $2 = e.states.designer.value._getContext().getEvents();
+      for (const w2 of $2) {
+        g2(w2.inner);
+        const c = e.commands._genEventCode(w2);
+        for (const h2 of c)
+          d[h2.content] !== true && (a.addImports(h2.imports), l2.push(h2.content));
       }
-      return i.appendContentln(`package ${n.value.moduleName}`), i.appendContentln(""), i.getImports().length > 0 && (i.appendContentln("import ("), i.appendContentln(`    ${[...i.getImports()].join(`
-    `)}`), i.appendContentln(")")), i.appendContentln(l2.join(`
-`)), m2.appendContentln(`package ${n.value.moduleName}`), m2.appendContentln(""), m2.getImports().length > 0 && (m2.appendContentln("import ("), m2.appendContentln(`    ${[...m2.getImports()].map((h2) => `"${h2}"`).join(`
-    `)}`), m2.appendContentln(")"), m2.appendContentln("")), m2.appendContentln(C2.join(`
-`)), v.push(i), v.push(m2), v;
+      return a.appendContentln(`package ${n.value.moduleName}`), a.appendContentln(""), a.getImports().length > 0 && (a.appendContentln("import ("), a.appendContentln(`    ${[...a.getImports()].join(`
+    `)}`), a.appendContentln(")")), a.appendContentln(l2.join(`
+`)), f.appendContentln(`package ${n.value.moduleName}`), f.appendContentln(""), f.getImports().length > 0 && (f.appendContentln("import ("), f.appendContentln(`    ${[...f.getImports()].map((w2) => `"${w2}"`).join(`
+    `)}`), f.appendContentln(")"), f.appendContentln("")), f.appendContentln(b2.join(`
+`)), C2.push(a), C2.push(f), C2;
     });
   }
 }));
-var G = Ne.CSharpGeneratorAddition;
-var xo = ue.createHotSwapPlugin(() => {
+var M3 = ye.CSharpGeneratorAddition;
+var xo = le2.createHotSwapPlugin(() => {
   const e = "    ";
-  function n(t, o = 1) {
+  function n(t, r2 = 1) {
     return t.split(`
-`).map((s) => e.repeat(o) + s).join(`
+`).map((o) => e.repeat(r2) + o).join(`
 `);
   }
   return {
@@ -17598,249 +17728,279 @@ var xo = ue.createHotSwapPlugin(() => {
       t.commands.clearCaches(), t.commands._setCommandCodeProvider(() => []), t.commands._setFacadeCommandCodeProvider(() => []), t.commands._setAggCodeProvider(() => []), t.commands._setEventCodeProvider(() => []), t.commands._setReadModelCodeProvider(() => []), t.commands._setCodeFileProvider(() => []), t.commands.setContext({});
     },
     mount({ api: t }) {
-      const o = t.states.context, s = t.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((r2) => N2.stringToLowerCamel(r2));
-      function a(r2) {
-        return !s.includes(N2.stringToLowerCamel(r2._attributes.name));
+      const r2 = t.states.context, o = t.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((i) => N2.stringToLowerCamel(i));
+      function s(i) {
+        return !o.includes(N2.stringToLowerCamel(i._attributes.name));
       }
-      function c(r2, i) {
-        return a(i) ? N2.stringToUpperCamel(i._attributes.name) : d(r2, i);
+      function p(i, a) {
+        return s(a) ? N2.stringToUpperCamel(a._attributes.name) : d(i, a);
       }
-      function g2(r2) {
-        return N2.stringToUpperCamel(r2._attributes.name);
+      function _(i) {
+        return N2.stringToUpperCamel(i._attributes.name);
       }
-      function v(r2) {
-        return r2.has(G.RecordStruct) ? " struct" : "";
+      function C2(i) {
+        return i.has(M3.RecordStruct) ? " struct" : "";
       }
-      function d(r2, i) {
-        const l2 = o.value.additions, m2 = N2.stringToLowerSnake(i._attributes.name).replace(/_/, " ");
-        return /\b(time|timestamp|date|deadline|expire)\b/.test(m2) ? l2.has(G.Timezone) ? "System.DateTimeOffset" : "System.DateTime" : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(m2) ? "int" : /\b(price)$/.test(m2) ? "decimal" : /^(if|is)\b/.test(m2) ? "bool" : Ee(i) && (i._attributes.type === "Id" || i._attributes.type === "Version") ? "long" : "string";
+      function d(i, a) {
+        const l2 = r2.value.additions, f = N2.stringToLowerSnake(a._attributes.name).replace(/_/, " ");
+        return /\b(time|timestamp|date|deadline|expire)\b/.test(f) ? l2.has(M3.Timezone) ? "System.DateTimeOffset" : "System.DateTime" : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(f) ? "int" : /\b(price)$/.test(f) ? "decimal" : /^(if|is)\b/.test(f) ? "bool" : Ee(a) && (a._attributes.type === "Id" || a._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(f)) ? "long" : "string";
       }
       t.commands._setInfoCodeProvider(
-        (r2) => {
-          const i = o.value.additions, l2 = /* @__PURE__ */ new Set(), m2 = [];
-          return m2.push(
-            `public record${v(i)} ${g2(r2)}(${d(
+        (i) => {
+          const a = r2.value.additions, l2 = /* @__PURE__ */ new Set(), f = [];
+          return f.push(
+            `public record${C2(a)} ${_(i)}(${d(
               l2,
-              r2
+              i
             )} value);`
           ), [
             {
               type: "Info",
-              content: m2.join(`
+              content: f.join(`
 `),
               imports: l2
             }
           ];
         }
       ), t.commands._setCommandCodeProvider(
-        (r2) => {
-          const i = [], l2 = o.value.additions, m2 = /* @__PURE__ */ new Set(), C2 = g2(r2);
+        (i) => {
+          const a = [], l2 = r2.value.additions, f = /* @__PURE__ */ new Set(), b2 = _(i);
           {
-            const p = [], f = Object.values(r2.inner);
-            p.push(`public record${v(l2)} ${C2}`), p.push("(");
-            const $2 = [];
-            for (const _ of f) {
-              const b2 = g2(_);
-              $2.push(`${c(m2, _)} ${N2.upperFirst(b2)}`);
+            const g2 = [], u = Object.values(i.inner);
+            g2.push(`public record${C2(l2)} ${b2}`), g2.push("(");
+            const v = [];
+            for (const m2 of u) {
+              const $2 = _(m2);
+              v.push(`${p(f, m2)} ${N2.upperFirst($2)}`);
             }
-            p.push(`    ${$2.join(`,
-    `)}`), p.push(")"), p.push("{"), p.push("}"), i.push({
+            g2.push(`    ${v.join(`,
+    `)}`), g2.push(")"), g2.push("{"), g2.push("}"), a.push({
               type: "Command",
-              content: p.join(`
+              content: g2.join(`
 `),
-              imports: m2
+              imports: f
             });
           }
           {
-            const p = l2.has(G.CommandHandlerInterface) ? ` : ${o.value.commandHandlerInterface}` : "", f = [];
-            f.push(`public class ${C2}Handler${p}`), f.push("{"), f.push(`    public void Handle(${C2} command)`), f.push("    {"), f.push("        // HACK implement"), f.push("    }"), f.push("}"), i.push({
+            const g2 = l2.has(M3.CommandHandlerInterface) ? ` : ${r2.value.commandHandlerInterface}` : "", u = [];
+            u.push(`public class ${b2}Handler${g2}`), u.push("{"), u.push(`    public void Handle(${b2} command)`), u.push("    {"), u.push("        // HACK implement"), u.push("    }"), u.push("}"), a.push({
               type: "CommandHandler",
-              content: f.join(`
+              content: u.join(`
 `),
-              imports: m2
+              imports: f
             });
           }
-          return i;
+          return a;
+        }
+      ), t.commands._setFacadeCommandCodeProvider(
+        (i) => {
+          const a = [], l2 = r2.value.additions, f = /* @__PURE__ */ new Set(), b2 = _(i);
+          {
+            const g2 = [], u = Object.values(i.inner);
+            g2.push(`public record${C2(l2)} ${b2}`), g2.push("(");
+            const v = [];
+            for (const m2 of u) {
+              const $2 = _(m2);
+              v.push(`${p(f, m2)} ${N2.upperFirst($2)}`);
+            }
+            g2.push(`    ${v.join(`,
+    `)}`), g2.push(")"), g2.push("{"), g2.push("}"), a.push({
+              type: "FacadeCommand",
+              content: g2.join(`
+`),
+              imports: f
+            });
+          }
+          {
+            const g2 = l2.has(M3.CommandHandlerInterface) ? ` : ${r2.value.commandHandlerInterface}` : "", u = [];
+            u.push(`public class ${b2}Handler${g2}`), u.push("{"), u.push(`    public void Handle(${b2} command)`), u.push("    {"), u.push("        // HACK implement"), u.push("    }"), u.push("}"), a.push({
+              type: "FacadeCommandHandler",
+              content: u.join(`
+`),
+              imports: f
+            });
+          }
+          return a;
         }
       ), t.commands._setAggCodeProvider(
-        (r2) => {
-          const i = [], l2 = t.states.designer.value, m2 = o.value.additions;
+        (i) => {
+          const a = [], l2 = t.states.designer.value, f = r2.value.additions;
           {
-            const C2 = /* @__PURE__ */ new Set(), p = [], f = m2.has(G.AggInterface) ? ` : ${o.value.aggInterface}` : "";
-            p.push(`public interface I${g2(r2)}${f}`), p.push("{");
-            const $2 = [], _ = [...l2._getContext().getAssociationMap()[r2._attributes.__id]].filter((b2) => b2._attributes.rule === "Command" || b2._attributes.rule === "FacadeCommand");
-            for (const b2 of _) {
-              const h2 = g2(b2);
-              $2.push(`void Handle${h2}(${h2} command);`);
+            const b2 = /* @__PURE__ */ new Set(), g2 = [], u = f.has(M3.AggInterface) ? ` : ${r2.value.aggInterface}` : "";
+            g2.push(`public interface I${_(i)}${u}`), g2.push("{");
+            const v = [], m2 = [...l2._getContext().getAssociationMap()[i._attributes.__id]].filter(($2) => $2._attributes.rule === "Command" || $2._attributes.rule === "FacadeCommand");
+            for (const $2 of m2) {
+              const w2 = _($2);
+              v.push(`void Handle${w2}(${w2} command);`);
             }
-            p.push(`    ${$2.join(`
+            g2.push(`    ${v.join(`
 
-    `)}`), p.push("}"), p.push(""), i.push({
+    `)}`), g2.push("}"), g2.push(""), a.push({
               type: "Agg",
-              content: p.join(`
+              content: g2.join(`
 `),
-              imports: C2
+              imports: b2
             });
           }
           {
-            const C2 = /* @__PURE__ */ new Set(), p = [], f = g2(r2), $2 = Object.values(r2.inner), _ = m2.has(G.AggInterface) ? `, ${o.value.aggInterface}` : "";
-            if (m2.has(G.PrimaryConstructor)) {
-              const b2 = [...l2._getContext().getAssociationMap()[r2._attributes.__id]].filter((w2) => w2._attributes.rule === "Command" || w2._attributes.rule === "FacadeCommand"), h2 = [];
-              for (const w2 of $2) {
-                const y3 = g2(w2);
-                h2.push(`${c(C2, w2)} ${N2.lowerFirst(y3)}`);
+            const b2 = /* @__PURE__ */ new Set(), g2 = [], u = _(i), v = Object.values(i.inner), m2 = f.has(M3.AggInterface) ? `, ${r2.value.aggInterface}` : "";
+            if (f.has(M3.PrimaryConstructor)) {
+              const $2 = [...l2._getContext().getAssociationMap()[i._attributes.__id]].filter((h2) => h2._attributes.rule === "Command" || h2._attributes.rule === "FacadeCommand"), w2 = [];
+              for (const h2 of v) {
+                const y3 = _(h2);
+                w2.push(`${p(b2, h2)} ${N2.lowerFirst(y3)}`);
               }
-              p.push(`public class ${f}`), p.push("("), p.push(`    ${h2.join(`,
-    `)}`), p.push(`): I${f}${_}`), p.push("{");
-              for (const w2 of $2) {
-                const y3 = g2(w2);
-                p.push(
-                  `    public ${c(C2, w2)} ${N2.upperFirst(
+              g2.push(`public class ${u}`), g2.push("("), g2.push(`    ${w2.join(`,
+    `)}`), g2.push(`): I${u}${m2}`), g2.push("{");
+              for (const h2 of v) {
+                const y3 = _(h2);
+                g2.push(
+                  `    public ${p(b2, h2)} ${N2.upperFirst(
                     y3
                   )} { get; private set; } = ${N2.lowerFirst(y3)};`
-                ), p.push("");
+                ), g2.push("");
               }
-              const u = [];
-              for (const w2 of b2) {
-                const y3 = g2(w2);
-                u.push(`public void Handle${y3}(${y3} command)`), u.push("{"), u.push("    // HACK implement"), u.push("}"), u.push("");
+              const c = [];
+              for (const h2 of $2) {
+                const y3 = _(h2);
+                c.push(`public void Handle${y3}(${y3} command)`), c.push("{"), c.push("    // HACK implement"), c.push("}"), c.push("");
               }
-              p.push(`    ${u.join(`
-    `)}`), p.push("}");
+              g2.push(`    ${c.join(`
+    `)}`), g2.push("}");
             } else {
-              const b2 = [...l2._getContext().getAssociationMap()[r2._attributes.__id]].filter((w2) => w2._attributes.rule === "Command" || w2._attributes.rule === "FacadeCommand");
-              p.push(`public class ${f} : I${f}${_}`), p.push("{");
-              for (const w2 of $2) {
-                const y3 = g2(w2);
-                p.push(
-                  `    public ${c(C2, w2)} ${N2.lowerFirst(
+              const $2 = [...l2._getContext().getAssociationMap()[i._attributes.__id]].filter((h2) => h2._attributes.rule === "Command" || h2._attributes.rule === "FacadeCommand");
+              g2.push(`public class ${u} : I${u}${m2}`), g2.push("{");
+              for (const h2 of v) {
+                const y3 = _(h2);
+                g2.push(
+                  `    public ${p(b2, h2)} ${N2.lowerFirst(
                     y3
                   )} { get; private set; }`
                 );
               }
-              p.push("");
-              const h2 = [];
-              for (const w2 of $2) {
-                const y3 = g2(w2);
-                h2.push(`${c(C2, w2)} ${y3}`);
+              g2.push("");
+              const w2 = [];
+              for (const h2 of v) {
+                const y3 = _(h2);
+                w2.push(`${p(b2, h2)} ${y3}`);
               }
-              p.push(`    public ${f}(${h2.join(", ")})`), p.push("    {");
-              for (const w2 of $2) {
-                const y3 = g2(w2);
-                p.push(`        ${y3} = ${N2.lowerFirst(y3)};`);
+              g2.push(`    public ${u}(${w2.join(", ")})`), g2.push("    {");
+              for (const h2 of v) {
+                const y3 = _(h2);
+                g2.push(`        ${y3} = ${N2.lowerFirst(y3)};`);
               }
-              p.push("    }");
-              const u = [];
-              for (const w2 of b2) {
-                const y3 = g2(w2);
-                u.push(`public void Handle${y3}(${y3} command)`), u.push("{"), u.push("    // HACK implement"), u.push("}"), u.push("");
+              g2.push("    }");
+              const c = [];
+              for (const h2 of $2) {
+                const y3 = _(h2);
+                c.push(`public void Handle${y3}(${y3} command)`), c.push("{"), c.push("    // HACK implement"), c.push("}"), c.push("");
               }
-              p.push(`    ${u.join(`
-    `)}`), p.push("}");
+              g2.push(`    ${c.join(`
+    `)}`), g2.push("}");
             }
-            i.push({
+            a.push({
               type: "AggImpl",
-              content: p.join(`
+              content: g2.join(`
 `),
-              imports: C2
+              imports: b2
             });
           }
-          return i;
+          return a;
         }
       ), t.commands._setEventCodeProvider(
-        (r2) => {
-          const i = o.value.additions, l2 = g2(r2), m2 = /* @__PURE__ */ new Set(), C2 = Object.values(r2.inner), p = [];
-          p.push(`public record${v(i)} ${l2}`), p.push("(");
-          const f = [];
-          for (const $2 of C2) {
-            const _ = g2($2);
-            f.push(`${c(m2, $2)} ${N2.upperFirst(_)}`);
+        (i) => {
+          const a = r2.value.additions, l2 = _(i), f = /* @__PURE__ */ new Set(), b2 = Object.values(i.inner), g2 = [];
+          g2.push(`public record${C2(a)} ${l2}`), g2.push("(");
+          const u = [];
+          for (const v of b2) {
+            const m2 = _(v);
+            u.push(`${p(f, v)} ${N2.upperFirst(m2)}`);
           }
-          return p.push(`    ${f.join(`,
-    `)}`), p.push(")"), p.push("{"), p.push("}"), [
+          return g2.push(`    ${u.join(`,
+    `)}`), g2.push(")"), g2.push("{"), g2.push("}"), [
             {
               type: "Event",
-              content: p.join(`
+              content: g2.join(`
 `),
-              imports: m2
+              imports: f
             }
           ];
         }
       ), t.commands._setReadModelCodeProvider(() => []), t.commands._setCodeFileProvider(() => {
-        const r2 = [], i = {}, l2 = [...o.value.namespace.split(/\./), N2.stringToUpperCamel(o.value.moduleName)];
-        function m2(_) {
-          for (const b2 of Object.values(_)) {
-            if (!a(b2))
+        const i = [], a = {}, l2 = [...r2.value.namespace.split(/\./), N2.stringToUpperCamel(r2.value.moduleName)];
+        function f(m2) {
+          for (const $2 of Object.values(m2)) {
+            if (!s($2))
               continue;
-            const h2 = g2(b2) + ".cs";
-            if (i[`${l2.join("/")}/${h2}`] === true)
+            const w2 = _($2) + ".cs";
+            if (a[`${l2.join("/")}/${w2}`] === true)
               continue;
-            const u = t.commands._genInfoCode(b2);
-            if (u.length === 0)
+            const c = t.commands._genInfoCode($2);
+            if (c.length === 0)
               continue;
-            const w2 = new j3(l2, h2);
-            for (const y3 of u[0].imports)
-              w2.appendContentln(`using ${y3};`);
-            w2.appendContentln(""), w2.appendContentln(
-              `namespace ${o.value.namespace}.${N2.stringToUpperCamel(o.value.moduleName)}`
-            ), w2.appendContentln("{"), w2.appendContentln(n(u[0].content)), w2.appendContentln("}"), r2.push(w2), i[`${l2.join("/")}/${h2}`] = true;
+            const h2 = new S2(l2, w2);
+            for (const y3 of c[0].imports)
+              h2.appendContentln(`using ${y3};`);
+            h2.appendContentln(""), h2.appendContentln(
+              `namespace ${r2.value.namespace}.${N2.stringToUpperCamel(r2.value.moduleName)}`
+            ), h2.appendContentln("{"), h2.appendContentln(n(c[0].content)), h2.appendContentln("}"), i.push(h2), a[`${l2.join("/")}/${w2}`] = true;
           }
         }
-        const C2 = t.states.designer.value._getContext().getCommands();
-        for (const _ of C2) {
-          m2(_.inner);
-          const b2 = g2(_) + ".cs", h2 = t.commands._genCommandCode(_), u = new j3(l2, b2);
-          for (const w2 of h2)
-            if (w2.type === "Command") {
-              u.addImports(w2.imports);
-              for (const y3 of w2.imports)
-                u.appendContentln(`using ${y3};`);
-              u.appendContentln(""), u.appendContentln(
-                `namespace ${o.value.namespace}.${N2.stringToUpperCamel(o.value.moduleName)}`
-              ), u.appendContentln("{"), u.appendContentln(n(w2.content)), u.appendContentln("}");
+        const b2 = t.states.designer.value._getContext().getCommands();
+        for (const m2 of b2) {
+          f(m2.inner);
+          const $2 = _(m2) + ".cs", w2 = t.commands._genCommandCode(m2), c = new S2(l2, $2);
+          for (const h2 of w2)
+            if (h2.type === "Command") {
+              c.addImports(h2.imports);
+              for (const y3 of h2.imports)
+                c.appendContentln(`using ${y3};`);
+              c.appendContentln(""), c.appendContentln(
+                `namespace ${r2.value.namespace}.${N2.stringToUpperCamel(r2.value.moduleName)}`
+              ), c.appendContentln("{"), c.appendContentln(n(h2.content)), c.appendContentln("}");
             }
-          r2.push(u);
+          i.push(c);
         }
-        const p = t.states.designer.value._getContext().getFacadeCommands();
-        for (const _ of p) {
-          m2(_.inner);
-          const b2 = g2(_) + ".cs", h2 = t.commands._genFacadeCommandCode(_), u = new j3(l2, b2);
-          u.addImports(h2[0].imports);
-          for (const w2 of h2[0].imports)
-            u.appendContentln(`using ${w2};`);
-          u.appendContentln(""), u.appendContentln(
-            `namespace ${o.value.namespace}.${N2.stringToUpperCamel(o.value.moduleName)}`
-          ), u.appendContentln("{"), u.appendContentln(n(h2[0].content)), u.appendContentln("}"), r2.push(u);
+        const g2 = t.states.designer.value._getContext().getFacadeCommands();
+        for (const m2 of g2) {
+          f(m2.inner);
+          const $2 = _(m2) + ".cs", w2 = t.commands._genFacadeCommandCode(m2), c = new S2(l2, $2);
+          c.addImports(w2[0].imports);
+          for (const h2 of w2[0].imports)
+            c.appendContentln(`using ${h2};`);
+          c.appendContentln(""), c.appendContentln(
+            `namespace ${r2.value.namespace}.${N2.stringToUpperCamel(r2.value.moduleName)}`
+          ), c.appendContentln("{"), c.appendContentln(n(w2[0].content)), c.appendContentln("}"), i.push(c);
         }
-        const f = t.states.designer.value._getContext().getAggs();
-        for (const _ of f) {
-          m2(_.inner);
-          const b2 = t.commands._genAggCode(_), h2 = g2(_) + ".cs", u = new j3(l2, h2);
-          for (const w2 of b2) {
-            u.addImports(w2.imports);
-            for (const y3 of w2.imports)
-              u.appendContentln(`using ${y3};`);
-            u.appendContentln("");
+        const u = t.states.designer.value._getContext().getAggs();
+        for (const m2 of u) {
+          f(m2.inner);
+          const $2 = t.commands._genAggCode(m2), w2 = _(m2) + ".cs", c = new S2(l2, w2);
+          for (const h2 of $2) {
+            c.addImports(h2.imports);
+            for (const y3 of h2.imports)
+              c.appendContentln(`using ${y3};`);
+            c.appendContentln("");
           }
-          u.appendContentln(
-            `namespace ${o.value.namespace}.${N2.stringToUpperCamel(o.value.moduleName)}`
-          ), u.appendContentln("{");
-          for (const w2 of b2)
-            u.appendContentln(n(w2.content));
-          u.appendContentln("}"), r2.push(u);
+          c.appendContentln(
+            `namespace ${r2.value.namespace}.${N2.stringToUpperCamel(r2.value.moduleName)}`
+          ), c.appendContentln("{");
+          for (const h2 of $2)
+            c.appendContentln(n(h2.content));
+          c.appendContentln("}"), i.push(c);
         }
-        const $2 = t.states.designer.value._getContext().getEvents();
-        for (const _ of $2) {
-          m2(_.inner);
-          const b2 = g2(_) + ".cs", h2 = t.commands._genEventCode(_), u = new j3(l2, b2);
-          u.addImports(h2[0].imports);
-          for (const w2 of h2[0].imports)
-            u.appendContentln(`using ${w2};`);
-          u.appendContentln(""), u.appendContentln(
-            `namespace ${o.value.namespace}.${N2.stringToUpperCamel(o.value.moduleName)}`
-          ), u.appendContentln("{"), u.appendContentln(n(h2[0].content)), u.appendContentln("}"), r2.push(u);
+        const v = t.states.designer.value._getContext().getEvents();
+        for (const m2 of v) {
+          f(m2.inner);
+          const $2 = _(m2) + ".cs", w2 = t.commands._genEventCode(m2), c = new S2(l2, $2);
+          c.addImports(w2[0].imports);
+          for (const h2 of w2[0].imports)
+            c.appendContentln(`using ${h2};`);
+          c.appendContentln(""), c.appendContentln(
+            `namespace ${r2.value.namespace}.${N2.stringToUpperCamel(r2.value.moduleName)}`
+          ), c.appendContentln("{"), c.appendContentln(n(w2[0].content)), c.appendContentln("}"), i.push(c);
         }
-        return r2;
+        return i;
       });
     }
   };
@@ -17868,36 +18028,42 @@ async function requireGenJavaContext() {
         message: $t6("question.subcommand.genCode.java.additions"),
         choices: [
           {
-            title: jo.java.JavaGeneratorAddition.SpringFramework,
-            value: jo.java.JavaGeneratorAddition.SpringFramework,
+            title: So.java.JavaGeneratorAddition.SpringFramework,
+            value: So.java.JavaGeneratorAddition.SpringFramework,
             selected: true,
             description: $t6("question.subcommand.genCode.java.additions.springFramework")
           },
           {
-            title: jo.java.JavaGeneratorAddition.Lombok,
-            value: jo.java.JavaGeneratorAddition.Lombok,
+            title: So.java.JavaGeneratorAddition.Jpa,
+            value: So.java.JavaGeneratorAddition.Jpa,
+            selected: false,
+            description: $t6("question.subcommand.genCode.java.additions.jpa")
+          },
+          {
+            title: So.java.JavaGeneratorAddition.Lombok,
+            value: So.java.JavaGeneratorAddition.Lombok,
             selected: true,
             description: $t6("question.subcommand.genCode.java.additions.lombok")
           },
           {
-            title: jo.java.JavaGeneratorAddition.LombokBuilder,
-            value: jo.java.JavaGeneratorAddition.LombokBuilder,
+            title: So.java.JavaGeneratorAddition.LombokBuilder,
+            value: So.java.JavaGeneratorAddition.LombokBuilder,
             description: $t6("question.subcommand.genCode.java.additions.lombokBuilder")
           },
           {
-            title: jo.java.JavaGeneratorAddition.CommandHandler,
-            value: jo.java.JavaGeneratorAddition.CommandHandler,
+            title: So.java.JavaGeneratorAddition.CommandHandler,
+            value: So.java.JavaGeneratorAddition.CommandHandler,
             selected: true,
             description: $t6("question.subcommand.genCode.java.additions.commandHandler")
           },
           {
-            title: jo.java.JavaGeneratorAddition.RecordVakueObject,
-            value: jo.java.JavaGeneratorAddition.RecordVakueObject,
-            description: $t6("question.subcommand.genCode.java.additions.recordVakueObject")
+            title: So.java.JavaGeneratorAddition.RecordValueObject,
+            value: So.java.JavaGeneratorAddition.RecordValueObject,
+            description: $t6("question.subcommand.genCode.java.additions.recordValueObject")
           },
           {
-            title: jo.java.JavaGeneratorAddition.Timezone,
-            value: jo.java.JavaGeneratorAddition.Timezone,
+            title: So.java.JavaGeneratorAddition.Timezone,
+            value: So.java.JavaGeneratorAddition.Timezone,
             selected: true,
             description: $t6("question.subcommand.genCode.java.additions.timezone")
           }
@@ -17908,7 +18074,7 @@ async function requireGenJavaContext() {
     { onCancel }
   );
   let nonNullAnnotation = additions.includes(
-    jo.java.JavaGeneratorAddition.SpringFramework
+    So.java.JavaGeneratorAddition.SpringFramework
   ) ? "org.springframework.lang.NonNull" : void 0;
   if (nonNullAnnotation === void 0) {
     nonNullAnnotation = (await (0, import_prompts.default)(
@@ -17926,6 +18092,26 @@ async function requireGenJavaContext() {
       ],
       { onCancel }
     )).nonNullAnnotation;
+  }
+  if (additions.includes(So.java.JavaGeneratorAddition.Jpa)) {
+    const { idGenStrategy } = await (0, import_prompts.default)(
+      [
+        {
+          name: "idGenStrategy",
+          type: "select",
+          message: $t6("question.subcommand.genCode.java.idGenStrategy"),
+          choices: [
+            { title: "TABLE", value: So.java.IdGenStrategy.TABLE },
+            { title: "SEQUENCE", value: So.java.IdGenStrategy.SEQUENCE },
+            { title: "IDENTITY", value: So.java.IdGenStrategy.IDENTITY },
+            { title: "UUID", value: So.java.IdGenStrategy.UUID },
+            { title: "AUTO", value: So.java.IdGenStrategy.AUTO }
+          ]
+        }
+      ],
+      { onCancel }
+    );
+    context.idGenStrategy = idGenStrategy;
   }
   context.namespace = namespace;
   context.additions = new Set(additions);
@@ -17953,20 +18139,20 @@ async function requireGenKotlinContext() {
         message: $t7("question.subcommand.genCode.kotlin.additions"),
         choices: [
           {
-            title: jo.kotlin.KotlinGeneratorAddition.CommandHandler,
-            value: jo.kotlin.KotlinGeneratorAddition.CommandHandler,
+            title: So.kotlin.KotlinGeneratorAddition.CommandHandler,
+            value: So.kotlin.KotlinGeneratorAddition.CommandHandler,
             selected: true,
             description: $t7("question.subcommand.genCode.kotlin.additions.commandHandler")
           },
           {
-            title: jo.kotlin.KotlinGeneratorAddition.ValueClass,
-            value: jo.kotlin.KotlinGeneratorAddition.ValueClass,
+            title: So.kotlin.KotlinGeneratorAddition.ValueClass,
+            value: So.kotlin.KotlinGeneratorAddition.ValueClass,
             selected: true,
             description: $t7("question.subcommand.genCode.kotlin.additions.valueClass")
           },
           {
-            title: jo.kotlin.KotlinGeneratorAddition.Timezone,
-            value: jo.kotlin.KotlinGeneratorAddition.Timezone,
+            title: So.kotlin.KotlinGeneratorAddition.Timezone,
+            value: So.kotlin.KotlinGeneratorAddition.Timezone,
             description: $t7("question.subcommand.genCode.kotlin.additions.timezone")
           }
         ],
@@ -17999,32 +18185,32 @@ async function requireGenCsharpContext() {
         message: $t8("question.subcommand.genCode.csharp.additions"),
         choices: [
           {
-            title: jo.csharp.CSharpGeneratorAddition.Timezone,
-            value: jo.csharp.CSharpGeneratorAddition.Timezone,
+            title: So.csharp.CSharpGeneratorAddition.Timezone,
+            value: So.csharp.CSharpGeneratorAddition.Timezone,
             selected: true,
             description: $t8("question.subcommand.genCode.csharp.additions.timezone")
           },
           {
-            title: jo.csharp.CSharpGeneratorAddition.RecordStruct,
-            value: jo.csharp.CSharpGeneratorAddition.RecordStruct,
+            title: So.csharp.CSharpGeneratorAddition.RecordStruct,
+            value: So.csharp.CSharpGeneratorAddition.RecordStruct,
             selected: true,
             description: $t8("question.subcommand.genCode.csharp.additions.recordStruct")
           },
           {
-            title: jo.csharp.CSharpGeneratorAddition.PrimaryConstructor,
-            value: jo.csharp.CSharpGeneratorAddition.PrimaryConstructor,
+            title: So.csharp.CSharpGeneratorAddition.PrimaryConstructor,
+            value: So.csharp.CSharpGeneratorAddition.PrimaryConstructor,
             selected: true,
             description: $t8("question.subcommand.genCode.csharp.additions.primaryConstructor")
           },
           {
-            title: jo.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
-            value: jo.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
+            title: So.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
+            value: So.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
             selected: false,
             description: $t8("question.subcommand.genCode.csharp.additions.commandHandlerInterface")
           },
           {
-            title: jo.csharp.CSharpGeneratorAddition.AggInterface,
-            value: jo.csharp.CSharpGeneratorAddition.AggInterface,
+            title: So.csharp.CSharpGeneratorAddition.AggInterface,
+            value: So.csharp.CSharpGeneratorAddition.AggInterface,
             selected: false,
             description: $t8("question.subcommand.genCode.csharp.additions.aggInterface")
           }
@@ -18036,7 +18222,7 @@ async function requireGenCsharpContext() {
   );
   context.additions = new Set(additions);
   context.namespace = namespace;
-  if (context.additions.has(jo.csharp.CSharpGeneratorAddition.CommandHandlerInterface)) {
+  if (context.additions.has(So.csharp.CSharpGeneratorAddition.CommandHandlerInterface)) {
     const { commandHandlerInterface } = await (0, import_prompts3.default)(
       [
         {
@@ -18049,7 +18235,7 @@ async function requireGenCsharpContext() {
     );
     context.commandHandlerInterface = commandHandlerInterface;
   }
-  if (context.additions.has(jo.csharp.CSharpGeneratorAddition.AggInterface)) {
+  if (context.additions.has(So.csharp.CSharpGeneratorAddition.AggInterface)) {
     const { aggInterface } = await (0, import_prompts3.default)(
       [
         {
@@ -18116,20 +18302,20 @@ async function requireGenCodeCommandArgs(params) {
         message: $t10("question.subcommand.genCode.language"),
         choices: [
           {
-            title: jo.Language.CSharp,
-            value: jo.Language.CSharp
+            title: So.Language.CSharp,
+            value: So.Language.CSharp
           },
           {
-            title: jo.Language.Go,
-            value: jo.Language.Go
+            title: So.Language.Go,
+            value: So.Language.Go
           },
           {
-            title: jo.Language.Java,
-            value: jo.Language.Java
+            title: So.Language.Java,
+            value: So.Language.Java
           },
           {
-            title: jo.Language.Kotlin,
-            value: jo.Language.Kotlin
+            title: So.Language.Kotlin,
+            value: So.Language.Kotlin
           }
         ]
       }
@@ -18137,13 +18323,13 @@ async function requireGenCodeCommandArgs(params) {
     { onCancel }
   )).language;
   params.args.language = language;
-  if (language === jo.Language.Java) {
+  if (language === So.Language.Java) {
     params.args.context = await requireGenJavaContext();
-  } else if (language === jo.Language.Kotlin) {
+  } else if (language === So.Language.Kotlin) {
     params.args.context = await requireGenKotlinContext();
-  } else if (language === jo.Language.CSharp) {
+  } else if (language === So.Language.CSharp) {
     params.args.context = await requireGenCsharpContext();
-  } else if (language === jo.Language.Go) {
+  } else if (language === So.Language.Go) {
     params.args.context = await requireGenGoContext();
   } else {
     isNever(language);
@@ -18195,20 +18381,20 @@ async function execute5(args) {
     }
     const designer = m2.default;
     if (!pluginLoaded) {
-      if (args.language === jo.Language.Java) {
-        ue.registerPlugin(Oo);
-      } else if (args.language === jo.Language.Kotlin) {
-        ue.registerPlugin(Ao);
-      } else if (args.language === jo.Language.CSharp) {
-        ue.registerPlugin(xo);
-      } else if (args.language === jo.Language.Go) {
-        ue.registerPlugin(Io);
+      if (args.language === So.Language.Java) {
+        le2.registerPlugin(Io);
+      } else if (args.language === So.Language.Kotlin) {
+        le2.registerPlugin(Oo);
+      } else if (args.language === So.Language.CSharp) {
+        le2.registerPlugin(xo);
+      } else if (args.language === So.Language.Go) {
+        le2.registerPlugin(To);
       } else {
         isNever(args.language);
       }
       pluginLoaded = true;
     }
-    agg4 = So(designer);
+    agg4 = Ao(designer);
     agg4.commands.setDomainDesigner(designer);
     args.context.moduleName = designer._getContext().getDesignerOptions().moduleName || file.split(".")[0];
     agg4.commands.setContext(args.context);
