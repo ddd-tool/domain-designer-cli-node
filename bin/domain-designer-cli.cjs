@@ -26,9 +26,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/.pnpm/@vue+shared@3.5.13/node_modules/@vue/shared/dist/shared.cjs.prod.js
+// node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.prod.js
 var require_shared_cjs_prod = __commonJS({
-  "node_modules/.pnpm/@vue+shared@3.5.13/node_modules/@vue/shared/dist/shared.cjs.prod.js"(exports2) {
+  "node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.prod.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     // @__NO_SIDE_EFFECTS__
@@ -605,9 +605,9 @@ var require_shared_cjs_prod = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@vue+shared@3.5.13/node_modules/@vue/shared/dist/shared.cjs.js
+// node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.js
 var require_shared_cjs = __commonJS({
-  "node_modules/.pnpm/@vue+shared@3.5.13/node_modules/@vue/shared/dist/shared.cjs.js"(exports2) {
+  "node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     // @__NO_SIDE_EFFECTS__
@@ -1184,9 +1184,9 @@ var require_shared_cjs = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@vue+shared@3.5.13/node_modules/@vue/shared/index.js
+// node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/index.js
 var require_shared = __commonJS({
-  "node_modules/.pnpm/@vue+shared@3.5.13/node_modules/@vue/shared/index.js"(exports2, module2) {
+  "node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/index.js"(exports2, module2) {
     "use strict";
     if (process.env.NODE_ENV === "production") {
       module2.exports = require_shared_cjs_prod();
@@ -1196,9 +1196,9 @@ var require_shared = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@vue+reactivity@3.5.13/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js
+// node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js
 var require_reactivity_cjs_prod = __commonJS({
-  "node_modules/.pnpm/@vue+reactivity@3.5.13/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js"(exports2) {
+  "node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var shared = require_shared();
@@ -1207,6 +1207,7 @@ var require_reactivity_cjs_prod = __commonJS({
       constructor(detached = false) {
         this.detached = detached;
         this._active = true;
+        this._on = 0;
         this.effects = [];
         this.cleanups = [];
         this._isPaused = false;
@@ -1269,14 +1270,20 @@ var require_reactivity_cjs_prod = __commonJS({
        * @internal
        */
       on() {
-        activeEffectScope = this;
+        if (++this._on === 1) {
+          this.prevScope = activeEffectScope;
+          activeEffectScope = this;
+        }
       }
       /**
        * This should only be called on non-detached scopes
        * @internal
        */
       off() {
-        activeEffectScope = this.parent;
+        if (this._on > 0 && --this._on === 0) {
+          activeEffectScope = this.prevScope;
+          this.prevScope = void 0;
+        }
       }
       stop(fromParent) {
         if (this._active) {
@@ -1333,7 +1340,9 @@ var require_reactivity_cjs_prod = __commonJS({
       "ALLOW_RECURSE": 32,
       "32": "ALLOW_RECURSE",
       "PAUSED": 64,
-      "64": "PAUSED"
+      "64": "PAUSED",
+      "EVALUATED": 128,
+      "128": "EVALUATED"
     };
     var pausedQueueEffects = /* @__PURE__ */ new WeakSet();
     var ReactiveEffect = class {
@@ -1354,7 +1363,7 @@ var require_reactivity_cjs_prod = __commonJS({
       }
       resume() {
         if (this.flags & 64) {
-          this.flags &= ~64;
+          this.flags &= -65;
           if (pausedQueueEffects.has(this)) {
             pausedQueueEffects.delete(this);
             this.trigger();
@@ -1389,7 +1398,7 @@ var require_reactivity_cjs_prod = __commonJS({
           cleanupDeps(this);
           activeSub = prevEffect;
           shouldTrack = prevShouldTrack;
-          this.flags &= ~2;
+          this.flags &= -3;
         }
       }
       stop() {
@@ -1400,7 +1409,7 @@ var require_reactivity_cjs_prod = __commonJS({
           this.deps = this.depsTail = void 0;
           cleanupEffect(this);
           this.onStop && this.onStop();
-          this.flags &= ~1;
+          this.flags &= -2;
         }
       }
       trigger() {
@@ -1450,7 +1459,7 @@ var require_reactivity_cjs_prod = __commonJS({
         while (e) {
           const next = e.next;
           e.next = void 0;
-          e.flags &= ~8;
+          e.flags &= -9;
           e = next;
         }
       }
@@ -1461,7 +1470,7 @@ var require_reactivity_cjs_prod = __commonJS({
         while (e) {
           const next = e.next;
           e.next = void 0;
-          e.flags &= ~8;
+          e.flags &= -9;
           if (e.flags & 1) {
             try {
               ;
@@ -1517,17 +1526,16 @@ var require_reactivity_cjs_prod = __commonJS({
       if (computed2.flags & 4 && !(computed2.flags & 16)) {
         return;
       }
-      computed2.flags &= ~16;
+      computed2.flags &= -17;
       if (computed2.globalVersion === globalVersion) {
         return;
       }
       computed2.globalVersion = globalVersion;
-      const dep = computed2.dep;
-      computed2.flags |= 2;
-      if (dep.version > 0 && !computed2.isSSR && computed2.deps && !isDirty(computed2)) {
-        computed2.flags &= ~2;
+      if (!computed2.isSSR && computed2.flags & 128 && (!computed2.deps && !computed2._dirty || !isDirty(computed2))) {
         return;
       }
+      computed2.flags |= 2;
+      const dep = computed2.dep;
       const prevSub = activeSub;
       const prevShouldTrack = shouldTrack;
       activeSub = computed2;
@@ -1536,6 +1544,7 @@ var require_reactivity_cjs_prod = __commonJS({
         prepareDeps(computed2);
         const value = computed2.fn(computed2._value);
         if (dep.version === 0 || shared.hasChanged(value, computed2._value)) {
+          computed2.flags |= 128;
           computed2._value = value;
           dep.version++;
         }
@@ -1546,7 +1555,7 @@ var require_reactivity_cjs_prod = __commonJS({
         activeSub = prevSub;
         shouldTrack = prevShouldTrack;
         cleanupDeps(computed2);
-        computed2.flags &= ~2;
+        computed2.flags &= -3;
       }
     }
     function removeSub(link, soft = false) {
@@ -1562,7 +1571,7 @@ var require_reactivity_cjs_prod = __commonJS({
       if (dep.subs === link) {
         dep.subs = prevSub;
         if (!prevSub && dep.computed) {
-          dep.computed.flags &= ~4;
+          dep.computed.flags &= -5;
           for (let l2 = dep.computed.deps; l2; l2 = l2.nextDep) {
             removeSub(l2, true);
           }
@@ -2406,13 +2415,13 @@ var require_reactivity_cjs_prod = __commonJS({
       if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
         return target;
       }
-      const existingProxy = proxyMap.get(target);
-      if (existingProxy) {
-        return existingProxy;
-      }
       const targetType = getTargetType(target);
       if (targetType === 0) {
         return target;
+      }
+      const existingProxy = proxyMap.get(target);
+      if (existingProxy) {
+        return existingProxy;
       }
       const proxy = new Proxy(
         target,
@@ -2910,9 +2919,9 @@ var require_reactivity_cjs_prod = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@vue+reactivity@3.5.13/node_modules/@vue/reactivity/dist/reactivity.cjs.js
+// node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.js
 var require_reactivity_cjs = __commonJS({
-  "node_modules/.pnpm/@vue+reactivity@3.5.13/node_modules/@vue/reactivity/dist/reactivity.cjs.js"(exports2) {
+  "node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var shared = require_shared();
@@ -2924,6 +2933,7 @@ var require_reactivity_cjs = __commonJS({
       constructor(detached = false) {
         this.detached = detached;
         this._active = true;
+        this._on = 0;
         this.effects = [];
         this.cleanups = [];
         this._isPaused = false;
@@ -2988,14 +2998,20 @@ var require_reactivity_cjs = __commonJS({
        * @internal
        */
       on() {
-        activeEffectScope = this;
+        if (++this._on === 1) {
+          this.prevScope = activeEffectScope;
+          activeEffectScope = this;
+        }
       }
       /**
        * This should only be called on non-detached scopes
        * @internal
        */
       off() {
-        activeEffectScope = this.parent;
+        if (this._on > 0 && --this._on === 0) {
+          activeEffectScope = this.prevScope;
+          this.prevScope = void 0;
+        }
       }
       stop(fromParent) {
         if (this._active) {
@@ -3056,7 +3072,9 @@ var require_reactivity_cjs = __commonJS({
       "ALLOW_RECURSE": 32,
       "32": "ALLOW_RECURSE",
       "PAUSED": 64,
-      "64": "PAUSED"
+      "64": "PAUSED",
+      "EVALUATED": 128,
+      "128": "EVALUATED"
     };
     var pausedQueueEffects = /* @__PURE__ */ new WeakSet();
     var ReactiveEffect = class {
@@ -3077,7 +3095,7 @@ var require_reactivity_cjs = __commonJS({
       }
       resume() {
         if (this.flags & 64) {
-          this.flags &= ~64;
+          this.flags &= -65;
           if (pausedQueueEffects.has(this)) {
             pausedQueueEffects.delete(this);
             this.trigger();
@@ -3117,7 +3135,7 @@ var require_reactivity_cjs = __commonJS({
           cleanupDeps(this);
           activeSub = prevEffect;
           shouldTrack = prevShouldTrack;
-          this.flags &= ~2;
+          this.flags &= -3;
         }
       }
       stop() {
@@ -3128,7 +3146,7 @@ var require_reactivity_cjs = __commonJS({
           this.deps = this.depsTail = void 0;
           cleanupEffect(this);
           this.onStop && this.onStop();
-          this.flags &= ~1;
+          this.flags &= -2;
         }
       }
       trigger() {
@@ -3178,7 +3196,7 @@ var require_reactivity_cjs = __commonJS({
         while (e) {
           const next = e.next;
           e.next = void 0;
-          e.flags &= ~8;
+          e.flags &= -9;
           e = next;
         }
       }
@@ -3189,7 +3207,7 @@ var require_reactivity_cjs = __commonJS({
         while (e) {
           const next = e.next;
           e.next = void 0;
-          e.flags &= ~8;
+          e.flags &= -9;
           if (e.flags & 1) {
             try {
               ;
@@ -3245,17 +3263,16 @@ var require_reactivity_cjs = __commonJS({
       if (computed2.flags & 4 && !(computed2.flags & 16)) {
         return;
       }
-      computed2.flags &= ~16;
+      computed2.flags &= -17;
       if (computed2.globalVersion === globalVersion) {
         return;
       }
       computed2.globalVersion = globalVersion;
-      const dep = computed2.dep;
-      computed2.flags |= 2;
-      if (dep.version > 0 && !computed2.isSSR && computed2.deps && !isDirty(computed2)) {
-        computed2.flags &= ~2;
+      if (!computed2.isSSR && computed2.flags & 128 && (!computed2.deps && !computed2._dirty || !isDirty(computed2))) {
         return;
       }
+      computed2.flags |= 2;
+      const dep = computed2.dep;
       const prevSub = activeSub;
       const prevShouldTrack = shouldTrack;
       activeSub = computed2;
@@ -3264,6 +3281,7 @@ var require_reactivity_cjs = __commonJS({
         prepareDeps(computed2);
         const value = computed2.fn(computed2._value);
         if (dep.version === 0 || shared.hasChanged(value, computed2._value)) {
+          computed2.flags |= 128;
           computed2._value = value;
           dep.version++;
         }
@@ -3274,7 +3292,7 @@ var require_reactivity_cjs = __commonJS({
         activeSub = prevSub;
         shouldTrack = prevShouldTrack;
         cleanupDeps(computed2);
-        computed2.flags &= ~2;
+        computed2.flags &= -3;
       }
     }
     function removeSub(link, soft = false) {
@@ -3293,7 +3311,7 @@ var require_reactivity_cjs = __commonJS({
       if (dep.subs === link) {
         dep.subs = prevSub;
         if (!prevSub && dep.computed) {
-          dep.computed.flags &= ~4;
+          dep.computed.flags &= -5;
           for (let l2 = dep.computed.deps; l2; l2 = l2.nextDep) {
             removeSub(l2, true);
           }
@@ -4222,13 +4240,13 @@ var require_reactivity_cjs = __commonJS({
       if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
         return target;
       }
-      const existingProxy = proxyMap.get(target);
-      if (existingProxy) {
-        return existingProxy;
-      }
       const targetType = getTargetType(target);
       if (targetType === 0) {
         return target;
+      }
+      const existingProxy = proxyMap.get(target);
+      if (existingProxy) {
+        return existingProxy;
       }
       const proxy = new Proxy(
         target,
@@ -4772,9 +4790,9 @@ var require_reactivity_cjs = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@vue+reactivity@3.5.13/node_modules/@vue/reactivity/index.js
+// node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/index.js
 var require_reactivity = __commonJS({
-  "node_modules/.pnpm/@vue+reactivity@3.5.13/node_modules/@vue/reactivity/index.js"(exports2, module2) {
+  "node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/index.js"(exports2, module2) {
     "use strict";
     if (process.env.NODE_ENV === "production") {
       module2.exports = require_reactivity_cjs_prod();
@@ -13213,10 +13231,10 @@ function toString(...args) {
 // src/domain/i18n-agg/index.ts
 var import_reactivity2 = __toESM(require_reactivity(), 1);
 
-// node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_4ca1cd6871b8a9d3850126940100dd32/node_modules/vue-fn/domain-server/index.mjs
+// node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_6c6f2c418066476e32047d51b707ca14/node_modules/vue-fn/domain-server/index.mjs
 var import_reactivity = __toESM(require_reactivity(), 1);
 
-// node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_4ca1cd6871b8a9d3850126940100dd32/node_modules/vue-fn/index.browser-CWCjzKuA.js
+// node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_6c6f2c418066476e32047d51b707ca14/node_modules/vue-fn/index.browser-CWCjzKuA.js
 var l = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
 var r = (t = 21) => {
   let e = "", n = crypto.getRandomValues(new Uint8Array(t |= 0));
@@ -13225,7 +13243,7 @@ var r = (t = 21) => {
   return e;
 };
 
-// node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_4ca1cd6871b8a9d3850126940100dd32/node_modules/vue-fn/domain-server/index.mjs
+// node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_6c6f2c418066476e32047d51b707ca14/node_modules/vue-fn/domain-server/index.mjs
 function I(r2, o = true, a = false) {
   const n = (0, import_reactivity.ref)();
   let e;
@@ -13511,7 +13529,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.10",
+  "version": "0.1.0-beta.11",
   "private": true,
   "type": "module",
   "files": [
@@ -13526,7 +13544,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.10"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.11"
 };
 
 // src/domain/environment-agg/index.ts
@@ -14160,7 +14178,7 @@ var import_fs6 = __toESM(require("fs"), 1);
 var import_path7 = __toESM(require("path"), 1);
 var import_child_process5 = require("child_process");
 
-// node_modules/.pnpm/@ddd-tool+domain-designer-core@0.1.0-beta.7/node_modules/@ddd-tool/domain-designer-core/index.js
+// node_modules/.pnpm/@ddd-tool+domain-designer-core@0.1.0-beta.9/node_modules/@ddd-tool/domain-designer-core/index.js
 function tr(t) {
   const e = t;
   return e && typeof e.actor == "function" && typeof e.startWorkflow == "function" && typeof e.defineUserStory == "function" && typeof e._getContext == "function" && typeof e.note == "function" && typeof e.info == "object" && typeof e.command == "function" && typeof e.facadeCmd == "function" && typeof e.agg == "function" && typeof e.event == "function" && typeof e.system == "function" && typeof e.policy == "function" && typeof e.service == "function" && typeof e.readModel == "function";
@@ -14386,12 +14404,12 @@ function oe(t, e, n, s = true) {
   const r2 = e ? e.vnode : null, { errorHandler: o, throwUnhandledErrorInProduction: c } = e && e.appContext.config || Et;
   if (e) {
     let i = e.parent;
-    const a = e.proxy, d = process.env.NODE_ENV !== "production" ? re[n] : `https://vuejs.org/error-reference/#runtime-${n}`;
+    const l2 = e.proxy, p = process.env.NODE_ENV !== "production" ? re[n] : `https://vuejs.org/error-reference/#runtime-${n}`;
     for (; i; ) {
-      const l2 = i.ec;
-      if (l2) {
-        for (let u = 0; u < l2.length; u++)
-          if (l2[u](t, a, d) === false)
+      const a = i.ec;
+      if (a) {
+        for (let u = 0; u < a.length; u++)
+          if (a[u](t, l2, p) === false)
             return;
       }
       i = i.parent;
@@ -14399,8 +14417,8 @@ function oe(t, e, n, s = true) {
     if (o) {
       At(), Mt(o, null, 10, [
         t,
-        a,
-        d
+        l2,
+        p
       ]), Vt();
       return;
     }
@@ -14580,7 +14598,7 @@ var ot = ({
   ref_for: n
 }) => (typeof t == "number" && (t = "" + t), t != null ? x(t) || M2(t) || $(t) ? { i: lt, r: t, k: e, f: !!n } : t : null);
 function Rn(t, e = null, n = null, s = 0, r2 = null, o = t === fe ? 0 : 1, c = false, i = false) {
-  const a = {
+  const l2 = {
     __v_isVNode: true,
     __v_skip: true,
     type: t,
@@ -14609,7 +14627,7 @@ function Rn(t, e = null, n = null, s = 0, r2 = null, o = t === fe ? 0 : 1, c = f
     appContext: null,
     ctx: lt
   };
-  return i ? (Pt(a, n), o & 128 && t.normalize(a)) : n && (a.shapeFlag |= x(n) ? 8 : 16), process.env.NODE_ENV !== "production" && a.key !== a.key && W("VNode created with invalid key (NaN). VNode type:", a.type), a;
+  return i ? (Pt(l2, n), o & 128 && t.normalize(l2)) : n && (l2.shapeFlag |= x(n) ? 8 : 16), process.env.NODE_ENV !== "production" && l2.key !== l2.key && W("VNode created with invalid key (NaN). VNode type:", l2.type), l2;
 }
 var Fn = process.env.NODE_ENV !== "production" ? Tn : _e;
 function _e(t, e = null, n = null, s = 0, r2 = null, o = false) {
@@ -14624,8 +14642,8 @@ function _e(t, e = null, n = null, s = 0, r2 = null, o = false) {
   }
   if (be(t) && (t = t.__vccOpts), e) {
     e = Cn(e);
-    let { class: i, style: a } = e;
-    i && !x(i) && (e.class = Ct(i)), R(a) && (ct(a) && !y2(a) && (a = B({}, a)), e.style = Ft(a));
+    let { class: i, style: l2 } = e;
+    i && !x(i) && (e.class = Ct(i)), R(l2) && (ct(l2) && !y2(l2) && (l2 = B({}, l2)), e.style = Ft(l2));
   }
   const c = x(t) ? 1 : Nn(t) ? 128 : mn(t) ? 64 : R(t) ? 4 : $(t) ? 2 : 0;
   return process.env.NODE_ENV !== "production" && c & 4 && ct(t) && (t = h(t), W(
@@ -14648,12 +14666,12 @@ function Cn(t) {
   return t ? ct(t) || le(t) ? B({}, t) : t : null;
 }
 function ft(t, e, n = false, s = false) {
-  const { props: r2, ref: o, patchFlag: c, children: i, transition: a } = t, d = e ? xn(r2 || {}, e) : r2, l2 = {
+  const { props: r2, ref: o, patchFlag: c, children: i, transition: l2 } = t, p = e ? xn(r2 || {}, e) : r2, a = {
     __v_isVNode: true,
     __v_skip: true,
     type: t.type,
-    props: d,
-    key: d && de(d),
+    props: p,
+    key: p && de(p),
     ref: e && e.ref ? (
       // #2078 in the case of <component :is="vnode" ref="extra"/>
       // if the vnode itself already has a ref, cloneVNode will need to merge
@@ -14677,7 +14695,7 @@ function ft(t, e, n = false, s = false) {
     dynamicChildren: t.dynamicChildren,
     appContext: t.appContext,
     dirs: t.dirs,
-    transition: a,
+    transition: l2,
     // These should technically only be non-null on mounted VNodes. However,
     // they *should* be copied for kept-alive vnodes. So we just always copy
     // them since them being non-null during a mount doesn't affect the logic as
@@ -14691,10 +14709,10 @@ function ft(t, e, n = false, s = false) {
     ctx: t.ctx,
     ce: t.ce
   };
-  return a && s && ae(
-    l2,
-    a.clone(l2)
-  ), l2;
+  return l2 && s && ae(
+    a,
+    l2.clone(a)
+  ), a;
 }
 function pe(t) {
   const e = ft(t);
@@ -14787,7 +14805,7 @@ function In() {
       return R(u) ? u.__isVue ? ["div", t, "VueInstance"] : M2(u) ? [
         "div",
         {},
-        ["span", t, l2(u)],
+        ["span", t, a(u)],
         "<",
         // avoid debugger accessing value affecting behavior
         i("_value" in u ? u._value : u),
@@ -14823,9 +14841,9 @@ function In() {
   function o(u) {
     const f = [];
     u.type.props && u.props && f.push(c("props", h(u.props))), u.setupState !== Et && f.push(c("setup", u.setupState)), u.data !== Et && f.push(c("data", h(u.data)));
-    const _ = a(u, "computed");
-    _ && f.push(c("computed", _));
-    const g2 = a(u, "inject");
+    const d = l2(u, "computed");
+    d && f.push(c("computed", d));
+    const g2 = l2(u, "inject");
     return g2 && f.push(c("injected", g2)), f.push([
       "div",
       {},
@@ -14855,11 +14873,11 @@ function In() {
         {
           style: "padding-left:1.25em"
         },
-        ...Object.keys(f).map((_) => [
+        ...Object.keys(f).map((d) => [
           "div",
           {},
-          ["span", s, _ + ": "],
-          i(f[_], false)
+          ["span", s, d + ": "],
+          i(f[d], false)
         ])
       ]
     ] : ["span", {}];
@@ -14867,21 +14885,21 @@ function In() {
   function i(u, f = true) {
     return typeof u == "number" ? ["span", e, u] : typeof u == "string" ? ["span", n, JSON.stringify(u)] : typeof u == "boolean" ? ["span", s, u] : R(u) ? ["object", { object: f ? h(u) : u }] : ["span", n, String(u)];
   }
-  function a(u, f) {
-    const _ = u.type;
-    if ($(_))
+  function l2(u, f) {
+    const d = u.type;
+    if ($(d))
       return;
     const g2 = {};
     for (const b2 in u.ctx)
-      d(_, b2, f) && (g2[b2] = u.ctx[b2]);
+      p(d, b2, f) && (g2[b2] = u.ctx[b2]);
     return g2;
   }
-  function d(u, f, _) {
-    const g2 = u[_];
-    if (y2(g2) && g2.includes(f) || R(g2) && f in g2 || u.extends && d(u.extends, f, _) || u.mixins && u.mixins.some((b2) => d(b2, f, _)))
+  function p(u, f, d) {
+    const g2 = u[d];
+    if (y2(g2) && g2.includes(f) || R(g2) && f in g2 || u.extends && p(u.extends, f, d) || u.mixins && u.mixins.some((b2) => p(b2, f, d)))
       return true;
   }
-  function l2(u) {
+  function a(u) {
     return F2(u) ? "ShallowRef" : u.effect ? "ComputedRef" : "Ref";
   }
   window.devtoolsFormatters ? window.devtoolsFormatters.push(r2) : window.devtoolsFormatters = [r2];
@@ -14894,7 +14912,7 @@ function Mn() {
 }
 process.env.NODE_ENV !== "production" && Mn();
 
-// node_modules/.pnpm/@ddd-tool+domain-designer-g_01515f1f919a13786c6bf13504cc0ffd/node_modules/@ddd-tool/domain-designer-generator/index.js
+// node_modules/.pnpm/@ddd-tool+domain-designer-g_1eee61252fb0788de80f303a4b2fa5e3/node_modules/@ddd-tool/domain-designer-generator/index.js
 // @__NO_SIDE_EFFECTS__
 function Bn(e) {
   const n = /* @__PURE__ */ Object.create(null);
@@ -14983,20 +15001,15 @@ function Xn(e) {
   return !!e._dirty;
 }
 function hn2(e) {
-  if (e.flags & 4 && !(e.flags & 16) || (e.flags &= -17, e.globalVersion === re2))
+  if (e.flags & 4 && !(e.flags & 16) || (e.flags &= -17, e.globalVersion === re2) || (e.globalVersion = re2, !e.isSSR && e.flags & 128 && (!e.deps && !e._dirty || !Xn(e))))
     return;
-  e.globalVersion = re2;
-  const n = e.dep;
-  if (e.flags |= 2, n.version > 0 && !e.isSSR && e.deps && !Xn(e)) {
-    e.flags &= -3;
-    return;
-  }
-  const t = A, r2 = R2;
+  e.flags |= 2;
+  const n = e.dep, t = A, r2 = R2;
   A = e, R2 = true;
   try {
     Zn(e);
     const o = e.fn(e._value);
-    (n.version === 0 || q(o, e._value)) && (e._value = o, n.version++);
+    (n.version === 0 || q(o, e._value)) && (e.flags |= 128, e._value = o, n.version++);
   } catch (o) {
     throw n.version++, o;
   } finally {
@@ -15583,15 +15596,15 @@ function nn2(e, n, t, r2, o) {
     ), e;
   if (e.__v_raw && !(n && e.__v_isReactive))
     return e;
-  const s = o.get(e);
-  if (s)
-    return s;
-  const p = Ct2(e);
-  if (p === 0)
+  const s = Ct2(e);
+  if (s === 0)
     return e;
+  const p = o.get(e);
+  if (p)
+    return p;
   const _ = new Proxy(
     e,
-    p === 2 ? r2 : t
+    s === 2 ? r2 : t
   );
   return o.set(e, _), _;
 }
@@ -18608,7 +18621,7 @@ async function start() {
 
 @vue/shared/dist/shared.cjs.prod.js:
   (**
-  * @vue/shared v3.5.13
+  * @vue/shared v3.5.14
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -18616,7 +18629,7 @@ async function start() {
 
 @vue/shared/dist/shared.cjs.js:
   (**
-  * @vue/shared v3.5.13
+  * @vue/shared v3.5.14
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -18624,14 +18637,14 @@ async function start() {
 
 @vue/reactivity/dist/reactivity.cjs.prod.js:
   (**
-  * @vue/reactivity v3.5.13
+  * @vue/reactivity v3.5.14
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
 
 @vue/reactivity/dist/reactivity.cjs.js:
   (**
-  * @vue/reactivity v3.5.13
+  * @vue/reactivity v3.5.14
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -18667,13 +18680,13 @@ async function start() {
 
 @ddd-tool/domain-designer-generator/index.js:
   (**
-  * @vue/shared v3.5.13
+  * @vue/shared v3.5.14
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
   (*! #__NO_SIDE_EFFECTS__ *)
   (**
-  * @vue/reactivity v3.5.13
+  * @vue/reactivity v3.5.14
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
