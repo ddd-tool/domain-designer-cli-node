@@ -13529,7 +13529,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.13",
+  "version": "0.1.0-beta.14",
   "private": true,
   "type": "module",
   "files": [
@@ -13544,7 +13544,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.13"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.14"
 };
 
 // src/domain/environment-agg/index.ts
