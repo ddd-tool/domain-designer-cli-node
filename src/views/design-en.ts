@@ -31,7 +31,7 @@ const deductFailure = d.event('deductFailure', [orderId, orderTime])
 // rule
 const paymentRule = d.policy(
   'paymentRule',
-  d.desc`
+  d.note`
 if ${userAccount} has opened the automatic payment service, then automatic payment is initiated
 rule 1:
 rule 2:

@@ -1,15 +1,23 @@
 import { type DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
 
-const __d1 = (await import('F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo/example-agg')).default
-const __d2 = (await import('F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo/example')).default
+const __d1 = (await import('./simple-example')).default
+const __d2 = (await import('./complex-example')).default
+const __d3 = (await import('./design-en')).default
+const __d4 = (await import('./design-zh')).default
 
 const data: Record<string, DomainDesigner> = {}
 
 if (isDomainDesigner(__d1)) {
-  data['example-agg'] = __d1
+  data['simple-example'] = __d1
 }
 if (isDomainDesigner(__d2)) {
-  data['example'] = __d2
+  data['complex-example'] = __d2
+}
+if (isDomainDesigner(__d3)) {
+  data['design-en'] = __d3
+}
+if (isDomainDesigner(__d4)) {
+  data['design-zh'] = __d4
 }
 
 export default data

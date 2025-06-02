@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.14",
+  "version": "0.1.0-beta.15",
   "private": false,
   "description": "",
   "type": "module",
@@ -39,7 +39,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@ddd-tool/domain-designer-core": "0.1.0-beta.10",
-    "@ddd-tool/domain-designer-ui-component": "0.1.0-beta.9",
+    "@ddd-tool/domain-designer-ui-component": "0.1.0-beta.10",
     "@primeuix/themes": "^1.1.1",
     "@types/node": "^22.15.21",
     "@vitejs/plugin-vue": "^5.2.4",
