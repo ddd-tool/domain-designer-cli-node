@@ -27,6 +27,9 @@ jobs:
   # 构建工作
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,9 +47,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: cd github-pages && npm ci # 或 pnpm install / yarn install / bun install
+        run: npm ci # 或 pnpm install / yarn install / bun install
       - name: Build with VitePress
-        run: cd github-pages && npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+        run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
