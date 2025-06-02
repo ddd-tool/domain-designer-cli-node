@@ -44,8 +44,9 @@ export async function execute(args: InitCommandArgs) {
     if (existsFiles.filter((name) => name.endsWith('.ts')).length === 0) {
       throw new Error($t('error.shouldBeValidWorkspaceOrEmptyDir{dir}', { dir: distDir }))
     }
-    copyIgnores.push('example-agg.ts')
-    copyIgnores.push('example.ts')
+    copyIgnores.push('simple-example.ts')
+    copyIgnores.push('complex-example.ts')
+    copyIgnores.push('complex-example-detail')
     copyIgnores.push('node_modules')
   }
 

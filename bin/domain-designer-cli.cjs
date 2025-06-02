@@ -13948,8 +13948,9 @@ async function execute(args) {
     if (existsFiles.filter((name) => name.endsWith(".ts")).length === 0) {
       throw new Error($t2("error.shouldBeValidWorkspaceOrEmptyDir{dir}", { dir: distDir }));
     }
-    copyIgnores.push("example-agg.ts");
-    copyIgnores.push("example.ts");
+    copyIgnores.push("simple-example.ts");
+    copyIgnores.push("complex-example.ts");
+    copyIgnores.push("complex-example-detail");
     copyIgnores.push("node_modules");
   }
   log_default.printInfo("================ \u521D\u59CB\u5316\u5DE5\u4F5C\u7A7A\u95F4: Starting... ================");
@@ -14042,7 +14043,7 @@ async function execute3(args) {
     import_fs4.default.rmSync(import_path5.default.join(distDir, gitignore.name));
   }
   copyFolderRecursive(import_path5.default.join(environmentAgg3.states.webRoot.value, "templates"), distDir, {
-    ignore: ["example.ts", "example-agg.ts"]
+    ignore: ["simple-example.ts", "complex-example.ts", "complex-example-detail"]
   });
   if (runWebScript) {
     import_fs4.default.writeFileSync(import_path5.default.join(distDir, runWebScript.name), runWebScript.content, "utf-8");

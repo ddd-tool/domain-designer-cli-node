@@ -72,7 +72,7 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
   }
 
   copyFolderRecursive(path.join(environmentAgg.states.webRoot.value, 'templates'), distDir, {
-    ignore: ['example.ts', 'example-agg.ts'],
+    ignore: ['simple-example.ts', 'complex-example.ts', 'complex-example-detail'],
   })
   if (runWebScript) {
     fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
