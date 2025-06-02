@@ -5,7 +5,7 @@ layout: home
 hero:
   name: 'Domain Designer'
   text: 'ddd 建模生产力工具'
-  tagline: '通过编写 ts 代码的方式进行领域设计 0.0.1-beta.14'
+  tagline: '通过编写 ts 代码的方式进行领域设计'
   actions:
     - theme: brand
       text: 快速开始
@@ -32,3 +32,7 @@ features:
   - title: 导出SVG
     details: 在做一些其他文档如office文档的时候，可以方便地进行引用
 ---
+
+::: info 所写即所得
+![演示](example1.gif)
+:::
