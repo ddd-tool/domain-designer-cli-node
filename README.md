@@ -12,13 +12,11 @@
 
 ## 1 前置依赖
 
-[nodejs](https://nodejs.org/en/download/) >= 18
+- [nodejs](https://nodejs.org/en/download/) >= 18
 
-[bun](https://bun.sh/) OR [pnpm](https://pnpm.io/) >= 9
+- 可选：[bun](https://bun.sh/) OR [pnpm](https://pnpm.io/) >= 9
 
-- 确保有全局的 `bun` 或者 `pnpm` 指令 bun
-
-- 本程序会优先使用 bun 运行，如果没有则切换为 pnpm
+- 本程序会优先使用 bun 运行，如果没有则切换为 pnpm，再其次使用 npm
 
 ## 2 安装
 
@@ -26,12 +24,6 @@
 bun i @ddd-tool/domain-designer-cli -g
 # or
 pnpm i @ddd-tool/domain-designer-cli -g
-```
-
-对于 linux / macOS 系统：
-
-```bash
-chmod +x *.sh
 ```
 
 ## 3 更新版本
@@ -42,12 +34,6 @@ chmod +x *.sh
 bun i @ddd-tool/domain-designer-cli@latest -g
 # or
 pnpm i @ddd-tool/domain-designer-cli@latest -g
-```
-
-对于 linux / macOS 系统：
-
-```bash
-chmod +x *.sh
 ```
 
 ### 3.2 更新工作空间
@@ -70,6 +56,12 @@ domain-designer-cli update
 bunx domain-designer-cli init
 # or
 domain-designer-cli init
+```
+
+对于 linux / macOS 系统用户，需要再执行：
+
+```bash
+chmod +x *.sh
 ```
 
 - 推荐将工作空间中的所有文件放入实际项目，随项目一起进行版本控制。由于 ts 代码的表达能力并不弱，在多人协作的时候，即使其他人没有安装本工具，也可以通过代码安全地了解、调整领域模型。

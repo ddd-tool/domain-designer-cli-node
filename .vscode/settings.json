@@ -16,6 +16,9 @@
     "editor.tabSize": 4,
     "editor.defaultFormatter": "pest.pest-ide-tools"
   },
+  "[markdown]": {
+    "prettier.printWidth": 80,
+  },
   "i18n-ally.enabledParsers": [
     "ts",
   ],
