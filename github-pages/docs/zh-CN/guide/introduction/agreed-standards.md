@@ -39,15 +39,15 @@ const 创建用户命令 = d.command(
 如：
 
 ```ts
-// 定义一个有主键意义的值，
-// 它的名称是`id`，
+// 定义一个有唯一id意义的值，
+// 它的名称是`bookId`，
 // 它的备注是`图书id`
 d.info.id('bookId', '图书id')
 // 定义一个command节点，
 // 它的名称是`RegisterBookCommand`，
-// 它的内容是`isbn`，
+// 它的内容是`isbn`、`bookName`，
 // 它的备注是`注册图书命令`
-d.command('RegisterBookCommand', ['isbn'], '注册图书命令')
+d.command('RegisterBookCommand', ['isbn', 'bookName'], '注册图书命令')
 ```
 
 ## 结构
@@ -66,7 +66,7 @@ export default d
 ```ts [/user.ts]
 import { createDomainDesigner } from '@ddd-tool/domain-designer-core'
 const d = createDomainDesigner()
-// IMPL 进行图书模块的设计
+// IMPL 进行用户模块的设计
 export default d
 ```
 

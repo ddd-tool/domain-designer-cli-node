@@ -8,10 +8,10 @@
 
 ### id
 
-通常表示一个聚合的主键
+通常表示一个聚合的 id
 
 ```ts
-const 主键 = d.info.id('id', '主键的说明')
+const 图书id = d.info.id('bookId', '图书id的备注')
 ```
 
 ### valueObj

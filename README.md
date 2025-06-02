@@ -98,9 +98,9 @@ chmod +x *.sh
 
   - [x] Kotlin
 
-  - [ ] C#
+  - [x] C#
 
-  - [ ] GoLang
+  - [x] GoLang
 
 ## 5 其他说明
 
@@ -132,7 +132,7 @@ chmod +x *.sh
 
   - [x] Windows
 
-  - [ ] Linux
+  - [x] Linux
 
   - [ ] Mac
 

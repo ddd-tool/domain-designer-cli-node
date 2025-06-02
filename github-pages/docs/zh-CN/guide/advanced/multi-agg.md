@@ -17,7 +17,7 @@ const bookValues = {
   ISBN: i.id(
     'isbn',
     `国际标注书号
-      这个值作为主键，能唯一确定一款图书`
+      这个值作为id，能唯一确定一款图书`
   ),
   图书名称: i.valueObj('bookName', '图书名称'),
   丛书名称: i.valueObj('seriesName', '丛书名称'),
@@ -29,7 +29,7 @@ const orderValues = {
   订单流水号: i.id(
     'orderSequence',
     `订单流水号
-      这个值作为主键，在需求调研阶段确定`
+      这个值作为id，在需求调研阶段确定`
   ),
   全局流水号: i.valueObj(
     'globalSequence',
