@@ -87,15 +87,9 @@ import './order-detail/order'
 export default d
 ```
 
-```ts [/mall-detail/common.ts]
-import { createDomainDesigner } from '@ddd-tool/domain-designer-core'
-export const d = createDomainDesigner()
-export const i = d.info
-```
-
 ```ts [/mall-detail/order.ts]
 import { d, i } from './common'
-import { 图书聚合 } from './book'
+import { bookValues } from './book'
 
 const 已下单 = d.event(
   'OrderPlaced',
@@ -117,6 +111,12 @@ const 图书聚合 = d.agg(
   ],
   '图书聚合'
 )
+```
+
+```ts [/mall-detail/common.ts]
+import { createDomainDesigner } from '@ddd-tool/domain-designer-core'
+export const d = createDomainDesigner()
+export const i = d.info
 ```
 
 :::

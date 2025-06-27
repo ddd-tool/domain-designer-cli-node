@@ -85,12 +85,12 @@ export default d
 
 ```ts [book-detail/order.ts]
 import { d, i } from './book-detail/common'
-// IMPL 进行图书模块的设计
+// IMPL 进行订单聚合的设计
 ```
 
 ```ts [book-detail/book.ts]
 import { d, i } from './book-detail/common'
-// IMPL 进行图书模块的设计
+// IMPL 进行图书聚合的设计
 ```
 
 ```ts [book-detail/common.ts]
