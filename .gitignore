@@ -3,4 +3,5 @@ pnpm-lock.yaml
 bun.lockb
 bun.lock
 package-lock.json
+.env
 /demo
