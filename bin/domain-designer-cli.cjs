@@ -13529,7 +13529,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.15",
+  "version": "0.1.0-beta.16",
   "private": true,
   "type": "module",
   "files": [
@@ -13544,7 +13544,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.15"
+  "_id": "@ddd-tool/domain-designer-cli@0.1.0-beta.16"
 };
 
 // src/domain/environment-agg/index.ts
@@ -14143,11 +14143,11 @@ async function configSource(webRoot, source) {
     );
   }
   const designs = [];
-  const matcher = new RegExp(/(.+)\.ts$/);
+  const tsSuffixMatcher = new RegExp(/(.+)\.ts$/);
   let i = 0;
   import_fs5.default.readdirSync(source).forEach((file) => {
-    if (matcher.test(file)) {
-      const name = matcher.exec(file)[1];
+    if (tsSuffixMatcher.test(file)) {
+      const name = tsSuffixMatcher.exec(file)[1];
       designs.push({
         name,
         flag: `__d${++i}`,

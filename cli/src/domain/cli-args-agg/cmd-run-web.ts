@@ -118,11 +118,11 @@ async function configSource(webRoot: string, source: string) {
   }
 
   const designs: { name: string; flag: string; importCode: string }[] = []
-  const matcher = new RegExp(/(.+)\.ts$/)
+  const tsSuffixMatcher = new RegExp(/(.+)\.ts$/)
   let i = 0
   fs.readdirSync(source).forEach((file) => {
-    if (matcher.test(file)) {
-      const name = matcher.exec(file)![1]
+    if (tsSuffixMatcher.test(file)) {
+      const name = tsSuffixMatcher.exec(file)![1]
       designs.push({
         name,
         flag: `__d${++i}`,
