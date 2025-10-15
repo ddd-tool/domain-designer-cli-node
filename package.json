@@ -1,0 +1,56 @@
+{
+  "name": "@ddd-tool/domain-designer-cli",
+  "version": "0.1.0-beta.16",
+  "private": false,
+  "description": "",
+  "type": "module",
+  "bin": {
+    "domain-designer-cli": "./bin/domain-designer-cli.cjs"
+  },
+  "files": [
+    "./bin",
+    "./packages/playground",
+    "./scripts",
+    "./templates",
+    "./tsconfig.json"
+  ],
+  "scripts": {
+    "dev": "pnpm -F playground dev",
+    "build": "pnpm -F cli build && pnpm -F sse build",
+    "test": "pnpm -F cli test",
+    "verify": "pnpm -r verify",
+    "demo:init": "node ./bin/domain-designer-cli.cjs init --source=./demo --debug",
+    "demo:runWeb": "bun run ./bin/domain-designer-cli.cjs runWeb --source=./demo --debug",
+    "demo:update": "node ./bin/domain-designer-cli.cjs update --source=./demo --debug",
+    "demo:info": "node ./bin/domain-designer-cli.cjs info --debug",
+    "demo:genCode": "node ./bin/domain-designer-cli.cjs genCode --source=./demo --debug"
+  },
+  "keywords": [
+    "domain-designer",
+    "ddd"
+  ],
+  "author": {
+    "name": "AlphaFoxz@github.com",
+    "email": "841958335@qq.com"
+  },
+  "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@ddd-tool/domain-designer-core": "0.1.0-beta.10",
+    "@ddd-tool/domain-designer-generator": "0.1.0-beta.12",
+    "@ddd-tool/domain-designer-ui-component": "0.1.0-beta.11",
+    "@primeuix/themes": "^1.1.1",
+    "@types/node": "^22.15.21",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/tsconfig": "^0.7.0",
+    "esbuild": "^0.24.2",
+    "npm-run-all2": "^7.0.2",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vue": "^3.5.14",
+    "vue-tsc": "^2.2.10",
+    "zx": "^8.5.4"
+  }
+}

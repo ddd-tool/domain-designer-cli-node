@@ -1,0 +1,23 @@
+{
+  "name": "playground",
+  "version": "0.1.0-beta.16",
+  "private": true,
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "run-p build:cli && run-p test:fun",
+    "test:fun": "vitest",
+    "verify": "tsc -p ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@primeuix/themes": "^1.1.1",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/tsconfig": "^0.7.0",
+    "esbuild": "^0.24.2",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.4",
+    "vue": "^3.5.14",
+    "vue-tsc": "^2.2.10"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "prettier.semi": false,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "[rust]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[pest]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "pest.pest-ide-tools"
+  },
+  "[markdown]": {
+    "prettier.printWidth": 80,
+  },
+  "i18n-ally.enabledParsers": [
+    "ts",
+  ],
+  "i18n-ally.disabled": false,
+  "i18n-ally.displayLanguage": "zh",
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.localesPaths": [
+    "src/locale"
+  ],
+}

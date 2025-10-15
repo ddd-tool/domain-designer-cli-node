@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "gruntfuggly.todo-tree",
+    "lokalise.i18n-ally",
+    // "pest.pest-ide-tools",
+    // "rust-lang.rust-analyzer",
+    // "tamasfe.even-better-toml",
+  ]
+}

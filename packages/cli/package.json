@@ -1,0 +1,29 @@
+{
+  "name": "cli",
+  "version": "0.1.0-beta.16",
+  "private": true,
+  "type": "module",
+  "files": [
+    "./src"
+  ],
+  "scripts": {
+    "build": "run-p build:cli",
+    "build:cli": "run-p verify && zx ./scripts/build-cli.mjs",
+    "test": "run-p build:cli && run-p test:fun",
+    "test:fun": "vitest",
+    "verify": "tsc -p ./tsconfig.build-cli.json"
+  },
+  "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/prompts": "^2.4.9",
+    "@vue/reactivity": "^3.5.14",
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "esbuild": "^0.24.2",
+    "prompts": "^2.4.2",
+    "read-pkg": "^9.0.1",
+    "vitest": "^3.1.4",
+    "vue-fn": "0.1.0-beta.1"
+  }
+}

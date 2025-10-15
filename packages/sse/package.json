@@ -1,0 +1,16 @@
+{
+  "name": "sse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "run-p build:cli",
+    "build:cli": "run-p verify && zx ./scripts/build-sse.mjs",
+    "verify": "tsc -p ./tsconfig.build-cli.json"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2"
+  }
+}
