@@ -20,6 +20,9 @@ importers:
       '@primeuix/themes':
         specifier: ^1.1.1
         version: 1.1.1
+      '@tsconfig/node22':
+        specifier: ^22.0.2
+        version: 22.0.2
       '@types/node':
         specifier: ^22.15.21
         version: 22.15.21
@@ -47,6 +50,9 @@ importers:
       vite:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@22.15.21)
+      vitest:
+        specifier: ^3.1.4
+        version: 3.2.4(@types/node@22.15.21)
       vue:
         specifier: ^3.5.14
         version: 3.5.14(typescript@5.8.3)
@@ -57,11 +63,14 @@ importers:
         specifier: ^8.5.4
         version: 8.5.4
 
+  packages/ai-assist:
+    dependencies:
+      openai:
+        specifier: ^6.7.0
+        version: 6.7.0
+
   packages/cli:
     devDependencies:
-      '@tsconfig/node22':
-        specifier: ^22.0.2
-        version: 22.0.2
       '@types/prompts':
         specifier: ^2.4.9
         version: 2.4.9
@@ -83,9 +92,6 @@ importers:
       read-pkg:
         specifier: ^9.0.1
         version: 9.0.1
-      vitest:
-        specifier: ^3.1.4
-        version: 3.2.4(@types/node@22.15.21)
       vue-fn:
         specifier: 0.1.0-beta.1
         version: 0.1.0-beta.1(@vue/reactivity@3.5.14)(vue@3.5.14(typescript@5.8.3))
@@ -116,12 +122,6 @@ importers:
       vue-tsc:
         specifier: ^2.2.10
         version: 2.2.10(typescript@5.8.3)
-
-  packages/sse:
-    devDependencies:
-      '@tsconfig/node22':
-        specifier: ^22.0.2
-        version: 22.0.2
 
 packages:
 
@@ -888,6 +888,18 @@ packages:
     resolution: {integrity: sha512-7tXR+r9hzRNOPNTvXegM+QzCuMjzUIIq66VDunL6j60O4RrExx32XUhlrS7UK4VcdGw5/Wxzb3kfNcFix9JKDA==}
     engines: {node: ^18.17.0 || >=20.5.0, npm: '>= 9'}
     hasBin: true
+
+  openai@6.7.0:
+    resolution: {integrity: sha512-mgSQXa3O/UXTbA8qFzoa7aydbXBJR5dbLQXCRapAOtoNT+v69sLdKMZzgiakpqhclRnhPggPAXoniVGn2kMY2A==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   parse-json@8.3.0:
     resolution: {integrity: sha512-ybiGyvspI+fAoRQbIPRddCcSTV9/LsJbf0e/S85VLowVGzRmokfneg2kwVW/KU5rOXrPSbF1qAKPMgNTqqROQQ==}
@@ -1791,6 +1803,8 @@ snapshots:
       read-package-json-fast: 4.0.0
       shell-quote: 1.8.2
       which: 5.0.0
+
+  openai@6.7.0: {}
 
   parse-json@8.3.0:
     dependencies:

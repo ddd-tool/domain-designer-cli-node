@@ -14105,38 +14105,46 @@ async function execute4(args) {
   configSource(webRoot, args.source);
   log_default.printSuccess("================ \u88C5\u914D\u4EE3\u7801\u6587\u4EF6: Succeeded ================");
   log_default.printInfo("================ \u8FD0\u884CWeb\u670D\u52A1: Starting... ================");
-  const worker = new import_worker_threads.Worker(`${webRoot}/scripts/sse-worker.cjs`);
+  const worker = new import_worker_threads.Worker(`${webRoot}/scripts/ai-assist-worker.cjs`);
   worker.on("online", () => {
     log_default.printDebug("worker online");
   });
-  console.debug("worker threadId", worker.threadId);
-  if (packageManager === "bun" /* BUN */) {
-    const cmd = `bun --cwd "${webRoot}" dev`;
-    log_default.printDebug(cmd);
-    (0, import_child_process4.spawnSync)(cmd, {
-      encoding: "utf-8",
-      stdio: "inherit",
-      shell: true
-    });
-  } else if (packageManager === "pnpm" /* PNPM */) {
-    const cmd = `pnpm --prefix "${webRoot}" dev`;
-    log_default.printDebug(cmd);
-    (0, import_child_process4.spawnSync)(cmd, {
-      encoding: "utf-8",
-      stdio: "inherit",
-      shell: true
-    });
-  } else if (packageManager === "npm" /* NPM */) {
-    const cmd = `npm --prefix "${webRoot}" run dev`;
-    log_default.printDebug(cmd);
-    (0, import_child_process4.spawnSync)(cmd, {
-      encoding: "utf-8",
-      stdio: "inherit",
-      shell: true
-    });
-  } else {
-    isNever(packageManager);
+  function onExit() {
+    worker.terminate();
   }
+  process.on("SIGINT", onExit);
+  process.on("SIGTERM", onExit);
+  process.on("SIGQUIT", onExit);
+  console.debug("worker threadId", worker.threadId);
+  process.nextTick(() => {
+    if (packageManager === "bun" /* BUN */) {
+      const cmd = `bun --cwd "${webRoot}" dev`;
+      log_default.printDebug(cmd);
+      (0, import_child_process4.spawnSync)(cmd, {
+        encoding: "utf-8",
+        stdio: "inherit",
+        shell: true
+      });
+    } else if (packageManager === "pnpm" /* PNPM */) {
+      const cmd = `pnpm --prefix "${webRoot}" dev`;
+      log_default.printDebug(cmd);
+      (0, import_child_process4.spawnSync)(cmd, {
+        encoding: "utf-8",
+        stdio: "inherit",
+        shell: true
+      });
+    } else if (packageManager === "npm" /* NPM */) {
+      const cmd = `npm --prefix "${webRoot}" run dev`;
+      log_default.printDebug(cmd);
+      (0, import_child_process4.spawnSync)(cmd, {
+        encoding: "utf-8",
+        stdio: "inherit",
+        shell: true
+      });
+    } else {
+      isNever(packageManager);
+    }
+  });
 }
 async function configSource(webRoot, source) {
   if (!import_fs5.default.existsSync(source) || !import_fs5.default.statSync(source).isDirectory()) {

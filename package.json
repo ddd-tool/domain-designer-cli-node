@@ -17,10 +17,11 @@
   "scripts": {
     "dev": "pnpm -F playground dev",
     "build": "pnpm -F cli build && pnpm -F sse build",
-    "test": "pnpm -F cli test",
+    "test": "pnpm -r test",
+    "test:cli": "pnpm -F cli test",
     "verify": "pnpm -r verify",
     "demo:init": "node ./bin/domain-designer-cli.cjs init --source=./demo --debug",
-    "demo:runWeb": "bun run ./bin/domain-designer-cli.cjs runWeb --source=./demo --debug",
+    "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=./demo --debug",
     "demo:update": "node ./bin/domain-designer-cli.cjs update --source=./demo --debug",
     "demo:info": "node ./bin/domain-designer-cli.cjs info --debug",
     "demo:genCode": "node ./bin/domain-designer-cli.cjs genCode --source=./demo --debug"
@@ -40,6 +41,7 @@
     "@ddd-tool/domain-designer-generator": "0.1.0-beta.12",
     "@ddd-tool/domain-designer-ui-component": "0.1.0-beta.11",
     "@primeuix/themes": "^1.1.1",
+    "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.21",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/tsconfig": "^0.7.0",
@@ -49,6 +51,7 @@
     "primevue": "^4.3.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
+    "vitest": "^3.1.4",
     "vue": "^3.5.14",
     "vue-tsc": "^2.2.10",
     "zx": "^8.5.4"

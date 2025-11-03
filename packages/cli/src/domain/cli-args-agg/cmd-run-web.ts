@@ -11,7 +11,6 @@ import { Reactive, Ref } from '@vue/reactivity'
 import { Command } from 'commander'
 import { useEnvironmentAgg } from '../environment-agg'
 import { PackageManager } from '../environment-agg/define'
-import { nextTick } from 'process'
 
 const $t = useI18nAgg().commands.t
 const environmentAgg = useEnvironmentAgg()
@@ -69,45 +68,47 @@ export async function execute(args: RunWebCommandArgs) {
 
   log.printInfo('================ 运行Web服务: Starting... ================')
 
-  const worker = new Worker(`${webRoot}/scripts/sse-worker.cjs`)
+  const worker = new Worker(`${webRoot}/scripts/ai-assist-worker.cjs`)
   worker.on('online', () => {
     log.printDebug('worker online')
   })
-  console.debug('worker threadId', worker.threadId)
-  // spawn('bun', ['run', '${webRoot}/scripts/example.ts'])
-  // spawnSync(`bun run ./scripts/example.ts`, {
-  //   encoding: 'utf-8',
-  //   stdio: 'inherit',
-  //   shell: true,
-  // })
-
-  if (packageManager === PackageManager.BUN) {
-    const cmd = `bun --cwd "${webRoot}" dev`
-    log.printDebug(cmd)
-    spawnSync(cmd, {
-      encoding: 'utf-8',
-      stdio: 'inherit',
-      shell: true,
-    })
-  } else if (packageManager === PackageManager.PNPM) {
-    const cmd = `pnpm --prefix "${webRoot}" dev`
-    log.printDebug(cmd)
-    spawnSync(cmd, {
-      encoding: 'utf-8',
-      stdio: 'inherit',
-      shell: true,
-    })
-  } else if (packageManager === PackageManager.NPM) {
-    const cmd = `npm --prefix "${webRoot}" run dev`
-    log.printDebug(cmd)
-    spawnSync(cmd, {
-      encoding: 'utf-8',
-      stdio: 'inherit',
-      shell: true,
-    })
-  } else {
-    isNever(packageManager)
+  function onExit() {
+    worker.terminate()
   }
+  process.on('SIGINT', onExit)
+  process.on('SIGTERM', onExit)
+  process.on('SIGQUIT', onExit)
+  console.debug('worker threadId', worker.threadId)
+
+  process.nextTick(() => {
+    if (packageManager === PackageManager.BUN) {
+      const cmd = `bun --cwd "${webRoot}" dev`
+      log.printDebug(cmd)
+      spawnSync(cmd, {
+        encoding: 'utf-8',
+        stdio: 'inherit',
+        shell: true,
+      })
+    } else if (packageManager === PackageManager.PNPM) {
+      const cmd = `pnpm --prefix "${webRoot}" dev`
+      log.printDebug(cmd)
+      spawnSync(cmd, {
+        encoding: 'utf-8',
+        stdio: 'inherit',
+        shell: true,
+      })
+    } else if (packageManager === PackageManager.NPM) {
+      const cmd = `npm --prefix "${webRoot}" run dev`
+      log.printDebug(cmd)
+      spawnSync(cmd, {
+        encoding: 'utf-8',
+        stdio: 'inherit',
+        shell: true,
+      })
+    } else {
+      isNever(packageManager)
+    }
+  })
 }
 
 async function configSource(webRoot: string, source: string) {

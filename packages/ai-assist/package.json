@@ -5,12 +5,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "exit 0",
     "build": "run-p build:cli",
-    "build:cli": "run-p verify && zx ./scripts/build-sse.mjs",
+    "build:cli": "run-p verify && zx ./scripts/build-ai-assist.mjs",
     "verify": "tsc -p ./tsconfig.build-cli.json"
   },
-  "devDependencies": {
-    "@tsconfig/node22": "^22.0.2"
+  "dependencies": {
+    "openai": "^6.7.0"
   }
 }

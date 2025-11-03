@@ -11,7 +11,7 @@ function esBuild() {
     entryPoints: [path.join(__dirname, '..', 'src', 'index.ts')],
     drop: ['debugger'],
     minify: false,
-    outfile: path.join(rootDir, 'scripts', 'sse-worker.cjs'),
+    outfile: path.join(rootDir, 'scripts', 'ai-assist-worker.cjs'),
     // sourcemap: true,
     loader: {
       '.wasm': 'file',
