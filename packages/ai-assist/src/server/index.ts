@@ -1,6 +1,7 @@
 import http from 'node:http'
 import { useWrapper } from './wrapper'
 import { handleQuery } from './controller/query'
+import { handleTest } from './controller/test'
 
 export function startServer(serverPort: number = 3000) {
   const server = http.createServer(async (req, res) => {
@@ -11,7 +12,7 @@ export function startServer(serverPort: number = 3000) {
       } else if (wrapper.isMatchRoute('POST', '/query')) {
         handleQuery(wrapper)
       } else if (wrapper.isMatchRoute('GET', '/test')) {
-        wrapper.reply(200, 'OK')
+        handleTest(wrapper)
       } else {
         wrapper.replyJson(404, { error: 'Not found' })
         return
@@ -22,6 +23,6 @@ export function startServer(serverPort: number = 3000) {
     }
   })
   server.listen(serverPort, () => {
-    console.log(`SSE Server listening on http://localhost:${serverPort}`)
+    console.log(`SSE Server listening on http://127.0.0.1:${serverPort}`)
   })
 }

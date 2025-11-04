@@ -2,9 +2,9 @@ import http from 'node:http'
 import type { HttpMethod } from './define'
 import { nextClientId } from './common'
 
-export type SseWrapper = ReturnType<typeof useWrapper>
+export type HttpWrapper = ReturnType<typeof useWrapper>
 
-const clientMap = new Map<number, SseWrapper>()
+const clientMap = new Map<number, HttpWrapper>()
 
 export function useWrapper(prefix: string, req: http.IncomingMessage, res: http.ServerResponse) {
   let clientId = 0

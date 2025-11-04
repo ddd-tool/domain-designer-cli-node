@@ -1,5 +1,6 @@
 import OpenAI from 'openai'
 import { AIName, URL_CONFIG } from './config'
+import fs from 'fs'
 
 const clientMap: { [name in AIName]?: OpenAI } = {}
 
@@ -25,4 +26,16 @@ export async function queryStream(aiName: AIName, key: string, query: string) {
     ],
     stream: true,
   })
+}
+
+export async function upload(aiName: AIName, key: string, fileStream: fs.ReadStream) {
+  try {
+    const client = getClient(aiName, key)
+    return await client.files.create({
+      file: fileStream,
+      purpose: 'assistants',
+    })
+  } finally {
+    fileStream && !fileStream.closed && fileStream.close()
+  }
 }

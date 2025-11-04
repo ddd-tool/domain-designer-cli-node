@@ -6940,7 +6940,7 @@ var URL_SELECTIONS = Object.freeze(Object.keys(URL_CONFIG));
 
 // src/server/ai-client/index.ts
 var clientMap2 = {};
-function getClient(name, key = "sk-8b5a8223b72e4caf97829f605d23a651") {
+function getClient(name, key) {
   if (!clientMap2[name]) {
     clientMap2[name] = new OpenAI({
       baseURL: URL_CONFIG[name].baseUrl,
@@ -6949,7 +6949,7 @@ function getClient(name, key = "sk-8b5a8223b72e4caf97829f605d23a651") {
   }
   return clientMap2[name];
 }
-async function queryStream(aiName, key = "sk-8b5a8223b72e4caf97829f605d23a651", query) {
+async function queryStream(aiName, key, query) {
   const client = getClient(aiName, key);
   return await client.responses.create({
     input: [
@@ -6983,6 +6983,11 @@ async function handleQuery(wrapper) {
   }
 }
 
+// src/server/controller/test.ts
+function handleTest(wrapper) {
+  wrapper.replyJson(200, { status: "ok" });
+}
+
 // src/server/index.ts
 function startServer(serverPort = 3e3) {
   const server = import_node_http.default.createServer(async (req, res) => {
@@ -6993,7 +6998,7 @@ function startServer(serverPort = 3e3) {
       } else if (wrapper.isMatchRoute("POST", "/query")) {
         handleQuery(wrapper);
       } else if (wrapper.isMatchRoute("GET", "/test")) {
-        wrapper.reply(200, "OK");
+        handleTest(wrapper);
       } else {
         wrapper.replyJson(404, { error: "Not found" });
         return;
@@ -7004,7 +7009,7 @@ function startServer(serverPort = 3e3) {
     }
   });
   server.listen(serverPort, () => {
-    console.log(`SSE Server listening on http://localhost:${serverPort}`);
+    console.log(`SSE Server listening on http://127.0.0.1:${serverPort}`);
   });
 }
 

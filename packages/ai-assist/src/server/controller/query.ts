@@ -1,12 +1,12 @@
 import { queryStream } from '../ai-client'
 import type { AIQueryRequestParam } from '../define'
-import { type SseWrapper } from '../wrapper'
+import { type HttpWrapper } from '../wrapper'
 
 function isAIQueryRequestParam(data: Record<string, string>): data is AIQueryRequestParam {
   return typeof data.query === 'string' && !!data.query
 }
 
-export async function handleQuery(wrapper: SseWrapper) {
+export async function handleQuery(wrapper: HttpWrapper) {
   const data = await wrapper.readReqBodyJson<Record<string, string>>()
   const token = wrapper.getReqHeaders().authorization?.substring('Bearer '.length)
   if (!token?.length) {
