@@ -1,0 +1,42 @@
+{
+  "name": "@ddd-tool/domain-designer-ui-component",
+  "version": "0.1.0-beta.11",
+  "private": true,
+  "type": "module",
+  "main": "./lib/index.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p build:lib && run-p verify && run-p build:sync-file",
+    "build:lib": "vite build",
+    "build:sync-file": "node ./scripts/build-sync-file.mjs",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
+    "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' http://localhost:4173 'cypress open --e2e'",
+    "verify": "vue-tsc -p ./tsconfig.app.json --composite false"
+  },
+  "dependencies": {
+    "@ddd-tool/domain-designer-core": "workspace:^",
+    "@primeuix/themes": "^1.1.1",
+    "graphre": "^0.1.3",
+    "nomnoml": "^1.7.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.4",
+    "vue-fn": "0.1.0-beta.2"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.15.21",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "cypress": "^13.17.0",
+    "jsdom": "^25.0.1",
+    "read-pkg": "^9.0.1",
+    "start-server-and-test": "^2.0.12",
+    "vite-plugin-top-level-await": "^1.5.0"
+  },
+  "peerDependencies": {
+    "vue": ">=3.5.13"
+  }
+}

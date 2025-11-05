@@ -1,0 +1,47 @@
+{
+  "files": [],
+  "include": [
+    "env.d.ts",
+    "lib/*",
+    "lib/**/*",
+    "src/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/**/__tests__/*"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "types": [
+      "node",
+      "vite/client"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "#lib/*": [
+        "./lib/*"
+      ],
+      "#domain/*": [
+        "./lib/domain/*"
+      ],
+      "@ddd-tool/domain-designer-core": [
+        "./node_modules/@ddd-tool/domain-designer-core"
+      ]
+    }
+  }
+}

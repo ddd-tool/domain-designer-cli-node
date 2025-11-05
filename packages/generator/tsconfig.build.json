@@ -1,0 +1,27 @@
+{
+  "include": [
+    "lib/*",
+    "lib/**/*"
+  ],
+  "exclude": [
+    "lib/__test__",
+    "lib/__test__",
+    "lib/**/__test__",
+    "lib/**/__tests__",
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": false,
+    "composite": true
+  }
+}

@@ -15,6 +15,8 @@
   },
   "repository": "https://github.com/ddd-tool/domain-designer-cli-node",
   "devDependencies": {
+    "@ddd-tool/domain-designer-core": "workspace:^",
+    "@ddd-tool/domain-designer-generator": "workspace:^",
     "@types/prompts": "^2.4.9",
     "@vue/reactivity": "^3.5.14",
     "chalk": "^5.4.1",

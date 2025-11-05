@@ -1,0 +1,32 @@
+{
+  "include": [
+    "globals.d.ts",
+    "lib/*",
+    "lib/**/*",
+  ],
+  "exclude": [
+    "**/__test__",
+    "**/__tests__",
+    "**/vite.config.ts",
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "lib": [
+      "DOM"
+    ],
+    "types": [
+      "node"
+    ],
+  }
+}

@@ -7,16 +7,17 @@
   "scripts": {
     "dev": "vite",
     "test": "exit 0",
+    "build": "exit 0",
     "verify": "tsc -p ./tsconfig.json"
   },
   "devDependencies": {
+    "@ddd-tool/domain-designer-core": "workspace:^",
+    "@ddd-tool/domain-designer-ui-component": "workspace:^",
     "@primeuix/themes": "^1.1.1",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/tsconfig": "^0.7.0",
     "esbuild": "^0.24.2",
     "primeicons": "^7.0.0",
-    "primevue": "^4.3.4",
-    "vue": "^3.5.14",
-    "vue-tsc": "^2.2.10"
+    "primevue": "^4.3.4"
   }
 }

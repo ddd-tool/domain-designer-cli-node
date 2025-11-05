@@ -4,6 +4,7 @@ import path from 'path'
 import { readPackageSync } from 'read-pkg'
 
 const rootDir = path.join(__dirname, '..', '..', '..')
+const cliRootDir = path.join(__dirname, '..')
 
 writeEnvFile()
 esBuild()
@@ -30,7 +31,7 @@ function writeEnvFile() {
 
   // 递归复制所有.d.ts文件
   copyFolderRecursive(
-    path.join(rootDir, 'node_modules', '@ddd-tool', 'domain-designer-core'),
+    path.join(cliRootDir, 'node_modules', '@ddd-tool', 'domain-designer-core'),
     path.join(rootDir, 'templates', 'node_modules', '@ddd-tool', 'domain-designer-core'),
     { pattern: /^.+\.d\.ts$/ }
   )
