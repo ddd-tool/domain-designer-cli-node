@@ -2,6 +2,7 @@ import http from 'node:http'
 import { useWrapper } from './wrapper'
 import { handleQuery } from './controller/query'
 import { handleTest } from './controller/test'
+import { handleUpload } from './controller/upload'
 
 export function startServer(serverPort: number = 3000) {
   const server = http.createServer(async (req, res) => {
@@ -10,7 +11,9 @@ export function startServer(serverPort: number = 3000) {
       if (wrapper.isMatchRoute('GET', '/connect')) {
         wrapper.KeepAlive()
       } else if (wrapper.isMatchRoute('POST', '/query')) {
-        handleQuery(wrapper)
+        await handleQuery(wrapper)
+      } else if (wrapper.isMatchRoute('POST', '/upload')) {
+        await handleUpload(wrapper)
       } else if (wrapper.isMatchRoute('GET', '/test')) {
         handleTest(wrapper)
       } else {

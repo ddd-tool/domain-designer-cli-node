@@ -4,4 +4,5 @@ bun.lock
 package-lock.json
 .env
 **.try.ts
+**.log
 /demo

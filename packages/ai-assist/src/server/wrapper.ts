@@ -62,11 +62,15 @@ export function useWrapper(prefix: string, req: http.IncomingMessage, res: http.
         intervalId && clearInterval(intervalId)
       })
     },
+    close() {
+      clientMap.delete(clientId)
+      res.end()
+    },
     sendHeartbeat() {
-      res.write(': heartbeat\n')
+      res.write('event: heartbeat\n\n')
     },
     sendMessage(data: string) {
-      res.write(`data: ${data}\n\n`)
+      res.write(`data: ${data.trim()}\n\n`)
     },
     getReqParams() {
       return url.searchParams
