@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.1.0-beta.16",
+  "version": "0.2.0-aplha.0",
   "private": false,
   "description": "",
   "type": "module",
@@ -16,10 +16,12 @@
   ],
   "scripts": {
     "dev": "pnpm -F playground dev",
-    "build": "pnpm -r build",
+    "build": "pnpm syncver && pnpm -r build",
     "test": "pnpm -r test",
     "test:cli": "pnpm -F cli test",
     "verify": "pnpm -r verify",
+    "syncver": "zx ./scripts/sync-version.mjs",
+    "demo:run": "node ./bin/domain-designer-cli.cjs run --source=./demo --debug",
     "demo:init": "node ./bin/domain-designer-cli.cjs init --source=./demo --debug",
     "demo:runWeb": "node ./bin/domain-designer-cli.cjs runWeb --source=./demo --debug",
     "demo:update": "node ./bin/domain-designer-cli.cjs update --source=./demo --debug",
