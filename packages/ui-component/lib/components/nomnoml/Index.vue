@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as nomnoml from './nomnoml'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch, onBeforeUnmount } from 'vue'
 import getStyle from './base-style'
 import { useDiagramAgg } from '#lib/domain/diagram-agg'
 import { preprocessSvg } from './preprocess'
@@ -27,13 +27,15 @@ function appendSvg() {
 }
 
 // ======================= focusOnInfo =======================
-diagramAgg.events.onFocusNode.watchPublish(({ data }) => {
-  if (data.id === undefined) {
-    for (const el of document.querySelectorAll('svg .active') as unknown as HTMLElement[]) {
-      el.classList.remove('active')
+onBeforeUnmount(
+  diagramAgg.events.onFocusNode.listen(({ data }) => {
+    if (data.id === undefined) {
+      for (const el of document.querySelectorAll('svg .active') as unknown as HTMLElement[]) {
+        el.classList.remove('active')
+      }
     }
-  }
-})
+  })
+)
 
 // ======================= focusOnWorkFlow/playWorkflow =======================
 let currentAnimationTask = 0
@@ -58,66 +60,74 @@ function startWorkflowAnimation(animationTask: number, nodes: readonly string[])
     t += diagramAgg.states.workflowPlayInterval.value
   }
 }
-diagramAgg.events.onFocusFlow.watchPublish(({ data }) => {
-  const idMap = diagramAgg.commands.getIdMap()
-  let items: readonly string[] = data.workflow === undefined ? [] : diagramAgg.states.workflows.value[data.workflow]
-  items = items.filter((i) => {
-    if (!data.displayReadModel && idMap[i]._attributes.rule === 'ReadModel') {
-      return false
-    } else if (!data.displaySystem && idMap[i]._attributes.rule === 'System') {
-      return false
+onBeforeUnmount(
+  diagramAgg.events.onFocusFlow.listen(({ data }) => {
+    const idMap = diagramAgg.commands.getIdMap()
+    let items: readonly string[] = data.workflow === undefined ? [] : diagramAgg.states.workflows.value[data.workflow]!
+    items = items.filter((i) => {
+      const item = idMap[i]
+      if (!item) {
+        return false
+      }
+      if (!data.displayReadModel && item._attributes.rule === 'ReadModel') {
+        return false
+      } else if (!data.displaySystem && item._attributes.rule === 'System') {
+        return false
+      }
+      return true
+    })
+    if (!data.displayReadModel || !data.displaySystem) {
+      items = removeAdjacentDuplicates(items)
     }
-    return true
-  })
-  if (!data.displayReadModel || !data.displaySystem) {
-    items = removeAdjacentDuplicates(items)
-  }
-  const map: Record<string, boolean> = {}
+    const map: Record<string, boolean> = {}
 
-  const doms = document.querySelectorAll('g') as unknown as SVGGElement[]
-  if (items.length === 0) {
+    const doms = document.querySelectorAll('g') as unknown as SVGGElement[]
+    if (items.length === 0) {
+      for (const dom of doms) {
+        dom.style.transition = 'opacity 0s'
+        dom.style.opacity = '1'
+      }
+      return
+    }
     for (const dom of doms) {
+      const dataName = dom.dataset.name
+      if (!dataName || map[dataName]) {
+        continue
+      }
       dom.style.transition = 'opacity 0s'
-      dom.style.opacity = '1'
+      dom.style.opacity = '0.1'
+      map[dataName] = true
     }
-    return
-  }
-  for (const dom of doms) {
-    const dataName = dom.dataset.name
-    if (!dataName || map[dataName]) {
-      continue
-    }
-    dom.style.transition = 'opacity 0s'
-    dom.style.opacity = '0.1'
-    map[dataName] = true
-  }
-  setTimeout(() => {
-    startWorkflowAnimation(++currentAnimationTask, items)
+    setTimeout(() => {
+      startWorkflowAnimation(++currentAnimationTask, items)
+    })
   })
-})
+)
 function removeAdjacentDuplicates(arr: readonly string[]): string[] {
   if (arr.length === 0) return []
-  const result: string[] = [arr[0]]
+  const result: string[] = [arr[0]!]
   for (let i = 1; i < arr.length; i++) {
     if (arr[i] !== arr[i - 1]) {
-      result.push(arr[i])
+      result.push(arr[i]!)
     }
   }
   return result
 }
 
 // ============================ download ============================
-diagramAgg.events.onDownloadSvg.watchPublish(() => {
-  const el = document.querySelector('svg') as SVGSVGElement
-  const svg = new XMLSerializer().serializeToString(el)
-  const svgBlob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' })
-  const svgUrl = URL.createObjectURL(svgBlob)
-  const tempLink = document.createElement('a')
-  tempLink.href = svgUrl
-  tempLink.setAttribute('download', 'diagram.svg')
-  tempLink.click()
-  URL.revokeObjectURL(svgUrl)
-})
+onBeforeUnmount(
+  diagramAgg.events.onDownloadSvg.listen(() => {
+    const el = document.querySelector('svg') as SVGSVGElement
+    const svg = new XMLSerializer().serializeToString(el)
+    const svgBlob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' })
+    const svgUrl = URL.createObjectURL(svgBlob)
+    const tempLink = document.createElement('a')
+    tempLink.href = svgUrl
+    tempLink.setAttribute('download', 'diagram.svg')
+    tempLink.click()
+    URL.revokeObjectURL(svgUrl)
+  })
+)
 </script>
 
 <template>

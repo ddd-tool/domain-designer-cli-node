@@ -19,9 +19,7 @@ import Slider from 'primevue/slider'
 import { computed, reactive, ref, watch } from 'vue'
 import { useI18nAgg } from './domain/i18n-agg'
 import { type DomainDesigner } from '@ddd-tool/domain-designer-core'
-import { checkDomainDesigner, checkStory, checkWorkflow } from '@ddd-tool/domain-designer-core/check'
 import { parseNode } from './ui'
-import type { NodeLike } from './domain/common'
 import { VALID_RANKERS, VALID_EDGE_TYPES } from './domain/diagram-agg/define'
 
 export type NonEmptyObject<T extends object> = keyof T extends never ? never : T
@@ -54,7 +52,7 @@ const nodeDetail = computed(() => {
   const node = diagramAgg.states.design.value?._getContext().getIdMap()[currentNode.value]
   return parseNode(node)
 })
-diagramAgg.events.onFocusNode.watchPublish(({ data, version }) => {
+diagramAgg.events.onFocusNode.listen(({ data, version }) => {
   focusInfoTask = version
   if (data.id === undefined) {
     if (!nodeDetailVisible.value) {
@@ -76,22 +74,6 @@ diagramAgg.events.onFocusNode.watchPublish(({ data, version }) => {
   }, 0)
 })
 
-// =========================== Completeness Assist ===========================
-const checkResult = computed(() => {
-  if (currentWorkflow.value !== undefined) {
-    const r = checkWorkflow(diagramAgg.states.design.value!, currentWorkflow.value) || {}
-    console.log(r)
-    return r
-  } else if (currentStory.value !== EMPTY_STORY) {
-    return checkStory(diagramAgg.states.design.value!, currentStory.value) || {}
-  }
-  return checkDomainDesigner(diagramAgg.states.design.value!) || {}
-})
-function getNodeName(id: string): string {
-  const node = diagramAgg.states.design.value!._getContext().getIdMap()[id] as NodeLike
-  return node._attributes.name
-}
-
 // =========================== Help ===========================
 const op = ref()
 const toggle = (event: Event) => {
@@ -100,7 +82,7 @@ const toggle = (event: Event) => {
 
 // =========================== Settings ===========================
 const drawerVisible = ref(false)
-const drawerType = ref<'UserStories' | 'CompletenessAssist' | 'Settings' | undefined>(undefined)
+const drawerType = ref<'UserStories' | 'Settings' | undefined>(undefined)
 const workflowPlayInterval = ref(diagramAgg.states.workflowPlayInterval.value)
 watch(workflowPlayInterval, (v) => {
   diagramAgg.commands.setWorkflowPlayInterval(v)
@@ -219,14 +201,6 @@ const dockItems = ref([
     },
   },
   {
-    label: t('menu.completenessAssist'),
-    icon: 'pi pi-info-circle',
-    command() {
-      drawerType.value = 'CompletenessAssist'
-      drawerVisible.value = true
-    },
-  },
-  {
     label: t('menu.settings'),
     icon: 'pi pi-cog',
     command() {
@@ -261,7 +235,7 @@ const dockItems = ref([
 
 watch(currentStory, (story) => {
   if (story !== EMPTY_STORY) {
-    currentWorkflow.value = diagramAgg.states.design.value?._getContext().getUserStories()[story][0]
+    currentWorkflow.value = diagramAgg.states.design.value?._getContext().getUserStories()?.[story]?.[0]
   }
   diagramAgg.commands.focusFlow(currentWorkflow.value!, story)
 })
@@ -312,31 +286,13 @@ function handleNoFocus() {
     <Tabs v-model:value="currentStory" scrollable>
       <TabPanels>
         <TabPanel v-for="i in Object.keys(diagramAgg.states.userStories.value)" :key="i" :value="i">
-          <div v-for="f of Object.values(diagramAgg.states.userStories.value[i])" :key="f">
+          <div v-for="f of Object.values(diagramAgg.states.userStories.value?.[i]!)" :key="f">
             <RadioButton v-model="currentWorkflow" :inputId="f" :name="i" :value="f"></RadioButton>
             <label :for="f">{{ f }}</label>
           </div>
         </TabPanel>
       </TabPanels>
     </Tabs>
-  </Drawer>
-  <Drawer
-    v-model:visible="drawerVisible"
-    v-if="drawerType === 'CompletenessAssist'"
-    position="right"
-    :header="t('menu.completenessAssist').value"
-    class="toolbar-drawer"
-  >
-    <template v-for="(key, i) in Object.keys(checkResult)" :key="i">
-      <Fieldset
-        v-if="checkResult[key].length"
-        :collapsed="Object.keys(checkResult).length < 5"
-        :toggleable="true"
-        :legend="`${getNodeName(key.split(',')[0])} -> ${getNodeName(key.split(',')[1])}`"
-      >
-        <p v-for="(p, j) in checkResult[key]" :key="j">{{ j + 1 }}.{{ p.message }}</p>
-      </Fieldset>
-    </template>
   </Drawer>
   <Drawer
     v-model:visible="drawerVisible"

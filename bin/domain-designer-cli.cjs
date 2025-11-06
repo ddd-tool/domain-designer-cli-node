@@ -9,17 +9,13 @@ var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
+var __copyProps = (to2, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      if (!__hasOwnProp.call(to2, key) && key !== except)
+        __defProp(to2, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
-  return to;
+  return to2;
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
@@ -30,9 +26,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../../node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.prod.js
+// ../../node_modules/@vue/shared/dist/shared.cjs.prod.js
 var require_shared_cjs_prod = __commonJS({
-  "../../node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.prod.js"(exports2) {
+  "../../node_modules/@vue/shared/dist/shared.cjs.prod.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     // @__NO_SIDE_EFFECTS__
@@ -84,11 +80,11 @@ var require_shared_cjs_prod = __commonJS({
     var isBuiltInDirective = /* @__PURE__ */ makeMap(
       "bind,cloak,else-if,else,for,html,if,model,on,once,pre,show,slot,text,memo"
     );
-    var cacheStringFunction = (fn2) => {
+    var cacheStringFunction = (fn3) => {
       const cache = /* @__PURE__ */ Object.create(null);
       return (str) => {
         const hit = cache[str];
-        return hit || (cache[str] = fn2(str));
+        return hit || (cache[str] = fn3(str));
       };
     };
     var camelizeRE = /-(\w)/g;
@@ -125,12 +121,12 @@ var require_shared_cjs_prod = __commonJS({
       });
     };
     var looseToNumber = (val) => {
-      const n = parseFloat(val);
-      return isNaN(n) ? val : n;
+      const n2 = parseFloat(val);
+      return isNaN(n2) ? val : n2;
     };
     var toNumber = (val) => {
-      const n = isString(val) ? Number(val) : NaN;
-      return isNaN(n) ? val : n;
+      const n2 = isString(val) ? Number(val) : NaN;
+      return isNaN(n2) ? val : n2;
     };
     var _globalThis;
     var getGlobalThis = () => {
@@ -517,7 +513,7 @@ var require_shared_cjs_prod = __commonJS({
         };
       } else if (isSet(val)) {
         return {
-          [`Set(${val.size})`]: [...val.values()].map((v) => stringifySymbol(v))
+          [`Set(${val.size})`]: [...val.values()].map((v2) => stringifySymbol(v2))
         };
       } else if (isSymbol(val)) {
         return stringifySymbol(val);
@@ -526,12 +522,12 @@ var require_shared_cjs_prod = __commonJS({
       }
       return val;
     };
-    var stringifySymbol = (v, i = "") => {
+    var stringifySymbol = (v2, i = "") => {
       var _a;
       return (
         // Symbol.description in es2019+ so we need to cast here to pass
         // the lib: es2016 check
-        isSymbol(v) ? `Symbol(${(_a = v.description) != null ? _a : i})` : v
+        isSymbol(v2) ? `Symbol(${(_a = v2.description) != null ? _a : i})` : v2
       );
     };
     exports2.EMPTY_ARR = EMPTY_ARR;
@@ -609,9 +605,9 @@ var require_shared_cjs_prod = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.js
+// ../../node_modules/@vue/shared/dist/shared.cjs.js
 var require_shared_cjs = __commonJS({
-  "../../node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/dist/shared.cjs.js"(exports2) {
+  "../../node_modules/@vue/shared/dist/shared.cjs.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     // @__NO_SIDE_EFFECTS__
@@ -663,11 +659,11 @@ var require_shared_cjs = __commonJS({
     var isBuiltInDirective = /* @__PURE__ */ makeMap(
       "bind,cloak,else-if,else,for,html,if,model,on,once,pre,show,slot,text,memo"
     );
-    var cacheStringFunction = (fn2) => {
+    var cacheStringFunction = (fn3) => {
       const cache = /* @__PURE__ */ Object.create(null);
       return (str) => {
         const hit = cache[str];
-        return hit || (cache[str] = fn2(str));
+        return hit || (cache[str] = fn3(str));
       };
     };
     var camelizeRE = /-(\w)/g;
@@ -704,12 +700,12 @@ var require_shared_cjs = __commonJS({
       });
     };
     var looseToNumber = (val) => {
-      const n = parseFloat(val);
-      return isNaN(n) ? val : n;
+      const n2 = parseFloat(val);
+      return isNaN(n2) ? val : n2;
     };
     var toNumber = (val) => {
-      const n = isString(val) ? Number(val) : NaN;
-      return isNaN(n) ? val : n;
+      const n2 = isString(val) ? Number(val) : NaN;
+      return isNaN(n2) ? val : n2;
     };
     var _globalThis;
     var getGlobalThis = () => {
@@ -1096,7 +1092,7 @@ var require_shared_cjs = __commonJS({
         };
       } else if (isSet(val)) {
         return {
-          [`Set(${val.size})`]: [...val.values()].map((v) => stringifySymbol(v))
+          [`Set(${val.size})`]: [...val.values()].map((v2) => stringifySymbol(v2))
         };
       } else if (isSymbol(val)) {
         return stringifySymbol(val);
@@ -1105,12 +1101,12 @@ var require_shared_cjs = __commonJS({
       }
       return val;
     };
-    var stringifySymbol = (v, i = "") => {
+    var stringifySymbol = (v2, i = "") => {
       var _a;
       return (
         // Symbol.description in es2019+ so we need to cast here to pass
         // the lib: es2016 check
-        isSymbol(v) ? `Symbol(${(_a = v.description) != null ? _a : i})` : v
+        isSymbol(v2) ? `Symbol(${(_a = v2.description) != null ? _a : i})` : v2
       );
     };
     exports2.EMPTY_ARR = EMPTY_ARR;
@@ -1188,9 +1184,9 @@ var require_shared_cjs = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/index.js
+// ../../node_modules/@vue/shared/index.js
 var require_shared = __commonJS({
-  "../../node_modules/.pnpm/@vue+shared@3.5.14/node_modules/@vue/shared/index.js"(exports2, module2) {
+  "../../node_modules/@vue/shared/index.js"(exports2, module2) {
     "use strict";
     if (process.env.NODE_ENV === "production") {
       module2.exports = require_shared_cjs_prod();
@@ -1200,9 +1196,9 @@ var require_shared = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js
+// ../../node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js
 var require_reactivity_cjs_prod = __commonJS({
-  "../../node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js"(exports2) {
+  "../../node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var shared = require_shared();
@@ -1228,13 +1224,13 @@ var require_reactivity_cjs_prod = __commonJS({
       pause() {
         if (this._active) {
           this._isPaused = true;
-          let i, l2;
+          let i, l;
           if (this.scopes) {
-            for (i = 0, l2 = this.scopes.length; i < l2; i++) {
+            for (i = 0, l = this.scopes.length; i < l; i++) {
               this.scopes[i].pause();
             }
           }
-          for (i = 0, l2 = this.effects.length; i < l2; i++) {
+          for (i = 0, l = this.effects.length; i < l; i++) {
             this.effects[i].pause();
           }
         }
@@ -1246,24 +1242,24 @@ var require_reactivity_cjs_prod = __commonJS({
         if (this._active) {
           if (this._isPaused) {
             this._isPaused = false;
-            let i, l2;
+            let i, l;
             if (this.scopes) {
-              for (i = 0, l2 = this.scopes.length; i < l2; i++) {
+              for (i = 0, l = this.scopes.length; i < l; i++) {
                 this.scopes[i].resume();
               }
             }
-            for (i = 0, l2 = this.effects.length; i < l2; i++) {
+            for (i = 0, l = this.effects.length; i < l; i++) {
               this.effects[i].resume();
             }
           }
         }
       }
-      run(fn2) {
+      run(fn3) {
         if (this._active) {
           const currentEffectScope = activeEffectScope;
           try {
             activeEffectScope = this;
-            return fn2();
+            return fn3();
           } finally {
             activeEffectScope = currentEffectScope;
           }
@@ -1292,17 +1288,17 @@ var require_reactivity_cjs_prod = __commonJS({
       stop(fromParent) {
         if (this._active) {
           this._active = false;
-          let i, l2;
-          for (i = 0, l2 = this.effects.length; i < l2; i++) {
+          let i, l;
+          for (i = 0, l = this.effects.length; i < l; i++) {
             this.effects[i].stop();
           }
           this.effects.length = 0;
-          for (i = 0, l2 = this.cleanups.length; i < l2; i++) {
+          for (i = 0, l = this.cleanups.length; i < l; i++) {
             this.cleanups[i]();
           }
           this.cleanups.length = 0;
           if (this.scopes) {
-            for (i = 0, l2 = this.scopes.length; i < l2; i++) {
+            for (i = 0, l = this.scopes.length; i < l; i++) {
               this.scopes[i].stop(true);
             }
             this.scopes.length = 0;
@@ -1324,9 +1320,9 @@ var require_reactivity_cjs_prod = __commonJS({
     function getCurrentScope() {
       return activeEffectScope;
     }
-    function onScopeDispose(fn2, failSilently = false) {
+    function onScopeDispose(fn3, failSilently = false) {
       if (activeEffectScope) {
-        activeEffectScope.cleanups.push(fn2);
+        activeEffectScope.cleanups.push(fn3);
       }
     }
     var activeSub;
@@ -1350,8 +1346,8 @@ var require_reactivity_cjs_prod = __commonJS({
     };
     var pausedQueueEffects = /* @__PURE__ */ new WeakSet();
     var ReactiveEffect = class {
-      constructor(fn2) {
-        this.fn = fn2;
+      constructor(fn3) {
+        this.fn = fn3;
         this.deps = void 0;
         this.depsTail = void 0;
         this.flags = 1 | 4;
@@ -1576,8 +1572,8 @@ var require_reactivity_cjs_prod = __commonJS({
         dep.subs = prevSub;
         if (!prevSub && dep.computed) {
           dep.computed.flags &= -5;
-          for (let l2 = dep.computed.deps; l2; l2 = l2.nextDep) {
-            removeSub(l2, true);
+          for (let l = dep.computed.deps; l; l = l.nextDep) {
+            removeSub(l, true);
           }
         }
       }
@@ -1596,11 +1592,11 @@ var require_reactivity_cjs_prod = __commonJS({
         link.nextDep = void 0;
       }
     }
-    function effect(fn2, options) {
-      if (fn2.effect instanceof ReactiveEffect) {
-        fn2 = fn2.effect.fn;
+    function effect(fn3, options) {
+      if (fn3.effect instanceof ReactiveEffect) {
+        fn3 = fn3.effect.fn;
       }
-      const e = new ReactiveEffect(fn2);
+      const e = new ReactiveEffect(fn3);
       if (options) {
         shared.extend(e, options);
       }
@@ -1631,9 +1627,9 @@ var require_reactivity_cjs_prod = __commonJS({
       const last = trackStack.pop();
       shouldTrack = last === void 0 ? true : last;
     }
-    function onEffectCleanup(fn2, failSilently = false) {
+    function onEffectCleanup(fn3, failSilently = false) {
       if (activeSub instanceof ReactiveEffect) {
-        activeSub.cleanup = fn2;
+        activeSub.cleanup = fn3;
       }
     }
     function cleanupEffect(e) {
@@ -1728,8 +1724,8 @@ var require_reactivity_cjs_prod = __commonJS({
         const computed2 = link.dep.computed;
         if (computed2 && !link.dep.subs) {
           computed2.flags |= 4 | 16;
-          for (let l2 = computed2.deps; l2; l2 = l2.nextDep) {
-            addSub(l2);
+          for (let l = computed2.deps; l; l = l.nextDep) {
+            addSub(l);
           }
         }
         const currentTail = link.dep.subs;
@@ -1850,7 +1846,7 @@ var require_reactivity_cjs_prod = __commonJS({
       },
       concat(...args) {
         return reactiveReadArray(this).concat(
-          ...args.map((x2) => shared.isArray(x2) ? reactiveReadArray(x2) : x2)
+          ...args.map((x3) => shared.isArray(x3) ? reactiveReadArray(x3) : x3)
         );
       },
       entries() {
@@ -1859,27 +1855,27 @@ var require_reactivity_cjs_prod = __commonJS({
           return value;
         });
       },
-      every(fn2, thisArg) {
-        return apply(this, "every", fn2, thisArg, void 0, arguments);
+      every(fn3, thisArg) {
+        return apply(this, "every", fn3, thisArg, void 0, arguments);
       },
-      filter(fn2, thisArg) {
-        return apply(this, "filter", fn2, thisArg, (v) => v.map(toReactive), arguments);
+      filter(fn3, thisArg) {
+        return apply(this, "filter", fn3, thisArg, (v2) => v2.map(toReactive), arguments);
       },
-      find(fn2, thisArg) {
-        return apply(this, "find", fn2, thisArg, toReactive, arguments);
+      find(fn3, thisArg) {
+        return apply(this, "find", fn3, thisArg, toReactive, arguments);
       },
-      findIndex(fn2, thisArg) {
-        return apply(this, "findIndex", fn2, thisArg, void 0, arguments);
+      findIndex(fn3, thisArg) {
+        return apply(this, "findIndex", fn3, thisArg, void 0, arguments);
       },
-      findLast(fn2, thisArg) {
-        return apply(this, "findLast", fn2, thisArg, toReactive, arguments);
+      findLast(fn3, thisArg) {
+        return apply(this, "findLast", fn3, thisArg, toReactive, arguments);
       },
-      findLastIndex(fn2, thisArg) {
-        return apply(this, "findLastIndex", fn2, thisArg, void 0, arguments);
+      findLastIndex(fn3, thisArg) {
+        return apply(this, "findLastIndex", fn3, thisArg, void 0, arguments);
       },
       // flat, flatMap could benefit from ARRAY_ITERATE but are not straight-forward to implement
-      forEach(fn2, thisArg) {
-        return apply(this, "forEach", fn2, thisArg, void 0, arguments);
+      forEach(fn3, thisArg) {
+        return apply(this, "forEach", fn3, thisArg, void 0, arguments);
       },
       includes(...args) {
         return searchProxy(this, "includes", args);
@@ -1894,8 +1890,8 @@ var require_reactivity_cjs_prod = __commonJS({
       lastIndexOf(...args) {
         return searchProxy(this, "lastIndexOf", args);
       },
-      map(fn2, thisArg) {
-        return apply(this, "map", fn2, thisArg, void 0, arguments);
+      map(fn3, thisArg) {
+        return apply(this, "map", fn3, thisArg, void 0, arguments);
       },
       pop() {
         return noTracking(this, "pop");
@@ -1903,18 +1899,18 @@ var require_reactivity_cjs_prod = __commonJS({
       push(...args) {
         return noTracking(this, "push", args);
       },
-      reduce(fn2, ...args) {
-        return reduce(this, "reduce", fn2, args);
+      reduce(fn3, ...args) {
+        return reduce(this, "reduce", fn3, args);
       },
-      reduceRight(fn2, ...args) {
-        return reduce(this, "reduceRight", fn2, args);
+      reduceRight(fn3, ...args) {
+        return reduce(this, "reduceRight", fn3, args);
       },
       shift() {
         return noTracking(this, "shift");
       },
       // slice could use ARRAY_ITERATE but also seems to beg for range tracking
-      some(fn2, thisArg) {
-        return apply(this, "some", fn2, thisArg, void 0, arguments);
+      some(fn3, thisArg) {
+        return apply(this, "some", fn3, thisArg, void 0, arguments);
       },
       splice(...args) {
         return noTracking(this, "splice", args);
@@ -1951,7 +1947,7 @@ var require_reactivity_cjs_prod = __commonJS({
       return iter;
     }
     var arrayProto = Array.prototype;
-    function apply(self2, method, fn2, thisArg, wrappedRetFn, args) {
+    function apply(self2, method, fn3, thisArg, wrappedRetFn, args) {
       const arr = shallowReadArray(self2);
       const needsWrap = arr !== self2 && !isShallow(self2);
       const methodFn = arr[method];
@@ -1959,32 +1955,32 @@ var require_reactivity_cjs_prod = __commonJS({
         const result2 = methodFn.apply(self2, args);
         return needsWrap ? toReactive(result2) : result2;
       }
-      let wrappedFn = fn2;
+      let wrappedFn = fn3;
       if (arr !== self2) {
         if (needsWrap) {
           wrappedFn = function(item, index) {
-            return fn2.call(this, toReactive(item), index, self2);
+            return fn3.call(this, toReactive(item), index, self2);
           };
-        } else if (fn2.length > 2) {
+        } else if (fn3.length > 2) {
           wrappedFn = function(item, index) {
-            return fn2.call(this, item, index, self2);
+            return fn3.call(this, item, index, self2);
           };
         }
       }
       const result = methodFn.call(arr, wrappedFn, thisArg);
       return needsWrap && wrappedRetFn ? wrappedRetFn(result) : result;
     }
-    function reduce(self2, method, fn2, args) {
+    function reduce(self2, method, fn3, args) {
       const arr = shallowReadArray(self2);
-      let wrappedFn = fn2;
+      let wrappedFn = fn3;
       if (arr !== self2) {
         if (!isShallow(self2)) {
           wrappedFn = function(acc, item, index) {
-            return fn2.call(this, acc, toReactive(item), index, self2);
+            return fn3.call(this, acc, toReactive(item), index, self2);
           };
-        } else if (fn2.length > 3) {
+        } else if (fn3.length > 3) {
           wrappedFn = function(acc, item, index) {
-            return fn2.call(this, acc, item, index, self2);
+            return fn3.call(this, acc, item, index, self2);
           };
         }
       }
@@ -2042,9 +2038,9 @@ var require_reactivity_cjs_prod = __commonJS({
         }
         const targetIsArray = shared.isArray(target);
         if (!isReadonly2) {
-          let fn2;
-          if (targetIsArray && (fn2 = arrayInstrumentations[key])) {
-            return fn2;
+          let fn3;
+          if (targetIsArray && (fn3 = arrayInstrumentations[key])) {
+            return fn3;
           }
           if (key === "hasOwnProperty") {
             return hasOwnProperty;
@@ -2154,7 +2150,7 @@ var require_reactivity_cjs_prod = __commonJS({
     var shallowReactiveHandlers = /* @__PURE__ */ new MutableReactiveHandler(true);
     var shallowReadonlyHandlers = /* @__PURE__ */ new ReadonlyReactiveHandler(true);
     var toShallow = (value) => value;
-    var getProto = (v) => Reflect.getPrototypeOf(v);
+    var getProto = (v2) => Reflect.getPrototypeOf(v2);
     function createIterableMethod(method, isReadonly2, isShallow2) {
       return function(...args) {
         const target = this["__v_raw"];
@@ -2461,10 +2457,10 @@ var require_reactivity_cjs_prod = __commonJS({
     }
     var toReactive = (value) => shared.isObject(value) ? reactive2(value) : value;
     var toReadonly = (value) => shared.isObject(value) ? readonly(value) : value;
-    function isRef(r2) {
-      return r2 ? r2["__v_isRef"] === true : false;
+    function isRef(r) {
+      return r ? r["__v_isRef"] === true : false;
     }
-    function ref5(value) {
+    function ref4(value) {
       return createRef(value, false);
     }
     function shallowRef(value) {
@@ -2596,7 +2592,7 @@ var require_reactivity_cjs_prod = __commonJS({
       } else if (shared.isObject(source) && arguments.length > 1) {
         return propertyToRef(source, key, defaultValue);
       } else {
-        return ref5(source);
+        return ref4(source);
       }
     }
     function propertyToRef(source, key, defaultValue) {
@@ -2604,8 +2600,8 @@ var require_reactivity_cjs_prod = __commonJS({
       return isRef(val) ? val : new ObjectRefImpl(source, key, defaultValue);
     }
     var ComputedRefImpl = class {
-      constructor(fn2, setter, isSSR) {
-        this.fn = fn2;
+      constructor(fn3, setter, isSSR) {
+        this.fn = fn3;
         this.setter = setter;
         this._value = void 0;
         this.dep = new Dep(this);
@@ -2779,7 +2775,7 @@ var require_reactivity_cjs_prod = __commonJS({
         }
         if (cb) {
           const newValue = effect2.run();
-          if (deep || forceTrigger || (isMultiSource ? newValue.some((v, i) => shared.hasChanged(v, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
+          if (deep || forceTrigger || (isMultiSource ? newValue.some((v2, i) => shared.hasChanged(v2, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
             if (cleanup) {
               cleanup();
             }
@@ -2792,11 +2788,11 @@ var require_reactivity_cjs_prod = __commonJS({
                 oldValue === INITIAL_WATCHER_VALUE ? void 0 : isMultiSource && oldValue[0] === INITIAL_WATCHER_VALUE ? [] : oldValue,
                 boundCleanup
               ];
+              oldValue = newValue;
               call ? call(cb, 3, args) : (
                 // @ts-expect-error
                 cb(...args)
               );
-              oldValue = newValue;
             } finally {
               activeWatcher = currentWatcher;
             }
@@ -2810,7 +2806,7 @@ var require_reactivity_cjs_prod = __commonJS({
       }
       effect2 = new ReactiveEffect(getter);
       effect2.scheduler = scheduler ? () => scheduler(job, false) : job;
-      boundCleanup = (fn2) => onWatcherCleanup(fn2, false, effect2);
+      boundCleanup = (fn3) => onWatcherCleanup(fn3, false, effect2);
       cleanup = effect2.onStop = () => {
         const cleanups = cleanupMap.get(effect2);
         if (cleanups) {
@@ -2855,8 +2851,8 @@ var require_reactivity_cjs_prod = __commonJS({
           traverse(value[i], depth, seen);
         }
       } else if (shared.isSet(value) || shared.isMap(value)) {
-        value.forEach((v) => {
-          traverse(v, depth, seen);
+        value.forEach((v2) => {
+          traverse(v2, depth, seen);
         });
       } else if (shared.isPlainObject(value)) {
         for (const key in value) {
@@ -2901,7 +2897,7 @@ var require_reactivity_cjs_prod = __commonJS({
     exports2.reactive = reactive2;
     exports2.reactiveReadArray = reactiveReadArray;
     exports2.readonly = readonly;
-    exports2.ref = ref5;
+    exports2.ref = ref4;
     exports2.resetTracking = resetTracking;
     exports2.shallowReactive = shallowReactive;
     exports2.shallowReadArray = shallowReadArray;
@@ -2923,9 +2919,9 @@ var require_reactivity_cjs_prod = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.js
+// ../../node_modules/@vue/reactivity/dist/reactivity.cjs.js
 var require_reactivity_cjs = __commonJS({
-  "../../node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/dist/reactivity.cjs.js"(exports2) {
+  "../../node_modules/@vue/reactivity/dist/reactivity.cjs.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var shared = require_shared();
@@ -2954,13 +2950,13 @@ var require_reactivity_cjs = __commonJS({
       pause() {
         if (this._active) {
           this._isPaused = true;
-          let i, l2;
+          let i, l;
           if (this.scopes) {
-            for (i = 0, l2 = this.scopes.length; i < l2; i++) {
+            for (i = 0, l = this.scopes.length; i < l; i++) {
               this.scopes[i].pause();
             }
           }
-          for (i = 0, l2 = this.effects.length; i < l2; i++) {
+          for (i = 0, l = this.effects.length; i < l; i++) {
             this.effects[i].pause();
           }
         }
@@ -2972,24 +2968,24 @@ var require_reactivity_cjs = __commonJS({
         if (this._active) {
           if (this._isPaused) {
             this._isPaused = false;
-            let i, l2;
+            let i, l;
             if (this.scopes) {
-              for (i = 0, l2 = this.scopes.length; i < l2; i++) {
+              for (i = 0, l = this.scopes.length; i < l; i++) {
                 this.scopes[i].resume();
               }
             }
-            for (i = 0, l2 = this.effects.length; i < l2; i++) {
+            for (i = 0, l = this.effects.length; i < l; i++) {
               this.effects[i].resume();
             }
           }
         }
       }
-      run(fn2) {
+      run(fn3) {
         if (this._active) {
           const currentEffectScope = activeEffectScope;
           try {
             activeEffectScope = this;
-            return fn2();
+            return fn3();
           } finally {
             activeEffectScope = currentEffectScope;
           }
@@ -3020,17 +3016,17 @@ var require_reactivity_cjs = __commonJS({
       stop(fromParent) {
         if (this._active) {
           this._active = false;
-          let i, l2;
-          for (i = 0, l2 = this.effects.length; i < l2; i++) {
+          let i, l;
+          for (i = 0, l = this.effects.length; i < l; i++) {
             this.effects[i].stop();
           }
           this.effects.length = 0;
-          for (i = 0, l2 = this.cleanups.length; i < l2; i++) {
+          for (i = 0, l = this.cleanups.length; i < l; i++) {
             this.cleanups[i]();
           }
           this.cleanups.length = 0;
           if (this.scopes) {
-            for (i = 0, l2 = this.scopes.length; i < l2; i++) {
+            for (i = 0, l = this.scopes.length; i < l; i++) {
               this.scopes[i].stop(true);
             }
             this.scopes.length = 0;
@@ -3052,9 +3048,9 @@ var require_reactivity_cjs = __commonJS({
     function getCurrentScope() {
       return activeEffectScope;
     }
-    function onScopeDispose(fn2, failSilently = false) {
+    function onScopeDispose(fn3, failSilently = false) {
       if (activeEffectScope) {
-        activeEffectScope.cleanups.push(fn2);
+        activeEffectScope.cleanups.push(fn3);
       } else if (!failSilently) {
         warn(
           `onScopeDispose() is called when there is no active effect scope to be associated with.`
@@ -3082,8 +3078,8 @@ var require_reactivity_cjs = __commonJS({
     };
     var pausedQueueEffects = /* @__PURE__ */ new WeakSet();
     var ReactiveEffect = class {
-      constructor(fn2) {
-        this.fn = fn2;
+      constructor(fn3) {
+        this.fn = fn3;
         this.deps = void 0;
         this.depsTail = void 0;
         this.flags = 1 | 4;
@@ -3316,8 +3312,8 @@ var require_reactivity_cjs = __commonJS({
         dep.subs = prevSub;
         if (!prevSub && dep.computed) {
           dep.computed.flags &= -5;
-          for (let l2 = dep.computed.deps; l2; l2 = l2.nextDep) {
-            removeSub(l2, true);
+          for (let l = dep.computed.deps; l; l = l.nextDep) {
+            removeSub(l, true);
           }
         }
       }
@@ -3336,11 +3332,11 @@ var require_reactivity_cjs = __commonJS({
         link.nextDep = void 0;
       }
     }
-    function effect(fn2, options) {
-      if (fn2.effect instanceof ReactiveEffect) {
-        fn2 = fn2.effect.fn;
+    function effect(fn3, options) {
+      if (fn3.effect instanceof ReactiveEffect) {
+        fn3 = fn3.effect.fn;
       }
-      const e = new ReactiveEffect(fn2);
+      const e = new ReactiveEffect(fn3);
       if (options) {
         shared.extend(e, options);
       }
@@ -3371,9 +3367,9 @@ var require_reactivity_cjs = __commonJS({
       const last = trackStack.pop();
       shouldTrack = last === void 0 ? true : last;
     }
-    function onEffectCleanup(fn2, failSilently = false) {
+    function onEffectCleanup(fn3, failSilently = false) {
       if (activeSub instanceof ReactiveEffect) {
-        activeSub.cleanup = fn2;
+        activeSub.cleanup = fn3;
       } else if (!failSilently) {
         warn(
           `onEffectCleanup() was called when there was no active effect to associate with.`
@@ -3498,8 +3494,8 @@ var require_reactivity_cjs = __commonJS({
         const computed2 = link.dep.computed;
         if (computed2 && !link.dep.subs) {
           computed2.flags |= 4 | 16;
-          for (let l2 = computed2.deps; l2; l2 = l2.nextDep) {
-            addSub(l2);
+          for (let l = computed2.deps; l; l = l.nextDep) {
+            addSub(l);
           }
         }
         const currentTail = link.dep.subs;
@@ -3634,7 +3630,7 @@ var require_reactivity_cjs = __commonJS({
       },
       concat(...args) {
         return reactiveReadArray(this).concat(
-          ...args.map((x2) => shared.isArray(x2) ? reactiveReadArray(x2) : x2)
+          ...args.map((x3) => shared.isArray(x3) ? reactiveReadArray(x3) : x3)
         );
       },
       entries() {
@@ -3643,27 +3639,27 @@ var require_reactivity_cjs = __commonJS({
           return value;
         });
       },
-      every(fn2, thisArg) {
-        return apply(this, "every", fn2, thisArg, void 0, arguments);
+      every(fn3, thisArg) {
+        return apply(this, "every", fn3, thisArg, void 0, arguments);
       },
-      filter(fn2, thisArg) {
-        return apply(this, "filter", fn2, thisArg, (v) => v.map(toReactive), arguments);
+      filter(fn3, thisArg) {
+        return apply(this, "filter", fn3, thisArg, (v2) => v2.map(toReactive), arguments);
       },
-      find(fn2, thisArg) {
-        return apply(this, "find", fn2, thisArg, toReactive, arguments);
+      find(fn3, thisArg) {
+        return apply(this, "find", fn3, thisArg, toReactive, arguments);
       },
-      findIndex(fn2, thisArg) {
-        return apply(this, "findIndex", fn2, thisArg, void 0, arguments);
+      findIndex(fn3, thisArg) {
+        return apply(this, "findIndex", fn3, thisArg, void 0, arguments);
       },
-      findLast(fn2, thisArg) {
-        return apply(this, "findLast", fn2, thisArg, toReactive, arguments);
+      findLast(fn3, thisArg) {
+        return apply(this, "findLast", fn3, thisArg, toReactive, arguments);
       },
-      findLastIndex(fn2, thisArg) {
-        return apply(this, "findLastIndex", fn2, thisArg, void 0, arguments);
+      findLastIndex(fn3, thisArg) {
+        return apply(this, "findLastIndex", fn3, thisArg, void 0, arguments);
       },
       // flat, flatMap could benefit from ARRAY_ITERATE but are not straight-forward to implement
-      forEach(fn2, thisArg) {
-        return apply(this, "forEach", fn2, thisArg, void 0, arguments);
+      forEach(fn3, thisArg) {
+        return apply(this, "forEach", fn3, thisArg, void 0, arguments);
       },
       includes(...args) {
         return searchProxy(this, "includes", args);
@@ -3678,8 +3674,8 @@ var require_reactivity_cjs = __commonJS({
       lastIndexOf(...args) {
         return searchProxy(this, "lastIndexOf", args);
       },
-      map(fn2, thisArg) {
-        return apply(this, "map", fn2, thisArg, void 0, arguments);
+      map(fn3, thisArg) {
+        return apply(this, "map", fn3, thisArg, void 0, arguments);
       },
       pop() {
         return noTracking(this, "pop");
@@ -3687,18 +3683,18 @@ var require_reactivity_cjs = __commonJS({
       push(...args) {
         return noTracking(this, "push", args);
       },
-      reduce(fn2, ...args) {
-        return reduce(this, "reduce", fn2, args);
+      reduce(fn3, ...args) {
+        return reduce(this, "reduce", fn3, args);
       },
-      reduceRight(fn2, ...args) {
-        return reduce(this, "reduceRight", fn2, args);
+      reduceRight(fn3, ...args) {
+        return reduce(this, "reduceRight", fn3, args);
       },
       shift() {
         return noTracking(this, "shift");
       },
       // slice could use ARRAY_ITERATE but also seems to beg for range tracking
-      some(fn2, thisArg) {
-        return apply(this, "some", fn2, thisArg, void 0, arguments);
+      some(fn3, thisArg) {
+        return apply(this, "some", fn3, thisArg, void 0, arguments);
       },
       splice(...args) {
         return noTracking(this, "splice", args);
@@ -3735,7 +3731,7 @@ var require_reactivity_cjs = __commonJS({
       return iter;
     }
     var arrayProto = Array.prototype;
-    function apply(self2, method, fn2, thisArg, wrappedRetFn, args) {
+    function apply(self2, method, fn3, thisArg, wrappedRetFn, args) {
       const arr = shallowReadArray(self2);
       const needsWrap = arr !== self2 && !isShallow(self2);
       const methodFn = arr[method];
@@ -3743,32 +3739,32 @@ var require_reactivity_cjs = __commonJS({
         const result2 = methodFn.apply(self2, args);
         return needsWrap ? toReactive(result2) : result2;
       }
-      let wrappedFn = fn2;
+      let wrappedFn = fn3;
       if (arr !== self2) {
         if (needsWrap) {
           wrappedFn = function(item, index) {
-            return fn2.call(this, toReactive(item), index, self2);
+            return fn3.call(this, toReactive(item), index, self2);
           };
-        } else if (fn2.length > 2) {
+        } else if (fn3.length > 2) {
           wrappedFn = function(item, index) {
-            return fn2.call(this, item, index, self2);
+            return fn3.call(this, item, index, self2);
           };
         }
       }
       const result = methodFn.call(arr, wrappedFn, thisArg);
       return needsWrap && wrappedRetFn ? wrappedRetFn(result) : result;
     }
-    function reduce(self2, method, fn2, args) {
+    function reduce(self2, method, fn3, args) {
       const arr = shallowReadArray(self2);
-      let wrappedFn = fn2;
+      let wrappedFn = fn3;
       if (arr !== self2) {
         if (!isShallow(self2)) {
           wrappedFn = function(acc, item, index) {
-            return fn2.call(this, acc, toReactive(item), index, self2);
+            return fn3.call(this, acc, toReactive(item), index, self2);
           };
-        } else if (fn2.length > 3) {
+        } else if (fn3.length > 3) {
           wrappedFn = function(acc, item, index) {
-            return fn2.call(this, acc, item, index, self2);
+            return fn3.call(this, acc, item, index, self2);
           };
         }
       }
@@ -3826,9 +3822,9 @@ var require_reactivity_cjs = __commonJS({
         }
         const targetIsArray = shared.isArray(target);
         if (!isReadonly2) {
-          let fn2;
-          if (targetIsArray && (fn2 = arrayInstrumentations[key])) {
-            return fn2;
+          let fn3;
+          if (targetIsArray && (fn3 = arrayInstrumentations[key])) {
+            return fn3;
           }
           if (key === "hasOwnProperty") {
             return hasOwnProperty;
@@ -3950,7 +3946,7 @@ var require_reactivity_cjs = __commonJS({
     var shallowReactiveHandlers = /* @__PURE__ */ new MutableReactiveHandler(true);
     var shallowReadonlyHandlers = /* @__PURE__ */ new ReadonlyReactiveHandler(true);
     var toShallow = (value) => value;
-    var getProto = (v) => Reflect.getPrototypeOf(v);
+    var getProto = (v2) => Reflect.getPrototypeOf(v2);
     function createIterableMethod(method, isReadonly2, isShallow2) {
       return function(...args) {
         const target = this["__v_raw"];
@@ -4286,10 +4282,10 @@ var require_reactivity_cjs = __commonJS({
     }
     var toReactive = (value) => shared.isObject(value) ? reactive2(value) : value;
     var toReadonly = (value) => shared.isObject(value) ? readonly(value) : value;
-    function isRef(r2) {
-      return r2 ? r2["__v_isRef"] === true : false;
+    function isRef(r) {
+      return r ? r["__v_isRef"] === true : false;
     }
-    function ref5(value) {
+    function ref4(value) {
       return createRef(value, false);
     }
     function shallowRef(value) {
@@ -4439,7 +4435,7 @@ var require_reactivity_cjs = __commonJS({
       } else if (shared.isObject(source) && arguments.length > 1) {
         return propertyToRef(source, key, defaultValue);
       } else {
-        return ref5(source);
+        return ref4(source);
       }
     }
     function propertyToRef(source, key, defaultValue) {
@@ -4447,8 +4443,8 @@ var require_reactivity_cjs = __commonJS({
       return isRef(val) ? val : new ObjectRefImpl(source, key, defaultValue);
     }
     var ComputedRefImpl = class {
-      constructor(fn2, setter, isSSR) {
-        this.fn = fn2;
+      constructor(fn3, setter, isSSR) {
+        this.fn = fn3;
         this.setter = setter;
         this._value = void 0;
         this.dep = new Dep(this);
@@ -4646,7 +4642,7 @@ var require_reactivity_cjs = __commonJS({
         }
         if (cb) {
           const newValue = effect2.run();
-          if (deep || forceTrigger || (isMultiSource ? newValue.some((v, i) => shared.hasChanged(v, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
+          if (deep || forceTrigger || (isMultiSource ? newValue.some((v2, i) => shared.hasChanged(v2, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
             if (cleanup) {
               cleanup();
             }
@@ -4659,11 +4655,11 @@ var require_reactivity_cjs = __commonJS({
                 oldValue === INITIAL_WATCHER_VALUE ? void 0 : isMultiSource && oldValue[0] === INITIAL_WATCHER_VALUE ? [] : oldValue,
                 boundCleanup
               ];
+              oldValue = newValue;
               call ? call(cb, 3, args) : (
                 // @ts-expect-error
                 cb(...args)
               );
-              oldValue = newValue;
             } finally {
               activeWatcher = currentWatcher;
             }
@@ -4677,7 +4673,7 @@ var require_reactivity_cjs = __commonJS({
       }
       effect2 = new ReactiveEffect(getter);
       effect2.scheduler = scheduler ? () => scheduler(job, false) : job;
-      boundCleanup = (fn2) => onWatcherCleanup(fn2, false, effect2);
+      boundCleanup = (fn3) => onWatcherCleanup(fn3, false, effect2);
       cleanup = effect2.onStop = () => {
         const cleanups = cleanupMap.get(effect2);
         if (cleanups) {
@@ -4726,8 +4722,8 @@ var require_reactivity_cjs = __commonJS({
           traverse(value[i], depth, seen);
         }
       } else if (shared.isSet(value) || shared.isMap(value)) {
-        value.forEach((v) => {
-          traverse(v, depth, seen);
+        value.forEach((v2) => {
+          traverse(v2, depth, seen);
         });
       } else if (shared.isPlainObject(value)) {
         for (const key in value) {
@@ -4772,7 +4768,7 @@ var require_reactivity_cjs = __commonJS({
     exports2.reactive = reactive2;
     exports2.reactiveReadArray = reactiveReadArray;
     exports2.readonly = readonly;
-    exports2.ref = ref5;
+    exports2.ref = ref4;
     exports2.resetTracking = resetTracking;
     exports2.shallowReactive = shallowReactive;
     exports2.shallowReadArray = shallowReadArray;
@@ -4794,9 +4790,9 @@ var require_reactivity_cjs = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/index.js
+// ../../node_modules/@vue/reactivity/index.js
 var require_reactivity = __commonJS({
-  "../../node_modules/.pnpm/@vue+reactivity@3.5.14/node_modules/@vue/reactivity/index.js"(exports2, module2) {
+  "../../node_modules/@vue/reactivity/index.js"(exports2, module2) {
     "use strict";
     if (process.env.NODE_ENV === "production") {
       module2.exports = require_reactivity_cjs_prod();
@@ -4806,9 +4802,9 @@ var require_reactivity = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/error.js
+// node_modules/commander/lib/error.js
 var require_error = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/error.js"(exports2) {
+  "node_modules/commander/lib/error.js"(exports2) {
     "use strict";
     var CommanderError2 = class extends Error {
       /**
@@ -4842,9 +4838,9 @@ var require_error = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/argument.js
+// node_modules/commander/lib/argument.js
 var require_argument = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/argument.js"(exports2) {
+  "node_modules/commander/lib/argument.js"(exports2) {
     "use strict";
     var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
     var Argument2 = class {
@@ -4917,8 +4913,8 @@ var require_argument = __commonJS({
        * @param {Function} [fn]
        * @return {Argument}
        */
-      argParser(fn2) {
-        this.parseArg = fn2;
+      argParser(fn3) {
+        this.parseArg = fn3;
         return this;
       }
       /**
@@ -4970,9 +4966,9 @@ var require_argument = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/help.js
+// node_modules/commander/lib/help.js
 var require_help = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/help.js"(exports2) {
+  "node_modules/commander/lib/help.js"(exports2) {
     "use strict";
     var { humanReadableArgName } = require_argument();
     var Help2 = class {
@@ -5385,9 +5381,9 @@ var require_help = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/option.js
+// node_modules/commander/lib/option.js
 var require_option = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/option.js"(exports2) {
+  "node_modules/commander/lib/option.js"(exports2) {
     "use strict";
     var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
     var Option2 = class {
@@ -5503,8 +5499,8 @@ var require_option = __commonJS({
        * @param {Function} [fn]
        * @return {Option}
        */
-      argParser(fn2) {
-        this.parseArg = fn2;
+      argParser(fn3) {
+        this.parseArg = fn3;
         return this;
       }
       /**
@@ -5658,9 +5654,9 @@ var require_option = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/suggestSimilar.js
+// node_modules/commander/lib/suggestSimilar.js
 var require_suggestSimilar = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/suggestSimilar.js"(exports2) {
+  "node_modules/commander/lib/suggestSimilar.js"(exports2) {
     "use strict";
     var maxDistance = 3;
     function editDistance(a, b2) {
@@ -5739,9 +5735,9 @@ var require_suggestSimilar = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/command.js
+// node_modules/commander/lib/command.js
 var require_command = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/command.js"(exports2) {
+  "node_modules/commander/lib/command.js"(exports2) {
     "use strict";
     var EventEmitter = require("node:events").EventEmitter;
     var childProcess = require("node:child_process");
@@ -6014,12 +6010,12 @@ var require_command = __commonJS({
        * @param {*} [defaultValue]
        * @return {Command} `this` command for chaining
        */
-      argument(name, description, fn2, defaultValue) {
+      argument(name, description, fn3, defaultValue) {
         const argument = this.createArgument(name, description);
-        if (typeof fn2 === "function") {
-          argument.default(defaultValue).argParser(fn2);
+        if (typeof fn3 === "function") {
+          argument.default(defaultValue).argParser(fn3);
         } else {
-          argument.default(fn2);
+          argument.default(fn3);
         }
         this.addArgument(argument);
         return this;
@@ -6149,9 +6145,9 @@ Expecting one of '${allowedValues.join("', '")}'`);
        * @param {Function} [fn] optional callback which will be passed a CommanderError, defaults to throwing
        * @return {Command} `this` command for chaining
        */
-      exitOverride(fn2) {
-        if (fn2) {
-          this._exitCallback = fn2;
+      exitOverride(fn3) {
+        if (fn3) {
+          this._exitCallback = fn3;
         } else {
           this._exitCallback = (err) => {
             if (err.code !== "commander.executeSubCommandAsync") {
@@ -6191,7 +6187,7 @@ Expecting one of '${allowedValues.join("', '")}'`);
        * @param {Function} fn
        * @return {Command} `this` command for chaining
        */
-      action(fn2) {
+      action(fn3) {
         const listener = (args) => {
           const expectedArgsCount = this.registeredArguments.length;
           const actionArgs = args.slice(0, expectedArgsCount);
@@ -6201,7 +6197,7 @@ Expecting one of '${allowedValues.join("', '")}'`);
             actionArgs[expectedArgsCount] = this.opts();
           }
           actionArgs.push(this);
-          return fn2.apply(this, actionArgs);
+          return fn3.apply(this, actionArgs);
         };
         this._actionHandler = listener;
         return this;
@@ -6339,7 +6335,7 @@ Expecting one of '${allowedValues.join("', '")}'`);
        * @return {Command} `this` command for chaining
        * @private
        */
-      _optionEx(config, flags, description, fn2, defaultValue) {
+      _optionEx(config, flags, description, fn3, defaultValue) {
         if (typeof flags === "object" && flags instanceof Option2) {
           throw new Error(
             "To add an Option object use addOption() instead of option() or requiredOption()"
@@ -6347,17 +6343,17 @@ Expecting one of '${allowedValues.join("', '")}'`);
         }
         const option = this.createOption(flags, description);
         option.makeOptionMandatory(!!config.mandatory);
-        if (typeof fn2 === "function") {
-          option.default(defaultValue).argParser(fn2);
-        } else if (fn2 instanceof RegExp) {
-          const regex = fn2;
-          fn2 = (val, def) => {
-            const m2 = regex.exec(val);
-            return m2 ? m2[0] : def;
+        if (typeof fn3 === "function") {
+          option.default(defaultValue).argParser(fn3);
+        } else if (fn3 instanceof RegExp) {
+          const regex = fn3;
+          fn3 = (val, def) => {
+            const m = regex.exec(val);
+            return m ? m[0] : def;
           };
-          option.default(defaultValue).argParser(fn2);
+          option.default(defaultValue).argParser(fn3);
         } else {
-          option.default(fn2);
+          option.default(fn3);
         }
         return this.addOption(option);
       }
@@ -6870,8 +6866,8 @@ Expecting one of '${allowedValues.join("', '")}'`);
             if (index < this.args.length) {
               value = this.args.slice(index);
               if (declaredArg.parseArg) {
-                value = value.reduce((processed, v) => {
-                  return myParseArg(declaredArg, v, processed);
+                value = value.reduce((processed, v2) => {
+                  return myParseArg(declaredArg, v2, processed);
                 }, declaredArg.defaultValue);
               }
             } else if (value === void 0) {
@@ -6895,11 +6891,11 @@ Expecting one of '${allowedValues.join("', '")}'`);
        * @return {(Promise|undefined)}
        * @private
        */
-      _chainOrCall(promise, fn2) {
+      _chainOrCall(promise, fn3) {
         if (promise && promise.then && typeof promise.then === "function") {
-          return promise.then(() => fn2());
+          return promise.then(() => fn3());
         }
-        return fn2();
+        return fn3();
       }
       /**
        *
@@ -7783,9 +7779,9 @@ Expecting one of '${allowedValues.join("', '")}'`);
   }
 });
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/index.js
+// node_modules/commander/index.js
 var require_commander = __commonJS({
-  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/index.js"(exports2) {
+  "node_modules/commander/index.js"(exports2) {
     "use strict";
     var { Argument: Argument2 } = require_argument();
     var { Command: Command2 } = require_command();
@@ -7806,9 +7802,9 @@ var require_commander = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/kleur@3.0.3/node_modules/kleur/index.js
+// ../../node_modules/kleur/index.js
 var require_kleur = __commonJS({
-  "../../node_modules/.pnpm/kleur@3.0.3/node_modules/kleur/index.js"(exports2, module2) {
+  "../../node_modules/kleur/index.js"(exports2, module2) {
     "use strict";
     var { FORCE_COLOR, NODE_DISABLE_COLORS, TERM } = process.env;
     var $2 = {
@@ -7903,9 +7899,9 @@ var require_kleur = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/action.js
+// ../../node_modules/prompts/dist/util/action.js
 var require_action = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/action.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/action.js"(exports2, module2) {
     "use strict";
     module2.exports = (key, isSelect) => {
       if (key.meta && key.name !== "escape") return;
@@ -7940,9 +7936,9 @@ var require_action = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/strip.js
+// ../../node_modules/prompts/dist/util/strip.js
 var require_strip = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/strip.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/strip.js"(exports2, module2) {
     "use strict";
     module2.exports = (str) => {
       const pattern = ["[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))"].join("|");
@@ -7952,24 +7948,24 @@ var require_strip = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/sisteransi@1.0.5/node_modules/sisteransi/src/index.js
+// ../../node_modules/sisteransi/src/index.js
 var require_src = __commonJS({
-  "../../node_modules/.pnpm/sisteransi@1.0.5/node_modules/sisteransi/src/index.js"(exports2, module2) {
+  "../../node_modules/sisteransi/src/index.js"(exports2, module2) {
     "use strict";
     var ESC = "\x1B";
     var CSI = `${ESC}[`;
     var beep = "\x07";
     var cursor = {
-      to(x2, y3) {
-        if (!y3) return `${CSI}${x2 + 1}G`;
-        return `${CSI}${y3 + 1};${x2 + 1}H`;
+      to(x3, y2) {
+        if (!y2) return `${CSI}${x3 + 1}G`;
+        return `${CSI}${y2 + 1};${x3 + 1}H`;
       },
-      move(x2, y3) {
+      move(x3, y2) {
         let ret = "";
-        if (x2 < 0) ret += `${CSI}${-x2}D`;
-        else if (x2 > 0) ret += `${CSI}${x2}C`;
-        if (y3 < 0) ret += `${CSI}${-y3}A`;
-        else if (y3 > 0) ret += `${CSI}${y3}B`;
+        if (x3 < 0) ret += `${CSI}${-x3}D`;
+        else if (x3 > 0) ret += `${CSI}${x3}C`;
+        if (y2 < 0) ret += `${CSI}${-y2}A`;
+        else if (y2 > 0) ret += `${CSI}${y2}B`;
         return ret;
       },
       up: (count = 1) => `${CSI}${count}A`,
@@ -8008,40 +8004,40 @@ var require_src = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/clear.js
+// ../../node_modules/prompts/dist/util/clear.js
 var require_clear = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/clear.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/clear.js"(exports2, module2) {
     "use strict";
     function _createForOfIteratorHelper(o, allowArrayLike) {
-      var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-      if (!it) {
-        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-          if (it) o = it;
+      var it3 = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+      if (!it3) {
+        if (Array.isArray(o) || (it3 = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+          if (it3) o = it3;
           var i = 0;
-          var F2 = function F3() {
+          var F3 = function F4() {
           };
-          return { s: F2, n: function n() {
+          return { s: F3, n: function n2() {
             if (i >= o.length) return { done: true };
             return { done: false, value: o[i++] };
           }, e: function e(_e2) {
             throw _e2;
-          }, f: F2 };
+          }, f: F3 };
         }
         throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
       }
       var normalCompletion = true, didErr = false, err;
       return { s: function s() {
-        it = it.call(o);
-      }, n: function n() {
-        var step = it.next();
+        it3 = it3.call(o);
+      }, n: function n2() {
+        var step = it3.next();
         normalCompletion = step.done;
         return step;
       }, e: function e(_e2) {
         didErr = true;
         err = _e2;
-      }, f: function f() {
+      }, f: function f2() {
         try {
-          if (!normalCompletion && it.return != null) it.return();
+          if (!normalCompletion && it3.return != null) it3.return();
         } finally {
           if (didErr) throw err;
         }
@@ -8050,10 +8046,10 @@ var require_clear = __commonJS({
     function _unsupportedIterableToArray(o, minLen) {
       if (!o) return;
       if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-      var n = Object.prototype.toString.call(o).slice(8, -1);
-      if (n === "Object" && o.constructor) n = o.constructor.name;
-      if (n === "Map" || n === "Set") return Array.from(o);
-      if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+      var n2 = Object.prototype.toString.call(o).slice(8, -1);
+      if (n2 === "Object" && o.constructor) n2 = o.constructor.name;
+      if (n2 === "Map" || n2 === "Set") return Array.from(o);
+      if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2)) return _arrayLikeToArray(o, minLen);
     }
     function _arrayLikeToArray(arr, len) {
       if (len == null || len > arr.length) len = arr.length;
@@ -8085,9 +8081,9 @@ var require_clear = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/figures.js
+// ../../node_modules/prompts/dist/util/figures.js
 var require_figures = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/figures.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/figures.js"(exports2, module2) {
     "use strict";
     var main = {
       arrowUp: "\u2191",
@@ -8122,9 +8118,9 @@ var require_figures = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/style.js
+// ../../node_modules/prompts/dist/util/style.js
 var require_style = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/style.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/style.js"(exports2, module2) {
     "use strict";
     var c = require_kleur();
     var figures = require_figures();
@@ -8167,22 +8163,22 @@ var require_style = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/lines.js
+// ../../node_modules/prompts/dist/util/lines.js
 var require_lines = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/lines.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/lines.js"(exports2, module2) {
     "use strict";
     var strip = require_strip();
     module2.exports = function(msg, perLine) {
       let lines = String(strip(msg) || "").split(/\r?\n/);
       if (!perLine) return lines.length;
-      return lines.map((l2) => Math.ceil(l2.length / perLine)).reduce((a, b2) => a + b2);
+      return lines.map((l) => Math.ceil(l.length / perLine)).reduce((a, b2) => a + b2);
     };
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/wrap.js
+// ../../node_modules/prompts/dist/util/wrap.js
 var require_wrap = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/wrap.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/wrap.js"(exports2, module2) {
     "use strict";
     module2.exports = (msg, opts = {}) => {
       const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(" ").join("") : opts.margin || "";
@@ -8196,9 +8192,9 @@ var require_wrap = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/entriesToDisplay.js
+// ../../node_modules/prompts/dist/util/entriesToDisplay.js
 var require_entriesToDisplay = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/entriesToDisplay.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/entriesToDisplay.js"(exports2, module2) {
     "use strict";
     module2.exports = (cursor, total, maxVisible) => {
       maxVisible = maxVisible || total;
@@ -8213,9 +8209,9 @@ var require_entriesToDisplay = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/index.js
+// ../../node_modules/prompts/dist/util/index.js
 var require_util = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/index.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/util/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       action: require_action(),
@@ -8230,9 +8226,9 @@ var require_util = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/prompt.js
+// ../../node_modules/prompts/dist/elements/prompt.js
 var require_prompt = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/prompt.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/prompt.js"(exports2, module2) {
     "use strict";
     var readline = require("readline");
     var _require = require_util();
@@ -8295,9 +8291,9 @@ var require_prompt = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/text.js
+// ../../node_modules/prompts/dist/elements/text.js
 var require_text = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/text.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/text.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -8313,11 +8309,11 @@ var require_text = __commonJS({
         Promise.resolve(value).then(_next, _throw);
       }
     }
-    function _asyncToGenerator(fn2) {
+    function _asyncToGenerator(fn3) {
       return function() {
         var self2 = this, args = arguments;
         return new Promise(function(resolve, reject) {
-          var gen = fn2.apply(self2, args);
+          var gen = fn3.apply(self2, args);
           function _next(value) {
             asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
           }
@@ -8353,15 +8349,15 @@ var require_text = __commonJS({
         this.clear = clear(``, this.out.columns);
         this.render();
       }
-      set value(v) {
-        if (!v && this.initial) {
+      set value(v2) {
+        if (!v2 && this.initial) {
           this.placeholder = true;
           this.rendered = color.gray(this.transform.render(this.initial));
         } else {
           this.placeholder = false;
-          this.rendered = this.transform.render(v);
+          this.rendered = this.transform.render(v2);
         }
-        this._value = v;
+        this._value = v2;
         this.fire();
       }
       get value() {
@@ -8426,10 +8422,10 @@ var require_text = __commonJS({
         this.fire();
         this.render();
       }
-      moveCursor(n) {
+      moveCursor(n2) {
         if (this.placeholder) return;
-        this.cursor = this.cursor + n;
-        this.cursorOffset += n;
+        this.cursor = this.cursor + n2;
+        this.cursorOffset += n2;
       }
       _(c, key) {
         let s1 = this.value.slice(0, this.cursor);
@@ -8501,8 +8497,8 @@ var require_text = __commonJS({
         this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.red ? color.red(this.rendered) : this.rendered].join(` `);
         if (this.error) {
           this.outputError += this.errorMsg.split(`
-`).reduce((a, l2, i) => a + `
-${i ? " " : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
+`).reduce((a, l, i) => a + `
+${i ? " " : figures.pointerSmall} ${color.red().italic(l)}`, ``);
         }
         this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore + cursor.move(this.cursorOffset, 0));
       }
@@ -8511,9 +8507,9 @@ ${i ? " " : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/select.js
+// ../../node_modules/prompts/dist/elements/select.js
 var require_select = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/select.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/select.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -8550,9 +8546,9 @@ var require_select = __commonJS({
         this.clear = clear("", this.out.columns);
         this.render();
       }
-      moveCursor(n) {
-        this.cursor = n;
-        this.value = this.choices[n].value;
+      moveCursor(n2) {
+        this.cursor = n2;
+        this.value = this.choices[n2].value;
         this.fire();
       }
       reset() {
@@ -8624,7 +8620,7 @@ var require_select = __commonJS({
         if (!this.done) {
           this.outputText += "\n";
           for (let i = startIndex; i < endIndex; i++) {
-            let title, prefix, desc = "", v = this.choices[i];
+            let title, prefix, desc = "", v2 = this.choices[i];
             if (i === startIndex && startIndex > 0) {
               prefix = figures.arrowUp;
             } else if (i === endIndex - 1 && endIndex < this.choices.length) {
@@ -8632,16 +8628,16 @@ var require_select = __commonJS({
             } else {
               prefix = " ";
             }
-            if (v.disabled) {
-              title = this.cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+            if (v2.disabled) {
+              title = this.cursor === i ? color.gray().underline(v2.title) : color.strikethrough().gray(v2.title);
               prefix = (this.cursor === i ? color.bold().gray(figures.pointer) + " " : "  ") + prefix;
             } else {
-              title = this.cursor === i ? color.cyan().underline(v.title) : v.title;
+              title = this.cursor === i ? color.cyan().underline(v2.title) : v2.title;
               prefix = (this.cursor === i ? color.cyan(figures.pointer) + " " : "  ") + prefix;
-              if (v.description && this.cursor === i) {
-                desc = ` - ${v.description}`;
-                if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-                  desc = "\n" + wrap(v.description, {
+              if (v2.description && this.cursor === i) {
+                desc = ` - ${v2.description}`;
+                if (prefix.length + title.length + desc.length >= this.out.columns || v2.description.split(/\r?\n/).length > 1) {
+                  desc = "\n" + wrap(v2.description, {
                     margin: 3,
                     width: this.out.columns
                   });
@@ -8659,9 +8655,9 @@ var require_select = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/toggle.js
+// ../../node_modules/prompts/dist/elements/toggle.js
 var require_toggle = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/toggle.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/toggle.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -8757,9 +8753,9 @@ var require_toggle = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/datepart.js
+// ../../node_modules/prompts/dist/dateparts/datepart.js
 var require_datepart = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/datepart.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/datepart.js"(exports2, module2) {
     "use strict";
     var DatePart = class _DatePart {
       constructor({
@@ -8796,9 +8792,9 @@ var require_datepart = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/meridiem.js
+// ../../node_modules/prompts/dist/dateparts/meridiem.js
 var require_meridiem = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/meridiem.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/meridiem.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Meridiem = class extends DatePart {
@@ -8820,14 +8816,14 @@ var require_meridiem = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/day.js
+// ../../node_modules/prompts/dist/dateparts/day.js
 var require_day = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/day.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/day.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
-    var pos = (n) => {
-      n = n % 10;
-      return n === 1 ? "st" : n === 2 ? "nd" : n === 3 ? "rd" : "th";
+    var pos = (n2) => {
+      n2 = n2 % 10;
+      return n2 === 1 ? "st" : n2 === 2 ? "nd" : n2 === 3 ? "rd" : "th";
     };
     var Day = class extends DatePart {
       constructor(opts = {}) {
@@ -8852,9 +8848,9 @@ var require_day = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/hours.js
+// ../../node_modules/prompts/dist/dateparts/hours.js
 var require_hours = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/hours.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/hours.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Hours = class extends DatePart {
@@ -8880,9 +8876,9 @@ var require_hours = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/milliseconds.js
+// ../../node_modules/prompts/dist/dateparts/milliseconds.js
 var require_milliseconds = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/milliseconds.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/milliseconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Milliseconds = class extends DatePart {
@@ -8906,9 +8902,9 @@ var require_milliseconds = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/minutes.js
+// ../../node_modules/prompts/dist/dateparts/minutes.js
 var require_minutes = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/minutes.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/minutes.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Minutes = class extends DatePart {
@@ -8925,17 +8921,17 @@ var require_minutes = __commonJS({
         this.date.setMinutes(parseInt(val.substr(-2)));
       }
       toString() {
-        let m2 = this.date.getMinutes();
-        return this.token.length > 1 ? String(m2).padStart(2, "0") : m2;
+        let m = this.date.getMinutes();
+        return this.token.length > 1 ? String(m).padStart(2, "0") : m;
       }
     };
     module2.exports = Minutes;
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/month.js
+// ../../node_modules/prompts/dist/dateparts/month.js
 var require_month = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/month.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/month.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Month = class extends DatePart {
@@ -8962,9 +8958,9 @@ var require_month = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/seconds.js
+// ../../node_modules/prompts/dist/dateparts/seconds.js
 var require_seconds = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/seconds.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/seconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Seconds = class extends DatePart {
@@ -8989,9 +8985,9 @@ var require_seconds = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/year.js
+// ../../node_modules/prompts/dist/dateparts/year.js
 var require_year = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/year.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/year.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Year = class extends DatePart {
@@ -9016,9 +9012,9 @@ var require_year = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/index.js
+// ../../node_modules/prompts/dist/dateparts/index.js
 var require_dateparts = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/index.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/dateparts/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       DatePart: require_datepart(),
@@ -9034,9 +9030,9 @@ var require_dateparts = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/date.js
+// ../../node_modules/prompts/dist/elements/date.js
 var require_date = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/date.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/date.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -9052,11 +9048,11 @@ var require_date = __commonJS({
         Promise.resolve(value).then(_next, _throw);
       }
     }
-    function _asyncToGenerator(fn2) {
+    function _asyncToGenerator(fn3) {
       return function() {
         var self2 = this, args = arguments;
         return new Promise(function(resolve, reject) {
-          var gen = fn2.apply(self2, args);
+          var gen = fn3.apply(self2, args);
           function _next(value) {
             asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
           }
@@ -9159,9 +9155,9 @@ var require_date = __commonJS({
         this.parts.push(...parts);
         this.reset();
       }
-      moveCursor(n) {
+      moveCursor(n2) {
         this.typed = "";
-        this.cursor = n;
+        this.cursor = n2;
         this.fire();
       }
       reset() {
@@ -9250,8 +9246,8 @@ var require_date = __commonJS({
         super.render();
         this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join("")].join(" ");
         if (this.error) {
-          this.outputText += this.errorMsg.split("\n").reduce((a, l2, i) => a + `
-${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
+          this.outputText += this.errorMsg.split("\n").reduce((a, l, i) => a + `
+${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
         }
         this.out.write(erase.line + cursor.to(0) + this.outputText);
       }
@@ -9260,9 +9256,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/number.js
+// ../../node_modules/prompts/dist/elements/number.js
 var require_number = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/number.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/number.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -9278,11 +9274,11 @@ var require_number = __commonJS({
         Promise.resolve(value).then(_next, _throw);
       }
     }
-    function _asyncToGenerator(fn2) {
+    function _asyncToGenerator(fn3) {
       return function() {
         var self2 = this, args = arguments;
         return new Promise(function(resolve, reject) {
-          var gen = fn2.apply(self2, args);
+          var gen = fn3.apply(self2, args);
           function _next(value) {
             asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
           }
@@ -9328,23 +9324,23 @@ var require_number = __commonJS({
         this.lastHit = 0;
         this.render();
       }
-      set value(v) {
-        if (!v && v !== 0) {
+      set value(v2) {
+        if (!v2 && v2 !== 0) {
           this.placeholder = true;
           this.rendered = color.gray(this.transform.render(`${this.initial}`));
           this._value = ``;
         } else {
           this.placeholder = false;
-          this.rendered = this.transform.render(`${round(v, this.round)}`);
-          this._value = round(v, this.round);
+          this.rendered = this.transform.render(`${round(v2, this.round)}`);
+          this._value = round(v2, this.round);
         }
         this.fire();
       }
       get value() {
         return this._value;
       }
-      parse(x2) {
-        return this.float ? parseFloat(x2) : parseInt(x2);
+      parse(x3) {
+        return this.float ? parseFloat(x3) : parseInt(x3);
       }
       valid(c) {
         return c === `-` || c === `.` && this.float || isNumber.test(c);
@@ -9359,8 +9355,8 @@ var require_number = __commonJS({
         this.abort();
       }
       abort() {
-        let x2 = this.value;
-        this.value = x2 !== `` ? x2 : this.initial;
+        let x3 = this.value;
+        this.value = x3 !== `` ? x3 : this.initial;
         this.done = this.aborted = true;
         this.error = false;
         this.fire();
@@ -9390,8 +9386,8 @@ var require_number = __commonJS({
             _this2.render();
             return;
           }
-          let x2 = _this2.value;
-          _this2.value = x2 !== `` ? x2 : _this2.initial;
+          let x3 = _this2.value;
+          _this2.value = x3 !== `` ? x3 : _this2.initial;
           _this2.done = true;
           _this2.aborted = false;
           _this2.error = false;
@@ -9465,8 +9461,8 @@ var require_number = __commonJS({
         this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), !this.done || !this.done && !this.placeholder ? color[this.color]().underline(this.rendered) : this.rendered].join(` `);
         if (this.error) {
           this.outputError += this.errorMsg.split(`
-`).reduce((a, l2, i) => a + `
-${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
+`).reduce((a, l, i) => a + `
+${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
         }
         this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore);
       }
@@ -9475,9 +9471,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/multiselect.js
+// ../../node_modules/prompts/dist/elements/multiselect.js
 var require_multiselect = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/multiselect.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/multiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var _require = require_src();
@@ -9521,13 +9517,13 @@ var require_multiselect = __commonJS({
         }
       }
       reset() {
-        this.value.map((v) => !v.selected);
+        this.value.map((v2) => !v2.selected);
         this.cursor = 0;
         this.fire();
         this.render();
       }
       selected() {
-        return this.value.filter((v) => v.selected);
+        return this.value.filter((v2) => v2.selected);
       }
       exit() {
         this.abort();
@@ -9591,14 +9587,14 @@ var require_multiselect = __commonJS({
         this.render();
       }
       handleSpaceToggle() {
-        const v = this.value[this.cursor];
-        if (v.selected) {
-          v.selected = false;
+        const v2 = this.value[this.cursor];
+        if (v2.selected) {
+          v2.selected = false;
           this.render();
-        } else if (v.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
+        } else if (v2.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
           return this.bell();
         } else {
-          v.selected = true;
+          v2.selected = true;
           this.render();
         }
       }
@@ -9607,7 +9603,7 @@ var require_multiselect = __commonJS({
           return this.bell();
         }
         const newSelected = !this.value[this.cursor].selected;
-        this.value.filter((v) => !v.disabled).forEach((v) => v.selected = newSelected);
+        this.value.filter((v2) => !v2.disabled).forEach((v2) => v2.selected = newSelected);
         this.render();
       }
       _(c, key) {
@@ -9633,17 +9629,17 @@ Instructions:
         }
         return "";
       }
-      renderOption(cursor2, v, i, arrowIndicator) {
-        const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + " " + arrowIndicator + " ";
+      renderOption(cursor2, v2, i, arrowIndicator) {
+        const prefix = (v2.selected ? color.green(figures.radioOn) : figures.radioOff) + " " + arrowIndicator + " ";
         let title, desc;
-        if (v.disabled) {
-          title = cursor2 === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+        if (v2.disabled) {
+          title = cursor2 === i ? color.gray().underline(v2.title) : color.strikethrough().gray(v2.title);
         } else {
-          title = cursor2 === i ? color.cyan().underline(v.title) : v.title;
-          if (cursor2 === i && v.description) {
-            desc = ` - ${v.description}`;
-            if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-              desc = "\n" + wrap(v.description, {
+          title = cursor2 === i ? color.cyan().underline(v2.title) : v2.title;
+          if (cursor2 === i && v2.description) {
+            desc = ` - ${v2.description}`;
+            if (prefix.length + title.length + desc.length >= this.out.columns || v2.description.split(/\r?\n/).length > 1) {
+              desc = "\n" + wrap(v2.description, {
                 margin: prefix.length,
                 width: this.out.columns
               });
@@ -9680,7 +9676,7 @@ Instructions:
       }
       renderDoneOrInstructions() {
         if (this.done) {
-          return this.value.filter((e) => e.selected).map((v) => v.title).join(", ");
+          return this.value.filter((e) => e.selected).map((v2) => v2.title).join(", ");
         }
         const output = [color.gray(this.hint), this.renderInstructions()];
         if (this.value[this.cursor].disabled) {
@@ -9706,9 +9702,9 @@ Instructions:
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocomplete.js
+// ../../node_modules/prompts/dist/elements/autocomplete.js
 var require_autocomplete = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocomplete.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/autocomplete.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -9724,11 +9720,11 @@ var require_autocomplete = __commonJS({
         Promise.resolve(value).then(_next, _throw);
       }
     }
-    function _asyncToGenerator(fn2) {
+    function _asyncToGenerator(fn3) {
       return function() {
         var self2 = this, args = arguments;
         return new Promise(function(resolve, reject) {
-          var gen = fn2.apply(self2, args);
+          var gen = fn3.apply(self2, args);
           function _next(value) {
             asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
           }
@@ -9812,8 +9808,8 @@ var require_autocomplete = __commonJS({
             description: s.description
           }));
           _this.completing = false;
-          const l2 = Math.max(suggestions.length - 1, 0);
-          _this.moveSelect(Math.min(l2, _this.select));
+          const l = Math.max(suggestions.length - 1, 0);
+          _this.moveSelect(Math.min(l, _this.select));
           cb && cb();
         })();
       }
@@ -9926,15 +9922,15 @@ var require_autocomplete = __commonJS({
         this.cursor = this.cursor + 1;
         this.render();
       }
-      renderOption(v, hovered, isStart, isEnd) {
+      renderOption(v2, hovered, isStart, isEnd) {
         let desc;
         let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : " ";
-        let title = hovered ? color.cyan().underline(v.title) : v.title;
+        let title = hovered ? color.cyan().underline(v2.title) : v2.title;
         prefix = (hovered ? color.cyan(figures.pointer) + " " : "  ") + prefix;
-        if (v.description) {
-          desc = ` - ${v.description}`;
-          if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-            desc = "\n" + wrap(v.description, {
+        if (v2.description) {
+          desc = ` - ${v2.description}`;
+          if (prefix.length + title.length + desc.length >= this.out.columns || v2.description.split(/\r?\n/).length > 1) {
+            desc = "\n" + wrap(v2.description, {
               margin: 3,
               width: this.out.columns
             });
@@ -9961,9 +9957,9 @@ var require_autocomplete = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocompleteMultiselect.js
+// ../../node_modules/prompts/dist/elements/autocompleteMultiselect.js
 var require_autocompleteMultiselect = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocompleteMultiselect.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/autocompleteMultiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var _require = require_src();
@@ -10023,15 +10019,15 @@ var require_autocompleteMultiselect = __commonJS({
       }
       updateFilteredOptions() {
         const currentHighlight = this.filteredOptions[this.cursor];
-        this.filteredOptions = this.value.filter((v) => {
+        this.filteredOptions = this.value.filter((v2) => {
           if (this.inputValue) {
-            if (typeof v.title === "string") {
-              if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
+            if (typeof v2.title === "string") {
+              if (v2.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
                 return true;
               }
             }
-            if (typeof v.value === "string") {
-              if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
+            if (typeof v2.value === "string") {
+              if (v2.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
                 return true;
               }
             }
@@ -10039,19 +10035,19 @@ var require_autocompleteMultiselect = __commonJS({
           }
           return true;
         });
-        const newHighlightIndex = this.filteredOptions.findIndex((v) => v === currentHighlight);
+        const newHighlightIndex = this.filteredOptions.findIndex((v2) => v2 === currentHighlight);
         this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
         this.render();
       }
       handleSpaceToggle() {
-        const v = this.filteredOptions[this.cursor];
-        if (v.selected) {
-          v.selected = false;
+        const v2 = this.filteredOptions[this.cursor];
+        if (v2.selected) {
+          v2.selected = false;
           this.render();
-        } else if (v.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
+        } else if (v2.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
           return this.bell();
         } else {
-          v.selected = true;
+          v2.selected = true;
           this.render();
         }
       }
@@ -10086,15 +10082,15 @@ Instructions:
 Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter something to filter")}
 `;
       }
-      renderOption(cursor2, v, i) {
+      renderOption(cursor2, v2, i) {
         let title;
-        if (v.disabled) title = cursor2 === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-        else title = cursor2 === i ? color.cyan().underline(v.title) : v.title;
-        return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + "  " + title;
+        if (v2.disabled) title = cursor2 === i ? color.gray().underline(v2.title) : color.strikethrough().gray(v2.title);
+        else title = cursor2 === i ? color.cyan().underline(v2.title) : v2.title;
+        return (v2.selected ? color.green(figures.radioOn) : figures.radioOff) + "  " + title;
       }
       renderDoneOrInstructions() {
         if (this.done) {
-          return this.value.filter((e) => e.selected).map((v) => v.title).join(", ");
+          return this.value.filter((e) => e.selected).map((v2) => v2.title).join(", ");
         }
         const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
         if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
@@ -10120,9 +10116,9 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter so
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/confirm.js
+// ../../node_modules/prompts/dist/elements/confirm.js
 var require_confirm = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/confirm.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/confirm.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -10192,9 +10188,9 @@ var require_confirm = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/index.js
+// ../../node_modules/prompts/dist/elements/index.js
 var require_elements = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/index.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/elements/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       TextPrompt: require_text(),
@@ -10210,13 +10206,13 @@ var require_elements = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/prompts.js
+// ../../node_modules/prompts/dist/prompts.js
 var require_prompts = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/prompts.js"(exports2) {
+  "../../node_modules/prompts/dist/prompts.js"(exports2) {
     "use strict";
     var $2 = exports2;
     var el = require_elements();
-    var noop = (v) => v;
+    var noop = (v2) => v2;
     function toPrompt(type, args, opts = {}) {
       return new Promise((res, rej) => {
         const p = new el[type](args);
@@ -10224,9 +10220,9 @@ var require_prompts = __commonJS({
         const onSubmit = opts.onSubmit || noop;
         const onExit = opts.onExit || noop;
         p.on("state", args.onState || noop);
-        p.on("submit", (x2) => res(onSubmit(x2)));
-        p.on("exit", (x2) => res(onExit(x2)));
-        p.on("abort", (x2) => rej(onAbort(x2)));
+        p.on("submit", (x3) => res(onSubmit(x3)));
+        p.on("exit", (x3) => res(onExit(x3)));
+        p.on("abort", (x3) => rej(onAbort(x3)));
       });
     }
     $2.text = (args) => toPrompt("TextPrompt", args);
@@ -10274,9 +10270,9 @@ var require_prompts = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/index.js
+// ../../node_modules/prompts/dist/index.js
 var require_dist = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/index.js"(exports2, module2) {
+  "../../node_modules/prompts/dist/index.js"(exports2, module2) {
     "use strict";
     function ownKeys(object, enumerableOnly) {
       var keys = Object.keys(object);
@@ -10317,35 +10313,35 @@ var require_dist = __commonJS({
       return obj;
     }
     function _createForOfIteratorHelper(o, allowArrayLike) {
-      var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-      if (!it) {
-        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-          if (it) o = it;
+      var it3 = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+      if (!it3) {
+        if (Array.isArray(o) || (it3 = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+          if (it3) o = it3;
           var i = 0;
-          var F2 = function F3() {
+          var F3 = function F4() {
           };
-          return { s: F2, n: function n() {
+          return { s: F3, n: function n2() {
             if (i >= o.length) return { done: true };
             return { done: false, value: o[i++] };
           }, e: function e(_e2) {
             throw _e2;
-          }, f: F2 };
+          }, f: F3 };
         }
         throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
       }
       var normalCompletion = true, didErr = false, err;
       return { s: function s() {
-        it = it.call(o);
-      }, n: function n() {
-        var step = it.next();
+        it3 = it3.call(o);
+      }, n: function n2() {
+        var step = it3.next();
         normalCompletion = step.done;
         return step;
       }, e: function e(_e2) {
         didErr = true;
         err = _e2;
-      }, f: function f() {
+      }, f: function f2() {
         try {
-          if (!normalCompletion && it.return != null) it.return();
+          if (!normalCompletion && it3.return != null) it3.return();
         } finally {
           if (didErr) throw err;
         }
@@ -10354,10 +10350,10 @@ var require_dist = __commonJS({
     function _unsupportedIterableToArray(o, minLen) {
       if (!o) return;
       if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-      var n = Object.prototype.toString.call(o).slice(8, -1);
-      if (n === "Object" && o.constructor) n = o.constructor.name;
-      if (n === "Map" || n === "Set") return Array.from(o);
-      if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+      var n2 = Object.prototype.toString.call(o).slice(8, -1);
+      if (n2 === "Object" && o.constructor) n2 = o.constructor.name;
+      if (n2 === "Map" || n2 === "Set") return Array.from(o);
+      if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2)) return _arrayLikeToArray(o, minLen);
     }
     function _arrayLikeToArray(arr, len) {
       if (len == null || len > arr.length) len = arr.length;
@@ -10378,11 +10374,11 @@ var require_dist = __commonJS({
         Promise.resolve(value).then(_next, _throw);
       }
     }
-    function _asyncToGenerator(fn2) {
+    function _asyncToGenerator(fn3) {
       return function() {
         var self2 = this, args = arguments;
         return new Promise(function(resolve, reject) {
-          var gen = fn2.apply(self2, args);
+          var gen = fn3.apply(self2, args);
           function _next(value) {
             asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
           }
@@ -10494,9 +10490,9 @@ var require_dist = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/action.js
+// ../../node_modules/prompts/lib/util/action.js
 var require_action2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/action.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/action.js"(exports2, module2) {
     "use strict";
     module2.exports = (key, isSelect) => {
       if (key.meta && key.name !== "escape") return;
@@ -10531,9 +10527,9 @@ var require_action2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/strip.js
+// ../../node_modules/prompts/lib/util/strip.js
 var require_strip2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/strip.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/strip.js"(exports2, module2) {
     "use strict";
     module2.exports = (str) => {
       const pattern = [
@@ -10546,9 +10542,9 @@ var require_strip2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/clear.js
+// ../../node_modules/prompts/lib/util/clear.js
 var require_clear2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/clear.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/clear.js"(exports2, module2) {
     "use strict";
     var strip = require_strip2();
     var { erase, cursor } = require_src();
@@ -10565,9 +10561,9 @@ var require_clear2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/figures.js
+// ../../node_modules/prompts/lib/util/figures.js
 var require_figures2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/figures.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/figures.js"(exports2, module2) {
     "use strict";
     var main = {
       arrowUp: "\u2191",
@@ -10602,9 +10598,9 @@ var require_figures2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/style.js
+// ../../node_modules/prompts/lib/util/style.js
 var require_style2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/style.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/style.js"(exports2, module2) {
     "use strict";
     var c = require_kleur();
     var figures = require_figures2();
@@ -10635,22 +10631,22 @@ var require_style2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/lines.js
+// ../../node_modules/prompts/lib/util/lines.js
 var require_lines2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/lines.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/lines.js"(exports2, module2) {
     "use strict";
     var strip = require_strip2();
     module2.exports = function(msg, perLine) {
       let lines = String(strip(msg) || "").split(/\r?\n/);
       if (!perLine) return lines.length;
-      return lines.map((l2) => Math.ceil(l2.length / perLine)).reduce((a, b2) => a + b2);
+      return lines.map((l) => Math.ceil(l.length / perLine)).reduce((a, b2) => a + b2);
     };
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/wrap.js
+// ../../node_modules/prompts/lib/util/wrap.js
 var require_wrap2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/wrap.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/wrap.js"(exports2, module2) {
     "use strict";
     module2.exports = (msg, opts = {}) => {
       const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(" ").join("") : opts.margin || "";
@@ -10665,9 +10661,9 @@ var require_wrap2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/entriesToDisplay.js
+// ../../node_modules/prompts/lib/util/entriesToDisplay.js
 var require_entriesToDisplay2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/entriesToDisplay.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/entriesToDisplay.js"(exports2, module2) {
     "use strict";
     module2.exports = (cursor, total, maxVisible) => {
       maxVisible = maxVisible || total;
@@ -10679,9 +10675,9 @@ var require_entriesToDisplay2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/index.js
+// ../../node_modules/prompts/lib/util/index.js
 var require_util2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/index.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/util/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       action: require_action2(),
@@ -10696,9 +10692,9 @@ var require_util2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/prompt.js
+// ../../node_modules/prompts/lib/elements/prompt.js
 var require_prompt2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/prompt.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/prompt.js"(exports2, module2) {
     "use strict";
     var readline = require("readline");
     var { action } = require_util2();
@@ -10755,9 +10751,9 @@ var require_prompt2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/text.js
+// ../../node_modules/prompts/lib/elements/text.js
 var require_text2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/text.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/text.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -10778,15 +10774,15 @@ var require_text2 = __commonJS({
         this.clear = clear(``, this.out.columns);
         this.render();
       }
-      set value(v) {
-        if (!v && this.initial) {
+      set value(v2) {
+        if (!v2 && this.initial) {
           this.placeholder = true;
           this.rendered = color.gray(this.transform.render(this.initial));
         } else {
           this.placeholder = false;
-          this.rendered = this.transform.render(v);
+          this.rendered = this.transform.render(v2);
         }
-        this._value = v;
+        this._value = v2;
         this.fire();
       }
       get value() {
@@ -10845,10 +10841,10 @@ var require_text2 = __commonJS({
         this.fire();
         this.render();
       }
-      moveCursor(n) {
+      moveCursor(n2) {
         if (this.placeholder) return;
-        this.cursor = this.cursor + n;
-        this.cursorOffset += n;
+        this.cursor = this.cursor + n2;
+        this.cursorOffset += n2;
       }
       _(c, key) {
         let s1 = this.value.slice(0, this.cursor);
@@ -10926,8 +10922,8 @@ var require_text2 = __commonJS({
         ].join(` `);
         if (this.error) {
           this.outputError += this.errorMsg.split(`
-`).reduce((a, l2, i) => a + `
-${i ? " " : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
+`).reduce((a, l, i) => a + `
+${i ? " " : figures.pointerSmall} ${color.red().italic(l)}`, ``);
         }
         this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore + cursor.move(this.cursorOffset, 0));
       }
@@ -10936,9 +10932,9 @@ ${i ? " " : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/select.js
+// ../../node_modules/prompts/lib/elements/select.js
 var require_select2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/select.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/select.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -10967,9 +10963,9 @@ var require_select2 = __commonJS({
         this.clear = clear("", this.out.columns);
         this.render();
       }
-      moveCursor(n) {
-        this.cursor = n;
-        this.value = this.choices[n].value;
+      moveCursor(n2) {
+        this.cursor = n2;
+        this.value = this.choices[n2].value;
         this.fire();
       }
       reset() {
@@ -11047,7 +11043,7 @@ var require_select2 = __commonJS({
         if (!this.done) {
           this.outputText += "\n";
           for (let i = startIndex; i < endIndex; i++) {
-            let title, prefix, desc = "", v = this.choices[i];
+            let title, prefix, desc = "", v2 = this.choices[i];
             if (i === startIndex && startIndex > 0) {
               prefix = figures.arrowUp;
             } else if (i === endIndex - 1 && endIndex < this.choices.length) {
@@ -11055,16 +11051,16 @@ var require_select2 = __commonJS({
             } else {
               prefix = " ";
             }
-            if (v.disabled) {
-              title = this.cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+            if (v2.disabled) {
+              title = this.cursor === i ? color.gray().underline(v2.title) : color.strikethrough().gray(v2.title);
               prefix = (this.cursor === i ? color.bold().gray(figures.pointer) + " " : "  ") + prefix;
             } else {
-              title = this.cursor === i ? color.cyan().underline(v.title) : v.title;
+              title = this.cursor === i ? color.cyan().underline(v2.title) : v2.title;
               prefix = (this.cursor === i ? color.cyan(figures.pointer) + " " : "  ") + prefix;
-              if (v.description && this.cursor === i) {
-                desc = ` - ${v.description}`;
-                if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-                  desc = "\n" + wrap(v.description, { margin: 3, width: this.out.columns });
+              if (v2.description && this.cursor === i) {
+                desc = ` - ${v2.description}`;
+                if (prefix.length + title.length + desc.length >= this.out.columns || v2.description.split(/\r?\n/).length > 1) {
+                  desc = "\n" + wrap(v2.description, { margin: 3, width: this.out.columns });
                 }
               }
             }
@@ -11079,9 +11075,9 @@ var require_select2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/toggle.js
+// ../../node_modules/prompts/lib/elements/toggle.js
 var require_toggle2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/toggle.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/toggle.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -11180,9 +11176,9 @@ var require_toggle2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/datepart.js
+// ../../node_modules/prompts/lib/dateparts/datepart.js
 var require_datepart2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/datepart.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/datepart.js"(exports2, module2) {
     "use strict";
     var DatePart = class _DatePart {
       constructor({ token, date, parts, locales }) {
@@ -11214,9 +11210,9 @@ var require_datepart2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/meridiem.js
+// ../../node_modules/prompts/lib/dateparts/meridiem.js
 var require_meridiem2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/meridiem.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/meridiem.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Meridiem = class extends DatePart {
@@ -11238,14 +11234,14 @@ var require_meridiem2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/day.js
+// ../../node_modules/prompts/lib/dateparts/day.js
 var require_day2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/day.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/day.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
-    var pos = (n) => {
-      n = n % 10;
-      return n === 1 ? "st" : n === 2 ? "nd" : n === 3 ? "rd" : "th";
+    var pos = (n2) => {
+      n2 = n2 % 10;
+      return n2 === 1 ? "st" : n2 === 2 ? "nd" : n2 === 3 ? "rd" : "th";
     };
     var Day = class extends DatePart {
       constructor(opts = {}) {
@@ -11270,9 +11266,9 @@ var require_day2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/hours.js
+// ../../node_modules/prompts/lib/dateparts/hours.js
 var require_hours2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/hours.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/hours.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Hours = class extends DatePart {
@@ -11299,9 +11295,9 @@ var require_hours2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/milliseconds.js
+// ../../node_modules/prompts/lib/dateparts/milliseconds.js
 var require_milliseconds2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/milliseconds.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/milliseconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Milliseconds = class extends DatePart {
@@ -11325,9 +11321,9 @@ var require_milliseconds2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/minutes.js
+// ../../node_modules/prompts/lib/dateparts/minutes.js
 var require_minutes2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/minutes.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/minutes.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Minutes = class extends DatePart {
@@ -11344,17 +11340,17 @@ var require_minutes2 = __commonJS({
         this.date.setMinutes(parseInt(val.substr(-2)));
       }
       toString() {
-        let m2 = this.date.getMinutes();
-        return this.token.length > 1 ? String(m2).padStart(2, "0") : m2;
+        let m = this.date.getMinutes();
+        return this.token.length > 1 ? String(m).padStart(2, "0") : m;
       }
     };
     module2.exports = Minutes;
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/month.js
+// ../../node_modules/prompts/lib/dateparts/month.js
 var require_month2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/month.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/month.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Month = class extends DatePart {
@@ -11381,9 +11377,9 @@ var require_month2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/seconds.js
+// ../../node_modules/prompts/lib/dateparts/seconds.js
 var require_seconds2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/seconds.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/seconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Seconds = class extends DatePart {
@@ -11408,9 +11404,9 @@ var require_seconds2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/year.js
+// ../../node_modules/prompts/lib/dateparts/year.js
 var require_year2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/year.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/year.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Year = class extends DatePart {
@@ -11435,9 +11431,9 @@ var require_year2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/index.js
+// ../../node_modules/prompts/lib/dateparts/index.js
 var require_dateparts2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/index.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/dateparts/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       DatePart: require_datepart2(),
@@ -11453,9 +11449,9 @@ var require_dateparts2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/date.js
+// ../../node_modules/prompts/lib/elements/date.js
 var require_date2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/date.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/date.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -11529,9 +11525,9 @@ var require_date2 = __commonJS({
         this.parts.push(...parts);
         this.reset();
       }
-      moveCursor(n) {
+      moveCursor(n2) {
         this.typed = "";
-        this.cursor = n;
+        this.cursor = n2;
         this.fire();
       }
       reset() {
@@ -11620,8 +11616,8 @@ var require_date2 = __commonJS({
         ].join(" ");
         if (this.error) {
           this.outputText += this.errorMsg.split("\n").reduce(
-            (a, l2, i) => a + `
-${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`,
+            (a, l, i) => a + `
+${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`,
             ``
           );
         }
@@ -11632,9 +11628,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`,
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/number.js
+// ../../node_modules/prompts/lib/elements/number.js
 var require_number2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/number.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/number.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -11665,23 +11661,23 @@ var require_number2 = __commonJS({
         this.lastHit = 0;
         this.render();
       }
-      set value(v) {
-        if (!v && v !== 0) {
+      set value(v2) {
+        if (!v2 && v2 !== 0) {
           this.placeholder = true;
           this.rendered = color.gray(this.transform.render(`${this.initial}`));
           this._value = ``;
         } else {
           this.placeholder = false;
-          this.rendered = this.transform.render(`${round(v, this.round)}`);
-          this._value = round(v, this.round);
+          this.rendered = this.transform.render(`${round(v2, this.round)}`);
+          this._value = round(v2, this.round);
         }
         this.fire();
       }
       get value() {
         return this._value;
       }
-      parse(x2) {
-        return this.float ? parseFloat(x2) : parseInt(x2);
+      parse(x3) {
+        return this.float ? parseFloat(x3) : parseInt(x3);
       }
       valid(c) {
         return c === `-` || c === `.` && this.float || isNumber.test(c);
@@ -11696,8 +11692,8 @@ var require_number2 = __commonJS({
         this.abort();
       }
       abort() {
-        let x2 = this.value;
-        this.value = x2 !== `` ? x2 : this.initial;
+        let x3 = this.value;
+        this.value = x3 !== `` ? x3 : this.initial;
         this.done = this.aborted = true;
         this.error = false;
         this.fire();
@@ -11722,8 +11718,8 @@ var require_number2 = __commonJS({
           this.render();
           return;
         }
-        let x2 = this.value;
-        this.value = x2 !== `` ? x2 : this.initial;
+        let x3 = this.value;
+        this.value = x3 !== `` ? x3 : this.initial;
         this.done = true;
         this.aborted = false;
         this.error = false;
@@ -11802,8 +11798,8 @@ var require_number2 = __commonJS({
         ].join(` `);
         if (this.error) {
           this.outputError += this.errorMsg.split(`
-`).reduce((a, l2, i) => a + `
-${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
+`).reduce((a, l, i) => a + `
+${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
         }
         this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore);
       }
@@ -11812,9 +11808,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l2)}`, ``);
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/multiselect.js
+// ../../node_modules/prompts/lib/elements/multiselect.js
 var require_multiselect2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/multiselect.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/multiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var { cursor } = require_src();
@@ -11850,13 +11846,13 @@ var require_multiselect2 = __commonJS({
         }
       }
       reset() {
-        this.value.map((v) => !v.selected);
+        this.value.map((v2) => !v2.selected);
         this.cursor = 0;
         this.fire();
         this.render();
       }
       selected() {
-        return this.value.filter((v) => v.selected);
+        return this.value.filter((v2) => v2.selected);
       }
       exit() {
         this.abort();
@@ -11920,14 +11916,14 @@ var require_multiselect2 = __commonJS({
         this.render();
       }
       handleSpaceToggle() {
-        const v = this.value[this.cursor];
-        if (v.selected) {
-          v.selected = false;
+        const v2 = this.value[this.cursor];
+        if (v2.selected) {
+          v2.selected = false;
           this.render();
-        } else if (v.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
+        } else if (v2.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
           return this.bell();
         } else {
-          v.selected = true;
+          v2.selected = true;
           this.render();
         }
       }
@@ -11936,7 +11932,7 @@ var require_multiselect2 = __commonJS({
           return this.bell();
         }
         const newSelected = !this.value[this.cursor].selected;
-        this.value.filter((v) => !v.disabled).forEach((v) => v.selected = newSelected);
+        this.value.filter((v2) => !v2.disabled).forEach((v2) => v2.selected = newSelected);
         this.render();
       }
       _(c, key) {
@@ -11962,17 +11958,17 @@ Instructions:
         }
         return "";
       }
-      renderOption(cursor2, v, i, arrowIndicator) {
-        const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + " " + arrowIndicator + " ";
+      renderOption(cursor2, v2, i, arrowIndicator) {
+        const prefix = (v2.selected ? color.green(figures.radioOn) : figures.radioOff) + " " + arrowIndicator + " ";
         let title, desc;
-        if (v.disabled) {
-          title = cursor2 === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+        if (v2.disabled) {
+          title = cursor2 === i ? color.gray().underline(v2.title) : color.strikethrough().gray(v2.title);
         } else {
-          title = cursor2 === i ? color.cyan().underline(v.title) : v.title;
-          if (cursor2 === i && v.description) {
-            desc = ` - ${v.description}`;
-            if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-              desc = "\n" + wrap(v.description, { margin: prefix.length, width: this.out.columns });
+          title = cursor2 === i ? color.cyan().underline(v2.title) : v2.title;
+          if (cursor2 === i && v2.description) {
+            desc = ` - ${v2.description}`;
+            if (prefix.length + title.length + desc.length >= this.out.columns || v2.description.split(/\r?\n/).length > 1) {
+              desc = "\n" + wrap(v2.description, { margin: prefix.length, width: this.out.columns });
             }
           }
         }
@@ -12006,7 +12002,7 @@ Instructions:
       }
       renderDoneOrInstructions() {
         if (this.done) {
-          return this.value.filter((e) => e.selected).map((v) => v.title).join(", ");
+          return this.value.filter((e) => e.selected).map((v2) => v2.title).join(", ");
         }
         const output = [color.gray(this.hint), this.renderInstructions()];
         if (this.value[this.cursor].disabled) {
@@ -12037,9 +12033,9 @@ Instructions:
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocomplete.js
+// ../../node_modules/prompts/lib/elements/autocomplete.js
 var require_autocomplete2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocomplete.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/autocomplete.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -12098,8 +12094,8 @@ var require_autocomplete2 = __commonJS({
         if (this.completing !== p) return;
         this.suggestions = suggestions.map((s, i, arr) => ({ title: getTitle(arr, i), value: getVal(arr, i), description: s.description }));
         this.completing = false;
-        const l2 = Math.max(suggestions.length - 1, 0);
-        this.moveSelect(Math.min(l2, this.select));
+        const l = Math.max(suggestions.length - 1, 0);
+        this.moveSelect(Math.min(l, this.select));
         cb && cb();
       }
       reset() {
@@ -12211,15 +12207,15 @@ var require_autocomplete2 = __commonJS({
         this.cursor = this.cursor + 1;
         this.render();
       }
-      renderOption(v, hovered, isStart, isEnd) {
+      renderOption(v2, hovered, isStart, isEnd) {
         let desc;
         let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : " ";
-        let title = hovered ? color.cyan().underline(v.title) : v.title;
+        let title = hovered ? color.cyan().underline(v2.title) : v2.title;
         prefix = (hovered ? color.cyan(figures.pointer) + " " : "  ") + prefix;
-        if (v.description) {
-          desc = ` - ${v.description}`;
-          if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-            desc = "\n" + wrap(v.description, { margin: 3, width: this.out.columns });
+        if (v2.description) {
+          desc = ` - ${v2.description}`;
+          if (prefix.length + title.length + desc.length >= this.out.columns || v2.description.split(/\r?\n/).length > 1) {
+            desc = "\n" + wrap(v2.description, { margin: 3, width: this.out.columns });
           }
         }
         return prefix + " " + title + color.gray(desc || "");
@@ -12253,9 +12249,9 @@ var require_autocomplete2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocompleteMultiselect.js
+// ../../node_modules/prompts/lib/elements/autocompleteMultiselect.js
 var require_autocompleteMultiselect2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocompleteMultiselect.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/autocompleteMultiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var { cursor } = require_src();
@@ -12311,15 +12307,15 @@ var require_autocompleteMultiselect2 = __commonJS({
       }
       updateFilteredOptions() {
         const currentHighlight = this.filteredOptions[this.cursor];
-        this.filteredOptions = this.value.filter((v) => {
+        this.filteredOptions = this.value.filter((v2) => {
           if (this.inputValue) {
-            if (typeof v.title === "string") {
-              if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
+            if (typeof v2.title === "string") {
+              if (v2.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
                 return true;
               }
             }
-            if (typeof v.value === "string") {
-              if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
+            if (typeof v2.value === "string") {
+              if (v2.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
                 return true;
               }
             }
@@ -12327,19 +12323,19 @@ var require_autocompleteMultiselect2 = __commonJS({
           }
           return true;
         });
-        const newHighlightIndex = this.filteredOptions.findIndex((v) => v === currentHighlight);
+        const newHighlightIndex = this.filteredOptions.findIndex((v2) => v2 === currentHighlight);
         this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
         this.render();
       }
       handleSpaceToggle() {
-        const v = this.filteredOptions[this.cursor];
-        if (v.selected) {
-          v.selected = false;
+        const v2 = this.filteredOptions[this.cursor];
+        if (v2.selected) {
+          v2.selected = false;
           this.render();
-        } else if (v.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
+        } else if (v2.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
           return this.bell();
         } else {
-          v.selected = true;
+          v2.selected = true;
           this.render();
         }
       }
@@ -12374,15 +12370,15 @@ Instructions:
 Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter something to filter")}
 `;
       }
-      renderOption(cursor2, v, i) {
+      renderOption(cursor2, v2, i) {
         let title;
-        if (v.disabled) title = cursor2 === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-        else title = cursor2 === i ? color.cyan().underline(v.title) : v.title;
-        return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + "  " + title;
+        if (v2.disabled) title = cursor2 === i ? color.gray().underline(v2.title) : color.strikethrough().gray(v2.title);
+        else title = cursor2 === i ? color.cyan().underline(v2.title) : v2.title;
+        return (v2.selected ? color.green(figures.radioOn) : figures.radioOff) + "  " + title;
       }
       renderDoneOrInstructions() {
         if (this.done) {
-          return this.value.filter((e) => e.selected).map((v) => v.title).join(", ");
+          return this.value.filter((e) => e.selected).map((v2) => v2.title).join(", ");
         }
         const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
         if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
@@ -12413,9 +12409,9 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter so
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/confirm.js
+// ../../node_modules/prompts/lib/elements/confirm.js
 var require_confirm2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/confirm.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/confirm.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -12486,9 +12482,9 @@ var require_confirm2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/index.js
+// ../../node_modules/prompts/lib/elements/index.js
 var require_elements2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/index.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/elements/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       TextPrompt: require_text2(),
@@ -12504,13 +12500,13 @@ var require_elements2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/prompts.js
+// ../../node_modules/prompts/lib/prompts.js
 var require_prompts2 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/prompts.js"(exports2) {
+  "../../node_modules/prompts/lib/prompts.js"(exports2) {
     "use strict";
     var $2 = exports2;
     var el = require_elements2();
-    var noop = (v) => v;
+    var noop = (v2) => v2;
     function toPrompt(type, args, opts = {}) {
       return new Promise((res, rej) => {
         const p = new el[type](args);
@@ -12518,9 +12514,9 @@ var require_prompts2 = __commonJS({
         const onSubmit = opts.onSubmit || noop;
         const onExit = opts.onExit || noop;
         p.on("state", args.onState || noop);
-        p.on("submit", (x2) => res(onSubmit(x2)));
-        p.on("exit", (x2) => res(onExit(x2)));
-        p.on("abort", (x2) => rej(onAbort(x2)));
+        p.on("submit", (x3) => res(onSubmit(x3)));
+        p.on("exit", (x3) => res(onExit(x3)));
+        p.on("abort", (x3) => rej(onAbort(x3)));
       });
     }
     $2.text = (args) => toPrompt("TextPrompt", args);
@@ -12570,9 +12566,9 @@ var require_prompts2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/index.js
+// ../../node_modules/prompts/lib/index.js
 var require_lib = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/index.js"(exports2, module2) {
+  "../../node_modules/prompts/lib/index.js"(exports2, module2) {
     "use strict";
     var prompts7 = require_prompts2();
     var passOn = ["suggest", "format", "onState", "validate", "onRender", "type"];
@@ -12644,9 +12640,9 @@ var require_lib = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/index.js
+// ../../node_modules/prompts/index.js
 var require_prompts3 = __commonJS({
-  "../../node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/index.js"(exports2, module2) {
+  "../../node_modules/prompts/index.js"(exports2, module2) {
     "use strict";
     function isNodeLT(tar) {
       tar = (Array.isArray(tar) ? tar : tar.split(".")).map(Number);
@@ -12662,9 +12658,9 @@ var require_prompts3 = __commonJS({
 });
 
 // src/domain/cli-args-agg/index.ts
-var import_reactivity5 = __toESM(require_reactivity(), 1);
+var import_reactivity4 = __toESM(require_reactivity(), 1);
 
-// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/esm.mjs
+// node_modules/commander/esm.mjs
 var import_index = __toESM(require_commander(), 1);
 var {
   program,
@@ -12684,7 +12680,7 @@ var {
 // src/domain/cli-args-agg/index.ts
 var import_prompts6 = __toESM(require_prompts3(), 1);
 
-// ../../node_modules/.pnpm/chalk@5.6.2/node_modules/chalk/source/vendor/ansi-styles/index.js
+// node_modules/chalk/source/vendor/ansi-styles/index.js
 var ANSI_BACKGROUND_OFFSET = 10;
 var wrapAnsi16 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
 var wrapAnsi256 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
@@ -12870,7 +12866,7 @@ function assembleStyles() {
 var ansiStyles = assembleStyles();
 var ansi_styles_default = ansiStyles;
 
-// ../../node_modules/.pnpm/chalk@5.6.2/node_modules/chalk/source/vendor/supports-color/index.js
+// node_modules/chalk/source/vendor/supports-color/index.js
 var import_node_process = __toESM(require("node:process"), 1);
 var import_node_os = __toESM(require("node:os"), 1);
 var import_node_tty = __toESM(require("node:tty"), 1);
@@ -13002,7 +12998,7 @@ var supportsColor = {
 };
 var supports_color_default = supportsColor;
 
-// ../../node_modules/.pnpm/chalk@5.6.2/node_modules/chalk/source/utilities.js
+// node_modules/chalk/source/utilities.js
 function stringReplaceAll(string, substring, replacer) {
   let index = string.indexOf(substring);
   if (index === -1) {
@@ -13032,7 +13028,7 @@ function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
   return returnValue;
 }
 
-// ../../node_modules/.pnpm/chalk@5.6.2/node_modules/chalk/source/index.js
+// node_modules/chalk/source/index.js
 var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default;
 var GENERATOR = Symbol("GENERATOR");
 var STYLER = Symbol("STYLER");
@@ -13241,215 +13237,107 @@ function toString(...args) {
 // src/domain/i18n-agg/index.ts
 var import_reactivity2 = __toESM(require_reactivity(), 1);
 
-// ../../node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_73ee811b3d3fbf064a7e3c010ae01555/node_modules/vue-fn/domain-server/index.mjs
+// ../../node_modules/vue-fn/index-Dhhr_iXc.js
+var t = {};
+var n;
+function f() {
+  if (n) return t;
+  n = 1;
+  var o = function() {
+    function i() {
+      var r = this;
+      this.resolve = function(e) {
+        r._resolve(e);
+      }, this.reject = function(e) {
+        r._reject(e);
+      }, this._promise = new Promise(function(e, s) {
+        r._resolve = e, r._reject = s;
+      });
+    }
+    return Object.defineProperty(i.prototype, "promise", {
+      get: function() {
+        return this._promise;
+      },
+      enumerable: true,
+      configurable: true
+    }), i;
+  }();
+  return t.Deferred = o, t;
+}
+var u = f();
+
+// ../../node_modules/vue-fn/domain-server/index.mjs
 var import_reactivity = __toESM(require_reactivity(), 1);
-
-// ../../node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_73ee811b3d3fbf064a7e3c010ae01555/node_modules/vue-fn/index.browser-CWCjzKuA.js
-var l = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
-var r = (t = 21) => {
-  let e = "", n = crypto.getRandomValues(new Uint8Array(t |= 0));
-  for (; t--; )
-    e += l[n[t] & 63];
-  return e;
-};
-
-// ../../node_modules/.pnpm/vue-fn@0.1.0-beta.1_@vue+re_73ee811b3d3fbf064a7e3c010ae01555/node_modules/vue-fn/domain-server/index.mjs
-function I(r2, o = true, a = false) {
-  const n = (0, import_reactivity.ref)();
-  let e;
-  const t = (0, import_reactivity.ref)(false);
-  let i = () => {
-  };
-  const u = new Proxy(r2, {
-    apply: function(c, d, s) {
-      let l2;
-      try {
-        l2 = c(...s);
-      } catch (p) {
-        l2 = p;
-      }
-      if (l2 instanceof Error) {
-        if (n.value = l2, e = l2, o)
-          throw i(), l2;
-      } else
-        t.value = true, n.value = void 0, e = true, i();
-    }
-  }), f = () => {
-  }, v = new Proxy(
-    (c) => {
-      n.value = c;
-    },
-    {
-      apply: function(c, d, s) {
-        c(...s), f(...s);
-      }
-    }
-  );
-  return {
-    promise: new Promise((c, d) => {
-      if (o && e instanceof Error) {
-        d(e);
-        return;
-      } else if (e === true) {
-        c();
-        return;
-      }
-      let s;
-      a && (s = setTimeout(() => {
-        const l2 = new Error("timeout!");
-        n.value = l2, o && d(l2);
-      }, a)), i = () => {
-        s && (clearTimeout(s), s = void 0), c();
-      };
-    }),
-    callback: u,
-    onError: v,
-    resolved: (0, import_reactivity.computed)(() => t.value),
-    error: (0, import_reactivity.computed)(() => n.value)
-  };
+function y(i = "") {
+  const s = Date.now().toString(36), r = Math.random().toString(36).substring(2, 10);
+  return `${i}${s}${r}`;
 }
-function g() {
-  return r();
-}
-function A() {
-  const r2 = {}, o = {}, a = /* @__PURE__ */ new WeakMap(), n = {};
-  return Object.freeze({
-    registerAgg(e) {
-      if (e.isInitialized.value)
-        throw new Error("Agg must register before initialized");
-      if (n[e.__id])
-        throw new Error("Agg already registered");
-      e.type === "MultiInstance" && e.api.events.destroyed.watchPublish(() => {
-        delete n[e.__id];
-      }), n[e.__id] = e;
-      const t = [];
-      for (const i of Object.values(r2))
-        i.mount({ api: e.api, __aggId: e.__id, isInitialized: e.isInitialized });
-      for (const i of Object.values(o))
-        i.mount({ api: e.api, __aggId: e.__id }), t.push(i.__id);
-      a.set(e, t);
-    },
-    createSetupPlugin(e) {
-      let t;
-      return e instanceof Function ? t = e() : t = e, Object.freeze({
-        __id: g(),
-        type: "Setup",
-        mount(i) {
-          if (i.isInitialized.value)
-            throw new Error("Can not setup after initialized");
-          t.mount({ api: i.api, __aggId: i.__aggId });
-        }
-      });
-    },
-    createHotSwapPlugin(e) {
-      let t;
-      return e instanceof Function ? t = e() : t = e, Object.freeze({
-        __id: g(),
-        type: "HotSwap",
-        mount: t.mount,
-        unmount: t.unmount
-      });
-    },
-    registerPlugin(e) {
-      if (e.type === "Setup") {
-        if (r2[e.__id])
-          throw new Error("Plugin already registered");
-        r2[e.__id] = e;
-        for (const t in n)
-          e.mount({
-            api: n[t].api,
-            __aggId: n[t].__id,
-            isInitialized: n[t].isInitialized
-          });
-      } else if (e.type === "HotSwap") {
-        o[e.__id] = e;
-        for (const t in n)
-          a.has(n[t]) && !a.get(n[t]).includes(e.__id) && (e.mount({ api: n[t].api, __aggId: n[t].__id }), a.get(n[t]).push(e.__id));
-      } else
-        isNever(e);
-    },
-    unregisterPlugin(e) {
-      if (e.type === "Setup")
-        throw new Error("Can not unregister setup plugin");
-      if (e.type === "HotSwap") {
-        for (const t in n)
-          a.has(n[t]) && a.get(n[t]).includes(e.__id) && e.unmount({ api: n[t].api, __aggId: n[t].__id });
-        delete o[e.__id];
-      } else
-        isNever(e);
-    }
-  });
-}
-function G(r2) {
-  return A();
-}
-function N(r2) {
-  const o = j(r2);
+function M(i) {
+  const s = A(i);
   return (0, import_reactivity.shallowReadonly)({
-    states: o.states,
-    commands: o.commands,
-    events: o.events
+    states: s.states,
+    commands: s.commands,
+    events: s.events
   });
 }
-function j(r2) {
-  const o = r2.states;
-  for (const i of Object.keys(r2.states))
-    o[i] = (0, import_reactivity.readonly)(o[i]);
-  const a = (0, import_reactivity.shallowReadonly)(r2.states), n = (0, import_reactivity.readonly)(r2.commands), e = {}, t = r2.events;
-  for (const i in r2.events)
-    e[i] = t[i].api;
+function A(i) {
+  const s = i.states;
+  for (const e of Object.keys(i.states))
+    s[e] = (0, import_reactivity.readonly)(s[e]);
+  const r = (0, import_reactivity.shallowReadonly)(i.states), c = (0, import_reactivity.readonly)(i.commands), t2 = {}, a = i.events;
+  for (const e in i.events)
+    t2[e] = a[e].api;
   return (0, import_reactivity.shallowReadonly)({
-    states: a,
-    commands: n,
-    events: (0, import_reactivity.shallowReadonly)(e),
-    destroy: r2.destroy
+    states: r,
+    commands: c,
+    events: (0, import_reactivity.shallowReadonly)(t2),
+    destroy: i.destroy
   });
 }
-function X(r2) {
+function B(i) {
   const {
-    callback: o,
-    onError: a,
-    promise: n,
-    resolved: e
-  } = I(() => {
-  }, false, 5e3);
-  function t(c) {
-    if (e.value === true)
+    resolve: s,
+    reject: r,
+    promise: c
+  } = new u.Deferred();
+  let t2 = (0, import_reactivity.ref)(false);
+  function a(u2) {
+    if (t2.value === true)
       throw new Error("Agg already initialized");
-    i.push(c());
+    e.push(u2());
   }
-  const i = [], u = r2({
-    onCreated(c) {
-      Promise.resolve().then(c);
+  const e = [], n2 = i({
+    onCreated(u2) {
+      Promise.resolve().then(u2);
     },
-    onBeforeInitialize: t,
-    isInitialized: (0, import_reactivity.computed)(() => e.value),
-    untilInitialized: n
+    onBeforeInitialize: a,
+    isInitialized: (0, import_reactivity.computed)(() => t2.value),
+    untilInitialized: c
   });
   setTimeout(
-    () => Promise.all(i).then(() => {
-      o();
-    }).catch((c) => {
-      a(c);
+    () => Promise.all(e).then(() => {
+      s(), t2.value = true;
+    }).catch((u2) => {
+      r(u2);
     }),
     0
   );
-  const f = u.states || {}, v = u.commands || {}, h2 = u.events || {};
+  const o = n2.states || {}, l = n2.commands || {}, m = n2.events || {};
   return {
-    __id: g(),
+    __id: y(),
     type: "Singleton",
-    api: N({
-      states: f,
-      commands: v,
-      events: h2,
+    api: M({
+      states: o,
+      commands: l,
+      events: m,
       destroy: () => {
       }
     }),
-    isInitialized: e,
+    isInitialized: (0, import_reactivity.computed)(() => t2.value),
     async untilInitialized() {
-      return await n.catch((c) => {
-        throw new Error(`Failed to initialize Agg: ${c.message}
-Stack : ${c.stack || "unkown"}`);
+      return await c.catch((u2) => {
+        throw new Error(`Failed to initialize Agg: ${u2.message}
+Stack : ${u2.stack || "unkown"}`);
       });
     }
   };
@@ -13556,35 +13444,35 @@ var zhDict = {
 var zh_CN_default = zhDict;
 
 // src/domain/i18n-agg/index.ts
-var agg = X(() => {
+var agg = B(() => {
   const currentLang = (0, import_reactivity2.ref)("zh");
   const locale = (0, import_reactivity2.ref)(en_US_default);
-  function t(key, attr1, attr2) {
-    let v = locale.value[key];
-    if (!v) {
+  function t2(key, attr1, attr2) {
+    let v2 = locale.value[key];
+    if (!v2) {
       if (typeof attr1 === "string") {
-        v = attr1;
+        v2 = attr1;
       } else if (typeof attr2 === "string") {
-        v = attr2;
+        v2 = attr2;
       }
     }
-    if (!v) {
+    if (!v2) {
       log_default.printWarn(`i18n not found: ${key}`);
       return "";
     }
     if (typeof attr1 === "object") {
-      v = v.replace(/\{\s*([a-zA-z_]+)\s*\}/g, (_, name) => {
+      v2 = v2.replace(/\{\s*([a-zA-z_]+)\s*\}/g, (_, name) => {
         return String(attr1[name]);
       });
     }
-    return v;
+    return v2;
   }
   return {
     states: {
       currentLang
     },
     commands: {
-      t,
+      t: t2,
       setCurrentLang(lang) {
         if (lang === "en") {
           locale.value = en_US_default;
@@ -13723,7 +13611,7 @@ function mustBeWebRoot(dirPath) {
 }
 
 // src/domain/environment-agg/index.ts
-var agg2 = X(() => {
+var agg2 = B(() => {
   const debugMode = (0, import_reactivity3.ref)(false);
   const osType = (0, import_reactivity3.ref)(
     function() {
@@ -13835,8 +13723,8 @@ var agg2 = X(() => {
       checkBun,
       checkNpm,
       checkPnpm,
-      setDebugMode(v) {
-        debugMode.value = v;
+      setDebugMode(v2) {
+        debugMode.value = v2;
       }
     }
   };
@@ -14278,206 +14166,179 @@ var import_path7 = __toESM(require("path"), 1);
 var import_child_process5 = require("child_process");
 
 // ../core/dist/index.js
-function Ln(t) {
-  return t && t._attributes && t._attributes.rule === "Info";
-}
-function Jn(t) {
-  return t && t._attributes && t._attributes.rule === "Agg";
-}
-function Yn(t) {
-  return t && t._attributes && t._attributes.rule === "Command";
-}
-function qn(t) {
-  return t && t._attributes && t._attributes.rule === "FacadeCommand";
-}
-function zn(t) {
-  return t && t._attributes && t._attributes.rule === "Event";
-}
-function Qn(t) {
-  return t && t._attributes && t._attributes.rule === "ReadModel";
-}
-function tr(t) {
-  const e = t;
+function Jn(t2) {
+  const e = t2;
   return e && typeof e.actor == "function" && typeof e.startWorkflow == "function" && typeof e.defineUserStory == "function" && typeof e._getContext == "function" && typeof e.note == "function" && typeof e.info == "object" && typeof e.command == "function" && typeof e.facadeCmd == "function" && typeof e.agg == "function" && typeof e.event == "function" && typeof e.system == "function" && typeof e.policy == "function" && typeof e.service == "function" && typeof e.readModel == "function";
 }
-var Nt = process.env.NODE_ENV !== "production" ? Object.freeze({}) : {};
+var gt = process.env.NODE_ENV !== "production" ? Object.freeze({}) : {};
 process.env.NODE_ENV !== "production" && Object.freeze([]);
-var Lt = () => {
+var Pt = () => {
 };
-var Re = (t) => t.charCodeAt(0) === 111 && t.charCodeAt(1) === 110 && // uppercase letter
-(t.charCodeAt(2) > 122 || t.charCodeAt(2) < 97);
-var B = Object.assign;
-var y2 = Array.isArray;
-var $ = (t) => typeof t == "function";
-var x = (t) => typeof t == "string";
-var Z = (t) => typeof t == "symbol";
-var R = (t) => t !== null && typeof t == "object";
-var De = (t) => {
+var Ee = (t2) => t2.charCodeAt(0) === 111 && t2.charCodeAt(1) === 110 && // uppercase letter
+(t2.charCodeAt(2) > 122 || t2.charCodeAt(2) < 97);
+var z2 = Object.assign;
+var N = Array.isArray;
+var j = (t2) => typeof t2 == "function";
+var x = (t2) => typeof t2 == "string";
+var G = (t2) => typeof t2 == "symbol";
+var T = (t2) => t2 !== null && typeof t2 == "object";
+var Se = (t2) => {
   const e = /* @__PURE__ */ Object.create(null);
-  return (n) => e[n] || (e[n] = t(n));
+  return (n2) => e[n2] || (e[n2] = t2(n2));
 };
-var xe = De((t) => t.charAt(0).toUpperCase() + t.slice(1));
-var $t4;
-var dt = () => $t4 || ($t4 = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
-function Dt(t) {
-  if (y2(t)) {
+var Oe = Se((t2) => t2.charAt(0).toUpperCase() + t2.slice(1));
+var Ft;
+var ct = () => Ft || (Ft = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
+function Nt(t2) {
+  if (N(t2)) {
     const e = {};
-    for (let n = 0; n < t.length; n++) {
-      const s = t[n], r2 = x(s) ? Me(s) : Dt(s);
-      if (r2)
-        for (const o in r2)
-          e[o] = r2[o];
+    for (let n2 = 0; n2 < t2.length; n2++) {
+      const s = t2[n2], r = x(s) ? Ce(s) : Nt(s);
+      if (r)
+        for (const o in r)
+          e[o] = r[o];
     }
     return e;
-  } else if (x(t) || R(t))
-    return t;
+  } else if (x(t2) || T(t2))
+    return t2;
 }
-var Ae = /;(?![^(]*\))/g;
-var Ve = /:([^]+)/;
-var Ie = /\/\*[^]*?\*\//g;
-function Me(t) {
+var ve = /;(?![^(]*\))/g;
+var Te = /:([^]+)/;
+var Re = /\/\*[^]*?\*\//g;
+function Ce(t2) {
   const e = {};
-  return t.replace(Ie, "").split(Ae).forEach((n) => {
-    if (n) {
-      const s = n.split(Ve);
+  return t2.replace(Re, "").split(ve).forEach((n2) => {
+    if (n2) {
+      const s = n2.split(Te);
       s.length > 1 && (e[s[0].trim()] = s[1].trim());
     }
   }), e;
 }
-function xt(t) {
+function St(t2) {
   let e = "";
-  if (x(t))
-    e = t;
-  else if (y2(t))
-    for (let n = 0; n < t.length; n++) {
-      const s = xt(t[n]);
+  if (x(t2))
+    e = t2;
+  else if (N(t2))
+    for (let n2 = 0; n2 < t2.length; n2++) {
+      const s = St(t2[n2]);
       s && (e += s + " ");
     }
-  else if (R(t))
-    for (const n in t)
-      t[n] && (e += n + " ");
+  else if (T(t2))
+    for (const n2 in t2)
+      t2[n2] && (e += n2 + " ");
   return e.trim();
 }
-var st = true;
-var Yt = [];
-function _t() {
-  Yt.push(st), st = false;
-}
-function pt() {
-  const t = Yt.pop();
-  st = t === void 0 ? true : t;
-}
-var j2 = Symbol(
+var lt = Symbol(
   process.env.NODE_ENV !== "production" ? "Object iterate" : ""
 );
-var Ot = Symbol(
+var xt = Symbol(
   process.env.NODE_ENV !== "production" ? "Map keys iterate" : ""
 );
-var Q = Symbol(
+var Dt = Symbol(
   process.env.NODE_ENV !== "production" ? "Array iterate" : ""
 );
-var $e = Array.prototype;
-var qt = new Set(
-  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((t) => t !== "arguments" && t !== "caller").map((t) => Symbol[t]).filter(Z)
+var De = Array.prototype;
+var Kt = new Set(
+  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((t2) => t2 !== "arguments" && t2 !== "caller").map((t2) => Symbol[t2]).filter(G)
 );
-function ee(t) {
-  return P2(t) ? ee(t.__v_raw) : !!(t && t.__v_isReactive);
+function zt(t2) {
+  return P(t2) ? zt(t2.__v_raw) : !!(t2 && t2.__v_isReactive);
 }
-function P2(t) {
-  return !!(t && t.__v_isReadonly);
+function P(t2) {
+  return !!(t2 && t2.__v_isReadonly);
 }
-function C2(t) {
-  return !!(t && t.__v_isShallow);
+function R(t2) {
+  return !!(t2 && t2.__v_isShallow);
 }
-function ct(t) {
-  return t ? !!t.__v_raw : false;
+function nt(t2) {
+  return t2 ? !!t2.__v_raw : false;
 }
-function h(t) {
-  const e = t && t.__v_raw;
-  return e ? h(e) : t;
+function h(t2) {
+  const e = t2 && t2.__v_raw;
+  return e ? h(e) : t2;
 }
-function M2(t) {
-  return t ? t.__v_isRef === true : false;
+function I2(t2) {
+  return t2 ? t2.__v_isRef === true : false;
 }
-var k = [];
-function tn(t) {
-  k.push(t);
+var M2 = [];
+function Je(t2) {
+  M2.push(t2);
 }
-function en() {
-  k.pop();
+function Ye() {
+  M2.pop();
 }
-var yt = false;
-function W(t, ...e) {
-  if (yt) return;
-  yt = true, _t();
-  const n = k.length ? k[k.length - 1].component : null, s = n && n.appContext.config.warnHandler, r2 = nn();
+var _t = false;
+function K(t2, ...e) {
+  if (_t) return;
+  _t = true;
+  const n2 = M2.length ? M2[M2.length - 1].component : null, s = n2 && n2.appContext.config.warnHandler, r = qe();
   if (s)
-    Mt(
+    vt(
       s,
-      n,
+      n2,
       11,
       [
         // eslint-disable-next-line no-restricted-syntax
-        t + e.map((o) => {
+        t2 + e.map((o) => {
           var c, i;
           return (i = (c = o.toString) == null ? void 0 : c.call(o)) != null ? i : JSON.stringify(o);
         }).join(""),
-        n && n.proxy,
-        r2.map(
-          ({ vnode: o }) => `at <${ge(n, o.type)}>`
+        n2 && n2.proxy,
+        r.map(
+          ({ vnode: o }) => `at <${le(n2, o.type)}>`
         ).join(`
 `),
-        r2
+        r
       ]
     );
   else {
-    const o = [`[Vue warn]: ${t}`, ...e];
-    r2.length && o.push(`
-`, ...rn(r2));
+    const o = [`[Vue warn]: ${t2}`, ...e];
+    r.length && o.push(`
+`, ...ze(r));
   }
-  pt(), yt = false;
+  _t = false;
 }
-function nn() {
-  let t = k[k.length - 1];
-  if (!t)
+function qe() {
+  let t2 = M2[M2.length - 1];
+  if (!t2)
     return [];
   const e = [];
-  for (; t; ) {
-    const n = e[0];
-    n && n.vnode === t ? n.recurseCount++ : e.push({
-      vnode: t,
+  for (; t2; ) {
+    const n2 = e[0];
+    n2 && n2.vnode === t2 ? n2.recurseCount++ : e.push({
+      vnode: t2,
       recurseCount: 0
     });
-    const s = t.component && t.component.parent;
-    t = s && s.vnode;
+    const s = t2.component && t2.component.parent;
+    t2 = s && s.vnode;
   }
   return e;
 }
-function rn(t) {
+function ze(t2) {
   const e = [];
-  return t.forEach((n, s) => {
+  return t2.forEach((n2, s) => {
     e.push(...s === 0 ? [] : [`
-`], ...on(n));
+`], ...Ge(n2));
   }), e;
 }
-function on({ vnode: t, recurseCount: e }) {
-  const n = e > 0 ? `... (${e} recursive calls)` : "", s = t.component ? t.component.parent == null : false, r2 = ` at <${ge(
-    t.component,
-    t.type,
+function Ge({ vnode: t2, recurseCount: e }) {
+  const n2 = e > 0 ? `... (${e} recursive calls)` : "", s = t2.component ? t2.component.parent == null : false, r = ` at <${le(
+    t2.component,
+    t2.type,
     s
-  )}`, o = ">" + n;
-  return t.props ? [r2, ...sn(t.props), o] : [r2 + o];
+  )}`, o = ">" + n2;
+  return t2.props ? [r, ...Qe(t2.props), o] : [r + o];
 }
-function sn(t) {
-  const e = [], n = Object.keys(t);
-  return n.slice(0, 3).forEach((s) => {
-    e.push(...ne(s, t[s]));
-  }), n.length > 3 && e.push(" ..."), e;
+function Qe(t2) {
+  const e = [], n2 = Object.keys(t2);
+  return n2.slice(0, 3).forEach((s) => {
+    e.push(...Gt(s, t2[s]));
+  }), n2.length > 3 && e.push(" ..."), e;
 }
-function ne(t, e, n) {
-  return x(e) ? (e = JSON.stringify(e), n ? e : [`${t}=${e}`]) : typeof e == "number" || typeof e == "boolean" || e == null ? n ? e : [`${t}=${e}`] : M2(e) ? (e = ne(t, h(e.value), true), n ? e : [`${t}=Ref<`, e, ">"]) : $(e) ? [`${t}=fn${e.name ? `<${e.name}>` : ""}`] : (e = h(e), n ? e : [`${t}=`, e]);
+function Gt(t2, e, n2) {
+  return x(e) ? (e = JSON.stringify(e), n2 ? e : [`${t2}=${e}`]) : typeof e == "number" || typeof e == "boolean" || e == null ? n2 ? e : [`${t2}=${e}`] : I2(e) ? (e = Gt(t2, h(e.value), true), n2 ? e : [`${t2}=Ref<`, e, ">"]) : j(e) ? [`${t2}=fn${e.name ? `<${e.name}>` : ""}`] : (e = h(e), n2 ? e : [`${t2}=`, e]);
 }
-var re = {
+var Qt = {
   sp: "serverPrefetch hook",
   bc: "beforeCreate hook",
   c: "created hook",
@@ -14510,221 +14371,221 @@ var re = {
   15: "component update",
   16: "app unmount cleanup function"
 };
-function Mt(t, e, n, s) {
+function vt(t2, e, n2, s) {
   try {
-    return s ? t(...s) : t();
-  } catch (r2) {
-    oe(r2, e, n);
+    return s ? t2(...s) : t2();
+  } catch (r) {
+    Xt(r, e, n2);
   }
 }
-function oe(t, e, n, s = true) {
-  const r2 = e ? e.vnode : null, { errorHandler: o, throwUnhandledErrorInProduction: c } = e && e.appContext.config || Nt;
+function Xt(t2, e, n2, s = true) {
+  const r = e ? e.vnode : null, { errorHandler: o, throwUnhandledErrorInProduction: c } = e && e.appContext.config || gt;
   if (e) {
     let i = e.parent;
-    const f = e.proxy, p = process.env.NODE_ENV !== "production" ? re[n] : `https://vuejs.org/error-reference/#runtime-${n}`;
+    const f2 = e.proxy, _ = process.env.NODE_ENV !== "production" ? Qt[n2] : `https://vuejs.org/error-reference/#runtime-${n2}`;
     for (; i; ) {
       const a = i.ec;
       if (a) {
-        for (let u = 0; u < a.length; u++)
-          if (a[u](t, f, p) === false)
+        for (let u2 = 0; u2 < a.length; u2++)
+          if (a[u2](t2, f2, _) === false)
             return;
       }
       i = i.parent;
     }
     if (o) {
-      _t(), Mt(o, null, 10, [
-        t,
-        f,
-        p
-      ]), pt();
+      vt(o, null, 10, [
+        t2,
+        f2,
+        _
+      ]);
       return;
     }
   }
-  cn(t, n, r2, s, c);
+  Xe(t2, n2, r, s, c);
 }
-function cn(t, e, n, s = true, r2 = false) {
+function Xe(t2, e, n2, s = true, r = false) {
   if (process.env.NODE_ENV !== "production") {
-    const o = re[e];
-    if (n && tn(n), W(`Unhandled error${o ? ` during execution of ${o}` : ""}`), n && en(), s)
-      throw t;
-  } else if (r2)
-    throw t;
+    const o = Qt[e];
+    if (n2 && Je(n2), K(`Unhandled error${o ? ` during execution of ${o}` : ""}`), n2 && Ye(), s)
+      throw t2;
+  } else if (r)
+    throw t2;
 }
 var O = [];
-var D = -1;
+var F = -1;
 var L = [];
-var V = null;
-var K = 0;
-var un = /* @__PURE__ */ Promise.resolve();
-var Ct = null;
-var an = 100;
-function ln(t) {
-  let e = D + 1, n = O.length;
-  for (; e < n; ) {
-    const s = e + n >>> 1, r2 = O[s], o = X2(r2);
-    o < t || o === t && r2.flags & 2 ? e = s + 1 : n = s;
+var A2 = null;
+var $ = 0;
+var Ze = /* @__PURE__ */ Promise.resolve();
+var Et = null;
+var tn = 100;
+function en(t2) {
+  let e = F + 1, n2 = O.length;
+  for (; e < n2; ) {
+    const s = e + n2 >>> 1, r = O[s], o = q(r);
+    o < t2 || o === t2 && r.flags & 2 ? e = s + 1 : n2 = s;
   }
   return e;
 }
-function fn(t) {
-  if (!(t.flags & 1)) {
-    const e = X2(t), n = O[O.length - 1];
-    !n || // fast path when the job id is larger than the tail
-    !(t.flags & 2) && e >= X2(n) ? O.push(t) : O.splice(ln(e), 0, t), t.flags |= 1, se();
+function nn(t2) {
+  if (!(t2.flags & 1)) {
+    const e = q(t2), n2 = O[O.length - 1];
+    !n2 || // fast path when the job id is larger than the tail
+    !(t2.flags & 2) && e >= q(n2) ? O.push(t2) : O.splice(en(e), 0, t2), t2.flags |= 1, Zt();
   }
 }
-function se() {
-  Ct || (Ct = un.then(ie));
+function Zt() {
+  Et || (Et = Ze.then(te));
 }
-function dn(t) {
-  y2(t) ? L.push(...t) : V && t.id === -1 ? V.splice(K + 1, 0, t) : t.flags & 1 || (L.push(t), t.flags |= 1), se();
+function rn(t2) {
+  N(t2) ? L.push(...t2) : A2 && t2.id === -1 ? A2.splice($ + 1, 0, t2) : t2.flags & 1 || (L.push(t2), t2.flags |= 1), Zt();
 }
-function _n(t) {
+function on(t2) {
   if (L.length) {
     const e = [...new Set(L)].sort(
-      (n, s) => X2(n) - X2(s)
+      (n2, s) => q(n2) - q(s)
     );
-    if (L.length = 0, V) {
-      V.push(...e);
+    if (L.length = 0, A2) {
+      A2.push(...e);
       return;
     }
-    for (V = e, process.env.NODE_ENV !== "production" && (t = t || /* @__PURE__ */ new Map()), K = 0; K < V.length; K++) {
-      const n = V[K];
-      process.env.NODE_ENV !== "production" && ce(t, n) || (n.flags & 4 && (n.flags &= -2), n.flags & 8 || n(), n.flags &= -2);
+    for (A2 = e, process.env.NODE_ENV !== "production" && (t2 = t2 || /* @__PURE__ */ new Map()), $ = 0; $ < A2.length; $++) {
+      const n2 = A2[$];
+      process.env.NODE_ENV !== "production" && ee(t2, n2) || (n2.flags & 4 && (n2.flags &= -2), n2.flags & 8 || n2(), n2.flags &= -2);
     }
-    V = null, K = 0;
+    A2 = null, $ = 0;
   }
 }
-var X2 = (t) => t.id == null ? t.flags & 2 ? -1 : 1 / 0 : t.id;
-function ie(t) {
-  process.env.NODE_ENV !== "production" && (t = t || /* @__PURE__ */ new Map());
-  const e = process.env.NODE_ENV !== "production" ? (n) => ce(t, n) : Lt;
+var q = (t2) => t2.id == null ? t2.flags & 2 ? -1 : 1 / 0 : t2.id;
+function te(t2) {
+  process.env.NODE_ENV !== "production" && (t2 = t2 || /* @__PURE__ */ new Map());
+  const e = process.env.NODE_ENV !== "production" ? (n2) => ee(t2, n2) : Pt;
   try {
-    for (D = 0; D < O.length; D++) {
-      const n = O[D];
-      if (n && !(n.flags & 8)) {
-        if (process.env.NODE_ENV !== "production" && e(n))
+    for (F = 0; F < O.length; F++) {
+      const n2 = O[F];
+      if (n2 && !(n2.flags & 8)) {
+        if (process.env.NODE_ENV !== "production" && e(n2))
           continue;
-        n.flags & 4 && (n.flags &= -2), Mt(
-          n,
-          n.i,
-          n.i ? 15 : 14
-        ), n.flags & 4 || (n.flags &= -2);
+        n2.flags & 4 && (n2.flags &= -2), vt(
+          n2,
+          n2.i,
+          n2.i ? 15 : 14
+        ), n2.flags & 4 || (n2.flags &= -2);
       }
     }
   } finally {
-    for (; D < O.length; D++) {
-      const n = O[D];
-      n && (n.flags &= -2);
+    for (; F < O.length; F++) {
+      const n2 = O[F];
+      n2 && (n2.flags &= -2);
     }
-    D = -1, O.length = 0, _n(t), Ct = null, (O.length || L.length) && ie(t);
+    F = -1, O.length = 0, on(t2), Et = null, (O.length || L.length) && te(t2);
   }
 }
-function ce(t, e) {
-  const n = t.get(e) || 0;
-  if (n > an) {
-    const s = e.i, r2 = s && he(s.type);
-    return oe(
-      `Maximum recursive updates exceeded${r2 ? ` in component <${r2}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`,
+function ee(t2, e) {
+  const n2 = t2.get(e) || 0;
+  if (n2 > tn) {
+    const s = e.i, r = s && ae(s.type);
+    return Xt(
+      `Maximum recursive updates exceeded${r ? ` in component <${r}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`,
       null,
       10
     ), true;
   }
-  return t.set(e, n + 1), false;
+  return t2.set(e, n2 + 1), false;
 }
-var Et = /* @__PURE__ */ new Map();
-process.env.NODE_ENV !== "production" && (dt().__VUE_HMR_RUNTIME__ = {
-  createRecord: wt(pn),
-  rerender: wt(hn),
-  reload: wt(gn)
+var pt = /* @__PURE__ */ new Map();
+process.env.NODE_ENV !== "production" && (ct().__VUE_HMR_RUNTIME__ = {
+  createRecord: ht(sn),
+  rerender: ht(cn),
+  reload: ht(un)
 });
-var ut = /* @__PURE__ */ new Map();
-function pn(t, e) {
-  return ut.has(t) ? false : (ut.set(t, {
-    initialDef: at(e),
+var rt = /* @__PURE__ */ new Map();
+function sn(t2, e) {
+  return rt.has(t2) ? false : (rt.set(t2, {
+    initialDef: ot(e),
     instances: /* @__PURE__ */ new Set()
   }), true);
 }
-function at(t) {
-  return be(t) ? t.__vccOpts : t;
+function ot(t2) {
+  return fe(t2) ? t2.__vccOpts : t2;
 }
-function hn(t, e) {
-  const n = ut.get(t);
-  n && (n.initialDef.render = e, [...n.instances].forEach((s) => {
-    e && (s.render = e, at(s.type).render = e), s.renderCache = [], s.update();
+function cn(t2, e) {
+  const n2 = rt.get(t2);
+  n2 && (n2.initialDef.render = e, [...n2.instances].forEach((s) => {
+    e && (s.render = e, ot(s.type).render = e), s.renderCache = [], s.update();
   }));
 }
-function gn(t, e) {
-  const n = ut.get(t);
-  if (!n) return;
-  e = at(e), Ht(n.initialDef, e);
-  const s = [...n.instances];
-  for (let r2 = 0; r2 < s.length; r2++) {
-    const o = s[r2], c = at(o.type);
-    let i = Et.get(c);
-    i || (c !== n.initialDef && Ht(c, e), Et.set(c, i = /* @__PURE__ */ new Set())), i.add(o), o.appContext.propsCache.delete(o.type), o.appContext.emitsCache.delete(o.type), o.appContext.optionsCache.delete(o.type), o.ceReload ? (i.add(o), o.ceReload(e.styles), i.delete(o)) : o.parent ? fn(() => {
+function un(t2, e) {
+  const n2 = rt.get(t2);
+  if (!n2) return;
+  e = ot(e), It(n2.initialDef, e);
+  const s = [...n2.instances];
+  for (let r = 0; r < s.length; r++) {
+    const o = s[r], c = ot(o.type);
+    let i = pt.get(c);
+    i || (c !== n2.initialDef && It(c, e), pt.set(c, i = /* @__PURE__ */ new Set())), i.add(o), o.appContext.propsCache.delete(o.type), o.appContext.emitsCache.delete(o.type), o.appContext.optionsCache.delete(o.type), o.ceReload ? (i.add(o), o.ceReload(e.styles), i.delete(o)) : o.parent ? nn(() => {
       o.parent.update(), i.delete(o);
     }) : o.appContext.reload ? o.appContext.reload() : typeof window < "u" && window.location.reload(), o.root.ce && o !== o.root && o.root.ce._removeChildStyle(c);
   }
-  dn(() => {
-    Et.clear();
+  rn(() => {
+    pt.clear();
   });
 }
-function Ht(t, e) {
-  B(t, e);
-  for (const n in t)
-    n !== "__file" && !(n in e) && delete t[n];
+function It(t2, e) {
+  z2(t2, e);
+  for (const n2 in t2)
+    n2 !== "__file" && !(n2 in e) && delete t2[n2];
 }
-function wt(t) {
-  return (e, n) => {
+function ht(t2) {
+  return (e, n2) => {
     try {
-      return t(e, n);
+      return t2(e, n2);
     } catch {
     }
   };
 }
-var lt = null;
-var bn = null;
-var mn = (t) => t.__isTeleport;
-function ae(t, e) {
-  t.shapeFlag & 6 && t.component ? (t.transition = e, ae(t.component.subTree, e)) : t.shapeFlag & 128 ? (t.ssContent.transition = e.clone(t.ssContent), t.ssFallback.transition = e.clone(t.ssFallback)) : t.transition = e;
+var st = null;
+var an = null;
+var ln = (t2) => t2.__isTeleport;
+function re(t2, e) {
+  t2.shapeFlag & 6 && t2.component ? (t2.transition = e, re(t2.component.subTree, e)) : t2.shapeFlag & 128 ? (t2.ssContent.transition = e.clone(t2.ssContent), t2.ssFallback.transition = e.clone(t2.ssFallback)) : t2.transition = e;
 }
-dt().requestIdleCallback;
-dt().cancelIdleCallback;
-var yn = Symbol.for("v-ndc");
-var En = {};
-process.env.NODE_ENV !== "production" && (En.ownKeys = (t) => (W(
+ct().requestIdleCallback;
+ct().cancelIdleCallback;
+var fn = Symbol.for("v-ndc");
+var dn = {};
+process.env.NODE_ENV !== "production" && (dn.ownKeys = (t2) => (K(
   "Avoid app logic that relies on enumerating keys on a component instance. The keys will be empty in production mode to avoid performance overhead."
-), Reflect.ownKeys(t)));
-var wn = {};
-var le = (t) => Object.getPrototypeOf(t) === wn;
-var Nn = (t) => t.__isSuspense;
-var fe = Symbol.for("v-fgt");
-var vn = Symbol.for("v-txt");
-var Sn = Symbol.for("v-cmt");
-function On(t) {
-  return t ? t.__v_isVNode === true : false;
+), Reflect.ownKeys(t2)));
+var _n = {};
+var oe = (t2) => Object.getPrototypeOf(t2) === _n;
+var pn = (t2) => t2.__isSuspense;
+var se = Symbol.for("v-fgt");
+var hn = Symbol.for("v-txt");
+var gn = Symbol.for("v-cmt");
+function bn(t2) {
+  return t2 ? t2.__v_isVNode === true : false;
 }
-var Tn = (...t) => _e(
-  ...t
+var mn = (...t2) => ce(
+  ...t2
 );
-var de = ({ key: t }) => t ?? null;
-var ot = ({
-  ref: t,
+var ie = ({ key: t2 }) => t2 ?? null;
+var tt = ({
+  ref: t2,
   ref_key: e,
-  ref_for: n
-}) => (typeof t == "number" && (t = "" + t), t != null ? x(t) || M2(t) || $(t) ? { i: lt, r: t, k: e, f: !!n } : t : null);
-function Rn(t, e = null, n = null, s = 0, r2 = null, o = t === fe ? 0 : 1, c = false, i = false) {
-  const f = {
+  ref_for: n2
+}) => (typeof t2 == "number" && (t2 = "" + t2), t2 != null ? x(t2) || I2(t2) || j(t2) ? { i: st, r: t2, k: e, f: !!n2 } : t2 : null);
+function yn(t2, e = null, n2 = null, s = 0, r = null, o = t2 === se ? 0 : 1, c = false, i = false) {
+  const f2 = {
     __v_isVNode: true,
     __v_skip: true,
-    type: t,
+    type: t2,
     props: e,
-    key: e && de(e),
-    ref: e && ot(e),
-    scopeId: bn,
+    key: e && ie(e),
+    ref: e && tt(e),
+    scopeId: an,
     slotScopeIds: null,
-    children: n,
+    children: n2,
     component: null,
     suspense: null,
     ssContent: null,
@@ -14739,242 +14600,241 @@ function Rn(t, e = null, n = null, s = 0, r2 = null, o = t === fe ? 0 : 1, c = f
     staticCount: 0,
     shapeFlag: o,
     patchFlag: s,
-    dynamicProps: r2,
+    dynamicProps: r,
     dynamicChildren: null,
     appContext: null,
-    ctx: lt
+    ctx: st
   };
-  return i ? (Pt(f, n), o & 128 && t.normalize(f)) : n && (f.shapeFlag |= x(n) ? 8 : 16), process.env.NODE_ENV !== "production" && f.key !== f.key && W("VNode created with invalid key (NaN). VNode type:", f.type), f;
+  return i ? (Tt(f2, n2), o & 128 && t2.normalize(f2)) : n2 && (f2.shapeFlag |= x(n2) ? 8 : 16), process.env.NODE_ENV !== "production" && f2.key !== f2.key && K("VNode created with invalid key (NaN). VNode type:", f2.type), f2;
 }
-var Cn = process.env.NODE_ENV !== "production" ? Tn : _e;
-function _e(t, e = null, n = null, s = 0, r2 = null, o = false) {
-  if ((!t || t === yn) && (process.env.NODE_ENV !== "production" && !t && W(`Invalid vnode type when creating vnode: ${t}.`), t = Sn), On(t)) {
-    const i = ft(
-      t,
+var En = process.env.NODE_ENV !== "production" ? mn : ce;
+function ce(t2, e = null, n2 = null, s = 0, r = null, o = false) {
+  if ((!t2 || t2 === fn) && (process.env.NODE_ENV !== "production" && !t2 && K(`Invalid vnode type when creating vnode: ${t2}.`), t2 = gn), bn(t2)) {
+    const i = it(
+      t2,
       e,
       true
       /* mergeRef: true */
     );
-    return n && Pt(i, n), i.patchFlag = -2, i;
+    return n2 && Tt(i, n2), i.patchFlag = -2, i;
   }
-  if (be(t) && (t = t.__vccOpts), e) {
-    e = Fn(e);
-    let { class: i, style: f } = e;
-    i && !x(i) && (e.class = xt(i)), R(f) && (ct(f) && !y2(f) && (f = B({}, f)), e.style = Dt(f));
+  if (fe(t2) && (t2 = t2.__vccOpts), e) {
+    e = wn(e);
+    let { class: i, style: f2 } = e;
+    i && !x(i) && (e.class = St(i)), T(f2) && (nt(f2) && !N(f2) && (f2 = z2({}, f2)), e.style = Nt(f2));
   }
-  const c = x(t) ? 1 : Nn(t) ? 128 : mn(t) ? 64 : R(t) ? 4 : $(t) ? 2 : 0;
-  return process.env.NODE_ENV !== "production" && c & 4 && ct(t) && (t = h(t), W(
+  const c = x(t2) ? 1 : pn(t2) ? 128 : ln(t2) ? 64 : T(t2) ? 4 : j(t2) ? 2 : 0;
+  return process.env.NODE_ENV !== "production" && c & 4 && nt(t2) && (t2 = h(t2), K(
     "Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`.",
     `
 Component that was made reactive: `,
-    t
-  )), Rn(
-    t,
+    t2
+  )), yn(
+    t2,
     e,
-    n,
+    n2,
     s,
-    r2,
+    r,
     c,
     o,
     true
   );
 }
-function Fn(t) {
-  return t ? ct(t) || le(t) ? B({}, t) : t : null;
+function wn(t2) {
+  return t2 ? nt(t2) || oe(t2) ? z2({}, t2) : t2 : null;
 }
-function ft(t, e, n = false, s = false) {
-  const { props: r2, ref: o, patchFlag: c, children: i, transition: f } = t, p = e ? xn(r2 || {}, e) : r2, a = {
+function it(t2, e, n2 = false, s = false) {
+  const { props: r, ref: o, patchFlag: c, children: i, transition: f2 } = t2, _ = e ? Sn(r || {}, e) : r, a = {
     __v_isVNode: true,
     __v_skip: true,
-    type: t.type,
-    props: p,
-    key: p && de(p),
+    type: t2.type,
+    props: _,
+    key: _ && ie(_),
     ref: e && e.ref ? (
       // #2078 in the case of <component :is="vnode" ref="extra"/>
       // if the vnode itself already has a ref, cloneVNode will need to merge
       // the refs so the single vnode can be set on multiple refs
-      n && o ? y2(o) ? o.concat(ot(e)) : [o, ot(e)] : ot(e)
+      n2 && o ? N(o) ? o.concat(tt(e)) : [o, tt(e)] : tt(e)
     ) : o,
-    scopeId: t.scopeId,
-    slotScopeIds: t.slotScopeIds,
-    children: process.env.NODE_ENV !== "production" && c === -1 && y2(i) ? i.map(pe) : i,
-    target: t.target,
-    targetStart: t.targetStart,
-    targetAnchor: t.targetAnchor,
-    staticCount: t.staticCount,
-    shapeFlag: t.shapeFlag,
+    scopeId: t2.scopeId,
+    slotScopeIds: t2.slotScopeIds,
+    children: process.env.NODE_ENV !== "production" && c === -1 && N(i) ? i.map(ue) : i,
+    target: t2.target,
+    targetStart: t2.targetStart,
+    targetAnchor: t2.targetAnchor,
+    staticCount: t2.staticCount,
+    shapeFlag: t2.shapeFlag,
     // if the vnode is cloned with extra props, we can no longer assume its
     // existing patch flag to be reliable and need to add the FULL_PROPS flag.
     // note: preserve flag for fragments since they use the flag for children
     // fast paths only.
-    patchFlag: e && t.type !== fe ? c === -1 ? 16 : c | 16 : c,
-    dynamicProps: t.dynamicProps,
-    dynamicChildren: t.dynamicChildren,
-    appContext: t.appContext,
-    dirs: t.dirs,
-    transition: f,
+    patchFlag: e && t2.type !== se ? c === -1 ? 16 : c | 16 : c,
+    dynamicProps: t2.dynamicProps,
+    dynamicChildren: t2.dynamicChildren,
+    appContext: t2.appContext,
+    dirs: t2.dirs,
+    transition: f2,
     // These should technically only be non-null on mounted VNodes. However,
     // they *should* be copied for kept-alive vnodes. So we just always copy
     // them since them being non-null during a mount doesn't affect the logic as
     // they will simply be overwritten.
-    component: t.component,
-    suspense: t.suspense,
-    ssContent: t.ssContent && ft(t.ssContent),
-    ssFallback: t.ssFallback && ft(t.ssFallback),
-    el: t.el,
-    anchor: t.anchor,
-    ctx: t.ctx,
-    ce: t.ce
+    component: t2.component,
+    suspense: t2.suspense,
+    ssContent: t2.ssContent && it(t2.ssContent),
+    ssFallback: t2.ssFallback && it(t2.ssFallback),
+    el: t2.el,
+    anchor: t2.anchor,
+    ctx: t2.ctx,
+    ce: t2.ce
   };
-  return f && s && ae(
+  return f2 && s && re(
     a,
-    f.clone(a)
+    f2.clone(a)
   ), a;
 }
-function pe(t) {
-  const e = ft(t);
-  return y2(t.children) && (e.children = t.children.map(pe)), e;
+function ue(t2) {
+  const e = it(t2);
+  return N(t2.children) && (e.children = t2.children.map(ue)), e;
 }
-function Dn(t = " ", e = 0) {
-  return Cn(vn, null, t, e);
+function Nn(t2 = " ", e = 0) {
+  return En(hn, null, t2, e);
 }
-function Pt(t, e) {
-  let n = 0;
-  const { shapeFlag: s } = t;
+function Tt(t2, e) {
+  let n2 = 0;
+  const { shapeFlag: s } = t2;
   if (e == null)
     e = null;
-  else if (y2(e))
-    n = 16;
+  else if (N(e))
+    n2 = 16;
   else if (typeof e == "object")
     if (s & 65) {
-      const r2 = e.default;
-      r2 && (r2._c && (r2._d = false), Pt(t, r2()), r2._c && (r2._d = true));
+      const r = e.default;
+      r && (r._c && (r._d = false), Tt(t2, r()), r._c && (r._d = true));
       return;
     } else
-      n = 32, !e._ && !le(e) && (e._ctx = lt);
-  else $(e) ? (e = { default: e, _ctx: lt }, n = 32) : (e = String(e), s & 64 ? (n = 16, e = [Dn(e)]) : n = 8);
-  t.children = e, t.shapeFlag |= n;
+      n2 = 32, !e._ && !oe(e) && (e._ctx = st);
+  else j(e) ? (e = { default: e, _ctx: st }, n2 = 32) : (e = String(e), s & 64 ? (n2 = 16, e = [Nn(e)]) : n2 = 8);
+  t2.children = e, t2.shapeFlag |= n2;
 }
-function xn(...t) {
+function Sn(...t2) {
   const e = {};
-  for (let n = 0; n < t.length; n++) {
-    const s = t[n];
-    for (const r2 in s)
-      if (r2 === "class")
-        e.class !== s.class && (e.class = xt([e.class, s.class]));
-      else if (r2 === "style")
-        e.style = Dt([e.style, s.style]);
-      else if (Re(r2)) {
-        const o = e[r2], c = s[r2];
-        c && o !== c && !(y2(o) && o.includes(c)) && (e[r2] = o ? [].concat(o, c) : c);
-      } else r2 !== "" && (e[r2] = s[r2]);
+  for (let n2 = 0; n2 < t2.length; n2++) {
+    const s = t2[n2];
+    for (const r in s)
+      if (r === "class")
+        e.class !== s.class && (e.class = St([e.class, s.class]));
+      else if (r === "style")
+        e.style = Nt([e.style, s.style]);
+      else if (Ee(r)) {
+        const o = e[r], c = s[r];
+        c && o !== c && !(N(o) && o.includes(c)) && (e[r] = o ? [].concat(o, c) : c);
+      } else r !== "" && (e[r] = s[r]);
   }
   return e;
 }
 {
-  const t = dt(), e = (n, s) => {
-    let r2;
-    return (r2 = t[n]) || (r2 = t[n] = []), r2.push(s), (o) => {
-      r2.length > 1 ? r2.forEach((c) => c(o)) : r2[0](o);
+  const t2 = ct(), e = (n2, s) => {
+    let r;
+    return (r = t2[n2]) || (r = t2[n2] = []), r.push(s), (o) => {
+      r.length > 1 ? r.forEach((c) => c(o)) : r[0](o);
     };
   };
   e(
     "__VUE_INSTANCE_SETTERS__",
-    (n) => n
+    (n2) => n2
   ), e(
     "__VUE_SSR_SETTERS__",
-    (n) => n
+    (n2) => n2
   );
 }
 process.env.NODE_ENV;
-var An = /(?:^|[-_])(\w)/g;
-var Vn = (t) => t.replace(An, (e) => e.toUpperCase()).replace(/[-_]/g, "");
-function he(t, e = true) {
-  return $(t) ? t.displayName || t.name : t.name || e && t.__name;
+var On = /(?:^|[-_])(\w)/g;
+var vn = (t2) => t2.replace(On, (e) => e.toUpperCase()).replace(/[-_]/g, "");
+function ae(t2, e = true) {
+  return j(t2) ? t2.displayName || t2.name : t2.name || e && t2.__name;
 }
-function ge(t, e, n = false) {
-  let s = he(e);
+function le(t2, e, n2 = false) {
+  let s = ae(e);
   if (!s && e.__file) {
-    const r2 = e.__file.match(/([^/\\]+)\.\w+$/);
-    r2 && (s = r2[1]);
+    const r = e.__file.match(/([^/\\]+)\.\w+$/);
+    r && (s = r[1]);
   }
-  if (!s && t && t.parent) {
-    const r2 = (o) => {
+  if (!s && t2 && t2.parent) {
+    const r = (o) => {
       for (const c in o)
         if (o[c] === e)
           return c;
     };
-    s = r2(
-      t.components || t.parent.type.components
-    ) || r2(t.appContext.components);
+    s = r(
+      t2.components || t2.parent.type.components
+    ) || r(t2.appContext.components);
   }
-  return s ? Vn(s) : n ? "App" : "Anonymous";
+  return s ? vn(s) : n2 ? "App" : "Anonymous";
 }
-function be(t) {
-  return $(t) && "__vccOpts" in t;
+function fe(t2) {
+  return j(t2) && "__vccOpts" in t2;
 }
-function In() {
+function Tn() {
   if (process.env.NODE_ENV === "production" || typeof window > "u")
     return;
-  const t = { style: "color:#3ba776" }, e = { style: "color:#1677ff" }, n = { style: "color:#f5222d" }, s = { style: "color:#eb2f96" }, r2 = {
+  const t2 = { style: "color:#3ba776" }, e = { style: "color:#1677ff" }, n2 = { style: "color:#f5222d" }, s = { style: "color:#eb2f96" }, r = {
     __vue_custom_formatter: true,
-    header(u) {
-      if (!R(u))
+    header(u2) {
+      if (!T(u2))
         return null;
-      if (u.__isVue)
-        return ["div", t, "VueInstance"];
-      if (M2(u)) {
-        _t();
-        const l2 = u.value;
-        return pt(), [
+      if (u2.__isVue)
+        return ["div", t2, "VueInstance"];
+      if (I2(u2)) {
+        const l = u2.value;
+        return [
           "div",
           {},
-          ["span", t, a(u)],
+          ["span", t2, a(u2)],
           "<",
-          i(l2),
+          i(l),
           ">"
         ];
       } else {
-        if (ee(u))
+        if (zt(u2))
           return [
             "div",
             {},
-            ["span", t, C2(u) ? "ShallowReactive" : "Reactive"],
+            ["span", t2, R(u2) ? "ShallowReactive" : "Reactive"],
             "<",
-            i(u),
-            `>${P2(u) ? " (readonly)" : ""}`
+            i(u2),
+            `>${P(u2) ? " (readonly)" : ""}`
           ];
-        if (P2(u))
+        if (P(u2))
           return [
             "div",
             {},
-            ["span", t, C2(u) ? "ShallowReadonly" : "Readonly"],
+            ["span", t2, R(u2) ? "ShallowReadonly" : "Readonly"],
             "<",
-            i(u),
+            i(u2),
             ">"
           ];
       }
       return null;
     },
-    hasBody(u) {
-      return u && u.__isVue;
+    hasBody(u2) {
+      return u2 && u2.__isVue;
     },
-    body(u) {
-      if (u && u.__isVue)
+    body(u2) {
+      if (u2 && u2.__isVue)
         return [
           "div",
           {},
-          ...o(u.$)
+          ...o(u2.$)
         ];
     }
   };
-  function o(u) {
-    const l2 = [];
-    u.type.props && u.props && l2.push(c("props", h(u.props))), u.setupState !== Nt && l2.push(c("setup", u.setupState)), u.data !== Nt && l2.push(c("data", h(u.data)));
-    const d = f(u, "computed");
-    d && l2.push(c("computed", d));
-    const g2 = f(u, "inject");
-    return g2 && l2.push(c("injected", g2)), l2.push([
+  function o(u2) {
+    const l = [];
+    u2.type.props && u2.props && l.push(c("props", h(u2.props))), u2.setupState !== gt && l.push(c("setup", u2.setupState)), u2.data !== gt && l.push(c("data", h(u2.data)));
+    const d = f2(u2, "computed");
+    d && l.push(c("computed", d));
+    const g2 = f2(u2, "inject");
+    return g2 && l.push(c("injected", g2)), l.push([
       "div",
       {},
       [
@@ -14984,11 +14844,11 @@ function In() {
         },
         "$ (internal): "
       ],
-      ["object", { object: u }]
-    ]), l2;
+      ["object", { object: u2 }]
+    ]), l;
   }
-  function c(u, l2) {
-    return l2 = B({}, l2), Object.keys(l2).length ? [
+  function c(u2, l) {
+    return l = z2({}, l), Object.keys(l).length ? [
       "div",
       { style: "line-height:1.25em;margin-bottom:0.6em" },
       [
@@ -14996,185 +14856,1863 @@ function In() {
         {
           style: "color:#476582"
         },
-        u
+        u2
       ],
       [
         "div",
         {
           style: "padding-left:1.25em"
         },
-        ...Object.keys(l2).map((d) => [
+        ...Object.keys(l).map((d) => [
           "div",
           {},
           ["span", s, d + ": "],
-          i(l2[d], false)
+          i(l[d], false)
         ])
       ]
     ] : ["span", {}];
   }
-  function i(u, l2 = true) {
-    return typeof u == "number" ? ["span", e, u] : typeof u == "string" ? ["span", n, JSON.stringify(u)] : typeof u == "boolean" ? ["span", s, u] : R(u) ? ["object", { object: l2 ? h(u) : u }] : ["span", n, String(u)];
+  function i(u2, l = true) {
+    return typeof u2 == "number" ? ["span", e, u2] : typeof u2 == "string" ? ["span", n2, JSON.stringify(u2)] : typeof u2 == "boolean" ? ["span", s, u2] : T(u2) ? ["object", { object: l ? h(u2) : u2 }] : ["span", n2, String(u2)];
   }
-  function f(u, l2) {
-    const d = u.type;
-    if ($(d))
+  function f2(u2, l) {
+    const d = u2.type;
+    if (j(d))
       return;
     const g2 = {};
-    for (const b2 in u.ctx)
-      p(d, b2, l2) && (g2[b2] = u.ctx[b2]);
+    for (const b2 in u2.ctx)
+      _(d, b2, l) && (g2[b2] = u2.ctx[b2]);
     return g2;
   }
-  function p(u, l2, d) {
-    const g2 = u[d];
-    if (y2(g2) && g2.includes(l2) || R(g2) && l2 in g2 || u.extends && p(u.extends, l2, d) || u.mixins && u.mixins.some((b2) => p(b2, l2, d)))
+  function _(u2, l, d) {
+    const g2 = u2[d];
+    if (N(g2) && g2.includes(l) || T(g2) && l in g2 || u2.extends && _(u2.extends, l, d) || u2.mixins && u2.mixins.some((b2) => _(b2, l, d)))
       return true;
   }
-  function a(u) {
-    return C2(u) ? "ShallowRef" : u.effect ? "ComputedRef" : "Ref";
+  function a(u2) {
+    return R(u2) ? "ShallowRef" : u2.effect ? "ComputedRef" : "Ref";
   }
-  window.devtoolsFormatters ? window.devtoolsFormatters.push(r2) : window.devtoolsFormatters = [r2];
+  window.devtoolsFormatters ? window.devtoolsFormatters.push(r) : window.devtoolsFormatters = [r];
 }
 process.env.NODE_ENV;
 process.env.NODE_ENV;
 process.env.NODE_ENV;
-function Mn() {
-  In();
+function Rn() {
+  Tn();
 }
-process.env.NODE_ENV !== "production" && Mn();
+process.env.NODE_ENV !== "production" && Rn();
 
-// ../generator/lib/domain/generator-agg.ts
-var import_reactivity4 = __toESM(require_reactivity(), 1);
-var agg3;
-function createAgg(d) {
-  return X(() => {
-    const designer = (0, import_reactivity4.ref)(d);
-    const context = (0, import_reactivity4.ref)({});
-    let InfoCodeProvider = () => [];
-    let commandCodeProvider = () => [];
-    let FacadeCommandCodeProvider = () => [];
-    let aggCodeProvider = () => [];
-    let eventCodeProvider = () => [];
-    let readModelCodeProvider = () => [];
-    let codeFileProvider = () => [];
+// ../generator/dist/index.js
+var Ae = {};
+var cn2;
+function zn() {
+  if (cn2) return Ae;
+  cn2 = 1;
+  var e = function() {
+    function n2() {
+      var t2 = this;
+      this.resolve = function(s) {
+        t2._resolve(s);
+      }, this.reject = function(s) {
+        t2._reject(s);
+      }, this._promise = new Promise(function(s, o) {
+        t2._resolve = s, t2._reject = o;
+      });
+    }
+    return Object.defineProperty(n2.prototype, "promise", {
+      get: function() {
+        return this._promise;
+      },
+      enumerable: true,
+      configurable: true
+    }), n2;
+  }();
+  return Ae.Deferred = e, Ae;
+}
+var Gn = zn();
+// @__NO_SIDE_EFFECTS__
+function Jn2(e) {
+  const n2 = /* @__PURE__ */ Object.create(null);
+  for (const t2 of e.split(",")) n2[t2] = 1;
+  return (t2) => t2 in n2;
+}
+process.env.NODE_ENV !== "production" && Object.freeze({});
+process.env.NODE_ENV !== "production" && Object.freeze([]);
+var Fe = Object.assign;
+var Wn = Object.prototype.hasOwnProperty;
+var Ve = (e, n2) => Wn.call(e, n2);
+var Y = Array.isArray;
+var te2 = (e) => fn2(e) === "[object Map]";
+var Yn = (e) => typeof e == "function";
+var qn = (e) => typeof e == "string";
+var ue2 = (e) => typeof e == "symbol";
+var ye = (e) => e !== null && typeof e == "object";
+var Zn = Object.prototype.toString;
+var fn2 = (e) => Zn.call(e);
+var hn2 = (e) => fn2(e).slice(8, -1);
+var Ye2 = (e) => qn(e) && e !== "NaN" && e[0] !== "-" && "" + parseInt(e, 10) === e;
+var Qn = (e) => {
+  const n2 = /* @__PURE__ */ Object.create(null);
+  return (t2) => n2[t2] || (n2[t2] = e(t2));
+};
+var Xn = Qn((e) => e.charAt(0).toUpperCase() + e.slice(1));
+var q2 = (e, n2) => !Object.is(e, n2);
+function X(e, ...n2) {
+}
+var S;
+var vn2 = 0;
+var oe2;
+var se2;
+function et(e, n2 = false) {
+  if (e.flags |= 8, n2) {
+    e.next = se2, se2 = e;
+    return;
+  }
+  e.next = oe2, oe2 = e;
+}
+function qe2() {
+  vn2++;
+}
+function Ze2() {
+  if (--vn2 > 0)
+    return;
+  if (se2) {
+    let n2 = se2;
+    for (se2 = void 0; n2; ) {
+      const t2 = n2.next;
+      n2.next = void 0, n2.flags &= -9, n2 = t2;
+    }
+  }
+  let e;
+  for (; oe2; ) {
+    let n2 = oe2;
+    for (oe2 = void 0; n2; ) {
+      const t2 = n2.next;
+      if (n2.next = void 0, n2.flags &= -9, n2.flags & 1)
+        try {
+          n2.trigger();
+        } catch (s) {
+          e || (e = s);
+        }
+      n2 = t2;
+    }
+  }
+  if (e) throw e;
+}
+function nt2(e) {
+  for (let n2 = e.deps; n2; n2 = n2.nextDep)
+    n2.version = -1, n2.prevActiveLink = n2.dep.activeLink, n2.dep.activeLink = n2;
+}
+function tt2(e) {
+  let n2, t2 = e.depsTail, s = t2;
+  for (; s; ) {
+    const o = s.prevDep;
+    s.version === -1 ? (s === t2 && (t2 = o), _n2(s), st2(s)) : n2 = s, s.dep.activeLink = s.prevActiveLink, s.prevActiveLink = void 0, s = o;
+  }
+  e.deps = n2, e.depsTail = t2;
+}
+function ot2(e) {
+  for (let n2 = e.deps; n2; n2 = n2.nextDep)
+    if (n2.dep.version !== n2.version || n2.dep.computed && (gn2(n2.dep.computed) || n2.dep.version !== n2.version))
+      return true;
+  return !!e._dirty;
+}
+function gn2(e) {
+  if (e.flags & 4 && !(e.flags & 16) || (e.flags &= -17, e.globalVersion === re2) || (e.globalVersion = re2, !e.isSSR && e.flags & 128 && (!e.deps && !e._dirty || !ot2(e))))
+    return;
+  e.flags |= 2;
+  const n2 = e.dep, t2 = S, s = R2;
+  S = e, R2 = true;
+  try {
+    nt2(e);
+    const o = e.fn(e._value);
+    (n2.version === 0 || q2(o, e._value)) && (e.flags |= 128, e._value = o, n2.version++);
+  } catch (o) {
+    throw n2.version++, o;
+  } finally {
+    S = t2, R2 = s, tt2(e), e.flags &= -3;
+  }
+}
+function _n2(e, n2 = false) {
+  const { dep: t2, prevSub: s, nextSub: o } = e;
+  if (s && (s.nextSub = o, e.prevSub = void 0), o && (o.prevSub = s, e.nextSub = void 0), process.env.NODE_ENV !== "production" && t2.subsHead === e && (t2.subsHead = o), t2.subs === e && (t2.subs = s, !s && t2.computed)) {
+    t2.computed.flags &= -5;
+    for (let r = t2.computed.deps; r; r = r.nextDep)
+      _n2(r, true);
+  }
+  !n2 && !--t2.sc && t2.map && t2.map.delete(t2.key);
+}
+function st2(e) {
+  const { prevDep: n2, nextDep: t2 } = e;
+  n2 && (n2.nextDep = t2, e.prevDep = void 0), t2 && (t2.prevDep = n2, e.nextDep = void 0);
+}
+var R2 = true;
+var Cn = [];
+function rt2() {
+  Cn.push(R2), R2 = false;
+}
+function at() {
+  const e = Cn.pop();
+  R2 = e === void 0 ? true : e;
+}
+var re2 = 0;
+var it2 = class {
+  constructor(n2, t2) {
+    this.sub = n2, this.dep = t2, this.version = t2.version, this.nextDep = this.prevDep = this.nextSub = this.prevSub = this.prevActiveLink = void 0;
+  }
+};
+var Qe2 = class {
+  constructor(n2) {
+    this.computed = n2, this.version = 0, this.activeLink = void 0, this.subs = void 0, this.map = void 0, this.key = void 0, this.sc = 0, process.env.NODE_ENV !== "production" && (this.subsHead = void 0);
+  }
+  track(n2) {
+    if (!S || !R2 || S === this.computed)
+      return;
+    let t2 = this.activeLink;
+    if (t2 === void 0 || t2.sub !== S)
+      t2 = this.activeLink = new it2(S, this), S.deps ? (t2.prevDep = S.depsTail, S.depsTail.nextDep = t2, S.depsTail = t2) : S.deps = S.depsTail = t2, $n(t2);
+    else if (t2.version === -1 && (t2.version = this.version, t2.nextDep)) {
+      const s = t2.nextDep;
+      s.prevDep = t2.prevDep, t2.prevDep && (t2.prevDep.nextDep = s), t2.prevDep = S.depsTail, t2.nextDep = void 0, S.depsTail.nextDep = t2, S.depsTail = t2, S.deps === t2 && (S.deps = s);
+    }
+    return process.env.NODE_ENV !== "production" && S.onTrack && S.onTrack(
+      Fe(
+        {
+          effect: S
+        },
+        n2
+      )
+    ), t2;
+  }
+  trigger(n2) {
+    this.version++, re2++, this.notify(n2);
+  }
+  notify(n2) {
+    qe2();
+    try {
+      if (process.env.NODE_ENV !== "production")
+        for (let t2 = this.subsHead; t2; t2 = t2.nextSub)
+          t2.sub.onTrigger && !(t2.sub.flags & 8) && t2.sub.onTrigger(
+            Fe(
+              {
+                effect: t2.sub
+              },
+              n2
+            )
+          );
+      for (let t2 = this.subs; t2; t2 = t2.prevSub)
+        t2.sub.notify() && t2.sub.dep.notify();
+    } finally {
+      Ze2();
+    }
+  }
+};
+function $n(e) {
+  if (e.dep.sc++, e.sub.flags & 4) {
+    const n2 = e.dep.computed;
+    if (n2 && !e.dep.subs) {
+      n2.flags |= 20;
+      for (let s = n2.deps; s; s = s.nextDep)
+        $n(s);
+    }
+    const t2 = e.dep.subs;
+    t2 !== e && (e.prevSub = t2, t2 && (t2.nextSub = e)), process.env.NODE_ENV !== "production" && e.dep.subsHead === void 0 && (e.dep.subsHead = e), e.dep.subs = e;
+  }
+}
+var Re2 = /* @__PURE__ */ new WeakMap();
+var K2 = Symbol(
+  process.env.NODE_ENV !== "production" ? "Object iterate" : ""
+);
+var He = Symbol(
+  process.env.NODE_ENV !== "production" ? "Map keys iterate" : ""
+);
+var ae2 = Symbol(
+  process.env.NODE_ENV !== "production" ? "Array iterate" : ""
+);
+function k2(e, n2, t2) {
+  if (R2 && S) {
+    let s = Re2.get(e);
+    s || Re2.set(e, s = /* @__PURE__ */ new Map());
+    let o = s.get(t2);
+    o || (s.set(t2, o = new Qe2()), o.map = s, o.key = t2), process.env.NODE_ENV !== "production" ? o.track({
+      target: e,
+      type: n2,
+      key: t2
+    }) : o.track();
+  }
+}
+function V(e, n2, t2, s, o, r) {
+  const i = Re2.get(e);
+  if (!i) {
+    re2++;
+    return;
+  }
+  const m = (_) => {
+    _ && (process.env.NODE_ENV !== "production" ? _.trigger({
+      target: e,
+      type: n2,
+      key: t2,
+      newValue: s,
+      oldValue: o,
+      oldTarget: r
+    }) : _.trigger());
+  };
+  if (qe2(), n2 === "clear")
+    i.forEach(m);
+  else {
+    const _ = Y(e), f2 = _ && Ye2(t2);
+    if (_ && t2 === "length") {
+      const u2 = Number(s);
+      i.forEach((a, p) => {
+        (p === "length" || p === ae2 || !ue2(p) && p >= u2) && m(a);
+      });
+    } else
+      switch ((t2 !== void 0 || i.has(void 0)) && m(i.get(t2)), f2 && m(i.get(ae2)), n2) {
+        case "add":
+          _ ? f2 && m(i.get("length")) : (m(i.get(K2)), te2(e) && m(i.get(He)));
+          break;
+        case "delete":
+          _ || (m(i.get(K2)), te2(e) && m(i.get(He)));
+          break;
+        case "set":
+          te2(e) && m(i.get(K2));
+          break;
+      }
+  }
+  Ze2();
+}
+function J(e) {
+  const n2 = E(e);
+  return n2 === e ? n2 : (k2(n2, "iterate", ae2), H(e) ? n2 : n2.map(I3));
+}
+function Xe2(e) {
+  return k2(e = E(e), "iterate", ae2), e;
+}
+var ct2 = {
+  __proto__: null,
+  [Symbol.iterator]() {
+    return Oe2(this, Symbol.iterator, I3);
+  },
+  concat(...e) {
+    return J(this).concat(
+      ...e.map((n2) => Y(n2) ? J(n2) : n2)
+    );
+  },
+  entries() {
+    return Oe2(this, "entries", (e) => (e[1] = I3(e[1]), e));
+  },
+  every(e, n2) {
+    return D(this, "every", e, n2, void 0, arguments);
+  },
+  filter(e, n2) {
+    return D(this, "filter", e, n2, (t2) => t2.map(I3), arguments);
+  },
+  find(e, n2) {
+    return D(this, "find", e, n2, I3, arguments);
+  },
+  findIndex(e, n2) {
+    return D(this, "findIndex", e, n2, void 0, arguments);
+  },
+  findLast(e, n2) {
+    return D(this, "findLast", e, n2, I3, arguments);
+  },
+  findLastIndex(e, n2) {
+    return D(this, "findLastIndex", e, n2, void 0, arguments);
+  },
+  // flat, flatMap could benefit from ARRAY_ITERATE but are not straight-forward to implement
+  forEach(e, n2) {
+    return D(this, "forEach", e, n2, void 0, arguments);
+  },
+  includes(...e) {
+    return Ie(this, "includes", e);
+  },
+  indexOf(...e) {
+    return Ie(this, "indexOf", e);
+  },
+  join(e) {
+    return J(this).join(e);
+  },
+  // keys() iterator only reads `length`, no optimisation required
+  lastIndexOf(...e) {
+    return Ie(this, "lastIndexOf", e);
+  },
+  map(e, n2) {
+    return D(this, "map", e, n2, void 0, arguments);
+  },
+  pop() {
+    return ne(this, "pop");
+  },
+  push(...e) {
+    return ne(this, "push", e);
+  },
+  reduce(e, ...n2) {
+    return un2(this, "reduce", e, n2);
+  },
+  reduceRight(e, ...n2) {
+    return un2(this, "reduceRight", e, n2);
+  },
+  shift() {
+    return ne(this, "shift");
+  },
+  // slice could use ARRAY_ITERATE but also seems to beg for range tracking
+  some(e, n2) {
+    return D(this, "some", e, n2, void 0, arguments);
+  },
+  splice(...e) {
+    return ne(this, "splice", e);
+  },
+  toReversed() {
+    return J(this).toReversed();
+  },
+  toSorted(e) {
+    return J(this).toSorted(e);
+  },
+  toSpliced(...e) {
+    return J(this).toSpliced(...e);
+  },
+  unshift(...e) {
+    return ne(this, "unshift", e);
+  },
+  values() {
+    return Oe2(this, "values", I3);
+  }
+};
+function Oe2(e, n2, t2) {
+  const s = Xe2(e), o = s[n2]();
+  return s !== e && !H(e) && (o._next = o.next, o.next = () => {
+    const r = o._next();
+    return r.value && (r.value = t2(r.value)), r;
+  }), o;
+}
+var ut = Array.prototype;
+function D(e, n2, t2, s, o, r) {
+  const i = Xe2(e), m = i !== e && !H(e), _ = i[n2];
+  if (_ !== ut[n2]) {
+    const a = _.apply(e, r);
+    return m ? I3(a) : a;
+  }
+  let f2 = t2;
+  i !== e && (m ? f2 = function(a, p) {
+    return t2.call(this, I3(a), p, e);
+  } : t2.length > 2 && (f2 = function(a, p) {
+    return t2.call(this, a, p, e);
+  }));
+  const u2 = _.call(i, f2, s);
+  return m && o ? o(u2) : u2;
+}
+function un2(e, n2, t2, s) {
+  const o = Xe2(e);
+  let r = t2;
+  return o !== e && (H(e) ? t2.length > 3 && (r = function(i, m, _) {
+    return t2.call(this, i, m, _, e);
+  }) : r = function(i, m, _) {
+    return t2.call(this, i, I3(m), _, e);
+  }), o[n2](r, ...s);
+}
+function Ie(e, n2, t2) {
+  const s = E(e);
+  k2(s, "iterate", ae2);
+  const o = s[n2](...t2);
+  return (o === -1 || o === false) && yt(t2[0]) ? (t2[0] = E(t2[0]), s[n2](...t2)) : o;
+}
+function ne(e, n2, t2 = []) {
+  rt2(), qe2();
+  const s = E(e)[n2].apply(e, t2);
+  return Ze2(), at(), s;
+}
+var lt2 = /* @__PURE__ */ Jn2("__proto__,__v_isRef,__isVue");
+var bn2 = new Set(
+  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((e) => e !== "arguments" && e !== "caller").map((e) => Symbol[e]).filter(ue2)
+);
+function pt2(e) {
+  ue2(e) || (e = String(e));
+  const n2 = E(this);
+  return k2(n2, "has", e), n2.hasOwnProperty(e);
+}
+var Nn2 = class {
+  constructor(n2 = false, t2 = false) {
+    this._isReadonly = n2, this._isShallow = t2;
+  }
+  get(n2, t2, s) {
+    if (t2 === "__v_skip") return n2.__v_skip;
+    const o = this._isReadonly, r = this._isShallow;
+    if (t2 === "__v_isReactive")
+      return !o;
+    if (t2 === "__v_isReadonly")
+      return o;
+    if (t2 === "__v_isShallow")
+      return r;
+    if (t2 === "__v_raw")
+      return s === (o ? r ? En2 : jn : r ? bt : yn2).get(n2) || // receiver is not the reactive proxy, but has the same prototype
+      // this means the receiver is a user proxy of the reactive proxy
+      Object.getPrototypeOf(n2) === Object.getPrototypeOf(s) ? n2 : void 0;
+    const i = Y(n2);
+    if (!o) {
+      let _;
+      if (i && (_ = ct2[t2]))
+        return _;
+      if (t2 === "hasOwnProperty")
+        return pt2;
+    }
+    const m = Reflect.get(
+      n2,
+      t2,
+      // if this is a proxy wrapping a ref, return methods using the raw ref
+      // as receiver so that we don't have to call `toRaw` on the ref in all
+      // its class methods
+      Z(n2) ? n2 : s
+    );
+    return (ue2(t2) ? bn2.has(t2) : lt2(t2)) || (o || k2(n2, "get", t2), r) ? m : Z(m) ? i && Ye2(t2) ? m : m.value : ye(m) ? o ? ve2(m) : Sn2(m) : m;
+  }
+};
+var dt = class extends Nn2 {
+  constructor(n2 = false) {
+    super(false, n2);
+  }
+  set(n2, t2, s, o) {
+    let r = n2[t2];
+    if (!this._isShallow) {
+      const _ = ee2(r);
+      if (!H(s) && !ee2(s) && (r = E(r), s = E(s)), !Y(n2) && Z(r) && !Z(s))
+        return _ ? false : (r.value = s, true);
+    }
+    const i = Y(n2) && Ye2(t2) ? Number(t2) < n2.length : Ve(n2, t2), m = Reflect.set(
+      n2,
+      t2,
+      s,
+      Z(n2) ? n2 : o
+    );
+    return n2 === E(o) && (i ? q2(s, r) && V(n2, "set", t2, s, r) : V(n2, "add", t2, s)), m;
+  }
+  deleteProperty(n2, t2) {
+    const s = Ve(n2, t2), o = n2[t2], r = Reflect.deleteProperty(n2, t2);
+    return r && s && V(n2, "delete", t2, void 0, o), r;
+  }
+  has(n2, t2) {
+    const s = Reflect.has(n2, t2);
+    return (!ue2(t2) || !bn2.has(t2)) && k2(n2, "has", t2), s;
+  }
+  ownKeys(n2) {
+    return k2(
+      n2,
+      "iterate",
+      Y(n2) ? "length" : K2
+    ), Reflect.ownKeys(n2);
+  }
+};
+var wn2 = class extends Nn2 {
+  constructor(n2 = false) {
+    super(true, n2);
+  }
+  set(n2, t2) {
+    return process.env.NODE_ENV !== "production" && X(
+      `Set operation on key "${String(t2)}" failed: target is readonly.`,
+      n2
+    ), true;
+  }
+  deleteProperty(n2, t2) {
+    return process.env.NODE_ENV !== "production" && X(
+      `Delete operation on key "${String(t2)}" failed: target is readonly.`,
+      n2
+    ), true;
+  }
+};
+var mt = /* @__PURE__ */ new dt();
+var ft = /* @__PURE__ */ new wn2();
+var ht2 = /* @__PURE__ */ new wn2(true);
+var Le = (e) => e;
+var pe = (e) => Reflect.getPrototypeOf(e);
+function vt2(e, n2, t2) {
+  return function(...s) {
+    const o = this.__v_raw, r = E(o), i = te2(r), m = e === "entries" || e === Symbol.iterator && i, _ = e === "keys" && i, f2 = o[e](...s), u2 = t2 ? Le : n2 ? Me : I3;
+    return !n2 && k2(
+      r,
+      "iterate",
+      _ ? He : K2
+    ), {
+      // iterator protocol
+      next() {
+        const { value: a, done: p } = f2.next();
+        return p ? { value: a, done: p } : {
+          value: m ? [u2(a[0]), u2(a[1])] : u2(a),
+          done: p
+        };
+      },
+      // iterable protocol
+      [Symbol.iterator]() {
+        return this;
+      }
+    };
+  };
+}
+function de(e) {
+  return function(...n2) {
+    if (process.env.NODE_ENV !== "production") {
+      const t2 = n2[0] ? `on key "${n2[0]}" ` : "";
+      X(
+        `${Xn(e)} operation ${t2}failed: target is readonly.`,
+        E(this)
+      );
+    }
+    return e === "delete" ? false : e === "clear" ? void 0 : this;
+  };
+}
+function gt2(e, n2) {
+  const t2 = {
+    get(o) {
+      const r = this.__v_raw, i = E(r), m = E(o);
+      e || (q2(o, m) && k2(i, "get", o), k2(i, "get", m));
+      const { has: _ } = pe(i), f2 = n2 ? Le : e ? Me : I3;
+      if (_.call(i, o))
+        return f2(r.get(o));
+      if (_.call(i, m))
+        return f2(r.get(m));
+      r !== i && r.get(o);
+    },
+    get size() {
+      const o = this.__v_raw;
+      return !e && k2(E(o), "iterate", K2), Reflect.get(o, "size", o);
+    },
+    has(o) {
+      const r = this.__v_raw, i = E(r), m = E(o);
+      return e || (q2(o, m) && k2(i, "has", o), k2(i, "has", m)), o === m ? r.has(o) : r.has(o) || r.has(m);
+    },
+    forEach(o, r) {
+      const i = this, m = i.__v_raw, _ = E(m), f2 = n2 ? Le : e ? Me : I3;
+      return !e && k2(_, "iterate", K2), m.forEach((u2, a) => o.call(r, f2(u2), f2(a), i));
+    }
+  };
+  return Fe(
+    t2,
+    e ? {
+      add: de("add"),
+      set: de("set"),
+      delete: de("delete"),
+      clear: de("clear")
+    } : {
+      add(o) {
+        !n2 && !H(o) && !ee2(o) && (o = E(o));
+        const r = E(this);
+        return pe(r).has.call(r, o) || (r.add(o), V(r, "add", o, o)), this;
+      },
+      set(o, r) {
+        !n2 && !H(r) && !ee2(r) && (r = E(r));
+        const i = E(this), { has: m, get: _ } = pe(i);
+        let f2 = m.call(i, o);
+        f2 ? process.env.NODE_ENV !== "production" && ln2(i, m, o) : (o = E(o), f2 = m.call(i, o));
+        const u2 = _.call(i, o);
+        return i.set(o, r), f2 ? q2(r, u2) && V(i, "set", o, r, u2) : V(i, "add", o, r), this;
+      },
+      delete(o) {
+        const r = E(this), { has: i, get: m } = pe(r);
+        let _ = i.call(r, o);
+        _ ? process.env.NODE_ENV !== "production" && ln2(r, i, o) : (o = E(o), _ = i.call(r, o));
+        const f2 = m ? m.call(r, o) : void 0, u2 = r.delete(o);
+        return _ && V(r, "delete", o, void 0, f2), u2;
+      },
+      clear() {
+        const o = E(this), r = o.size !== 0, i = process.env.NODE_ENV !== "production" ? te2(o) ? new Map(o) : new Set(o) : void 0, m = o.clear();
+        return r && V(
+          o,
+          "clear",
+          void 0,
+          void 0,
+          i
+        ), m;
+      }
+    }
+  ), [
+    "keys",
+    "values",
+    "entries",
+    Symbol.iterator
+  ].forEach((o) => {
+    t2[o] = vt2(o, e, n2);
+  }), t2;
+}
+function en2(e, n2) {
+  const t2 = gt2(e, n2);
+  return (s, o, r) => o === "__v_isReactive" ? !e : o === "__v_isReadonly" ? e : o === "__v_raw" ? s : Reflect.get(
+    Ve(t2, o) && o in s ? t2 : s,
+    o,
+    r
+  );
+}
+var _t2 = {
+  get: /* @__PURE__ */ en2(false, false)
+};
+var Ct = {
+  get: /* @__PURE__ */ en2(true, false)
+};
+var $t4 = {
+  get: /* @__PURE__ */ en2(true, true)
+};
+function ln2(e, n2, t2) {
+  const s = E(t2);
+  if (s !== t2 && n2.call(e, s)) {
+    const o = hn2(e);
+    X(
+      `Reactive ${o} contains both the raw and reactive versions of the same object${o === "Map" ? " as keys" : ""}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`
+    );
+  }
+}
+var yn2 = /* @__PURE__ */ new WeakMap();
+var bt = /* @__PURE__ */ new WeakMap();
+var jn = /* @__PURE__ */ new WeakMap();
+var En2 = /* @__PURE__ */ new WeakMap();
+function Nt2(e) {
+  switch (e) {
+    case "Object":
+    case "Array":
+      return 1;
+    case "Map":
+    case "Set":
+    case "WeakMap":
+    case "WeakSet":
+      return 2;
+    default:
+      return 0;
+  }
+}
+function wt(e) {
+  return e.__v_skip || !Object.isExtensible(e) ? 0 : Nt2(hn2(e));
+}
+function Sn2(e) {
+  return ee2(e) ? e : nn2(
+    e,
+    false,
+    mt,
+    _t2,
+    yn2
+  );
+}
+function ve2(e) {
+  return nn2(
+    e,
+    true,
+    ft,
+    Ct,
+    jn
+  );
+}
+function fe2(e) {
+  return nn2(
+    e,
+    true,
+    ht2,
+    $t4,
+    En2
+  );
+}
+function nn2(e, n2, t2, s, o) {
+  if (!ye(e))
+    return process.env.NODE_ENV !== "production" && X(
+      `value cannot be made ${n2 ? "readonly" : "reactive"}: ${String(
+        e
+      )}`
+    ), e;
+  if (e.__v_raw && !(n2 && e.__v_isReactive))
+    return e;
+  const r = wt(e);
+  if (r === 0)
+    return e;
+  const i = o.get(e);
+  if (i)
+    return i;
+  const m = new Proxy(
+    e,
+    r === 2 ? s : t2
+  );
+  return o.set(e, m), m;
+}
+function ee2(e) {
+  return !!(e && e.__v_isReadonly);
+}
+function H(e) {
+  return !!(e && e.__v_isShallow);
+}
+function yt(e) {
+  return e ? !!e.__v_raw : false;
+}
+function E(e) {
+  const n2 = e && e.__v_raw;
+  return n2 ? E(n2) : e;
+}
+var I3 = (e) => ye(e) ? Sn2(e) : e;
+var Me = (e) => ye(e) ? ve2(e) : e;
+function Z(e) {
+  return e ? e.__v_isRef === true : false;
+}
+function Ke(e) {
+  return jt(e, false);
+}
+function jt(e, n2) {
+  return Z(e) ? e : new Et2(e, n2);
+}
+var Et2 = class {
+  constructor(n2, t2) {
+    this.dep = new Qe2(), this.__v_isRef = true, this.__v_isShallow = false, this._rawValue = t2 ? n2 : E(n2), this._value = t2 ? n2 : I3(n2), this.__v_isShallow = t2;
+  }
+  get value() {
+    return process.env.NODE_ENV !== "production" ? this.dep.track({
+      target: this,
+      type: "get",
+      key: "value"
+    }) : this.dep.track(), this._value;
+  }
+  set value(n2) {
+    const t2 = this._rawValue, s = this.__v_isShallow || H(n2) || ee2(n2);
+    n2 = s ? n2 : E(n2), q2(n2, t2) && (this._rawValue = n2, this._value = s ? n2 : I3(n2), process.env.NODE_ENV !== "production" ? this.dep.trigger({
+      target: this,
+      type: "set",
+      key: "value",
+      newValue: n2,
+      oldValue: t2
+    }) : this.dep.trigger());
+  }
+};
+var St2 = class {
+  constructor(n2, t2, s) {
+    this.fn = n2, this.setter = t2, this._value = void 0, this.dep = new Qe2(this), this.__v_isRef = true, this.deps = void 0, this.depsTail = void 0, this.flags = 16, this.globalVersion = re2 - 1, this.next = void 0, this.effect = this, this.__v_isReadonly = !t2, this.isSSR = s;
+  }
+  /**
+   * @internal
+   */
+  notify() {
+    if (this.flags |= 16, !(this.flags & 8) && // avoid infinite self recursion
+    S !== this)
+      return et(this, true), true;
+    process.env.NODE_ENV;
+  }
+  get value() {
+    const n2 = process.env.NODE_ENV !== "production" ? this.dep.track({
+      target: this,
+      type: "get",
+      key: "value"
+    }) : this.dep.track();
+    return gn2(this), n2 && (n2.version = this.dep.version), this._value;
+  }
+  set value(n2) {
+    this.setter ? this.setter(n2) : process.env.NODE_ENV !== "production" && X("Write operation failed: computed value is readonly");
+  }
+};
+function pn2(e, n2, t2 = false) {
+  let s, o;
+  Yn(e) ? s = e : (s = e.get, o = e.set);
+  const r = new St2(s, o, t2);
+  return process.env.NODE_ENV, r;
+}
+function Be(e = "") {
+  const n2 = Date.now().toString(36), t2 = Math.random().toString(36).substring(2, 10);
+  return `${e}${n2}${t2}`;
+}
+function At(e) {
+  const n2 = {}, t2 = {}, s = /* @__PURE__ */ new WeakMap(), o = {}, r = [];
+  return Object.freeze({
+    registerAgg(i) {
+      if (i.isInitialized.value)
+        throw new Error("Agg must register before initialized");
+      if (o[i.__id])
+        throw new Error("Agg already registered");
+      i.type === "MultiInstance" && i.api.events.destroyed.listen(() => {
+        delete o[i.__id];
+      }), o[i.__id] = i;
+      const m = [];
+      for (const _ of Object.values(n2))
+        _.mount({
+          api: i.api,
+          __aggId: i.__id,
+          isInitialized: i.isInitialized
+        });
+      for (const _ of Object.values(t2))
+        _.mount({ api: i.api, __aggId: i.__id }), m.push(_.__id);
+      if (s.set(i, m), It2(i)) {
+        const _ = i.api.events.destroyed.listen(() => {
+          delete o[i.__id];
+          for (const f2 of r)
+            f2(i);
+          _?.();
+        });
+      }
+    },
+    onDestroy(i) {
+      r.push(i);
+    },
+    createSetupPlugin(i) {
+      let m;
+      return i instanceof Function ? m = i() : m = i, Object.freeze({
+        __id: Be(),
+        type: "Setup",
+        mount(_) {
+          if (_.isInitialized.value)
+            throw new Error("Can not setup after initialized");
+          m.mount({ api: _.api, __aggId: _.__aggId });
+        }
+      });
+    },
+    createHotSwapPlugin(i) {
+      let m;
+      return i instanceof Function ? m = i() : m = i, Object.freeze({
+        __id: Be(),
+        type: "HotSwap",
+        mount: m.mount,
+        unmount: m.unmount
+      });
+    },
+    registerPlugin(i) {
+      if (i.type === "Setup") {
+        if (n2[i.__id])
+          throw new Error("Plugin already registered");
+        n2[i.__id] = i;
+        for (const m in o)
+          i.mount({
+            api: o[m].api,
+            __aggId: o[m].__id,
+            isInitialized: o[m].isInitialized
+          });
+      } else if (i.type === "HotSwap") {
+        t2[i.__id] = i;
+        for (const m in o)
+          s.has(o[m]) && !s.get(o[m]).includes(i.__id) && (i.mount({
+            api: o[m].api,
+            __aggId: o[m].__id
+          }), s.get(o[m]).push(i.__id));
+      } else
+        isNever(i);
+    },
+    unregisterPlugin(i) {
+      if (i.type === "Setup")
+        throw new Error("Can not unregister setup plugin");
+      if (i.type === "HotSwap") {
+        for (const m in o)
+          s.has(o[m]) && s.get(o[m]).includes(i.__id) && i.unmount({
+            api: o[m].api,
+            __aggId: o[m].__id
+          });
+        delete t2[i.__id];
+      } else
+        isNever(i);
+    }
+  });
+}
+function Ot(e, n2) {
+  return At();
+}
+function It2(e) {
+  return e.type === "MultiInstance";
+}
+function kt(e) {
+  const n2 = xt2(e);
+  return fe2({
+    states: n2.states,
+    commands: n2.commands,
+    events: n2.events
+  });
+}
+function xt2(e) {
+  const n2 = e.states;
+  for (const i of Object.keys(e.states))
+    n2[i] = ve2(n2[i]);
+  const t2 = fe2(e.states), s = ve2(e.commands), o = {}, r = e.events;
+  for (const i in e.events)
+    o[i] = r[i].api;
+  return fe2({
+    states: t2,
+    commands: s,
+    events: fe2(o),
+    destroy: e.destroy
+  });
+}
+function Tt2(e) {
+  const {
+    resolve: n2,
+    reject: t2,
+    promise: s
+  } = new Gn.Deferred();
+  let o = Ke(false);
+  function r(a) {
+    if (o.value === true)
+      throw new Error("Agg already initialized");
+    i.push(a());
+  }
+  const i = [], m = e({
+    onCreated(a) {
+      Promise.resolve().then(a);
+    },
+    onBeforeInitialize: r,
+    isInitialized: pn2(() => o.value),
+    untilInitialized: s
+  });
+  setTimeout(
+    () => Promise.all(i).then(() => {
+      n2(), o.value = true;
+    }).catch((a) => {
+      t2(a);
+    }),
+    0
+  );
+  const _ = m.states || {}, f2 = m.commands || {}, u2 = m.events || {};
+  return {
+    __id: Be(),
+    type: "Singleton",
+    api: kt({
+      states: _,
+      commands: f2,
+      events: u2,
+      destroy: () => {
+      }
+    }),
+    isInitialized: pn2(() => o.value),
+    async untilInitialized() {
+      return await s.catch((a) => {
+        throw new Error(`Failed to initialize Agg: ${a.message}
+Stack : ${a.stack || "unkown"}`);
+      });
+    }
+  };
+}
+var me;
+function Dt2(e) {
+  return Tt2(() => {
+    const n2 = Ke(e), t2 = Ke({});
+    let s = () => [], o = () => [], r = () => [], i = () => [], m = () => [], _ = () => [], f2 = () => [];
     return {
       states: {
-        designer,
-        context
+        designer: n2,
+        context: t2
       },
       commands: {
         genCodeFiles() {
-          return codeFileProvider();
+          return f2();
         },
         clearCaches() {
         },
-        setContext(ctx) {
-          context.value = ctx;
+        setContext(u2) {
+          t2.value = u2;
         },
-        setDomainDesigner(d2) {
-          this.clearCaches();
-          designer.value = d2;
+        setDomainDesigner(u2) {
+          this.clearCaches(), n2.value = u2;
         },
-        _genInfoCode(...args) {
-          return InfoCodeProvider(...args);
+        _genInfoCode(...u2) {
+          return s(...u2);
         },
-        _setInfoCodeProvider(provider) {
-          InfoCodeProvider = provider;
+        _setInfoCodeProvider(u2) {
+          s = u2;
         },
-        _genCommandCode(...args) {
-          return commandCodeProvider(...args);
+        _genCommandCode(...u2) {
+          return o(...u2);
         },
-        _setCommandCodeProvider(provider) {
-          commandCodeProvider = provider;
+        _setCommandCodeProvider(u2) {
+          o = u2;
         },
-        _genFacadeCommandCode(...args) {
-          return FacadeCommandCodeProvider(...args);
+        _genFacadeCommandCode(...u2) {
+          return r(...u2);
         },
-        _setFacadeCommandCodeProvider(provider) {
-          FacadeCommandCodeProvider = provider;
+        _setFacadeCommandCodeProvider(u2) {
+          r = u2;
         },
-        _genAggCode(...args) {
-          return aggCodeProvider(...args);
+        _genAggCode(...u2) {
+          return i(...u2);
         },
-        _setAggCodeProvider(provider) {
-          aggCodeProvider = provider;
+        _setAggCodeProvider(u2) {
+          i = u2;
         },
-        _genEventCode(...args) {
-          return eventCodeProvider(...args);
+        _genEventCode(...u2) {
+          return m(...u2);
         },
-        _setEventCodeProvider(provider) {
-          eventCodeProvider = provider;
+        _setEventCodeProvider(u2) {
+          m = u2;
         },
-        _genReadModelCode(...args) {
-          return readModelCodeProvider(...args);
+        _genReadModelCode(...u2) {
+          return _(...u2);
         },
-        _setReadModelCodeProvider(provider) {
-          readModelCodeProvider = provider;
+        _setReadModelCodeProvider(u2) {
+          _ = u2;
         },
-        _setCodeFileProvider(provider) {
-          codeFileProvider = provider;
+        _setCodeFileProvider(u2) {
+          f2 = u2;
         }
       }
     };
   });
 }
-var GeneratorPliginHelper = G(createAgg);
-function useGeneratorAgg(designer) {
-  if (!agg3) {
-    if (!designer) {
+var le2 = Ot();
+function Oo(e) {
+  if (!me) {
+    if (!e)
       throw new Error("designer is required");
-    }
-    agg3 = createAgg(designer);
-    GeneratorPliginHelper.registerAgg(agg3);
+    me = Dt2(e), le2.registerAgg(me);
   }
-  return agg3.api;
+  return me.api;
 }
-
-// ../generator/lib/domain/define.ts
-var define_exports = {};
-__export(define_exports, {
-  CodeFile: () => CodeFile,
-  Language: () => Language,
-  csharp: () => csharp,
-  go: () => go,
-  isStruct: () => isStruct,
-  java: () => java,
-  kotlin: () => kotlin
+function je(e) {
+  return e && e._attributes && e._attributes.rule === "Info";
+}
+function Pt2(e) {
+  return e && e._attributes && e._attributes.rule === "Agg";
+}
+function Ft2(e) {
+  return e && e._attributes && e._attributes.rule === "Command";
+}
+function Vt(e) {
+  return e && e._attributes && e._attributes.rule === "FacadeCommand";
+}
+function Rt(e) {
+  return e && e._attributes && e._attributes.rule === "Event";
+}
+function Ht(e) {
+  return e && e._attributes && e._attributes.rule === "ReadModel";
+}
+var Ue = process.env.NODE_ENV !== "production" ? Object.freeze({}) : {};
+process.env.NODE_ENV !== "production" && Object.freeze([]);
+var Lt = () => {
+};
+var Mt = (e) => e.charCodeAt(0) === 111 && e.charCodeAt(1) === 110 && // uppercase letter
+(e.charCodeAt(2) > 122 || e.charCodeAt(2) < 97);
+var Ee2 = Object.assign;
+var T2 = Array.isArray;
+var G2 = (e) => typeof e == "function";
+var L2 = (e) => typeof e == "string";
+var Kt2 = (e) => typeof e == "symbol";
+var B2 = (e) => e !== null && typeof e == "object";
+var dn2;
+var Se2 = () => dn2 || (dn2 = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
+function tn2(e) {
+  if (T2(e)) {
+    const n2 = {};
+    for (let t2 = 0; t2 < e.length; t2++) {
+      const s = e[t2], o = L2(s) ? Gt2(s) : tn2(s);
+      if (o)
+        for (const r in o)
+          n2[r] = o[r];
+    }
+    return n2;
+  } else if (L2(e) || B2(e))
+    return e;
+}
+var Bt = /;(?![^(]*\))/g;
+var Ut = /:([^]+)/;
+var zt2 = /\/\*[^]*?\*\//g;
+function Gt2(e) {
+  const n2 = {};
+  return e.replace(zt2, "").split(Bt).forEach((t2) => {
+    if (t2) {
+      const s = t2.split(Ut);
+      s.length > 1 && (n2[s[0].trim()] = s[1].trim());
+    }
+  }), n2;
+}
+function on2(e) {
+  let n2 = "";
+  if (L2(e))
+    n2 = e;
+  else if (T2(e))
+    for (let t2 = 0; t2 < e.length; t2++) {
+      const s = on2(e[t2]);
+      s && (n2 += s + " ");
+    }
+  else if (B2(e))
+    for (const t2 in e)
+      e[t2] && (n2 += t2 + " ");
+  return n2.trim();
+}
+Symbol(
+  process.env.NODE_ENV !== "production" ? "Object iterate" : ""
+);
+Symbol(
+  process.env.NODE_ENV !== "production" ? "Map keys iterate" : ""
+);
+Symbol(
+  process.env.NODE_ENV !== "production" ? "Array iterate" : ""
+);
+new Set(
+  /* @__PURE__ */ Object.getOwnPropertyNames(Symbol).filter((e) => e !== "arguments" && e !== "caller").map((e) => Symbol[e]).filter(Kt2)
+);
+function An(e) {
+  return ze2(e) ? An(e.__v_raw) : !!(e && e.__v_isReactive);
+}
+function ze2(e) {
+  return !!(e && e.__v_isReadonly);
+}
+function ke(e) {
+  return !!(e && e.__v_isShallow);
+}
+function Ge2(e) {
+  return e ? !!e.__v_raw : false;
+}
+function U(e) {
+  const n2 = e && e.__v_raw;
+  return n2 ? U(n2) : e;
+}
+function sn2(e) {
+  return e ? e.__v_isRef === true : false;
+}
+var z3 = [];
+function Jt(e) {
+  z3.push(e);
+}
+function Wt() {
+  z3.pop();
+}
+var xe = false;
+function ie2(e, ...n2) {
+  if (xe) return;
+  xe = true;
+  const t2 = z3.length ? z3[z3.length - 1].component : null, s = t2 && t2.appContext.config.warnHandler, o = Yt();
+  if (s)
+    rn2(
+      s,
+      t2,
+      11,
+      [
+        // eslint-disable-next-line no-restricted-syntax
+        e + n2.map((r) => {
+          var i, m;
+          return (m = (i = r.toString) == null ? void 0 : i.call(r)) != null ? m : JSON.stringify(r);
+        }).join(""),
+        t2 && t2.proxy,
+        o.map(
+          ({ vnode: r }) => `at <${Kn(t2, r.type)}>`
+        ).join(`
+`),
+        o
+      ]
+    );
+  else {
+    const r = [`[Vue warn]: ${e}`, ...n2];
+    o.length && r.push(`
+`, ...qt(o));
+  }
+  xe = false;
+}
+function Yt() {
+  let e = z3[z3.length - 1];
+  if (!e)
+    return [];
+  const n2 = [];
+  for (; e; ) {
+    const t2 = n2[0];
+    t2 && t2.vnode === e ? t2.recurseCount++ : n2.push({
+      vnode: e,
+      recurseCount: 0
+    });
+    const s = e.component && e.component.parent;
+    e = s && s.vnode;
+  }
+  return n2;
+}
+function qt(e) {
+  const n2 = [];
+  return e.forEach((t2, s) => {
+    n2.push(...s === 0 ? [] : [`
+`], ...Zt2(t2));
+  }), n2;
+}
+function Zt2({ vnode: e, recurseCount: n2 }) {
+  const t2 = n2 > 0 ? `... (${n2} recursive calls)` : "", s = e.component ? e.component.parent == null : false, o = ` at <${Kn(
+    e.component,
+    e.type,
+    s
+  )}`, r = ">" + t2;
+  return e.props ? [o, ...Qt2(e.props), r] : [o + r];
+}
+function Qt2(e) {
+  const n2 = [], t2 = Object.keys(e);
+  return t2.slice(0, 3).forEach((s) => {
+    n2.push(...On2(s, e[s]));
+  }), t2.length > 3 && n2.push(" ..."), n2;
+}
+function On2(e, n2, t2) {
+  return L2(n2) ? (n2 = JSON.stringify(n2), t2 ? n2 : [`${e}=${n2}`]) : typeof n2 == "number" || typeof n2 == "boolean" || n2 == null ? t2 ? n2 : [`${e}=${n2}`] : sn2(n2) ? (n2 = On2(e, U(n2.value), true), t2 ? n2 : [`${e}=Ref<`, n2, ">"]) : G2(n2) ? [`${e}=fn${n2.name ? `<${n2.name}>` : ""}`] : (n2 = U(n2), t2 ? n2 : [`${e}=`, n2]);
+}
+var In = {
+  sp: "serverPrefetch hook",
+  bc: "beforeCreate hook",
+  c: "created hook",
+  bm: "beforeMount hook",
+  m: "mounted hook",
+  bu: "beforeUpdate hook",
+  u: "updated",
+  bum: "beforeUnmount hook",
+  um: "unmounted hook",
+  a: "activated hook",
+  da: "deactivated hook",
+  ec: "errorCaptured hook",
+  rtc: "renderTracked hook",
+  rtg: "renderTriggered hook",
+  0: "setup function",
+  1: "render function",
+  2: "watcher getter",
+  3: "watcher callback",
+  4: "watcher cleanup function",
+  5: "native event handler",
+  6: "component event handler",
+  7: "vnode hook",
+  8: "directive hook",
+  9: "transition hook",
+  10: "app errorHandler",
+  11: "app warnHandler",
+  12: "ref function",
+  13: "async component loader",
+  14: "scheduler flush",
+  15: "component update",
+  16: "app unmount cleanup function"
+};
+function rn2(e, n2, t2, s) {
+  try {
+    return s ? e(...s) : e();
+  } catch (o) {
+    kn(o, n2, t2);
+  }
+}
+function kn(e, n2, t2, s = true) {
+  const o = n2 ? n2.vnode : null, { errorHandler: r, throwUnhandledErrorInProduction: i } = n2 && n2.appContext.config || Ue;
+  if (n2) {
+    let m = n2.parent;
+    const _ = n2.proxy, f2 = process.env.NODE_ENV !== "production" ? In[t2] : `https://vuejs.org/error-reference/#runtime-${t2}`;
+    for (; m; ) {
+      const u2 = m.ec;
+      if (u2) {
+        for (let a = 0; a < u2.length; a++)
+          if (u2[a](e, _, f2) === false)
+            return;
+      }
+      m = m.parent;
+    }
+    if (r) {
+      rn2(r, null, 10, [
+        e,
+        _,
+        f2
+      ]);
+      return;
+    }
+  }
+  Xt2(e, t2, o, s, i);
+}
+function Xt2(e, n2, t2, s = true, o = false) {
+  if (process.env.NODE_ENV !== "production") {
+    const r = In[n2];
+    if (t2 && Jt(t2), ie2(`Unhandled error${r ? ` during execution of ${r}` : ""}`), t2 && Wt(), s)
+      throw e;
+  } else if (o)
+    throw e;
+}
+var x2 = [];
+var P2 = -1;
+var Q = [];
+var F2 = null;
+var W = 0;
+var eo = /* @__PURE__ */ Promise.resolve();
+var Je2 = null;
+var no = 100;
+function to(e) {
+  let n2 = P2 + 1, t2 = x2.length;
+  for (; n2 < t2; ) {
+    const s = n2 + t2 >>> 1, o = x2[s], r = ce2(o);
+    r < e || r === e && o.flags & 2 ? n2 = s + 1 : t2 = s;
+  }
+  return n2;
+}
+function oo(e) {
+  if (!(e.flags & 1)) {
+    const n2 = ce2(e), t2 = x2[x2.length - 1];
+    !t2 || // fast path when the job id is larger than the tail
+    !(e.flags & 2) && n2 >= ce2(t2) ? x2.push(e) : x2.splice(to(n2), 0, e), e.flags |= 1, xn();
+  }
+}
+function xn() {
+  Je2 || (Je2 = eo.then(Tn2));
+}
+function so(e) {
+  T2(e) ? Q.push(...e) : F2 && e.id === -1 ? F2.splice(W + 1, 0, e) : e.flags & 1 || (Q.push(e), e.flags |= 1), xn();
+}
+function ro(e) {
+  if (Q.length) {
+    const n2 = [...new Set(Q)].sort(
+      (t2, s) => ce2(t2) - ce2(s)
+    );
+    if (Q.length = 0, F2) {
+      F2.push(...n2);
+      return;
+    }
+    for (F2 = n2, process.env.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map()), W = 0; W < F2.length; W++) {
+      const t2 = F2[W];
+      process.env.NODE_ENV !== "production" && Dn(e, t2) || (t2.flags & 4 && (t2.flags &= -2), t2.flags & 8 || t2(), t2.flags &= -2);
+    }
+    F2 = null, W = 0;
+  }
+}
+var ce2 = (e) => e.id == null ? e.flags & 2 ? -1 : 1 / 0 : e.id;
+function Tn2(e) {
+  process.env.NODE_ENV !== "production" && (e = e || /* @__PURE__ */ new Map());
+  const n2 = process.env.NODE_ENV !== "production" ? (t2) => Dn(e, t2) : Lt;
+  try {
+    for (P2 = 0; P2 < x2.length; P2++) {
+      const t2 = x2[P2];
+      if (t2 && !(t2.flags & 8)) {
+        if (process.env.NODE_ENV !== "production" && n2(t2))
+          continue;
+        t2.flags & 4 && (t2.flags &= -2), rn2(
+          t2,
+          t2.i,
+          t2.i ? 15 : 14
+        ), t2.flags & 4 || (t2.flags &= -2);
+      }
+    }
+  } finally {
+    for (; P2 < x2.length; P2++) {
+      const t2 = x2[P2];
+      t2 && (t2.flags &= -2);
+    }
+    P2 = -1, x2.length = 0, ro(e), Je2 = null, (x2.length || Q.length) && Tn2(e);
+  }
+}
+function Dn(e, n2) {
+  const t2 = e.get(n2) || 0;
+  if (t2 > no) {
+    const s = n2.i, o = s && Mn(s.type);
+    return kn(
+      `Maximum recursive updates exceeded${o ? ` in component <${o}>` : ""}. This means you have a reactive effect that is mutating its own dependencies and thus recursively triggering itself. Possible sources include component template, render function, updated hook or watcher source function.`,
+      null,
+      10
+    ), true;
+  }
+  return e.set(n2, t2 + 1), false;
+}
+var Te2 = /* @__PURE__ */ new Map();
+process.env.NODE_ENV !== "production" && (Se2().__VUE_HMR_RUNTIME__ = {
+  createRecord: De2(ao),
+  rerender: De2(io),
+  reload: De2(co)
 });
-function isStruct(o) {
-  return Yn(o) || qn(o) || Jn(o) || zn(o) || Qn(o);
+var ge = /* @__PURE__ */ new Map();
+function ao(e, n2) {
+  return ge.has(e) ? false : (ge.set(e, {
+    initialDef: _e(n2),
+    instances: /* @__PURE__ */ new Set()
+  }), true);
 }
-var Language = /* @__PURE__ */ ((Language2) => {
-  Language2["Java"] = "java";
-  Language2["Kotlin"] = "kotlin";
-  Language2["CSharp"] = "csharp";
-  Language2["Go"] = "go";
-  return Language2;
-})(Language || {});
-var CodeFile = class {
+function _e(e) {
+  return Bn(e) ? e.__vccOpts : e;
+}
+function io(e, n2) {
+  const t2 = ge.get(e);
+  t2 && (t2.initialDef.render = n2, [...t2.instances].forEach((s) => {
+    n2 && (s.render = n2, _e(s.type).render = n2), s.renderCache = [], s.update();
+  }));
+}
+function co(e, n2) {
+  const t2 = ge.get(e);
+  if (!t2) return;
+  n2 = _e(n2), mn2(t2.initialDef, n2);
+  const s = [...t2.instances];
+  for (let o = 0; o < s.length; o++) {
+    const r = s[o], i = _e(r.type);
+    let m = Te2.get(i);
+    m || (i !== t2.initialDef && mn2(i, n2), Te2.set(i, m = /* @__PURE__ */ new Set())), m.add(r), r.appContext.propsCache.delete(r.type), r.appContext.emitsCache.delete(r.type), r.appContext.optionsCache.delete(r.type), r.ceReload ? (m.add(r), r.ceReload(n2.styles), m.delete(r)) : r.parent ? oo(() => {
+      r.parent.update(), m.delete(r);
+    }) : r.appContext.reload ? r.appContext.reload() : typeof window < "u" && window.location.reload(), r.root.ce && r !== r.root && r.root.ce._removeChildStyle(i);
+  }
+  so(() => {
+    Te2.clear();
+  });
+}
+function mn2(e, n2) {
+  Ee2(e, n2);
+  for (const t2 in e)
+    t2 !== "__file" && !(t2 in n2) && delete e[t2];
+}
+function De2(e) {
+  return (n2, t2) => {
+    try {
+      return e(n2, t2);
+    } catch {
+    }
+  };
+}
+var Ce2 = null;
+var uo = null;
+var lo = (e) => e.__isTeleport;
+function Pn(e, n2) {
+  e.shapeFlag & 6 && e.component ? (e.transition = n2, Pn(e.component.subTree, n2)) : e.shapeFlag & 128 ? (e.ssContent.transition = n2.clone(e.ssContent), e.ssFallback.transition = n2.clone(e.ssFallback)) : e.transition = n2;
+}
+Se2().requestIdleCallback;
+Se2().cancelIdleCallback;
+var po = Symbol.for("v-ndc");
+process.env.NODE_ENV;
+var mo = {};
+var Fn = (e) => Object.getPrototypeOf(e) === mo;
+var fo = (e) => e.__isSuspense;
+var Vn = Symbol.for("v-fgt");
+var ho = Symbol.for("v-txt");
+var vo = Symbol.for("v-cmt");
+function go(e) {
+  return e ? e.__v_isVNode === true : false;
+}
+var _o = (...e) => Hn(
+  ...e
+);
+var Rn2 = ({ key: e }) => e ?? null;
+var he = ({
+  ref: e,
+  ref_key: n2,
+  ref_for: t2
+}) => (typeof e == "number" && (e = "" + e), e != null ? L2(e) || sn2(e) || G2(e) ? { i: Ce2, r: e, k: n2, f: !!t2 } : e : null);
+function Co(e, n2 = null, t2 = null, s = 0, o = null, r = e === Vn ? 0 : 1, i = false, m = false) {
+  const _ = {
+    __v_isVNode: true,
+    __v_skip: true,
+    type: e,
+    props: n2,
+    key: n2 && Rn2(n2),
+    ref: n2 && he(n2),
+    scopeId: uo,
+    slotScopeIds: null,
+    children: t2,
+    component: null,
+    suspense: null,
+    ssContent: null,
+    ssFallback: null,
+    dirs: null,
+    transition: null,
+    el: null,
+    anchor: null,
+    target: null,
+    targetStart: null,
+    targetAnchor: null,
+    staticCount: 0,
+    shapeFlag: r,
+    patchFlag: s,
+    dynamicProps: o,
+    dynamicChildren: null,
+    appContext: null,
+    ctx: Ce2
+  };
+  return m ? (an2(_, t2), r & 128 && e.normalize(_)) : t2 && (_.shapeFlag |= L2(t2) ? 8 : 16), process.env.NODE_ENV !== "production" && _.key !== _.key && ie2("VNode created with invalid key (NaN). VNode type:", _.type), _;
+}
+var $o = process.env.NODE_ENV !== "production" ? _o : Hn;
+function Hn(e, n2 = null, t2 = null, s = 0, o = null, r = false) {
+  if ((!e || e === po) && (process.env.NODE_ENV !== "production" && !e && ie2(`Invalid vnode type when creating vnode: ${e}.`), e = vo), go(e)) {
+    const m = $e(
+      e,
+      n2,
+      true
+      /* mergeRef: true */
+    );
+    return t2 && an2(m, t2), m.patchFlag = -2, m;
+  }
+  if (Bn(e) && (e = e.__vccOpts), n2) {
+    n2 = bo(n2);
+    let { class: m, style: _ } = n2;
+    m && !L2(m) && (n2.class = on2(m)), B2(_) && (Ge2(_) && !T2(_) && (_ = Ee2({}, _)), n2.style = tn2(_));
+  }
+  const i = L2(e) ? 1 : fo(e) ? 128 : lo(e) ? 64 : B2(e) ? 4 : G2(e) ? 2 : 0;
+  return process.env.NODE_ENV !== "production" && i & 4 && Ge2(e) && (e = U(e), ie2(
+    "Vue received a Component that was made a reactive object. This can lead to unnecessary performance overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`.",
+    `
+Component that was made reactive: `,
+    e
+  )), Co(
+    e,
+    n2,
+    t2,
+    s,
+    o,
+    i,
+    r,
+    true
+  );
+}
+function bo(e) {
+  return e ? Ge2(e) || Fn(e) ? Ee2({}, e) : e : null;
+}
+function $e(e, n2, t2 = false, s = false) {
+  const { props: o, ref: r, patchFlag: i, children: m, transition: _ } = e, f2 = n2 ? wo(o || {}, n2) : o, u2 = {
+    __v_isVNode: true,
+    __v_skip: true,
+    type: e.type,
+    props: f2,
+    key: f2 && Rn2(f2),
+    ref: n2 && n2.ref ? (
+      // #2078 in the case of <component :is="vnode" ref="extra"/>
+      // if the vnode itself already has a ref, cloneVNode will need to merge
+      // the refs so the single vnode can be set on multiple refs
+      t2 && r ? T2(r) ? r.concat(he(n2)) : [r, he(n2)] : he(n2)
+    ) : r,
+    scopeId: e.scopeId,
+    slotScopeIds: e.slotScopeIds,
+    children: process.env.NODE_ENV !== "production" && i === -1 && T2(m) ? m.map(Ln) : m,
+    target: e.target,
+    targetStart: e.targetStart,
+    targetAnchor: e.targetAnchor,
+    staticCount: e.staticCount,
+    shapeFlag: e.shapeFlag,
+    // if the vnode is cloned with extra props, we can no longer assume its
+    // existing patch flag to be reliable and need to add the FULL_PROPS flag.
+    // note: preserve flag for fragments since they use the flag for children
+    // fast paths only.
+    patchFlag: n2 && e.type !== Vn ? i === -1 ? 16 : i | 16 : i,
+    dynamicProps: e.dynamicProps,
+    dynamicChildren: e.dynamicChildren,
+    appContext: e.appContext,
+    dirs: e.dirs,
+    transition: _,
+    // These should technically only be non-null on mounted VNodes. However,
+    // they *should* be copied for kept-alive vnodes. So we just always copy
+    // them since them being non-null during a mount doesn't affect the logic as
+    // they will simply be overwritten.
+    component: e.component,
+    suspense: e.suspense,
+    ssContent: e.ssContent && $e(e.ssContent),
+    ssFallback: e.ssFallback && $e(e.ssFallback),
+    el: e.el,
+    anchor: e.anchor,
+    ctx: e.ctx,
+    ce: e.ce
+  };
+  return _ && s && Pn(
+    u2,
+    _.clone(u2)
+  ), u2;
+}
+function Ln(e) {
+  const n2 = $e(e);
+  return T2(e.children) && (n2.children = e.children.map(Ln)), n2;
+}
+function No(e = " ", n2 = 0) {
+  return $o(ho, null, e, n2);
+}
+function an2(e, n2) {
+  let t2 = 0;
+  const { shapeFlag: s } = e;
+  if (n2 == null)
+    n2 = null;
+  else if (T2(n2))
+    t2 = 16;
+  else if (typeof n2 == "object")
+    if (s & 65) {
+      const o = n2.default;
+      o && (o._c && (o._d = false), an2(e, o()), o._c && (o._d = true));
+      return;
+    } else
+      t2 = 32, !n2._ && !Fn(n2) && (n2._ctx = Ce2);
+  else G2(n2) ? (n2 = { default: n2, _ctx: Ce2 }, t2 = 32) : (n2 = String(n2), s & 64 ? (t2 = 16, n2 = [No(n2)]) : t2 = 8);
+  e.children = n2, e.shapeFlag |= t2;
+}
+function wo(...e) {
+  const n2 = {};
+  for (let t2 = 0; t2 < e.length; t2++) {
+    const s = e[t2];
+    for (const o in s)
+      if (o === "class")
+        n2.class !== s.class && (n2.class = on2([n2.class, s.class]));
+      else if (o === "style")
+        n2.style = tn2([n2.style, s.style]);
+      else if (Mt(o)) {
+        const r = n2[o], i = s[o];
+        i && r !== i && !(T2(r) && r.includes(i)) && (n2[o] = r ? [].concat(r, i) : i);
+      } else o !== "" && (n2[o] = s[o]);
+  }
+  return n2;
+}
+{
+  const e = Se2(), n2 = (t2, s) => {
+    let o;
+    return (o = e[t2]) || (o = e[t2] = []), o.push(s), (r) => {
+      o.length > 1 ? o.forEach((i) => i(r)) : o[0](r);
+    };
+  };
+  n2(
+    "__VUE_INSTANCE_SETTERS__",
+    (t2) => t2
+  ), n2(
+    "__VUE_SSR_SETTERS__",
+    (t2) => t2
+  );
+}
+process.env.NODE_ENV;
+var yo = /(?:^|[-_])(\w)/g;
+var jo = (e) => e.replace(yo, (n2) => n2.toUpperCase()).replace(/[-_]/g, "");
+function Mn(e, n2 = true) {
+  return G2(e) ? e.displayName || e.name : e.name || n2 && e.__name;
+}
+function Kn(e, n2, t2 = false) {
+  let s = Mn(n2);
+  if (!s && n2.__file) {
+    const o = n2.__file.match(/([^/\\]+)\.\w+$/);
+    o && (s = o[1]);
+  }
+  if (!s && e && e.parent) {
+    const o = (r) => {
+      for (const i in r)
+        if (r[i] === n2)
+          return i;
+    };
+    s = o(
+      e.components || e.parent.type.components
+    ) || o(e.appContext.components);
+  }
+  return s ? jo(s) : t2 ? "App" : "Anonymous";
+}
+function Bn(e) {
+  return G2(e) && "__vccOpts" in e;
+}
+function Eo() {
+  if (process.env.NODE_ENV === "production" || typeof window > "u")
+    return;
+  const e = { style: "color:#3ba776" }, n2 = { style: "color:#1677ff" }, t2 = { style: "color:#f5222d" }, s = { style: "color:#eb2f96" }, o = {
+    __vue_custom_formatter: true,
+    header(a) {
+      if (!B2(a))
+        return null;
+      if (a.__isVue)
+        return ["div", e, "VueInstance"];
+      if (sn2(a)) {
+        const p = a.value;
+        return [
+          "div",
+          {},
+          ["span", e, u2(a)],
+          "<",
+          m(p),
+          ">"
+        ];
+      } else {
+        if (An(a))
+          return [
+            "div",
+            {},
+            ["span", e, ke(a) ? "ShallowReactive" : "Reactive"],
+            "<",
+            m(a),
+            `>${ze2(a) ? " (readonly)" : ""}`
+          ];
+        if (ze2(a))
+          return [
+            "div",
+            {},
+            ["span", e, ke(a) ? "ShallowReadonly" : "Readonly"],
+            "<",
+            m(a),
+            ">"
+          ];
+      }
+      return null;
+    },
+    hasBody(a) {
+      return a && a.__isVue;
+    },
+    body(a) {
+      if (a && a.__isVue)
+        return [
+          "div",
+          {},
+          ...r(a.$)
+        ];
+    }
+  };
+  function r(a) {
+    const p = [];
+    a.type.props && a.props && p.push(i("props", U(a.props))), a.setupState !== Ue && p.push(i("setup", a.setupState)), a.data !== Ue && p.push(i("data", U(a.data)));
+    const g2 = _(a, "computed");
+    g2 && p.push(i("computed", g2));
+    const b2 = _(a, "inject");
+    return b2 && p.push(i("injected", b2)), p.push([
+      "div",
+      {},
+      [
+        "span",
+        {
+          style: s.style + ";opacity:0.66"
+        },
+        "$ (internal): "
+      ],
+      ["object", { object: a }]
+    ]), p;
+  }
+  function i(a, p) {
+    return p = Ee2({}, p), Object.keys(p).length ? [
+      "div",
+      { style: "line-height:1.25em;margin-bottom:0.6em" },
+      [
+        "div",
+        {
+          style: "color:#476582"
+        },
+        a
+      ],
+      [
+        "div",
+        {
+          style: "padding-left:1.25em"
+        },
+        ...Object.keys(p).map((g2) => [
+          "div",
+          {},
+          ["span", s, g2 + ": "],
+          m(p[g2], false)
+        ])
+      ]
+    ] : ["span", {}];
+  }
+  function m(a, p = true) {
+    return typeof a == "number" ? ["span", n2, a] : typeof a == "string" ? ["span", t2, JSON.stringify(a)] : typeof a == "boolean" ? ["span", s, a] : B2(a) ? ["object", { object: p ? U(a) : a }] : ["span", t2, String(a)];
+  }
+  function _(a, p) {
+    const g2 = a.type;
+    if (G2(g2))
+      return;
+    const b2 = {};
+    for (const C in a.ctx)
+      f2(g2, C, p) && (b2[C] = a.ctx[C]);
+    return b2;
+  }
+  function f2(a, p, g2) {
+    const b2 = a[g2];
+    if (T2(b2) && b2.includes(p) || B2(b2) && p in b2 || a.extends && f2(a.extends, p, g2) || a.mixins && a.mixins.some((C) => f2(C, p, g2)))
+      return true;
+  }
+  function u2(a) {
+    return ke(a) ? "ShallowRef" : a.effect ? "ComputedRef" : "Ref";
+  }
+  window.devtoolsFormatters ? window.devtoolsFormatters.push(o) : window.devtoolsFormatters = [o];
+}
+process.env.NODE_ENV;
+process.env.NODE_ENV;
+process.env.NODE_ENV;
+function So() {
+  Eo();
+}
+process.env.NODE_ENV !== "production" && So();
+function Ao(e) {
+  return Ft2(e) || Vt(e) || Pt2(e) || Rt(e) || Ht(e);
+}
+var Un = /* @__PURE__ */ ((e) => (e.Java = "java", e.Kotlin = "kotlin", e.CSharp = "csharp", e.Go = "go", e))(Un || {});
+var A3 = class {
   imports = /* @__PURE__ */ new Set();
   parentDir;
   name;
   content = "";
-  constructor(parentDir, name) {
-    this.parentDir = parentDir;
-    this.name = name;
+  constructor(n2, t2) {
+    this.parentDir = n2, this.name = t2;
   }
-  addImport(imp) {
-    this.imports.add(imp);
+  addImport(n2) {
+    this.imports.add(n2);
   }
-  addImports(imports) {
-    for (const imp of imports) {
-      this.imports.add(imp);
-    }
+  addImports(n2) {
+    for (const t2 of n2)
+      this.imports.add(t2);
   }
   getImports() {
     return Array.from(this.imports);
   }
-  appendContent(content) {
-    this.content += content;
+  appendContent(n2) {
+    this.content += n2;
   }
-  appendContentln(content) {
-    this.content += content + "\n";
+  appendContentln(n2) {
+    this.content += n2 + `
+`;
   }
   getContent() {
     return this.content;
@@ -15182,2115 +16720,1319 @@ var CodeFile = class {
   getName() {
     return this.name;
   }
-  setName(name) {
-    this.name = name;
+  setName(n2) {
+    this.name = n2;
   }
   getParentDir() {
     return this.parentDir;
   }
-  setParentDir(parentDir) {
-    this.parentDir = parentDir;
+  setParentDir(n2) {
+    this.parentDir = n2;
   }
 };
-var java;
-((java2) => {
-  let JavaGeneratorAddition2;
-  ((JavaGeneratorAddition3) => {
-    JavaGeneratorAddition3["Lombok"] = "Lombok";
-    JavaGeneratorAddition3["LombokBuilder"] = "LombokBuilder";
-    JavaGeneratorAddition3["RecordValueObject"] = "RecordValueObject";
-    JavaGeneratorAddition3["CommandHandler"] = "CommandHandler";
-    JavaGeneratorAddition3["Jpa"] = "Jpa";
-    JavaGeneratorAddition3["Timezone"] = "Timezone";
-    JavaGeneratorAddition3["SpringFramework"] = "SpringFramework";
-  })(JavaGeneratorAddition2 = java2.JavaGeneratorAddition || (java2.JavaGeneratorAddition = {}));
-  let IdGenStrategy;
-  ((IdGenStrategy2) => {
-    IdGenStrategy2["TABLE"] = "TABLE";
-    IdGenStrategy2["SEQUENCE"] = "SEQUENCE";
-    IdGenStrategy2["IDENTITY"] = "IDENTITY";
-    IdGenStrategy2["UUID"] = "UUID";
-    IdGenStrategy2["AUTO"] = "AUTO";
-  })(IdGenStrategy = java2.IdGenStrategy || (java2.IdGenStrategy = {}));
-})(java || (java = {}));
-var kotlin;
-((kotlin2) => {
-  let KotlinGeneratorAddition2;
-  ((KotlinGeneratorAddition3) => {
-    KotlinGeneratorAddition3["ValueClass"] = "ValueClass";
-    KotlinGeneratorAddition3["CommandHandler"] = "CommandHandler";
-    KotlinGeneratorAddition3["Timezone"] = "Timezone";
-  })(KotlinGeneratorAddition2 = kotlin2.KotlinGeneratorAddition || (kotlin2.KotlinGeneratorAddition = {}));
-})(kotlin || (kotlin = {}));
-var csharp;
-((csharp2) => {
-  let CSharpGeneratorAddition2;
-  ((CSharpGeneratorAddition3) => {
-    CSharpGeneratorAddition3["Timezone"] = "Timezone";
-    CSharpGeneratorAddition3["RecordStruct"] = "RecordStruct";
-    CSharpGeneratorAddition3["PrimaryConstructor"] = "PrimaryConstructor";
-    CSharpGeneratorAddition3["CommandHandlerInterface"] = "CommandHandlerInterface";
-    CSharpGeneratorAddition3["AggInterface"] = "AggInterface";
-  })(CSharpGeneratorAddition2 = csharp2.CSharpGeneratorAddition || (csharp2.CSharpGeneratorAddition = {}));
-})(csharp || (csharp = {}));
-var go;
-((go3) => {
-  let GoGeneratorAddition;
-  ((GoGeneratorAddition2) => {
-    GoGeneratorAddition2["SinglePackageEachDesigner"] = "SinglePackageEachDesigner";
-  })(GoGeneratorAddition = go3.GoGeneratorAddition || (go3.GoGeneratorAddition = {}));
-})(go || (go = {}));
-
-// ../generator/lib/common.ts
-var strUtil;
-((strUtil2) => {
-  function stringToUpperCamel(str) {
-    return str.trim().split(str.includes("_") || str.includes("-") || str.includes(" ") ? /_|\s|-/ : /(?=[A-Z])/g).map((s) => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1)).join("");
+var be;
+((e) => {
+  ((n2) => {
+    n2.Lombok = "Lombok", n2.LombokBuilder = "LombokBuilder", n2.RecordValueObject = "RecordValueObject", n2.CommandHandler = "CommandHandler", n2.Jpa = "Jpa", n2.Timezone = "Timezone", n2.SpringFramework = "SpringFramework";
+  })(e.JavaGeneratorAddition || (e.JavaGeneratorAddition = {})), ((n2) => {
+    n2.TABLE = "TABLE", n2.SEQUENCE = "SEQUENCE", n2.IDENTITY = "IDENTITY", n2.UUID = "UUID", n2.AUTO = "AUTO";
+  })(e.IdGenStrategy || (e.IdGenStrategy = {}));
+})(be || (be = {}));
+var Ne;
+((e) => {
+  ((n2) => {
+    n2.ValueClass = "ValueClass", n2.CommandHandler = "CommandHandler", n2.Timezone = "Timezone";
+  })(e.KotlinGeneratorAddition || (e.KotlinGeneratorAddition = {}));
+})(Ne || (Ne = {}));
+var we;
+((e) => {
+  ((n2) => {
+    n2.Timezone = "Timezone", n2.RecordStruct = "RecordStruct", n2.PrimaryConstructor = "PrimaryConstructor", n2.CommandHandlerInterface = "CommandHandlerInterface", n2.AggInterface = "AggInterface";
+  })(e.CSharpGeneratorAddition || (e.CSharpGeneratorAddition = {}));
+})(we || (we = {}));
+var We;
+((e) => {
+  ((n2) => {
+    n2.SinglePackageEachDesigner = "SinglePackageEachDesigner";
+  })(e.GoGeneratorAddition || (e.GoGeneratorAddition = {}));
+})(We || (We = {}));
+var Io = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  CodeFile: A3,
+  Language: Un,
+  get csharp() {
+    return we;
+  },
+  get go() {
+    return We;
+  },
+  isStruct: Ao,
+  get java() {
+    return be;
+  },
+  get kotlin() {
+    return Ne;
   }
-  strUtil2.stringToUpperCamel = stringToUpperCamel;
-  function stringToLowerCamel(str) {
-    let first = true;
-    return str.trim().split(str.includes("_") || str.includes("-") || str.includes(" ") ? /_|\s|-/ : /(?=[A-Z])/g).map((s) => {
-      if (first) {
-        first = false;
-        return s.toLowerCase();
-      }
-      return s.charAt(0).toUpperCase() + s.toLowerCase().slice(1);
-    }).join("");
+}, Symbol.toStringTag, { value: "Module" }));
+var w;
+((e) => {
+  function n2(f2) {
+    return f2.trim().split(f2.includes("_") || f2.includes("-") || f2.includes(" ") ? /_|\s|-/ : /(?=[A-Z])/g).map((u2) => u2.charAt(0).toUpperCase() + u2.toLowerCase().slice(1)).join("");
   }
-  strUtil2.stringToLowerCamel = stringToLowerCamel;
-  function stringToLowerSnake(str) {
-    str = str.trim();
-    if (str.includes("_")) {
-      return str.toLowerCase();
-    }
-    if (str.includes(" ") || str.includes("-")) {
-      return str.split(/\s|-/).join("_").toLowerCase();
-    }
-    return camelToLowerSnake(str);
+  e.stringToUpperCamel = n2;
+  function t2(f2) {
+    let u2 = true;
+    return f2.trim().split(f2.includes("_") || f2.includes("-") || f2.includes(" ") ? /_|\s|-/ : /(?=[A-Z])/g).map((a) => u2 ? (u2 = false, a.toLowerCase()) : a.charAt(0).toUpperCase() + a.toLowerCase().slice(1)).join("");
   }
-  strUtil2.stringToLowerSnake = stringToLowerSnake;
-  function camelToUpperSnake(str) {
-    return str.trim().split(/(?=[A-Z])/g).join("_").toUpperCase();
+  e.stringToLowerCamel = t2;
+  function s(f2) {
+    return f2 = f2.trim(), f2.includes("_") ? f2.toLowerCase() : f2.includes(" ") || f2.includes("-") ? f2.split(/\s|-/).join("_").toLowerCase() : r(f2);
   }
-  strUtil2.camelToUpperSnake = camelToUpperSnake;
-  function camelToLowerSnake(str) {
-    return str.trim().split(/(?=[A-Z])/g).join("_").toLowerCase();
+  e.stringToLowerSnake = s;
+  function o(f2) {
+    return f2.trim().split(/(?=[A-Z])/g).join("_").toUpperCase();
   }
-  strUtil2.camelToLowerSnake = camelToLowerSnake;
-  function snakeToUpperCamel(str) {
-    return str.trim().split("_").map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join("");
+  e.camelToUpperSnake = o;
+  function r(f2) {
+    return f2.trim().split(/(?=[A-Z])/g).join("_").toLowerCase();
   }
-  strUtil2.snakeToUpperCamel = snakeToUpperCamel;
-  function lowerFirst(str) {
-    return str.trim().charAt(0).toLowerCase() + str.slice(1);
+  e.camelToLowerSnake = r;
+  function i(f2) {
+    return f2.trim().split("_").map((u2) => u2.charAt(0).toUpperCase() + u2.slice(1)).join("");
   }
-  strUtil2.lowerFirst = lowerFirst;
-  function upperFirst(str) {
-    return str.trim().charAt(0).toUpperCase() + str.slice(1);
+  e.snakeToUpperCamel = i;
+  function m(f2) {
+    return f2.trim().charAt(0).toLowerCase() + f2.slice(1);
   }
-  strUtil2.upperFirst = upperFirst;
-})(strUtil || (strUtil = {}));
-
-// ../generator/lib/domain-plugin/generator-java-plugin.ts
-var JavaGeneratorAddition = java.JavaGeneratorAddition;
-var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() => {
-  const VALUE_PACKAGE = "value";
-  const COMMAND_PACKAGE = "command";
-  const EVENT_PACKAGE = "event";
-  function getDomainObjectName(info) {
-    return strUtil.stringToUpperCamel(info._attributes.name);
+  e.lowerFirst = m;
+  function _(f2) {
+    return f2.trim().charAt(0).toUpperCase() + f2.slice(1);
+  }
+  e.upperFirst = _;
+})(w || (w = {}));
+var j2 = be.JavaGeneratorAddition;
+var ko = le2.createHotSwapPlugin(() => {
+  const e = "value", n2 = "command", t2 = "event";
+  function s(o) {
+    return w.stringToUpperCamel(o._attributes.name);
   }
   return {
-    unmount({ api }) {
-      api.commands.clearCaches();
-      api.commands._setCommandCodeProvider(() => []);
-      api.commands._setFacadeCommandCodeProvider(() => []);
-      api.commands._setAggCodeProvider(() => []);
-      api.commands._setEventCodeProvider(() => []);
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => []);
-      api.commands.setContext({});
+    unmount({ api: o }) {
+      o.commands.clearCaches(), o.commands._setCommandCodeProvider(() => []), o.commands._setFacadeCommandCodeProvider(() => []), o.commands._setAggCodeProvider(() => []), o.commands._setEventCodeProvider(() => []), o.commands._setReadModelCodeProvider(() => []), o.commands._setCodeFileProvider(() => []), o.commands.setContext({});
     },
-    mount({ api }) {
-      const context = api.states.context;
-      const ignoredValueObjects = api.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s));
-      function isValueObject(info) {
-        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name));
+    mount({ api: o }) {
+      const r = o.states.context, i = o.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((a) => w.stringToLowerCamel(a));
+      function m(a) {
+        return !i.includes(w.stringToLowerCamel(a._attributes.name));
       }
-      function inferObjectValueTypeByInfo(imports, obj) {
-        if (isValueObject(obj)) {
-          const infoName = getDomainObjectName(obj);
-          imports.add(`${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}.${infoName}`);
-          return infoName;
+      function _(a, p) {
+        if (m(p)) {
+          const g2 = s(p);
+          return a.add(`${r.value.namespace}.${r.value.moduleName}.${e}.${g2}`), g2;
         }
-        return inferJavaTypeByName(imports, obj);
+        return u2(a, p);
       }
-      function importInfos(imports, infos) {
-        for (const info of infos) {
-          if (!isValueObject(info)) {
-            inferJavaTypeByName(imports, info);
+      function f2(a, p) {
+        for (const g2 of p) {
+          if (!m(g2)) {
+            u2(a, g2);
             continue;
           }
-          imports.add(
-            `${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}.${getDomainObjectName(info)}`
+          a.add(
+            `${r.value.namespace}.${r.value.moduleName}.${e}.${s(g2)}`
           );
         }
       }
-      function inferJavaTypeByName(imports, obj) {
-        const additions = context.value.additions;
-        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, " ");
-        if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
-          if (additions.has(JavaGeneratorAddition.Timezone)) {
-            imports.add("java.time.OffsetDateTime");
-            return "OffsetDateTime";
-          } else {
-            imports.add("java.time.LocalDateTime");
-            return "LocalDateTime";
-          }
-        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
-          return "Integer";
-        } else if (/\b(price)$/.test(name)) {
-          imports.add("java.math.BigDecimal");
-          return "BigDecimal";
-        } else if (/^(if|is)\b/.test(name)) {
-          return "Boolean";
-        }
-        if (Ln(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
-          return "Long";
-        }
-        return "String";
+      function u2(a, p) {
+        const g2 = r.value.additions, b2 = w.stringToLowerSnake(p._attributes.name).replace(/_/, " ");
+        return /\b(time|timestamp|date|deadline|expire)\b/.test(b2) ? g2.has(j2.Timezone) ? (a.add("java.time.OffsetDateTime"), "OffsetDateTime") : (a.add("java.time.LocalDateTime"), "LocalDateTime") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(b2) ? "Integer" : /\b(price)$/.test(b2) ? (a.add("java.math.BigDecimal"), "BigDecimal") : /^(if|is)\b/.test(b2) ? "Boolean" : je(p) && (p._attributes.type === "Id" || p._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(b2)) ? "Long" : "String";
       }
-      api.commands._setInfoCodeProvider(
-        (info) => {
-          const imports = /* @__PURE__ */ new Set();
-          imports.add(context.value.nonNullAnnotation);
-          const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
-          const className = getDomainObjectName(info);
-          const additions = context.value.additions;
-          const code = [];
-          if (additions.has(JavaGeneratorAddition.RecordValueObject)) {
-            if (additions.has(JavaGeneratorAddition.Jpa)) {
-              imports.add(
-                context.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
-              );
-              code.push("@Embeddable");
-            }
-            code.push(`public record ${className}(@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`);
-            code.push(`    public ${className} {`);
-            code.push(`        // HACK check value`);
-            code.push(`    }`);
-            code.push(`}`);
-          } else if (additions.has(JavaGeneratorAddition.Lombok)) {
-            code.push(`@lombok.Getter`);
-            if (additions.has(JavaGeneratorAddition.Jpa)) {
-              imports.add(
-                context.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
-              );
-              code.push("@Embeddable");
-            }
-            code.push(`public class ${className} {`);
-            code.push(`    private final ${inferJavaTypeByName(imports, info)} value;`);
-            code.push(``);
-            code.push(`    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`);
-            code.push(`        // HACK check value`);
-            code.push(`        this.value = value;`);
-            code.push(`    }`);
-            code.push(`}`);
-          } else {
-            if (additions.has(JavaGeneratorAddition.Jpa)) {
-              imports.add(
-                context.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
-              );
-              code.push("@Embeddable");
-            }
-            code.push(`public class ${getDomainObjectName(info)} {`);
-            code.push(`    private final ${inferJavaTypeByName(imports, info)} value;`);
-            code.push(``);
-            code.push(`    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`);
-            code.push(`        // HACK check value`);
-            code.push(`        this.value = value;`);
-            code.push(`    }`);
-            code.push(``);
-            code.push(`    public ${inferJavaTypeByName(imports, info)} getValue() {`);
-            code.push(`        return this.value;`);
-            code.push(`    }`);
-            code.push(`}`);
-          }
-          return [
+      o.commands._setInfoCodeProvider(
+        (a) => {
+          const p = /* @__PURE__ */ new Set();
+          p.add(r.value.nonNullAnnotation);
+          const g2 = r.value.nonNullAnnotation.split(".").pop(), b2 = s(a), C = r.value.additions, l = [];
+          return C.has(j2.RecordValueObject) ? (C.has(j2.Jpa) && (p.add(
+            r.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
+          ), l.push("@Embeddable")), l.push(`public record ${b2}(@${g2} ${u2(p, a)} value) {`), l.push(`    public ${b2} {`), l.push("        // HACK check value"), l.push("    }"), l.push("}")) : C.has(j2.Lombok) ? (l.push("@lombok.Getter"), C.has(j2.Jpa) && (p.add(
+            r.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
+          ), l.push("@Embeddable")), l.push(`public class ${b2} {`), l.push(`    private final ${u2(p, a)} value;`), l.push(""), l.push(`    public ${b2} (@${g2} ${u2(p, a)} value) {`), l.push("        // HACK check value"), l.push("        this.value = value;"), l.push("    }"), l.push("}")) : (C.has(j2.Jpa) && (p.add(
+            r.value.jdkVersion === "8" ? "javax.persistence.Embeddable" : "jakarta.persistence.Embeddable"
+          ), l.push("@Embeddable")), l.push(`public class ${s(a)} {`), l.push(`    private final ${u2(p, a)} value;`), l.push(""), l.push(`    public ${b2} (@${g2} ${u2(p, a)} value) {`), l.push("        // HACK check value"), l.push("        this.value = value;"), l.push("    }"), l.push(""), l.push(`    public ${u2(p, a)} getValue() {`), l.push("        return this.value;"), l.push("    }"), l.push("}")), [
             {
               type: "Info",
-              imports,
-              content: code.join("\n")
+              imports: p,
+              content: l.join(`
+`)
             }
           ];
         }
-      );
-      api.commands._setCommandCodeProvider(
-        (cmd) => {
-          const codeSnippets = [];
-          const additions = context.value.additions;
-          const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
+      ), o.commands._setCommandCodeProvider(
+        (a) => {
+          const p = [], g2 = r.value.additions, b2 = r.value.nonNullAnnotation.split(".").pop();
           {
-            const imports = /* @__PURE__ */ new Set();
-            imports.add(context.value.nonNullAnnotation);
-            const className = getDomainObjectName(cmd);
-            const code = [];
-            const infos = Object.values(cmd.inner);
-            importInfos(imports, infos);
-            if (additions.has(JavaGeneratorAddition.RecordValueObject)) {
-              if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-                code.push(`@lombok.Builder(toBuilder = true)`);
-              }
-              code.push(`public record ${className}(`);
-              const infoCode = [];
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                infoCode.push(
-                  `        @${nonNullAnnotation}
-        ${inferObjectValueTypeByInfo(
-                    imports,
-                    info
-                  )} ${strUtil.lowerFirst(infoName)}`
+            const C = /* @__PURE__ */ new Set();
+            C.add(r.value.nonNullAnnotation);
+            const l = s(a), $2 = [], v2 = Object.values(a.inner);
+            if (f2(C, v2), g2.has(j2.RecordValueObject)) {
+              g2.has(j2.LombokBuilder) && $2.push("@lombok.Builder(toBuilder = true)"), $2.push(`public record ${l}(`);
+              const d = [];
+              for (const N2 of v2) {
+                const c = s(N2);
+                d.push(
+                  `        @${b2}
+        ${_(
+                    C,
+                    N2
+                  )} ${w.lowerFirst(c)}`
                 );
               }
-              code.push(infoCode.join(",\n"));
-              code.push(`) {`);
-              code.push(`    public ${className} {`);
-              code.push(`        // HACK check value`);
-              code.push(`    }`);
-              code.push(`}`);
-            } else if (additions.has(JavaGeneratorAddition.Lombok)) {
-              code.push(`@lombok.AllArgsConstructor`);
-              code.push(`@lombok.Getter`);
-              if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-                code.push(`@lombok.Builder(toBuilder = true)`);
-              }
-              code.push(`public class ${className} {`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(`    @${nonNullAnnotation}`);
-                code.push(
-                  `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+              $2.push(d.join(`,
+`)), $2.push(") {"), $2.push(`    public ${l} {`), $2.push("        // HACK check value"), $2.push("    }"), $2.push("}");
+            } else if (g2.has(j2.Lombok)) {
+              $2.push("@lombok.AllArgsConstructor"), $2.push("@lombok.Getter"), g2.has(j2.LombokBuilder) && $2.push("@lombok.Builder(toBuilder = true)"), $2.push(`public class ${l} {`);
+              for (const d of v2) {
+                const N2 = s(d);
+                $2.push(`    @${b2}`), $2.push(
+                  `    private final ${_(C, d)} ${w.lowerFirst(N2)};`
                 );
               }
-              code.push(`}`);
+              $2.push("}");
             } else {
-              code.push(`public class ${className} {`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(`    @${nonNullAnnotation}`);
-                code.push(
-                  `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+              $2.push(`public class ${l} {`);
+              for (const c of v2) {
+                const h2 = s(c);
+                $2.push(`    @${b2}`), $2.push(
+                  `    private final ${_(C, c)} ${w.lowerFirst(h2)};`
                 );
               }
-              code.push(``);
-              const argsCode = [];
-              const argsStatementCode = [];
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                argsCode.push(
-                  `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
-                );
-                argsStatementCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+              $2.push("");
+              const d = [], N2 = [];
+              for (const c of v2) {
+                const h2 = s(c);
+                d.push(
+                  `@${b2} ${u2(C, c)} ${w.lowerFirst(h2)}`
+                ), N2.push(`this.${w.lowerFirst(h2)} = ${w.lowerFirst(h2)};`);
               }
-              code.push(`    public ${className}(${argsCode.join(", ")}) {`);
-              code.push(`        ${argsStatementCode.join("\n        ")}`);
-              code.push(`    }`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(``);
-                code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`);
-                code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
-                code.push(`    }`);
+              $2.push(`    public ${l}(${d.join(", ")}) {`), $2.push(`        ${N2.join(`
+        `)}`), $2.push("    }");
+              for (const c of v2) {
+                const h2 = s(c);
+                $2.push(""), $2.push(`    public ${_(C, c)} get${h2} () {`), $2.push(`        return this.${w.lowerFirst(h2)};`), $2.push("    }");
               }
-              code.push(`}`);
+              $2.push("}");
             }
-            codeSnippets.push({
+            p.push({
               type: "Command",
-              imports,
-              content: code.join("\n")
+              imports: C,
+              content: $2.join(`
+`)
             });
           }
-          if (!additions.has(JavaGeneratorAddition.CommandHandler)) {
-            return codeSnippets;
-          }
+          if (!g2.has(j2.CommandHandler))
+            return p;
           {
-            const imports = /* @__PURE__ */ new Set();
-            imports.add(context.value.nonNullAnnotation);
-            const className = getDomainObjectName(cmd);
-            const code = [];
-            if (additions.has(JavaGeneratorAddition.SpringFramework)) {
-              imports.add("org.springframework.stereotype.Component");
-              code.push(`@Component`);
-            }
-            if (additions.has(JavaGeneratorAddition.Lombok)) {
-              code.push(`@lombok.RequiredArgsConstructor`);
-            }
-            code.push(`public class ${className}Handler {`);
-            const aggs = [...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]].filter(
-              (agg5) => agg5._attributes.rule === "Agg"
+            const C = /* @__PURE__ */ new Set();
+            C.add(r.value.nonNullAnnotation);
+            const l = s(a), $2 = [];
+            g2.has(j2.SpringFramework) && (C.add("org.springframework.stereotype.Component"), $2.push("@Component")), g2.has(j2.Lombok) && $2.push("@lombok.RequiredArgsConstructor"), $2.push(`public class ${l}Handler {`);
+            const v2 = [...o.states.designer.value._getContext().getAssociationMap()[a._attributes.__id]].filter(
+              (d) => d._attributes.rule === "Agg"
             );
-            for (const agg5 of aggs) {
-              imports.add(`${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`);
-              code.push(`    public ${getDomainObjectName(agg5)} handle(@${nonNullAnnotation} ${className} command) {`);
-              code.push(`        // HACK Implement`);
-              code.push(`    }`);
-            }
-            code.push(`}`);
-            codeSnippets.push({
+            for (const d of v2)
+              C.add(`${r.value.namespace}.${r.value.moduleName}.${s(d)}`), $2.push(`    public ${s(d)} handle(@${b2} ${l} command) {`), $2.push("        // HACK Implement"), $2.push("    }");
+            $2.push("}"), p.push({
               type: "CommandHandler",
-              imports,
-              content: code.join("\n")
+              imports: C,
+              content: $2.join(`
+`)
             });
           }
-          return codeSnippets;
+          return p;
         }
-      );
-      api.commands._setFacadeCommandCodeProvider((cmd) => {
-        const codeSnippets = [];
-        const additions = context.value.additions;
-        const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
+      ), o.commands._setFacadeCommandCodeProvider((a) => {
+        const p = [], g2 = r.value.additions, b2 = r.value.nonNullAnnotation.split(".").pop();
         {
-          const imports = /* @__PURE__ */ new Set();
-          imports.add(context.value.nonNullAnnotation);
-          const className = getDomainObjectName(cmd);
-          const code = [];
-          const infos = Object.values(cmd.inner);
-          importInfos(imports, infos);
-          if (additions.has(JavaGeneratorAddition.RecordValueObject)) {
-            if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-              code.push(`@lombok.Builder(toBuilder = true)`);
-            }
-            code.push(`public record ${className}(`);
-            const infoCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              infoCode.push(
-                `        @${nonNullAnnotation}
-        ${inferObjectValueTypeByInfo(
-                  imports,
-                  info
-                )} ${strUtil.lowerFirst(infoName)}`
+          const C = /* @__PURE__ */ new Set();
+          C.add(r.value.nonNullAnnotation);
+          const l = s(a), $2 = [], v2 = Object.values(a.inner);
+          if (f2(C, v2), g2.has(j2.RecordValueObject)) {
+            g2.has(j2.LombokBuilder) && $2.push("@lombok.Builder(toBuilder = true)"), $2.push(`public record ${l}(`);
+            const d = [];
+            for (const N2 of v2) {
+              const c = s(N2);
+              d.push(
+                `        @${b2}
+        ${_(
+                  C,
+                  N2
+                )} ${w.lowerFirst(c)}`
               );
             }
-            code.push(infoCode.join(",\n"));
-            code.push(`) {`);
-            code.push(`    public ${className} {`);
-            code.push(`        // HACK check value`);
-            code.push(`    }`);
-            code.push(`}`);
-          } else if (additions.has(JavaGeneratorAddition.Lombok)) {
-            code.push(`@lombok.AllArgsConstructor`);
-            code.push(`@lombok.Getter`);
-            if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-              code.push(`@lombok.Builder(toBuilder = true)`);
-            }
-            code.push(`public class ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    @${nonNullAnnotation}`);
-              code.push(
-                `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+            $2.push(d.join(`,
+`)), $2.push(") {"), $2.push(`    public ${l} {`), $2.push("        // HACK check value"), $2.push("    }"), $2.push("}");
+          } else if (g2.has(j2.Lombok)) {
+            $2.push("@lombok.AllArgsConstructor"), $2.push("@lombok.Getter"), g2.has(j2.LombokBuilder) && $2.push("@lombok.Builder(toBuilder = true)"), $2.push(`public class ${l} {`);
+            for (const d of v2) {
+              const N2 = s(d);
+              $2.push(`    @${b2}`), $2.push(
+                `    private final ${_(C, d)} ${w.lowerFirst(N2)};`
               );
             }
-            code.push(`}`);
+            $2.push("}");
           } else {
-            code.push(`public class ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    @${nonNullAnnotation}`);
-              code.push(
-                `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+            $2.push(`public class ${l} {`);
+            for (const c of v2) {
+              const h2 = s(c);
+              $2.push(`    @${b2}`), $2.push(
+                `    private final ${_(C, c)} ${w.lowerFirst(h2)};`
               );
             }
-            code.push(``);
-            const argsCode = [];
-            const argsStatementCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              argsCode.push(
-                `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
-              );
-              argsStatementCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+            $2.push("");
+            const d = [], N2 = [];
+            for (const c of v2) {
+              const h2 = s(c);
+              d.push(
+                `@${b2} ${u2(C, c)} ${w.lowerFirst(h2)}`
+              ), N2.push(`this.${w.lowerFirst(h2)} = ${w.lowerFirst(h2)};`);
             }
-            code.push(`    public ${className}(${argsCode.join(", ")}) {`);
-            code.push(`        ${argsStatementCode.join("\n        ")}`);
-            code.push(`    }`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(``);
-              code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`);
-              code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
-              code.push(`    }`);
+            $2.push(`    public ${l}(${d.join(", ")}) {`), $2.push(`        ${N2.join(`
+        `)}`), $2.push("    }");
+            for (const c of v2) {
+              const h2 = s(c);
+              $2.push(""), $2.push(`    public ${_(C, c)} get${h2} () {`), $2.push(`        return this.${w.lowerFirst(h2)};`), $2.push("    }");
             }
-            code.push(`}`);
+            $2.push("}");
           }
-          codeSnippets.push({
+          p.push({
             type: "FacadeCommand",
-            imports,
-            content: code.join("\n")
+            imports: C,
+            content: $2.join(`
+`)
           });
         }
-        if (!additions.has(JavaGeneratorAddition.CommandHandler)) {
-          return codeSnippets;
-        }
+        if (!g2.has(j2.CommandHandler))
+          return p;
         {
-          const imports = /* @__PURE__ */ new Set();
-          imports.add(context.value.nonNullAnnotation);
-          const className = getDomainObjectName(cmd);
-          const code = [];
-          if (additions.has(JavaGeneratorAddition.SpringFramework)) {
-            imports.add("org.springframework.stereotype.Component");
-            code.push(`@Component`);
-          }
-          if (additions.has(JavaGeneratorAddition.Lombok)) {
-            code.push(`@lombok.RequiredArgsConstructor`);
-          }
-          code.push(`public class ${className}Handler {`);
-          const aggs = [...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]].filter(
-            (agg5) => agg5._attributes.rule === "Agg"
+          const C = /* @__PURE__ */ new Set();
+          C.add(r.value.nonNullAnnotation);
+          const l = s(a), $2 = [];
+          g2.has(j2.SpringFramework) && (C.add("org.springframework.stereotype.Component"), $2.push("@Component")), g2.has(j2.Lombok) && $2.push("@lombok.RequiredArgsConstructor"), $2.push(`public class ${l}Handler {`);
+          const v2 = [...o.states.designer.value._getContext().getAssociationMap()[a._attributes.__id]].filter(
+            (d) => d._attributes.rule === "Agg"
           );
-          for (const agg5 of aggs) {
-            imports.add(`${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`);
-            code.push(`    public ${getDomainObjectName(agg5)} handle(@${nonNullAnnotation} ${className} command) {`);
-            code.push(`        // HACK Implement`);
-            code.push(`    }`);
-          }
-          code.push(`}`);
-          codeSnippets.push({
+          for (const d of v2)
+            C.add(`${r.value.namespace}.${r.value.moduleName}.${s(d)}`), $2.push(`    public ${s(d)} handle(@${b2} ${l} command) {`), $2.push("        // HACK Implement"), $2.push("    }");
+          $2.push("}"), p.push({
             type: "FacadeCommandHandler",
-            imports,
-            content: code.join("\n")
+            imports: C,
+            content: $2.join(`
+`)
           });
         }
-        return codeSnippets;
-      });
-      api.commands._setAggCodeProvider(
-        (agg5) => {
-          const additions = context.value.additions;
-          const designer = api.states.designer.value;
-          const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
-          const className = getDomainObjectName(agg5);
-          const codeSnippets = [];
-          const infos = Object.values(agg5.inner);
+        return p;
+      }), o.commands._setAggCodeProvider(
+        (a) => {
+          const p = r.value.additions, g2 = o.states.designer.value, b2 = r.value.nonNullAnnotation.split(".").pop(), C = s(a), l = [], $2 = Object.values(a.inner);
           {
-            const imports = /* @__PURE__ */ new Set();
-            imports.add(context.value.nonNullAnnotation);
-            const code = [];
-            code.push(`public interface ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}();`);
-              code.push("");
+            const v2 = /* @__PURE__ */ new Set();
+            v2.add(r.value.nonNullAnnotation);
+            const d = [];
+            d.push(`public interface ${C} {`);
+            for (const c of $2) {
+              const h2 = s(c);
+              d.push(`    public ${_(v2, c)} get${h2}();`), d.push("");
             }
-            const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-              return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-            });
-            for (const command of commands) {
-              const commandName = getDomainObjectName(command);
-              imports.add(`${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`);
-              code.push(`    public void handle${commandName}(@${nonNullAnnotation} ${commandName} command);`);
-              code.push("");
+            const N2 = [...g2._getContext().getAssociationMap()[a._attributes.__id]].filter((c) => c._attributes.rule === "Command" || c._attributes.rule === "FacadeCommand");
+            for (const c of N2) {
+              const h2 = s(c);
+              v2.add(`${r.value.namespace}.${r.value.moduleName}.${n2}.${h2}`), d.push(`    public void handle${h2}(@${b2} ${h2} command);`), d.push("");
             }
-            code.push(`}`);
-            codeSnippets.push({
+            d.push("}"), l.push({
               type: "Agg",
-              imports,
-              content: code.join("\n")
+              imports: v2,
+              content: d.join(`
+`)
             });
           }
           {
-            const imports = /* @__PURE__ */ new Set();
-            imports.add(context.value.nonNullAnnotation);
-            const code = [];
-            importInfos(imports, infos);
-            if (additions.has(JavaGeneratorAddition.Lombok)) {
-              code.push(
-                additions.has(JavaGeneratorAddition.Jpa) ? "@lombok.NoArgsConstructor" : "@lombok.AllArgsConstructor"
-              );
-              code.push(`@lombok.Getter`);
-              if (additions.has(JavaGeneratorAddition.Jpa)) {
-                imports.add(
-                  context.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
-                );
-                code.push("@Entity");
-                imports.add(context.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table");
-                code.push(`@Table(name = "${strUtil.camelToLowerSnake(className)}")`);
+            const v2 = /* @__PURE__ */ new Set();
+            v2.add(r.value.nonNullAnnotation);
+            const d = [];
+            if (f2(v2, $2), p.has(j2.Lombok)) {
+              d.push(
+                p.has(j2.Jpa) ? "@lombok.NoArgsConstructor" : "@lombok.AllArgsConstructor"
+              ), d.push("@lombok.Getter"), p.has(j2.Jpa) && (v2.add(
+                r.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
+              ), d.push("@Entity"), v2.add(r.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table"), d.push(`@Table(name = "${w.camelToLowerSnake(C)}")`)), d.push(`public class ${C}Impl implements ${C} {`);
+              for (const c of $2) {
+                const h2 = s(c);
+                d.push(`    @${b2}`), p.has(j2.Jpa) && (c._attributes.type === "Id" ? (v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.EmbeddedId" : "jakarta.persistence.EmbeddedId"
+                ), d.push("    @EmbeddedId"), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
+                ), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), d.push(
+                  `    @AttributeOverride(name = "value", column = @Column(name = "${w.camelToLowerSnake(
+                    h2
+                  )}", updatable = false))`
+                )) : m(c) ? (v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Embedded" : "jakarta.persistence.Embedded"
+                ), d.push("    @Embedded"), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
+                ), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), d.push(
+                  `    @AttributeOverride(name = "value", column = @Column(name = "${w.camelToLowerSnake(
+                    h2
+                  )}"))`
+                )) : (v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), d.push(`    @Column(name = "${w.camelToLowerSnake(h2)}")`))), d.push(`    private ${_(v2, c)} ${w.lowerFirst(h2)};`);
               }
-              code.push(`public class ${className}Impl implements ${className} {`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(`    @${nonNullAnnotation}`);
-                if (additions.has(JavaGeneratorAddition.Jpa)) {
-                  if (info._attributes.type === "Id") {
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.EmbeddedId" : "jakarta.persistence.EmbeddedId"
-                    );
-                    code.push(`    @EmbeddedId`);
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
-                    );
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
-                    );
-                    code.push(
-                      `    @AttributeOverride(name = "value", column = @Column(name = "${strUtil.camelToLowerSnake(
-                        infoName
-                      )}", updatable = false))`
-                    );
-                  } else if (isValueObject(info)) {
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Embedded" : "jakarta.persistence.Embedded"
-                    );
-                    code.push(`    @Embedded`);
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
-                    );
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
-                    );
-                    code.push(
-                      `    @AttributeOverride(name = "value", column = @Column(name = "${strUtil.camelToLowerSnake(
-                        infoName
-                      )}"))`
-                    );
-                  } else {
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
-                    );
-                    code.push(`    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`);
-                  }
-                }
-                code.push(`    private ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`);
-              }
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-                return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-              });
-              for (const command of commands) {
-                const commandName = getDomainObjectName(command);
-                imports.add(`${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`);
-                code.push(``);
-                code.push(
-                  `    public void handle${commandName}(@${nonNullAnnotation} ${commandName} ${strUtil.lowerFirst(
-                    commandName
+              const N2 = [...g2._getContext().getAssociationMap()[a._attributes.__id]].filter((c) => c._attributes.rule === "Command" || c._attributes.rule === "FacadeCommand");
+              for (const c of N2) {
+                const h2 = s(c);
+                v2.add(`${r.value.namespace}.${r.value.moduleName}.${n2}.${h2}`), d.push(""), d.push(
+                  `    public void handle${h2}(@${b2} ${h2} ${w.lowerFirst(
+                    h2
                   )}) {`
-                );
-                code.push(`        // HACK need implement`);
-                code.push(`    }`);
+                ), d.push("        // HACK need implement"), d.push("    }");
               }
-              code.push(`}`);
+              d.push("}");
             } else {
-              if (additions.has(JavaGeneratorAddition.Jpa)) {
-                imports.add(
-                  context.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
-                );
-                code.push("@Entity");
-                imports.add(context.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table");
-                code.push(`@Table(name = "${strUtil.camelToLowerSnake(className)}")`);
+              p.has(j2.Jpa) && (v2.add(
+                r.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
+              ), d.push("@Entity"), v2.add(r.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table"), d.push(`@Table(name = "${w.camelToLowerSnake(C)}")`)), d.push(`public class ${C}Impl implements ${C} {`);
+              for (const y2 of $2) {
+                const O2 = s(y2);
+                d.push(`    @${b2}`), p.has(j2.Jpa) && (y2._attributes.type === "Id" ? (v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.EmbeddedId" : "jakarta.persistence.EmbeddedId"
+                ), d.push("    @EmbeddedId"), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
+                ), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), d.push(
+                  `    @AttributeOverride(name = "value", column = @Column(name = "${w.camelToLowerSnake(
+                    O2
+                  )}", updatable = false))`
+                )) : m(y2) ? (v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Embedded" : "jakarta.persistence.Embedded"
+                ), d.push("    @Embedded"), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
+                ), v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), d.push(
+                  `    @AttributeOverride(name = "value", column = @Column(name = "${w.camelToLowerSnake(
+                    O2
+                  )}"))`
+                )) : (v2.add(
+                  r.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
+                ), d.push(`    @Column(name = "${w.camelToLowerSnake(O2)}")`))), d.push(`    private ${_(v2, y2)} ${w.lowerFirst(O2)};`);
               }
-              code.push(`public class ${className}Impl implements ${className} {`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(`    @${nonNullAnnotation}`);
-                if (additions.has(JavaGeneratorAddition.Jpa)) {
-                  if (info._attributes.type === "Id") {
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.EmbeddedId" : "jakarta.persistence.EmbeddedId"
-                    );
-                    code.push(`    @EmbeddedId`);
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
-                    );
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
-                    );
-                    code.push(
-                      `    @AttributeOverride(name = "value", column = @Column(name = "${strUtil.camelToLowerSnake(
-                        infoName
-                      )}", updatable = false))`
-                    );
-                  } else if (isValueObject(info)) {
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Embedded" : "jakarta.persistence.Embedded"
-                    );
-                    code.push(`    @Embedded`);
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.AttributeOverride" : "jakarta.persistence.AttributeOverride"
-                    );
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
-                    );
-                    code.push(
-                      `    @AttributeOverride(name = "value", column = @Column(name = "${strUtil.camelToLowerSnake(
-                        infoName
-                      )}"))`
-                    );
-                  } else {
-                    imports.add(
-                      context.value.jdkVersion === "8" ? "javax.persistence.Column" : "jakarta.persistence.Column"
-                    );
-                    code.push(`    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`);
-                  }
-                }
-                code.push(`    private ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`);
-              }
-              code.push(``);
-              const argsCode = [];
-              const initArgsCode = [];
-              for (const info of infos) {
-                if (additions.has(JavaGeneratorAddition.Jpa)) {
+              d.push("");
+              const N2 = [], c = [];
+              for (const y2 of $2) {
+                if (p.has(j2.Jpa))
                   break;
-                }
-                const infoName = getDomainObjectName(info);
-                argsCode.push(
-                  `@${nonNullAnnotation} ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)}`
-                );
-                initArgsCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+                const O2 = s(y2);
+                N2.push(
+                  `@${b2} ${_(v2, y2)} ${w.lowerFirst(O2)}`
+                ), c.push(`this.${w.lowerFirst(O2)} = ${w.lowerFirst(O2)};`);
               }
-              code.push(`    public ${className}Impl(${argsCode.join(", ")}) {`);
-              code.push(`        ${initArgsCode.join("\n        ")}`);
-              code.push(`    }`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(``);
-                code.push(`    @${nonNullAnnotation}`);
-                code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}() {`);
-                code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
-                code.push(`    }`);
+              d.push(`    public ${C}Impl(${N2.join(", ")}) {`), d.push(`        ${c.join(`
+        `)}`), d.push("    }");
+              for (const y2 of $2) {
+                const O2 = s(y2);
+                d.push(""), d.push(`    @${b2}`), d.push(`    public ${_(v2, y2)} get${O2}() {`), d.push(`        return this.${w.lowerFirst(O2)};`), d.push("    }");
               }
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter(
-                (item) => item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand"
+              const h2 = [...g2._getContext().getAssociationMap()[a._attributes.__id]].filter(
+                (y2) => y2._attributes.rule === "Command" || y2._attributes.rule === "FacadeCommand"
               );
-              for (const command of commands) {
-                const commandName = getDomainObjectName(command);
-                imports.add(`${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`);
-                code.push(``);
-                code.push(
-                  `    public void handle${commandName}(@${nonNullAnnotation} ${commandName} ${strUtil.lowerFirst(
-                    commandName
+              for (const y2 of h2) {
+                const O2 = s(y2);
+                v2.add(`${r.value.namespace}.${r.value.moduleName}.${n2}.${O2}`), d.push(""), d.push(
+                  `    public void handle${O2}(@${b2} ${O2} ${w.lowerFirst(
+                    O2
                   )}) {`
-                );
-                code.push(`        // HACK need implement`);
-                code.push(`    }`);
+                ), d.push("        // HACK need implement"), d.push("    }");
               }
-              code.push(`}`);
+              d.push("}");
             }
-            codeSnippets.push({
+            l.push({
               type: "AggImpl",
-              imports,
-              content: code.join("\n")
+              imports: v2,
+              content: d.join(`
+`)
             });
           }
-          return codeSnippets;
+          return l;
         }
-      );
-      api.commands._setEventCodeProvider(
-        (event) => {
-          const imports = /* @__PURE__ */ new Set();
-          imports.add(context.value.nonNullAnnotation);
-          const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
-          const additions = context.value.additions;
-          const className = getDomainObjectName(event);
-          const code = [];
-          const infos = Object.values(event.inner);
-          importInfos(imports, infos);
-          if (additions.has(JavaGeneratorAddition.RecordValueObject)) {
-            if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-              code.push(`@lombok.Builder(toBuilder = true)`);
-            }
-            code.push(`public record ${className}(`);
-            const infoCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              infoCode.push(
-                `        @${nonNullAnnotation}
-        ${inferObjectValueTypeByInfo(
-                  imports,
-                  info
-                )} ${strUtil.lowerFirst(infoName)}`
+      ), o.commands._setEventCodeProvider(
+        (a) => {
+          const p = /* @__PURE__ */ new Set();
+          p.add(r.value.nonNullAnnotation);
+          const g2 = r.value.nonNullAnnotation.split(".").pop(), b2 = r.value.additions, C = s(a), l = [], $2 = Object.values(a.inner);
+          if (f2(p, $2), b2.has(j2.RecordValueObject)) {
+            b2.has(j2.LombokBuilder) && l.push("@lombok.Builder(toBuilder = true)"), l.push(`public record ${C}(`);
+            const v2 = [];
+            for (const d of $2) {
+              const N2 = s(d);
+              v2.push(
+                `        @${g2}
+        ${_(
+                  p,
+                  d
+                )} ${w.lowerFirst(N2)}`
               );
             }
-            code.push(infoCode.join(",\n"));
-            code.push(`) {`);
-            code.push(`    public ${className} {`);
-            code.push(`        // HACK check value`);
-            code.push(`    }`);
-            code.push(`}`);
-          } else if (additions.has(JavaGeneratorAddition.Lombok)) {
-            code.push(`@lombok.AllArgsConstructor`);
-            code.push(`@lombok.Getter`);
-            if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-              code.push(`@lombok.Builder(toBuilder = true)`);
-            }
-            code.push(`public class ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    @${nonNullAnnotation}`);
-              code.push(
-                `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+            l.push(v2.join(`,
+`)), l.push(") {"), l.push(`    public ${C} {`), l.push("        // HACK check value"), l.push("    }"), l.push("}");
+          } else if (b2.has(j2.Lombok)) {
+            l.push("@lombok.AllArgsConstructor"), l.push("@lombok.Getter"), b2.has(j2.LombokBuilder) && l.push("@lombok.Builder(toBuilder = true)"), l.push(`public class ${C} {`);
+            for (const v2 of $2) {
+              const d = s(v2);
+              l.push(`    @${g2}`), l.push(
+                `    private final ${_(p, v2)} ${w.lowerFirst(d)};`
               );
             }
-            code.push(`}`);
+            l.push("}");
           } else {
-            code.push(`public class ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    @${nonNullAnnotation}`);
-              code.push(`    private final ${infoName} ${strUtil.lowerFirst(infoName)};`);
+            l.push(`public class ${C} {`);
+            for (const N2 of $2) {
+              const c = s(N2);
+              l.push(`    @${g2}`), l.push(`    private final ${c} ${w.lowerFirst(c)};`);
             }
-            code.push(``);
-            const argsCode = [];
-            const initArgsCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              argsCode.push(
-                `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
-              );
-              initArgsCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+            l.push("");
+            const v2 = [], d = [];
+            for (const N2 of $2) {
+              const c = s(N2);
+              v2.push(
+                `@${g2} ${u2(p, N2)} ${w.lowerFirst(c)}`
+              ), d.push(`this.${w.lowerFirst(c)} = ${w.lowerFirst(c)};`);
             }
-            code.push(`    public ${className}(${argsCode.join(", ")}) {`);
-            code.push(`        ${initArgsCode.join("\n        ")}`);
-            code.push(`    }`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(``);
-              code.push(`    public ${infoName} get${infoName} () {`);
-              code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
-              code.push(`    }`);
+            l.push(`    public ${C}(${v2.join(", ")}) {`), l.push(`        ${d.join(`
+        `)}`), l.push("    }");
+            for (const N2 of $2) {
+              const c = s(N2);
+              l.push(""), l.push(`    public ${c} get${c} () {`), l.push(`        return this.${w.lowerFirst(c)};`), l.push("    }");
             }
-            code.push(`}`);
+            l.push("}");
           }
           return [
             {
               type: "Event",
-              imports,
-              content: code.join("\n")
+              imports: p,
+              content: l.join(`
+`)
             }
           ];
         }
-      );
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => {
-        const codeFiles = [];
-        const infoMap = {};
-        function genInfos(infos) {
-          for (const info of Object.values(infos)) {
-            if (!isValueObject(info)) {
+      ), o.commands._setReadModelCodeProvider(() => []), o.commands._setCodeFileProvider(() => {
+        const a = [], p = {};
+        function g2(v2) {
+          for (const d of Object.values(v2)) {
+            if (!m(d))
               continue;
-            }
-            const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, VALUE_PACKAGE];
-            const fileName = getDomainObjectName(info) + ".java";
-            if (infoMap[`${parentDir.join("/")}/${fileName}`] === true) {
+            const N2 = [...r.value.namespace.split(/\./), r.value.moduleName, e], c = s(d) + ".java";
+            if (p[`${N2.join("/")}/${c}`] === true)
               continue;
-            }
-            const codes = api.commands._genInfoCode(info);
-            if (codes.length === 0) {
+            const h2 = o.commands._genInfoCode(d);
+            if (h2.length === 0)
               continue;
-            }
-            const file = new CodeFile(parentDir, fileName);
-            file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE};`);
-            file.appendContentln("");
-            for (const imp of codes[0].imports) {
-              file.appendContentln(`import ${imp};`);
-            }
-            file.appendContentln("");
-            file.appendContentln(codes[0].content);
-            codeFiles.push(file);
-            infoMap[`${parentDir.join("/")}/${fileName}`] = true;
+            const y2 = new A3(N2, c);
+            y2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName}.${e};`), y2.appendContentln("");
+            for (const O2 of h2[0].imports)
+              y2.appendContentln(`import ${O2};`);
+            y2.appendContentln(""), y2.appendContentln(h2[0].content), a.push(y2), p[`${N2.join("/")}/${c}`] = true;
           }
         }
-        const commands = api.states.designer.value._getContext().getCommands();
-        for (const command of commands) {
-          genInfos(command.inner);
-          const codes = api.commands._genCommandCode(command);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, COMMAND_PACKAGE];
-          codes.forEach((code) => {
-            if (code.type === "Command") {
-              const file = new CodeFile(parentDir, getDomainObjectName(command) + ".java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else if (code.type === "CommandHandler") {
-              const file = new CodeFile(parentDir, getDomainObjectName(command) + "Handler.java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else {
-              isNever(code.type);
-            }
+        const b2 = o.states.designer.value._getContext().getCommands();
+        for (const v2 of b2) {
+          g2(v2.inner);
+          const d = o.commands._genCommandCode(v2), N2 = [...r.value.namespace.split(/\./), r.value.moduleName, n2];
+          d.forEach((c) => {
+            if (c.type === "Command") {
+              const h2 = new A3(N2, s(v2) + ".java");
+              h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName}.${n2};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y2 of c.imports)
+                h2.appendContentln(`import ${y2};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else if (c.type === "CommandHandler") {
+              const h2 = new A3(N2, s(v2) + "Handler.java");
+              h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName}.${n2};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y2 of c.imports)
+                h2.appendContentln(`import ${y2};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else
+              isNever(c.type);
           });
         }
-        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands();
-        for (const facadeCmd of facadeCommands) {
-          genInfos(facadeCmd.inner);
-          const codes = api.commands._genFacadeCommandCode(facadeCmd);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, COMMAND_PACKAGE];
-          codes.forEach((code) => {
-            if (code.type === "FacadeCommand") {
-              const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + ".java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else if (code.type === "FacadeCommandHandler") {
-              const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + "Handler.java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else {
-              isNever(code.type);
-            }
+        const C = o.states.designer.value._getContext().getFacadeCommands();
+        for (const v2 of C) {
+          g2(v2.inner);
+          const d = o.commands._genFacadeCommandCode(v2), N2 = [...r.value.namespace.split(/\./), r.value.moduleName, n2];
+          d.forEach((c) => {
+            if (c.type === "FacadeCommand") {
+              const h2 = new A3(N2, s(v2) + ".java");
+              h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName}.${n2};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y2 of c.imports)
+                h2.appendContentln(`import ${y2};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else if (c.type === "FacadeCommandHandler") {
+              const h2 = new A3(N2, s(v2) + "Handler.java");
+              h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName}.${n2};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y2 of c.imports)
+                h2.appendContentln(`import ${y2};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else
+              isNever(c.type);
           });
         }
-        const aggs = api.states.designer.value._getContext().getAggs();
-        for (const agg5 of aggs) {
-          genInfos(agg5.inner);
-          const codes = api.commands._genAggCode(agg5);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName];
-          codes.forEach((code) => {
-            if (code.type === "Agg") {
-              const file = new CodeFile(parentDir, getDomainObjectName(agg5) + ".java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName};`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else if (code.type === "AggImpl") {
-              const file = new CodeFile(parentDir, getDomainObjectName(agg5) + "Impl.java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName};`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else {
-              isNever(code.type);
-            }
+        const l = o.states.designer.value._getContext().getAggs();
+        for (const v2 of l) {
+          g2(v2.inner);
+          const d = o.commands._genAggCode(v2), N2 = [...r.value.namespace.split(/\./), r.value.moduleName];
+          d.forEach((c) => {
+            if (c.type === "Agg") {
+              const h2 = new A3(N2, s(v2) + ".java");
+              h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y2 of c.imports)
+                h2.appendContentln(`import ${y2};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else if (c.type === "AggImpl") {
+              const h2 = new A3(N2, s(v2) + "Impl.java");
+              h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName};`), h2.appendContentln(""), h2.addImports(c.imports);
+              for (const y2 of c.imports)
+                h2.appendContentln(`import ${y2};`);
+              h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
+            } else
+              isNever(c.type);
           });
         }
-        const events = api.states.designer.value._getContext().getEvents();
-        for (const event of events) {
-          genInfos(event.inner);
-          const codes = api.commands._genEventCode(event);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, EVENT_PACKAGE];
-          codes.forEach((code) => {
-            const file = new CodeFile(parentDir, getDomainObjectName(event) + ".java");
-            file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${EVENT_PACKAGE};`);
-            file.appendContentln("");
-            file.addImports(code.imports);
-            for (const imp of code.imports) {
-              file.appendContentln(`import ${imp};`);
-            }
-            file.appendContentln("");
-            file.appendContentln(code.content);
-            codeFiles.push(file);
+        const $2 = o.states.designer.value._getContext().getEvents();
+        for (const v2 of $2) {
+          g2(v2.inner);
+          const d = o.commands._genEventCode(v2), N2 = [...r.value.namespace.split(/\./), r.value.moduleName, t2];
+          d.forEach((c) => {
+            const h2 = new A3(N2, s(v2) + ".java");
+            h2.appendContentln(`package ${r.value.namespace}.${r.value.moduleName}.${t2};`), h2.appendContentln(""), h2.addImports(c.imports);
+            for (const y2 of c.imports)
+              h2.appendContentln(`import ${y2};`);
+            h2.appendContentln(""), h2.appendContentln(c.content), a.push(h2);
           });
         }
-        return codeFiles;
+        return a;
       });
     }
   };
 });
-
-// ../generator/lib/domain-plugin/generator-kotlin-plugin.ts
-var KotlinGeneratorAddition = kotlin.KotlinGeneratorAddition;
-var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() => {
-  return {
-    unmount({ api }) {
-      api.commands.clearCaches();
-      api.commands._setCommandCodeProvider(() => []);
-      api.commands._setFacadeCommandCodeProvider(() => []);
-      api.commands._setAggCodeProvider(() => []);
-      api.commands._setEventCodeProvider(() => []);
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => []);
-      api.commands.setContext({});
-    },
-    mount({ api }) {
-      const VALUE_PACKAGE = "value";
-      const context = api.states.context;
-      const ignoredValueObjects = api.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s));
-      function isValueObject(info) {
-        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name));
-      }
-      function inferObjectValueTypeByInfo(imports, obj) {
-        if (isValueObject(obj)) {
-          return strUtil.stringToUpperCamel(obj._attributes.name);
+var Pe = Ne.KotlinGeneratorAddition;
+var xo = le2.createHotSwapPlugin(() => ({
+  unmount({ api: e }) {
+    e.commands.clearCaches(), e.commands._setCommandCodeProvider(() => []), e.commands._setFacadeCommandCodeProvider(() => []), e.commands._setAggCodeProvider(() => []), e.commands._setEventCodeProvider(() => []), e.commands._setReadModelCodeProvider(() => []), e.commands._setCodeFileProvider(() => []), e.commands.setContext({});
+  },
+  mount({ api: e }) {
+    const n2 = "value", t2 = e.states.context, s = e.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((f2) => w.stringToLowerCamel(f2));
+    function o(f2) {
+      return !s.includes(w.stringToLowerCamel(f2._attributes.name));
+    }
+    function r(f2, u2) {
+      return o(u2) ? w.stringToUpperCamel(u2._attributes.name) : _(f2, u2);
+    }
+    function i(f2) {
+      return w.stringToUpperCamel(f2._attributes.name);
+    }
+    function m(f2, u2) {
+      for (const a of u2) {
+        if (!o(a)) {
+          _(f2, a);
+          continue;
         }
-        return inferKotlinTypeByName(imports, obj);
+        f2.add(
+          `${t2.value.namespace}.${t2.value.moduleName}.${n2}.${i(a)}`
+        );
       }
-      function getDomainObjectName(info) {
-        return strUtil.stringToUpperCamel(info._attributes.name);
+    }
+    function _(f2, u2) {
+      const a = t2.value.additions, p = w.stringToLowerSnake(u2._attributes.name).replace(/_/, " ");
+      return /\b(time|timestamp|date|deadline|expire)\b/.test(p) ? a.has(Pe.Timezone) ? (f2.add("java.time.OffsetDateTime"), "OffsetDateTime") : (f2.add("java.time.LocalDateTime"), "LocalDateTime") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(p) ? "Integer" : /\b(price)$/.test(p) ? (f2.add("java.math.BigDecimal"), "BigDecimal") : /^(if|is)\b/.test(p) ? "Boolean" : je(u2) && (u2._attributes.type === "Id" || u2._attributes.type === "Version") || /\b(id|identifier|ver|version)$/.test(p) ? "Long" : "String";
+    }
+    e.commands._setInfoCodeProvider(
+      (f2) => {
+        const u2 = /* @__PURE__ */ new Set(), a = i(f2), p = t2.value.additions, g2 = [];
+        return p.has(Pe.ValueClass) ? (u2.add("kotlin.jvm.JvmInline"), g2.push("@JvmInline"), g2.push(`value class ${a}(val value: ${_(u2, f2)})`)) : g2.push(`data class ${a}(val value: ${_(u2, f2)})`), [
+          {
+            type: "Info",
+            imports: u2,
+            content: g2.join(`
+`)
+          }
+        ];
       }
-      function importInfos(imports, infos) {
-        for (const info of infos) {
-          if (!isValueObject(info)) {
-            inferKotlinTypeByName(imports, info);
+    ), e.commands._setCommandCodeProvider(
+      (f2) => {
+        const u2 = [], a = t2.value.additions;
+        {
+          const p = /* @__PURE__ */ new Set(), g2 = i(f2), b2 = [], C = Object.values(f2.inner);
+          m(p, C);
+          const l = [];
+          for (const $2 of C) {
+            const v2 = i($2);
+            l.push(`val ${w.lowerFirst(v2)}: ${r(p, $2)}`);
+          }
+          b2.push(`data class ${g2}(${l.join(", ")})`), u2.push({
+            type: "Command",
+            imports: p,
+            content: b2.join(`
+`)
+          });
+        }
+        if (!a.has(Pe.CommandHandler))
+          return u2;
+        {
+          const p = /* @__PURE__ */ new Set(), g2 = i(f2), b2 = [];
+          b2.push(`class ${g2}Handler {`);
+          const C = [...e.states.designer.value._getContext().getAssociationMap()[f2._attributes.__id]].filter(
+            (l) => l._attributes.rule === "Agg"
+          );
+          for (const l of C)
+            p.add(`${t2.value.namespace}.${t2.value.moduleName}.${i(l)}`), b2.push(`    fun handle(command: ${g2}): ${i(l)} {`), b2.push("        // HACK Implement"), b2.push("    }");
+          b2.push("}"), u2.push({
+            type: "CommandHandler",
+            imports: p,
+            content: b2.join(`
+`)
+          });
+        }
+        return u2;
+      }
+    ), e.commands._setFacadeCommandCodeProvider(
+      (f2) => {
+        const u2 = /* @__PURE__ */ new Set(), a = i(f2), p = [], g2 = Object.values(f2.inner);
+        m(u2, g2);
+        const b2 = [];
+        for (const C of g2) {
+          const l = i(C);
+          b2.push(`val ${w.lowerFirst(l)}: ${r(u2, C)}`);
+        }
+        return p.push(`data class ${a}(${b2.join(", ")})`), [
+          {
+            type: "FacadeCommand",
+            imports: u2,
+            content: p.join(`
+`)
+          }
+        ];
+      }
+    ), e.commands._setAggCodeProvider((f2) => {
+      const u2 = /* @__PURE__ */ new Set(), a = e.states.designer.value, p = i(f2), g2 = [], b2 = Object.values(f2.inner);
+      m(u2, b2);
+      const C = [], l = [...a._getContext().getAssociationMap()[f2._attributes.__id]].filter((v2) => v2._attributes.rule === "Command" || v2._attributes.rule === "FacadeCommand");
+      for (const v2 of l) {
+        const d = i(v2);
+        C.push(`fun handle(command: ${d})`);
+      }
+      g2.push(`interface ${p} {`), g2.push(`    ${C.join(`
+    `)}`), g2.push("}"), g2.push(""), g2.push(`class ${p}Impl(`);
+      const $2 = [];
+      for (const v2 of b2) {
+        const d = i(v2);
+        $2.push(`val ${w.lowerFirst(d)}: ${r(u2, v2)}`);
+      }
+      g2.push(`    ${$2.join(`,
+    `)}`), g2.push(`): ${p} {`);
+      for (const v2 of l) {
+        const d = i(v2);
+        g2.push(`    override fun handle(command: ${d}) {`), g2.push("        // HACK Implement"), g2.push("    }");
+      }
+      return g2.push("}"), [
+        {
+          type: "Agg",
+          imports: u2,
+          content: g2.join(`
+`)
+        }
+      ];
+    }), e.commands._setEventCodeProvider(
+      (f2) => {
+        const u2 = /* @__PURE__ */ new Set(), a = i(f2), p = [], g2 = Object.values(f2.inner);
+        m(u2, g2);
+        const b2 = [];
+        for (const C of g2) {
+          const l = i(C);
+          b2.push(`val ${w.lowerFirst(l)}: ${r(u2, C)}`);
+        }
+        return p.push(`data class ${a}(${b2.join(", ")})`), [
+          {
+            type: "Event",
+            imports: u2,
+            content: p.join(`
+`)
+          }
+        ];
+      }
+    ), e.commands._setReadModelCodeProvider(() => []), e.commands._setCodeFileProvider(() => {
+      const f2 = [], u2 = {};
+      function a(l) {
+        for (const $2 of Object.values(l)) {
+          if (!o($2))
             continue;
-          }
-          imports.add(
-            `${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}.${getDomainObjectName(info)}`
-          );
+          const v2 = [...t2.value.namespace.split(/\./), t2.value.moduleName, n2], d = i($2) + ".kt";
+          if (u2[`${v2.join("/")}/${d}`] === true)
+            continue;
+          const N2 = e.commands._genInfoCode($2);
+          if (N2.length === 0)
+            continue;
+          const c = new A3(v2, d);
+          c.appendContentln(`package ${t2.value.namespace}.${t2.value.moduleName}.${n2}`), c.appendContentln("");
+          for (const h2 of N2[0].imports)
+            c.appendContentln(`import ${h2}`);
+          c.appendContentln(""), c.appendContentln(N2[0].content), f2.push(c), u2[`${v2.join("/")}/${d}`] = true;
         }
       }
-      function inferKotlinTypeByName(imports, obj) {
-        const additions = context.value.additions;
-        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, " ");
-        if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
-          if (additions.has(KotlinGeneratorAddition.Timezone)) {
-            imports.add("java.time.OffsetDateTime");
-            return "OffsetDateTime";
-          } else {
-            imports.add("java.time.LocalDateTime");
-            return "LocalDateTime";
-          }
-        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
-          return "Integer";
-        } else if (/\b(price)$/.test(name)) {
-          imports.add("java.math.BigDecimal");
-          return "BigDecimal";
-        } else if (/^(if|is)\b/.test(name)) {
-          return "Boolean";
-        }
-        if (Ln(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version") || /\b(id|identifier|ver|version)$/.test(name)) {
-          return "Long";
-        }
-        return "String";
-      }
-      api.commands._setInfoCodeProvider(
-        (info) => {
-          const imports = /* @__PURE__ */ new Set();
-          const className = getDomainObjectName(info);
-          const additions = context.value.additions;
-          const code = [];
-          if (additions.has(KotlinGeneratorAddition.ValueClass)) {
-            imports.add("kotlin.jvm.JvmInline");
-            code.push("@JvmInline");
-            code.push(`value class ${className}(val value: ${inferKotlinTypeByName(imports, info)})`);
-          } else {
-            code.push(`data class ${className}(val value: ${inferKotlinTypeByName(imports, info)})`);
-          }
-          return [
-            {
-              type: "Info",
-              imports,
-              content: code.join("\n")
-            }
-          ];
-        }
-      );
-      api.commands._setCommandCodeProvider(
-        (cmd) => {
-          const codeSnippets = [];
-          const additions = context.value.additions;
-          {
-            const imports = /* @__PURE__ */ new Set();
-            const className = getDomainObjectName(cmd);
-            const code = [];
-            const infos = Object.values(cmd.inner);
-            importInfos(imports, infos);
-            const infoCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
-            }
-            code.push(`data class ${className}(${infoCode.join(", ")})`);
-            codeSnippets.push({
-              type: "Command",
-              imports,
-              content: code.join("\n")
-            });
-          }
-          if (!additions.has(KotlinGeneratorAddition.CommandHandler)) {
-            return codeSnippets;
-          }
-          {
-            const imports = /* @__PURE__ */ new Set();
-            const className = getDomainObjectName(cmd);
-            const code = [];
-            code.push(`class ${className}Handler {`);
-            const aggs = [...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]].filter(
-              (agg5) => agg5._attributes.rule === "Agg"
-            );
-            for (const agg5 of aggs) {
-              imports.add(`${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`);
-              code.push(`    fun handle(command: ${className}): ${getDomainObjectName(agg5)} {`);
-              code.push(`        // HACK Implement`);
-              code.push(`    }`);
-            }
-            code.push(`}`);
-            codeSnippets.push({
-              type: "CommandHandler",
-              imports,
-              content: code.join("\n")
-            });
-          }
-          return codeSnippets;
-        }
-      );
-      api.commands._setFacadeCommandCodeProvider(
-        (cmd) => {
-          const imports = /* @__PURE__ */ new Set();
-          const className = getDomainObjectName(cmd);
-          const code = [];
-          const infos = Object.values(cmd.inner);
-          importInfos(imports, infos);
-          const infoCode = [];
-          for (const info of infos) {
-            const infoName = getDomainObjectName(info);
-            infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
-          }
-          code.push(`data class ${className}(${infoCode.join(", ")})`);
-          return [
-            {
-              type: "FacadeCommand",
-              imports,
-              content: code.join("\n")
-            }
-          ];
-        }
-      );
-      api.commands._setAggCodeProvider((agg5) => {
-        const imports = /* @__PURE__ */ new Set();
-        const designer = api.states.designer.value;
-        const className = getDomainObjectName(agg5);
-        const code = [];
-        const infos = Object.values(agg5.inner);
-        importInfos(imports, infos);
-        const interCode = [];
-        const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-          return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
+      const p = e.states.designer.value._getContext().getCommands();
+      for (const l of p) {
+        a(l.inner);
+        const $2 = e.commands._genCommandCode(l), v2 = [...t2.value.namespace.split(/\./), t2.value.moduleName], d = new A3(v2, i(l) + ".kt"), N2 = [];
+        d.appendContentln(`package ${t2.value.namespace}.${t2.value.moduleName}`), d.appendContentln(""), $2.forEach((c) => {
+          c.type === "Command" || c.type === "CommandHandler" ? (d.addImports(c.imports), N2.push(c.content)) : isNever(c.type);
         });
-        for (const command of commands) {
-          const commandName = getDomainObjectName(command);
-          interCode.push(`fun handle(command: ${commandName})`);
-        }
-        code.push(`interface ${className} {`);
-        code.push(`    ${interCode.join("\n    ")}`);
-        code.push(`}`);
-        code.push(``);
-        code.push(`class ${className}Impl(`);
-        const infoCode = [];
-        for (const info of infos) {
-          const infoName = getDomainObjectName(info);
-          infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
-        }
-        code.push(`    ${infoCode.join(",\n    ")}`);
-        code.push(`): ${className} {`);
-        for (const command of commands) {
-          const commandName = getDomainObjectName(command);
-          code.push(`    override fun handle(command: ${commandName}) {`);
-          code.push(`        // HACK Implement`);
-          code.push(`    }`);
-        }
-        code.push(`}`);
-        return [
+        for (const c of d.getImports())
+          d.appendContentln(`import ${c}`);
+        d.appendContentln("");
+        for (const c of N2)
+          d.appendContentln(c);
+        f2.push(d);
+      }
+      const g2 = e.states.designer.value._getContext().getFacadeCommands();
+      for (const l of g2) {
+        a(l.inner);
+        const $2 = e.commands._genFacadeCommandCode(l), v2 = [...t2.value.namespace.split(/\./), t2.value.moduleName], d = new A3(v2, i(l) + ".kt"), N2 = [];
+        d.appendContentln(`package ${t2.value.namespace}.${t2.value.moduleName}`), d.appendContentln(""), $2.forEach((c) => {
+          c.type === "FacadeCommand" || c.type === "FacadeCommandHandler" ? (d.addImports(c.imports), N2.push(c.content)) : isNever(c.type);
+        });
+        for (const c of d.getImports())
+          d.appendContentln(`import ${c}`);
+        d.appendContentln("");
+        for (const c of N2)
+          d.appendContentln(c);
+        f2.push(d);
+      }
+      const b2 = e.states.designer.value._getContext().getAggs();
+      for (const l of b2) {
+        a(l.inner);
+        const $2 = e.commands._genAggCode(l), v2 = [...t2.value.namespace.split(/\./), t2.value.moduleName], d = new A3(v2, i(l) + ".kt"), N2 = [];
+        d.appendContentln(`package ${t2.value.namespace}.${t2.value.moduleName}`), d.appendContentln(""), $2.forEach((c) => {
+          c.type === "Agg" || c.type === "AggImpl" ? (d.addImports(c.imports), N2.push(c.content)) : isNever(c.type);
+        });
+        for (const c of d.getImports())
+          d.appendContentln(`import ${c}`);
+        d.appendContentln("");
+        for (const c of N2)
+          d.appendContentln(c);
+        f2.push(d);
+      }
+      const C = e.states.designer.value._getContext().getEvents();
+      for (const l of C) {
+        a(l.inner);
+        const $2 = e.commands._genEventCode(l), v2 = [...t2.value.namespace.split(/\./), t2.value.moduleName];
+        $2.forEach((d) => {
+          if (d.type === "Event") {
+            const N2 = new A3(v2, i(l) + ".kt");
+            N2.appendContentln(`package ${t2.value.namespace}.${t2.value.moduleName}`), N2.appendContentln(""), N2.addImports(d.imports);
+            for (const c of d.imports)
+              N2.appendContentln(`import ${c}`);
+            N2.appendContentln(""), N2.appendContentln(d.content), f2.push(N2);
+          } else
+            isNever(d.type);
+        });
+      }
+      return f2;
+    });
+  }
+}));
+var To = le2.createHotSwapPlugin(() => ({
+  unmount({ api: e }) {
+    e.commands.clearCaches(), e.commands._setCommandCodeProvider(() => []), e.commands._setFacadeCommandCodeProvider(() => []), e.commands._setAggCodeProvider(() => []), e.commands._setEventCodeProvider(() => []), e.commands._setReadModelCodeProvider(() => []), e.commands._setCodeFileProvider(() => []), e.commands.setContext({});
+  },
+  mount({ api: e }) {
+    const n2 = e.states.context, t2 = e.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((_) => w.stringToLowerCamel(_));
+    function s(_) {
+      return !t2.includes(w.stringToLowerCamel(_._attributes.name));
+    }
+    function o(_, f2) {
+      return s(f2) ? w.stringToUpperCamel(f2._attributes.name) : m(_, f2);
+    }
+    function r(_) {
+      return w.stringToUpperCamel(_._attributes.name);
+    }
+    function i(_) {
+      return w.stringToLowerCamel(_._attributes.name);
+    }
+    function m(_, f2) {
+      const u2 = w.stringToLowerSnake(f2._attributes.name).replace(/_/, " ");
+      return /\b(time|timestamp|date|deadline|expire)\b/.test(u2) ? (_.add("time"), "time.Time") : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(u2) ? "int" : /\b(price)$/.test(u2) ? "string" : /^(if|is)\b/.test(u2) ? "bool" : je(f2) && (f2._attributes.type === "Id" || f2._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(u2)) ? "int64" : "string";
+    }
+    e.commands._setInfoCodeProvider(
+      (_) => {
+        const f2 = /* @__PURE__ */ new Set(), u2 = [];
+        return u2.push(`type ${r(_)} struct {`), u2.push(`    value ${m(f2, _)}`), u2.push("}"), u2.push(""), u2.push(
+          `func New${r(_)}(value ${m(
+            f2,
+            _
+          )}) ${r(_)} {`
+        ), u2.push("    // HACK check value"), u2.push(`    return ${r(_)}{value}`), u2.push("}"), u2.push(
+          `func (${i(_)} ${r(_)}) GetValue() ${m(
+            f2,
+            _
+          )} {`
+        ), u2.push(`    return ${i(_)}.value`), u2.push("}"), [{ type: "Info", imports: f2, content: u2.join(`
+`) }];
+      }
+    ), e.commands._setCommandCodeProvider(
+      (_) => {
+        const f2 = r(_), u2 = i(_), a = /* @__PURE__ */ new Set(), p = [];
+        p.push(`type ${f2} struct {`);
+        const g2 = Object.values(_.inner);
+        for (const l of g2)
+          p.push(`    ${i(l)} ${o(a, l)}`);
+        p.push("}");
+        for (const l of g2)
+          p.push(
+            `func (${u2} ${f2}) Get${r(l)} () ${o(
+              a,
+              l
+            )} {`
+          ), p.push(`    return ${u2}.${i(l)}`), p.push("}");
+        const b2 = [], C = [];
+        for (const l of g2)
+          b2.push(`${i(l)} ${o(a, l)}`), C.push(i(l));
+        return p.push(`func New${f2}(${b2.join(", ")}) ${f2} {`), p.push("    // HACK check value"), p.push(`    return ${f2}{`), p.push(`        ${C.join(`,
+        `)},`), p.push("    }"), p.push("}"), [{ type: "Command", imports: a, content: p.join(`
+`) }];
+      }
+    ), e.commands._setFacadeCommandCodeProvider(
+      (_) => {
+        const f2 = r(_), u2 = i(_), a = Object.values(_.inner), p = /* @__PURE__ */ new Set(), g2 = [];
+        g2.push(`type ${f2} struct {`);
+        for (const l of a)
+          g2.push(`    ${i(l)} ${o(p, l)}`);
+        g2.push("}");
+        for (const l of a)
+          g2.push(
+            `func (${u2} ${f2}) Get${r(l)} () ${o(
+              p,
+              l
+            )} {`
+          ), g2.push(`    return ${u2}.${i(l)}`), g2.push("}");
+        const b2 = [], C = [];
+        for (const l of a)
+          b2.push(`${i(l)} ${o(p, l)}`), C.push(i(l));
+        return g2.push(`func New${f2}(${b2.join(", ")}) ${f2} {`), g2.push("    // HACK check value"), g2.push(`    return ${f2}{`), g2.push(`        ${C.join(`,
+        `)},`), g2.push("    }"), g2.push("}"), [
           {
-            type: "Agg",
-            imports,
-            content: code.join("\n")
+            type: "FacadeCommand",
+            imports: p,
+            content: g2.join(`
+`)
           }
         ];
-      });
-      api.commands._setEventCodeProvider(
-        (event) => {
-          const imports = /* @__PURE__ */ new Set();
-          const className = getDomainObjectName(event);
-          const code = [];
-          const infos = Object.values(event.inner);
-          importInfos(imports, infos);
-          const infoCode = [];
-          for (const info of infos) {
-            const infoName = getDomainObjectName(info);
-            infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
-          }
-          code.push(`data class ${className}(${infoCode.join(", ")})`);
-          return [
-            {
-              type: "Event",
-              imports,
-              content: code.join("\n")
-            }
-          ];
-        }
-      );
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => {
-        const codeFiles = [];
-        const infoMap = {};
-        function genInfos(infos) {
-          for (const info of Object.values(infos)) {
-            if (!isValueObject(info)) {
-              continue;
-            }
-            const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, VALUE_PACKAGE];
-            const fileName = getDomainObjectName(info) + ".kt";
-            if (infoMap[`${parentDir.join("/")}/${fileName}`] === true) {
-              continue;
-            }
-            const codes = api.commands._genInfoCode(info);
-            if (codes.length === 0) {
-              continue;
-            }
-            const file = new CodeFile(parentDir, fileName);
-            file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}`);
-            file.appendContentln("");
-            for (const imp of codes[0].imports) {
-              file.appendContentln(`import ${imp}`);
-            }
-            file.appendContentln("");
-            file.appendContentln(codes[0].content);
-            codeFiles.push(file);
-            infoMap[`${parentDir.join("/")}/${fileName}`] = true;
-          }
-        }
-        const commands = api.states.designer.value._getContext().getCommands();
-        for (const command of commands) {
-          genInfos(command.inner);
-          const codes = api.commands._genCommandCode(command);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName];
-          const file = new CodeFile(parentDir, getDomainObjectName(command) + ".kt");
-          const codeBuff = [];
-          file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}`);
-          file.appendContentln("");
-          codes.forEach((code) => {
-            if (code.type === "Command") {
-              file.addImports(code.imports);
-              codeBuff.push(code.content);
-            } else if (code.type === "CommandHandler") {
-              file.addImports(code.imports);
-              codeBuff.push(code.content);
-            } else {
-              isNever(code.type);
-            }
-          });
-          for (const imp of file.getImports()) {
-            file.appendContentln(`import ${imp}`);
-          }
-          file.appendContentln(``);
-          for (const buf of codeBuff) {
-            file.appendContentln(buf);
-          }
-          codeFiles.push(file);
-        }
-        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands();
-        for (const facadeCmd of facadeCommands) {
-          genInfos(facadeCmd.inner);
-          const codes = api.commands._genFacadeCommandCode(facadeCmd);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName];
-          const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + ".kt");
-          const codeBuff = [];
-          file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}`);
-          file.appendContentln("");
-          codes.forEach((code) => {
-            if (code.type === "FacadeCommand") {
-              file.addImports(code.imports);
-              codeBuff.push(code.content);
-            } else if (code.type === "FacadeCommandHandler") {
-              file.addImports(code.imports);
-              codeBuff.push(code.content);
-            } else {
-              isNever(code.type);
-            }
-          });
-          for (const imp of file.getImports()) {
-            file.appendContentln(`import ${imp}`);
-          }
-          file.appendContentln(``);
-          for (const buf of codeBuff) {
-            file.appendContentln(buf);
-          }
-          codeFiles.push(file);
-        }
-        const aggs = api.states.designer.value._getContext().getAggs();
-        for (const agg5 of aggs) {
-          genInfos(agg5.inner);
-          const codes = api.commands._genAggCode(agg5);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName];
-          const file = new CodeFile(parentDir, getDomainObjectName(agg5) + ".kt");
-          const codeBuff = [];
-          file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}`);
-          file.appendContentln("");
-          codes.forEach((code) => {
-            if (code.type === "Agg") {
-              file.addImports(code.imports);
-              codeBuff.push(code.content);
-            } else if (code.type === "AggImpl") {
-              file.addImports(code.imports);
-              codeBuff.push(code.content);
-            } else {
-              isNever(code.type);
-            }
-          });
-          for (const imp of file.getImports()) {
-            file.appendContentln(`import ${imp}`);
-          }
-          file.appendContentln(``);
-          for (const buf of codeBuff) {
-            file.appendContentln(buf);
-          }
-          codeFiles.push(file);
-        }
-        const events = api.states.designer.value._getContext().getEvents();
-        for (const event of events) {
-          genInfos(event.inner);
-          const codes = api.commands._genEventCode(event);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName];
-          codes.forEach((code) => {
-            if (code.type === "Event") {
-              const file = new CodeFile(parentDir, getDomainObjectName(event) + ".kt");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}`);
-              file.appendContentln("");
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`import ${imp}`);
-              }
-              file.appendContentln("");
-              file.appendContentln(code.content);
-              codeFiles.push(file);
-            } else {
-              isNever(code.type);
-            }
-          });
-        }
-        return codeFiles;
-      });
-    }
-  };
-});
-
-// ../generator/lib/domain-plugin/generator-go-plugin.ts
-var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() => {
-  return {
-    unmount({ api }) {
-      api.commands.clearCaches();
-      api.commands._setCommandCodeProvider(() => []);
-      api.commands._setFacadeCommandCodeProvider(() => []);
-      api.commands._setAggCodeProvider(() => []);
-      api.commands._setEventCodeProvider(() => []);
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => []);
-      api.commands.setContext({});
-    },
-    mount({ api }) {
-      const context = api.states.context;
-      const ignoredValueObjects = api.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s));
-      function isValueObject(info) {
-        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name));
       }
-      function inferObjectValueTypeByInfo(imports, obj) {
-        if (isValueObject(obj)) {
-          return strUtil.stringToUpperCamel(obj._attributes.name);
+    ), e.commands._setAggCodeProvider((_) => {
+      const f2 = e.states.designer.value, u2 = r(_), a = i(_), p = Object.values(_.inner), g2 = /* @__PURE__ */ new Set(), b2 = [];
+      b2.push(`type ${u2} struct {`);
+      for (const v2 of p)
+        b2.push(`    ${i(v2)} ${o(g2, v2)}`);
+      b2.push("}");
+      for (const v2 of p)
+        b2.push(
+          `func (${a} ${u2}) Get${r(v2)} () ${o(
+            g2,
+            v2
+          )} {`
+        ), b2.push(`    return ${a}.${i(v2)}`), b2.push("}");
+      const C = [], l = [];
+      for (const v2 of p)
+        C.push(`${i(v2)} ${o(g2, v2)}`), l.push(i(v2));
+      b2.push(`func New${u2}(${C.join(", ")}) ${u2} {`), b2.push("    // HACK check value"), b2.push(`    return ${u2}{`), b2.push(`        ${l.join(`,
+        `)},`), b2.push("    }"), b2.push("}"), b2.push("");
+      const $2 = [...f2._getContext().getAssociationMap()[_._attributes.__id]].filter((v2) => v2._attributes.rule === "Command" || v2._attributes.rule === "FacadeCommand");
+      for (const v2 of $2) {
+        const d = r(v2), N2 = i(v2);
+        b2.push(`func (${a} ${u2}) Handle${d} (${N2} ${d}) {`), b2.push("    // HACK implement"), b2.push("}");
+      }
+      return [
+        {
+          type: "Agg",
+          imports: g2,
+          content: b2.join(`
+`)
         }
-        return inferGoTypeByName(imports, obj);
-      }
-      function getUpperDomainObjectName(info) {
-        return strUtil.stringToUpperCamel(info._attributes.name);
-      }
-      function getLowerDomainObjectName(info) {
-        return strUtil.stringToLowerCamel(info._attributes.name);
-      }
-      function inferGoTypeByName(imports, obj) {
-        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, " ");
-        if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
-          imports.add("time");
-          return "time.Time";
-        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
-          return "int";
-        } else if (/\b(price)$/.test(name)) {
-          return "string";
-        } else if (/^(if|is)\b/.test(name)) {
-          return "bool";
-        }
-        if (Ln(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
-          return "int64";
-        }
-        return "string";
-      }
-      api.commands._setInfoCodeProvider(
-        (info) => {
-          const imports = /* @__PURE__ */ new Set();
-          const code = [];
-          code.push(`type ${getUpperDomainObjectName(info)} struct {`);
-          code.push(`    value ${inferGoTypeByName(imports, info)}`);
-          code.push(`}`);
-          code.push(``);
-          code.push(
-            `func New${getUpperDomainObjectName(info)}(value ${inferGoTypeByName(
-              imports,
-              info
-            )}) ${getUpperDomainObjectName(info)} {`
-          );
-          code.push(`    // HACK check value`);
-          code.push(`    return ${getUpperDomainObjectName(info)}{value}`);
-          code.push(`}`);
-          code.push(
-            `func (${getLowerDomainObjectName(info)} ${getUpperDomainObjectName(info)}) GetValue() ${inferGoTypeByName(
-              imports,
-              info
+      ];
+    }), e.commands._setEventCodeProvider(
+      (_) => {
+        const f2 = [], u2 = /* @__PURE__ */ new Set(), a = Object.values(_.inner), p = r(_), g2 = i(_);
+        f2.push(`type ${p} struct {`);
+        for (const l of a)
+          f2.push(`    ${i(l)} ${o(u2, l)}`);
+        f2.push("}");
+        for (const l of a)
+          f2.push(
+            `func (${g2} ${p}) Get${r(l)} () ${o(
+              u2,
+              l
             )} {`
-          );
-          code.push(`    return ${getLowerDomainObjectName(info)}.value`);
-          code.push(`}`);
-          return [{ type: "Info", imports, content: code.join("\n") }];
-        }
-      );
-      api.commands._setCommandCodeProvider(
-        (cmd) => {
-          const cmdStruct = getUpperDomainObjectName(cmd);
-          const cmdVal = getLowerDomainObjectName(cmd);
-          const imports = /* @__PURE__ */ new Set();
-          const code = [];
-          code.push(`type ${cmdStruct} struct {`);
-          const infos = Object.values(cmd.inner);
-          for (const info of infos) {
-            code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-          }
-          code.push(`}`);
-          for (const info of infos) {
-            code.push(
-              `func (${cmdVal} ${cmdStruct}) Get${getUpperDomainObjectName(info)} () ${inferObjectValueTypeByInfo(
-                imports,
-                info
-              )} {`
-            );
-            code.push(`    return ${cmdVal}.${getLowerDomainObjectName(info)}`);
-            code.push(`}`);
-          }
-          const argsCode = [];
-          const structParams = [];
-          for (const info of infos) {
-            argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-            structParams.push(getLowerDomainObjectName(info));
-          }
-          code.push(`func New${cmdStruct}(${argsCode.join(", ")}) ${cmdStruct} {`);
-          code.push(`    // HACK check value`);
-          code.push(`    return ${cmdStruct}{`);
-          code.push(`        ${structParams.join(",\n        ")},`);
-          code.push(`    }`);
-          code.push(`}`);
-          return [{ type: "Command", imports, content: code.join("\n") }];
-        }
-      );
-      api.commands._setFacadeCommandCodeProvider(
-        (cmd) => {
-          const cmdStruct = getUpperDomainObjectName(cmd);
-          const cmdVal = getLowerDomainObjectName(cmd);
-          const infos = Object.values(cmd.inner);
-          const imports = /* @__PURE__ */ new Set();
-          const code = [];
-          code.push(`type ${cmdStruct} struct {`);
-          for (const info of infos) {
-            code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-          }
-          code.push(`}`);
-          for (const info of infos) {
-            code.push(
-              `func (${cmdVal} ${cmdStruct}) Get${getUpperDomainObjectName(info)} () ${inferObjectValueTypeByInfo(
-                imports,
-                info
-              )} {`
-            );
-            code.push(`    return ${cmdVal}.${getLowerDomainObjectName(info)}`);
-            code.push(`}`);
-          }
-          const argsCode = [];
-          const structParams = [];
-          for (const info of infos) {
-            argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-            structParams.push(getLowerDomainObjectName(info));
-          }
-          code.push(`func New${cmdStruct}(${argsCode.join(", ")}) ${cmdStruct} {`);
-          code.push(`    // HACK check value`);
-          code.push(`    return ${cmdStruct}{`);
-          code.push(`        ${structParams.join(",\n        ")},`);
-          code.push(`    }`);
-          code.push(`}`);
-          return [
-            {
-              type: "FacadeCommand",
-              imports,
-              content: code.join("\n")
-            }
-          ];
-        }
-      );
-      api.commands._setAggCodeProvider((agg5) => {
-        const designer = api.states.designer.value;
-        const aggStruct = getUpperDomainObjectName(agg5);
-        const aggVal = getLowerDomainObjectName(agg5);
-        const infos = Object.values(agg5.inner);
-        const imports = /* @__PURE__ */ new Set();
-        const code = [];
-        code.push(`type ${aggStruct} struct {`);
-        for (const info of infos) {
-          code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-        }
-        code.push(`}`);
-        for (const info of infos) {
-          code.push(
-            `func (${aggVal} ${aggStruct}) Get${getUpperDomainObjectName(info)} () ${inferObjectValueTypeByInfo(
-              imports,
-              info
-            )} {`
-          );
-          code.push(`    return ${aggVal}.${getLowerDomainObjectName(info)}`);
-          code.push(`}`);
-        }
-        const argsCode = [];
-        const structParams = [];
-        for (const info of infos) {
-          argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-          structParams.push(getLowerDomainObjectName(info));
-        }
-        code.push(`func New${aggStruct}(${argsCode.join(", ")}) ${aggStruct} {`);
-        code.push(`    // HACK check value`);
-        code.push(`    return ${aggStruct}{`);
-        code.push(`        ${structParams.join(",\n        ")},`);
-        code.push(`    }`);
-        code.push(`}`);
-        code.push(``);
-        const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-          return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-        });
-        for (const cmd of commands) {
-          const cmdStruct = getUpperDomainObjectName(cmd);
-          const cmdVal = getLowerDomainObjectName(cmd);
-          code.push(`func (${aggVal} ${aggStruct}) Handle${cmdStruct} (${cmdVal} ${cmdStruct}) {`);
-          code.push(`    // HACK implement`);
-          code.push(`}`);
-        }
-        return [
+          ), f2.push(`    return ${g2}.${i(l)}`), f2.push("}");
+        const b2 = [], C = [];
+        for (const l of a)
+          b2.push(`${i(l)} ${o(u2, l)}`), C.push(i(l));
+        return f2.push(`func New${p}(${b2.join(", ")}) ${p} {`), f2.push("    // HACK check value"), f2.push(`    return ${p}{`), f2.push(`        ${C.join(`,
+        `)},`), f2.push("    }"), f2.push("}"), [
           {
-            type: "Agg",
-            imports,
-            content: code.join("\n")
+            type: "Event",
+            imports: u2,
+            content: f2.join(`
+`)
           }
         ];
-      });
-      api.commands._setEventCodeProvider(
-        (event) => {
-          const code = [];
-          const imports = /* @__PURE__ */ new Set();
-          const infos = Object.values(event.inner);
-          const eventStruct = getUpperDomainObjectName(event);
-          const eventVal = getLowerDomainObjectName(event);
-          code.push(`type ${eventStruct} struct {`);
-          for (const info of infos) {
-            code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-          }
-          code.push(`}`);
-          for (const info of infos) {
-            code.push(
-              `func (${eventVal} ${eventStruct}) Get${getUpperDomainObjectName(info)} () ${inferObjectValueTypeByInfo(
-                imports,
-                info
-              )} {`
-            );
-            code.push(`    return ${eventVal}.${getLowerDomainObjectName(info)}`);
-            code.push(`}`);
-          }
-          const argsCode = [];
-          const structParams = [];
-          for (const info of infos) {
-            argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-            structParams.push(getLowerDomainObjectName(info));
-          }
-          code.push(`func New${eventStruct}(${argsCode.join(", ")}) ${eventStruct} {`);
-          code.push(`    // HACK check value`);
-          code.push(`    return ${eventStruct}{`);
-          code.push(`        ${structParams.join(",\n        ")},`);
-          code.push(`    }`);
-          code.push(`}`);
-          return [
-            {
-              type: "Event",
-              imports,
-              content: code.join("\n")
-            }
-          ];
+      }
+    ), e.commands._setCodeFileProvider(() => {
+      const _ = [], f2 = {}, u2 = [...n2.value.namespace.split(/\./), n2.value.moduleName], a = new A3(u2, `${n2.value.moduleName}.go`), p = [], g2 = new A3(u2, `${n2.value.moduleName}_value_object.go`), b2 = [];
+      function C(N2) {
+        for (const c of Object.values(N2)) {
+          if (!s(c))
+            continue;
+          const h2 = r(c);
+          if (f2[`${u2.join("/")}/${h2}`] === true)
+            continue;
+          const y2 = e.commands._genInfoCode(c);
+          y2.length !== 0 && (g2.addImports(y2[0].imports), b2.push(y2[0].content), b2.push(""), f2[`${u2.join("/")}/${h2}`] = true);
         }
-      );
-      api.commands._setCodeFileProvider(() => {
-        const codeFiles = [];
-        const infoMap = {};
-        const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName];
-        const file = new CodeFile(parentDir, `${context.value.moduleName}.go`);
-        const fileCode = [];
-        const infoFile = new CodeFile(parentDir, `${context.value.moduleName}_value_object.go`);
-        const infoFileCode = [];
-        function genInfos(infos) {
-          for (const info of Object.values(infos)) {
-            if (!isValueObject(info)) {
-              continue;
-            }
-            const infoStruct = getUpperDomainObjectName(info);
-            if (infoMap[`${parentDir.join("/")}/${infoStruct}`] === true) {
-              continue;
-            }
-            const codes = api.commands._genInfoCode(info);
-            if (codes.length === 0) {
-              continue;
-            }
-            infoFile.addImports(codes[0].imports);
-            infoFileCode.push(codes[0].content);
-            infoFileCode.push("");
-            infoMap[`${parentDir.join("/")}/${infoStruct}`] = true;
-          }
-        }
-        const commands = api.states.designer.value._getContext().getCommands();
-        for (const command of commands) {
-          genInfos(command.inner);
-          const codes = api.commands._genCommandCode(command);
-          for (const code of codes) {
-            if (infoMap[code.content] === true) {
-              continue;
-            }
-            file.addImports(code.imports);
-            fileCode.push(code.content);
-          }
-        }
-        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands();
-        for (const facadeCommand of facadeCommands) {
-          genInfos(facadeCommand.inner);
-          const codes = api.commands._genFacadeCommandCode(facadeCommand);
-          for (const code of codes) {
-            if (infoMap[code.content] === true) {
-              continue;
-            }
-            file.addImports(code.imports);
-            fileCode.push(code.content);
-          }
-        }
-        const aggs = api.states.designer.value._getContext().getAggs();
-        for (const agg5 of aggs) {
-          genInfos(agg5.inner);
-          const codes = api.commands._genAggCode(agg5);
-          for (const code of codes) {
-            if (infoMap[code.content] === true) {
-              continue;
-            }
-            file.addImports(code.imports);
-            fileCode.push(code.content);
-          }
-        }
-        const events = api.states.designer.value._getContext().getEvents();
-        for (const event of events) {
-          genInfos(event.inner);
-          const codes = api.commands._genEventCode(event);
-          for (const code of codes) {
-            if (infoMap[code.content] === true) {
-              continue;
-            }
-            file.addImports(code.imports);
-            fileCode.push(code.content);
-          }
-        }
-        file.appendContentln(`package ${context.value.moduleName}`);
-        file.appendContentln(``);
-        if (file.getImports().length > 0) {
-          file.appendContentln(`import (`);
-          file.appendContentln(`    ${[...file.getImports()].join("\n    ")}`);
-          file.appendContentln(`)`);
-        }
-        file.appendContentln(fileCode.join("\n"));
-        infoFile.appendContentln(`package ${context.value.moduleName}`);
-        infoFile.appendContentln(``);
-        if (infoFile.getImports().length > 0) {
-          infoFile.appendContentln(`import (`);
-          infoFile.appendContentln(`    ${[...infoFile.getImports()].map((i) => `"${i}"`).join("\n    ")}`);
-          infoFile.appendContentln(`)`);
-          infoFile.appendContentln(``);
-        }
-        infoFile.appendContentln(infoFileCode.join("\n"));
-        codeFiles.push(file);
-        codeFiles.push(infoFile);
-        return codeFiles;
-      });
-    }
-  };
-});
-
-// ../generator/lib/domain-plugin/generator-csharp-plugin.ts
-var CSharpGeneratorAddition = csharp.CSharpGeneratorAddition;
-var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() => {
-  const TAB = "    ";
-  function addTab(str, number = 1) {
-    return str.split("\n").map((s) => TAB.repeat(number) + s).join("\n");
+      }
+      const l = e.states.designer.value._getContext().getCommands();
+      for (const N2 of l) {
+        C(N2.inner);
+        const c = e.commands._genCommandCode(N2);
+        for (const h2 of c)
+          f2[h2.content] !== true && (a.addImports(h2.imports), p.push(h2.content));
+      }
+      const $2 = e.states.designer.value._getContext().getFacadeCommands();
+      for (const N2 of $2) {
+        C(N2.inner);
+        const c = e.commands._genFacadeCommandCode(N2);
+        for (const h2 of c)
+          f2[h2.content] !== true && (a.addImports(h2.imports), p.push(h2.content));
+      }
+      const v2 = e.states.designer.value._getContext().getAggs();
+      for (const N2 of v2) {
+        C(N2.inner);
+        const c = e.commands._genAggCode(N2);
+        for (const h2 of c)
+          f2[h2.content] !== true && (a.addImports(h2.imports), p.push(h2.content));
+      }
+      const d = e.states.designer.value._getContext().getEvents();
+      for (const N2 of d) {
+        C(N2.inner);
+        const c = e.commands._genEventCode(N2);
+        for (const h2 of c)
+          f2[h2.content] !== true && (a.addImports(h2.imports), p.push(h2.content));
+      }
+      return a.appendContentln(`package ${n2.value.moduleName}`), a.appendContentln(""), a.getImports().length > 0 && (a.appendContentln("import ("), a.appendContentln(`    ${[...a.getImports()].join(`
+    `)}`), a.appendContentln(")")), a.appendContentln(p.join(`
+`)), g2.appendContentln(`package ${n2.value.moduleName}`), g2.appendContentln(""), g2.getImports().length > 0 && (g2.appendContentln("import ("), g2.appendContentln(`    ${[...g2.getImports()].map((N2) => `"${N2}"`).join(`
+    `)}`), g2.appendContentln(")"), g2.appendContentln("")), g2.appendContentln(b2.join(`
+`)), _.push(a), _.push(g2), _;
+    });
+  }
+}));
+var M3 = we.CSharpGeneratorAddition;
+var Do = le2.createHotSwapPlugin(() => {
+  const e = "    ";
+  function n2(t2, s = 1) {
+    return t2.split(`
+`).map((o) => e.repeat(s) + o).join(`
+`);
   }
   return {
-    unmount({ api }) {
-      api.commands.clearCaches();
-      api.commands._setCommandCodeProvider(() => []);
-      api.commands._setFacadeCommandCodeProvider(() => []);
-      api.commands._setAggCodeProvider(() => []);
-      api.commands._setEventCodeProvider(() => []);
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => []);
-      api.commands.setContext({});
+    unmount({ api: t2 }) {
+      t2.commands.clearCaches(), t2.commands._setCommandCodeProvider(() => []), t2.commands._setFacadeCommandCodeProvider(() => []), t2.commands._setAggCodeProvider(() => []), t2.commands._setEventCodeProvider(() => []), t2.commands._setReadModelCodeProvider(() => []), t2.commands._setCodeFileProvider(() => []), t2.commands.setContext({});
     },
-    mount({ api }) {
-      const context = api.states.context;
-      const ignoredValueObjects = api.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s));
-      function isValueObject(info) {
-        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name));
+    mount({ api: t2 }) {
+      const s = t2.states.context, o = t2.states.designer.value._getContext().getDesignerOptions().ignoreValueObjects.map((u2) => w.stringToLowerCamel(u2));
+      function r(u2) {
+        return !o.includes(w.stringToLowerCamel(u2._attributes.name));
       }
-      function inferObjectValueTypeByInfo(imports, obj) {
-        if (isValueObject(obj)) {
-          return strUtil.stringToUpperCamel(obj._attributes.name);
-        }
-        return inferCsharpTypeByName(imports, obj);
+      function i(u2, a) {
+        return r(a) ? w.stringToUpperCamel(a._attributes.name) : f2(u2, a);
       }
-      function getDomainObjectName(info) {
-        return strUtil.stringToUpperCamel(info._attributes.name);
+      function m(u2) {
+        return w.stringToUpperCamel(u2._attributes.name);
       }
-      function getStructModifier(additions) {
-        return additions.has(CSharpGeneratorAddition.RecordStruct) ? " struct" : "";
+      function _(u2) {
+        return u2.has(M3.RecordStruct) ? " struct" : "";
       }
-      function inferCsharpTypeByName(_imports, obj) {
-        const additions = context.value.additions;
-        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, " ");
-        if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
-          if (additions.has(CSharpGeneratorAddition.Timezone)) {
-            return "System.DateTimeOffset";
-          } else {
-            return "System.DateTime";
-          }
-        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
-          return "int";
-        } else if (/\b(price)$/.test(name)) {
-          return "decimal";
-        } else if (/^(if|is)\b/.test(name)) {
-          return "bool";
-        }
-        if (Ln(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
-          return "long";
-        }
-        return "string";
+      function f2(u2, a) {
+        const p = s.value.additions, g2 = w.stringToLowerSnake(a._attributes.name).replace(/_/, " ");
+        return /\b(time|timestamp|date|deadline|expire)\b/.test(g2) ? p.has(M3.Timezone) ? "System.DateTimeOffset" : "System.DateTime" : /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(g2) ? "int" : /\b(price)$/.test(g2) ? "decimal" : /^(if|is)\b/.test(g2) ? "bool" : je(a) && (a._attributes.type === "Id" || a._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(g2)) ? "long" : "string";
       }
-      api.commands._setInfoCodeProvider(
-        (info) => {
-          const additions = context.value.additions;
-          const imports = /* @__PURE__ */ new Set();
-          const code = [];
-          code.push(
-            `public record${getStructModifier(additions)} ${getDomainObjectName(info)}(${inferCsharpTypeByName(
-              imports,
-              info
+      t2.commands._setInfoCodeProvider(
+        (u2) => {
+          const a = s.value.additions, p = /* @__PURE__ */ new Set(), g2 = [];
+          return g2.push(
+            `public record${_(a)} ${m(u2)}(${f2(
+              p,
+              u2
             )} value);`
-          );
-          return [
+          ), [
             {
               type: "Info",
-              content: code.join("\n"),
-              imports
+              content: g2.join(`
+`),
+              imports: p
             }
           ];
         }
-      );
-      api.commands._setCommandCodeProvider(
-        (cmd) => {
-          const result = [];
-          const additions = context.value.additions;
-          const imports = /* @__PURE__ */ new Set();
-          const commandName = getDomainObjectName(cmd);
+      ), t2.commands._setCommandCodeProvider(
+        (u2) => {
+          const a = [], p = s.value.additions, g2 = /* @__PURE__ */ new Set(), b2 = m(u2);
           {
-            const code = [];
-            const infos = Object.values(cmd.inner);
-            code.push(`public record${getStructModifier(additions)} ${commandName}`);
-            code.push(`(`);
-            const infoCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              infoCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`);
+            const C = [], l = Object.values(u2.inner);
+            C.push(`public record${_(p)} ${b2}`), C.push("(");
+            const $2 = [];
+            for (const v2 of l) {
+              const d = m(v2);
+              $2.push(`${i(g2, v2)} ${w.upperFirst(d)}`);
             }
-            code.push(`    ${infoCode.join(",\n    ")}`);
-            code.push(`)`);
-            code.push(`{`);
-            code.push(`}`);
-            result.push({
+            C.push(`    ${$2.join(`,
+    `)}`), C.push(")"), C.push("{"), C.push("}"), a.push({
               type: "Command",
-              content: code.join("\n"),
-              imports
+              content: C.join(`
+`),
+              imports: g2
             });
           }
           {
-            const commandHandlerInterface = (() => {
-              if (additions.has(CSharpGeneratorAddition.CommandHandlerInterface)) {
-                return ` : ${context.value.commandHandlerInterface}`;
-              }
-              return "";
-            })();
-            const code = [];
-            code.push(`public class ${commandName}Handler${commandHandlerInterface}`);
-            code.push(`{`);
-            code.push(`    public void Handle(${commandName} command)`);
-            code.push(`    {`);
-            code.push(`        // HACK implement`);
-            code.push(`    }`);
-            code.push(`}`);
-            result.push({
+            const C = p.has(M3.CommandHandlerInterface) ? ` : ${s.value.commandHandlerInterface}` : "", l = [];
+            l.push(`public class ${b2}Handler${C}`), l.push("{"), l.push(`    public void Handle(${b2} command)`), l.push("    {"), l.push("        // HACK implement"), l.push("    }"), l.push("}"), a.push({
               type: "CommandHandler",
-              content: code.join("\n"),
-              imports
+              content: l.join(`
+`),
+              imports: g2
             });
           }
-          return result;
+          return a;
         }
-      );
-      api.commands._setFacadeCommandCodeProvider(
-        (cmd) => {
-          const result = [];
-          const additions = context.value.additions;
-          const imports = /* @__PURE__ */ new Set();
-          const commandName = getDomainObjectName(cmd);
+      ), t2.commands._setFacadeCommandCodeProvider(
+        (u2) => {
+          const a = [], p = s.value.additions, g2 = /* @__PURE__ */ new Set(), b2 = m(u2);
           {
-            const code = [];
-            const infos = Object.values(cmd.inner);
-            code.push(`public record${getStructModifier(additions)} ${commandName}`);
-            code.push(`(`);
-            const infoCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              infoCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`);
+            const C = [], l = Object.values(u2.inner);
+            C.push(`public record${_(p)} ${b2}`), C.push("(");
+            const $2 = [];
+            for (const v2 of l) {
+              const d = m(v2);
+              $2.push(`${i(g2, v2)} ${w.upperFirst(d)}`);
             }
-            code.push(`    ${infoCode.join(",\n    ")}`);
-            code.push(`)`);
-            code.push(`{`);
-            code.push(`}`);
-            result.push({
+            C.push(`    ${$2.join(`,
+    `)}`), C.push(")"), C.push("{"), C.push("}"), a.push({
               type: "FacadeCommand",
-              content: code.join("\n"),
-              imports
+              content: C.join(`
+`),
+              imports: g2
             });
           }
           {
-            const commandHandlerInterface = (() => {
-              if (additions.has(CSharpGeneratorAddition.CommandHandlerInterface)) {
-                return ` : ${context.value.commandHandlerInterface}`;
-              }
-              return "";
-            })();
-            const code = [];
-            code.push(`public class ${commandName}Handler${commandHandlerInterface}`);
-            code.push(`{`);
-            code.push(`    public void Handle(${commandName} command)`);
-            code.push(`    {`);
-            code.push(`        // HACK implement`);
-            code.push(`    }`);
-            code.push(`}`);
-            result.push({
+            const C = p.has(M3.CommandHandlerInterface) ? ` : ${s.value.commandHandlerInterface}` : "", l = [];
+            l.push(`public class ${b2}Handler${C}`), l.push("{"), l.push(`    public void Handle(${b2} command)`), l.push("    {"), l.push("        // HACK implement"), l.push("    }"), l.push("}"), a.push({
               type: "FacadeCommandHandler",
-              content: code.join("\n"),
-              imports
+              content: l.join(`
+`),
+              imports: g2
             });
           }
-          return result;
+          return a;
         }
-      );
-      api.commands._setAggCodeProvider(
-        (agg5) => {
-          const result = [];
-          const designer = api.states.designer.value;
-          const additions = context.value.additions;
+      ), t2.commands._setAggCodeProvider(
+        (u2) => {
+          const a = [], p = t2.states.designer.value, g2 = s.value.additions;
           {
-            const imports = /* @__PURE__ */ new Set();
-            const code = [];
-            const aggInterface = (() => {
-              if (additions.has(CSharpGeneratorAddition.AggInterface)) {
-                return ` : ${context.value.aggInterface}`;
-              }
-              return "";
-            })();
-            code.push(`public interface I${getDomainObjectName(agg5)}${aggInterface}`);
-            code.push(`{`);
-            const funCode = [];
-            const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-              return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-            });
-            for (const command of commands) {
-              const commandName = getDomainObjectName(command);
-              funCode.push(`void Handle${commandName}(${commandName} command);`);
+            const b2 = /* @__PURE__ */ new Set(), C = [], l = g2.has(M3.AggInterface) ? ` : ${s.value.aggInterface}` : "";
+            C.push(`public interface I${m(u2)}${l}`), C.push("{");
+            const $2 = [], v2 = [...p._getContext().getAssociationMap()[u2._attributes.__id]].filter((d) => d._attributes.rule === "Command" || d._attributes.rule === "FacadeCommand");
+            for (const d of v2) {
+              const N2 = m(d);
+              $2.push(`void Handle${N2}(${N2} command);`);
             }
-            code.push(`    ${funCode.join("\n\n    ")}`);
-            code.push(`}`);
-            code.push(``);
-            result.push({
+            C.push(`    ${$2.join(`
+
+    `)}`), C.push("}"), C.push(""), a.push({
               type: "Agg",
-              content: code.join("\n"),
-              imports
+              content: C.join(`
+`),
+              imports: b2
             });
           }
           {
-            const imports = /* @__PURE__ */ new Set();
-            const code = [];
-            const aggName = getDomainObjectName(agg5);
-            const infos = Object.values(agg5.inner);
-            const aggInterface = (() => {
-              if (additions.has(CSharpGeneratorAddition.AggInterface)) {
-                return `, ${context.value.aggInterface}`;
+            const b2 = /* @__PURE__ */ new Set(), C = [], l = m(u2), $2 = Object.values(u2.inner), v2 = g2.has(M3.AggInterface) ? `, ${s.value.aggInterface}` : "";
+            if (g2.has(M3.PrimaryConstructor)) {
+              const d = [...p._getContext().getAssociationMap()[u2._attributes.__id]].filter((h2) => h2._attributes.rule === "Command" || h2._attributes.rule === "FacadeCommand"), N2 = [];
+              for (const h2 of $2) {
+                const y2 = m(h2);
+                N2.push(`${i(b2, h2)} ${w.lowerFirst(y2)}`);
               }
-              return "";
-            })();
-            if (additions.has(CSharpGeneratorAddition.PrimaryConstructor)) {
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-                return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-              });
-              const paramCode = [];
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                paramCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)}`);
+              C.push(`public class ${l}`), C.push("("), C.push(`    ${N2.join(`,
+    `)}`), C.push(`): I${l}${v2}`), C.push("{");
+              for (const h2 of $2) {
+                const y2 = m(h2);
+                C.push(
+                  `    public ${i(b2, h2)} ${w.upperFirst(
+                    y2
+                  )} { get; private set; } = ${w.lowerFirst(y2)};`
+                ), C.push("");
               }
-              code.push(`public class ${aggName}`);
-              code.push(`(`);
-              code.push(`    ${paramCode.join(`,
-    `)}`);
-              code.push(`): I${aggName}${aggInterface}`);
-              code.push(`{`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(
-                  `    public ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(
-                    infoName
-                  )} { get; private set; } = ${strUtil.lowerFirst(infoName)};`
-                );
-                code.push(``);
+              const c = [];
+              for (const h2 of d) {
+                const y2 = m(h2);
+                c.push(`public void Handle${y2}(${y2} command)`), c.push("{"), c.push("    // HACK implement"), c.push("}"), c.push("");
               }
-              const funCode = [];
-              for (const command of commands) {
-                const commandName = getDomainObjectName(command);
-                funCode.push(`public void Handle${commandName}(${commandName} command)`);
-                funCode.push(`{`);
-                funCode.push(`    // HACK implement`);
-                funCode.push(`}`);
-                funCode.push(``);
-              }
-              code.push(`    ${funCode.join("\n    ")}`);
-              code.push(`}`);
+              C.push(`    ${c.join(`
+    `)}`), C.push("}");
             } else {
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-                return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-              });
-              code.push(`public class ${aggName} : I${aggName}${aggInterface}`);
-              code.push(`{`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(
-                  `    public ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(
-                    infoName
+              const d = [...p._getContext().getAssociationMap()[u2._attributes.__id]].filter((h2) => h2._attributes.rule === "Command" || h2._attributes.rule === "FacadeCommand");
+              C.push(`public class ${l} : I${l}${v2}`), C.push("{");
+              for (const h2 of $2) {
+                const y2 = m(h2);
+                C.push(
+                  `    public ${i(b2, h2)} ${w.lowerFirst(
+                    y2
                   )} { get; private set; }`
                 );
               }
-              code.push(``);
-              const paramCode = [];
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                paramCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${infoName}`);
+              C.push("");
+              const N2 = [];
+              for (const h2 of $2) {
+                const y2 = m(h2);
+                N2.push(`${i(b2, h2)} ${y2}`);
               }
-              code.push(`    public ${aggName}(${paramCode.join(", ")})`);
-              code.push(`    {`);
-              for (const info of infos) {
-                const infoName = getDomainObjectName(info);
-                code.push(`        ${infoName} = ${strUtil.lowerFirst(infoName)};`);
+              C.push(`    public ${l}(${N2.join(", ")})`), C.push("    {");
+              for (const h2 of $2) {
+                const y2 = m(h2);
+                C.push(`        ${y2} = ${w.lowerFirst(y2)};`);
               }
-              code.push(`    }`);
-              const funCode = [];
-              for (const command of commands) {
-                const commandName = getDomainObjectName(command);
-                funCode.push(`public void Handle${commandName}(${commandName} command)`);
-                funCode.push(`{`);
-                funCode.push(`    // HACK implement`);
-                funCode.push(`}`);
-                funCode.push(``);
+              C.push("    }");
+              const c = [];
+              for (const h2 of d) {
+                const y2 = m(h2);
+                c.push(`public void Handle${y2}(${y2} command)`), c.push("{"), c.push("    // HACK implement"), c.push("}"), c.push("");
               }
-              code.push(`    ${funCode.join("\n    ")}`);
-              code.push(`}`);
+              C.push(`    ${c.join(`
+    `)}`), C.push("}");
             }
-            result.push({
+            a.push({
               type: "AggImpl",
-              content: code.join("\n"),
-              imports
+              content: C.join(`
+`),
+              imports: b2
             });
           }
-          return result;
+          return a;
         }
-      );
-      api.commands._setEventCodeProvider(
-        (event) => {
-          const additions = context.value.additions;
-          const eventName = getDomainObjectName(event);
-          const imports = /* @__PURE__ */ new Set();
-          const infos = Object.values(event.inner);
-          const code = [];
-          code.push(`public record${getStructModifier(additions)} ${eventName}`);
-          code.push(`(`);
-          const infoCode = [];
-          for (const info of infos) {
-            const infoName = getDomainObjectName(info);
-            infoCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`);
+      ), t2.commands._setEventCodeProvider(
+        (u2) => {
+          const a = s.value.additions, p = m(u2), g2 = /* @__PURE__ */ new Set(), b2 = Object.values(u2.inner), C = [];
+          C.push(`public record${_(a)} ${p}`), C.push("(");
+          const l = [];
+          for (const $2 of b2) {
+            const v2 = m($2);
+            l.push(`${i(g2, $2)} ${w.upperFirst(v2)}`);
           }
-          code.push(`    ${infoCode.join(",\n    ")}`);
-          code.push(`)`);
-          code.push(`{`);
-          code.push(`}`);
-          return [
+          return C.push(`    ${l.join(`,
+    `)}`), C.push(")"), C.push("{"), C.push("}"), [
             {
               type: "Event",
-              content: code.join("\n"),
-              imports
+              content: C.join(`
+`),
+              imports: g2
             }
           ];
         }
-      );
-      api.commands._setReadModelCodeProvider(() => []);
-      api.commands._setCodeFileProvider(() => {
-        const codeFiles = [];
-        const infoMap = {};
-        const parentDir = [...context.value.namespace.split(/\./), strUtil.stringToUpperCamel(context.value.moduleName)];
-        function genInfos(infos) {
-          for (const info of Object.values(infos)) {
-            if (!isValueObject(info)) {
+      ), t2.commands._setReadModelCodeProvider(() => []), t2.commands._setCodeFileProvider(() => {
+        const u2 = [], a = {}, p = [...s.value.namespace.split(/\./), w.stringToUpperCamel(s.value.moduleName)];
+        function g2(v2) {
+          for (const d of Object.values(v2)) {
+            if (!r(d))
               continue;
-            }
-            const fileName = getDomainObjectName(info) + ".cs";
-            if (infoMap[`${parentDir.join("/")}/${fileName}`] === true) {
+            const N2 = m(d) + ".cs";
+            if (a[`${p.join("/")}/${N2}`] === true)
               continue;
-            }
-            const codes = api.commands._genInfoCode(info);
-            if (codes.length === 0) {
+            const c = t2.commands._genInfoCode(d);
+            if (c.length === 0)
               continue;
+            const h2 = new A3(p, N2);
+            for (const y2 of c[0].imports)
+              h2.appendContentln(`using ${y2};`);
+            h2.appendContentln(""), h2.appendContentln(
+              `namespace ${s.value.namespace}.${w.stringToUpperCamel(s.value.moduleName)}`
+            ), h2.appendContentln("{"), h2.appendContentln(n2(c[0].content)), h2.appendContentln("}"), u2.push(h2), a[`${p.join("/")}/${N2}`] = true;
+          }
+        }
+        const b2 = t2.states.designer.value._getContext().getCommands();
+        for (const v2 of b2) {
+          g2(v2.inner);
+          const d = m(v2) + ".cs", N2 = t2.commands._genCommandCode(v2), c = new A3(p, d);
+          for (const h2 of N2)
+            if (h2.type === "Command") {
+              c.addImports(h2.imports);
+              for (const y2 of h2.imports)
+                c.appendContentln(`using ${y2};`);
+              c.appendContentln(""), c.appendContentln(
+                `namespace ${s.value.namespace}.${w.stringToUpperCamel(s.value.moduleName)}`
+              ), c.appendContentln("{"), c.appendContentln(n2(h2.content)), c.appendContentln("}");
             }
-            const file = new CodeFile(parentDir, fileName);
-            for (const imp of codes[0].imports) {
-              file.appendContentln(`using ${imp};`);
-            }
-            file.appendContentln("");
-            file.appendContentln(
-              `namespace ${context.value.namespace}.${strUtil.stringToUpperCamel(context.value.moduleName)}`
-            );
-            file.appendContentln("{");
-            file.appendContentln(addTab(codes[0].content));
-            file.appendContentln("}");
-            codeFiles.push(file);
-            infoMap[`${parentDir.join("/")}/${fileName}`] = true;
-          }
+          u2.push(c);
         }
-        const commands = api.states.designer.value._getContext().getCommands();
-        for (const command of commands) {
-          genInfos(command.inner);
-          const fileName = getDomainObjectName(command) + ".cs";
-          const codes = api.commands._genCommandCode(command);
-          const file = new CodeFile(parentDir, fileName);
-          for (const code of codes) {
-            if (code.type === "Command") {
-              file.addImports(code.imports);
-              for (const imp of code.imports) {
-                file.appendContentln(`using ${imp};`);
-              }
-              file.appendContentln("");
-              file.appendContentln(
-                `namespace ${context.value.namespace}.${strUtil.stringToUpperCamel(context.value.moduleName)}`
-              );
-              file.appendContentln("{");
-              file.appendContentln(addTab(code.content));
-              file.appendContentln("}");
-            }
-          }
-          codeFiles.push(file);
+        const C = t2.states.designer.value._getContext().getFacadeCommands();
+        for (const v2 of C) {
+          g2(v2.inner);
+          const d = m(v2) + ".cs", N2 = t2.commands._genFacadeCommandCode(v2), c = new A3(p, d);
+          c.addImports(N2[0].imports);
+          for (const h2 of N2[0].imports)
+            c.appendContentln(`using ${h2};`);
+          c.appendContentln(""), c.appendContentln(
+            `namespace ${s.value.namespace}.${w.stringToUpperCamel(s.value.moduleName)}`
+          ), c.appendContentln("{"), c.appendContentln(n2(N2[0].content)), c.appendContentln("}"), u2.push(c);
         }
-        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands();
-        for (const command of facadeCommands) {
-          genInfos(command.inner);
-          const fileName = getDomainObjectName(command) + ".cs";
-          const codes = api.commands._genFacadeCommandCode(command);
-          const file = new CodeFile(parentDir, fileName);
-          file.addImports(codes[0].imports);
-          for (const imp of codes[0].imports) {
-            file.appendContentln(`using ${imp};`);
+        const l = t2.states.designer.value._getContext().getAggs();
+        for (const v2 of l) {
+          g2(v2.inner);
+          const d = t2.commands._genAggCode(v2), N2 = m(v2) + ".cs", c = new A3(p, N2);
+          for (const h2 of d) {
+            c.addImports(h2.imports);
+            for (const y2 of h2.imports)
+              c.appendContentln(`using ${y2};`);
+            c.appendContentln("");
           }
-          file.appendContentln("");
-          file.appendContentln(
-            `namespace ${context.value.namespace}.${strUtil.stringToUpperCamel(context.value.moduleName)}`
-          );
-          file.appendContentln("{");
-          file.appendContentln(addTab(codes[0].content));
-          file.appendContentln("}");
-          codeFiles.push(file);
+          c.appendContentln(
+            `namespace ${s.value.namespace}.${w.stringToUpperCamel(s.value.moduleName)}`
+          ), c.appendContentln("{");
+          for (const h2 of d)
+            c.appendContentln(n2(h2.content));
+          c.appendContentln("}"), u2.push(c);
         }
-        const aggs = api.states.designer.value._getContext().getAggs();
-        for (const agg5 of aggs) {
-          genInfos(agg5.inner);
-          const codes = api.commands._genAggCode(agg5);
-          const fileName = getDomainObjectName(agg5) + ".cs";
-          const file = new CodeFile(parentDir, fileName);
-          for (const code of codes) {
-            file.addImports(code.imports);
-            for (const imp of code.imports) {
-              file.appendContentln(`using ${imp};`);
-            }
-            file.appendContentln("");
-          }
-          file.appendContentln(
-            `namespace ${context.value.namespace}.${strUtil.stringToUpperCamel(context.value.moduleName)}`
-          );
-          file.appendContentln(`{`);
-          for (const code of codes) {
-            file.appendContentln(addTab(code.content));
-          }
-          file.appendContentln(`}`);
-          codeFiles.push(file);
+        const $2 = t2.states.designer.value._getContext().getEvents();
+        for (const v2 of $2) {
+          g2(v2.inner);
+          const d = m(v2) + ".cs", N2 = t2.commands._genEventCode(v2), c = new A3(p, d);
+          c.addImports(N2[0].imports);
+          for (const h2 of N2[0].imports)
+            c.appendContentln(`using ${h2};`);
+          c.appendContentln(""), c.appendContentln(
+            `namespace ${s.value.namespace}.${w.stringToUpperCamel(s.value.moduleName)}`
+          ), c.appendContentln("{"), c.appendContentln(n2(N2[0].content)), c.appendContentln("}"), u2.push(c);
         }
-        const events = api.states.designer.value._getContext().getEvents();
-        for (const event of events) {
-          genInfos(event.inner);
-          const fileName = getDomainObjectName(event) + ".cs";
-          const codes = api.commands._genEventCode(event);
-          const file = new CodeFile(parentDir, fileName);
-          file.addImports(codes[0].imports);
-          for (const imp of codes[0].imports) {
-            file.appendContentln(`using ${imp};`);
-          }
-          file.appendContentln("");
-          file.appendContentln(
-            `namespace ${context.value.namespace}.${strUtil.stringToUpperCamel(context.value.moduleName)}`
-          );
-          file.appendContentln("{");
-          file.appendContentln(addTab(codes[0].content));
-          file.appendContentln("}");
-          codeFiles.push(file);
-        }
-        return codeFiles;
+        return u2;
       });
     }
   };
@@ -17318,42 +18060,42 @@ async function requireGenJavaContext() {
         message: $t5("question.subcommand.genCode.java.additions"),
         choices: [
           {
-            title: define_exports.java.JavaGeneratorAddition.SpringFramework,
-            value: define_exports.java.JavaGeneratorAddition.SpringFramework,
+            title: Io.java.JavaGeneratorAddition.SpringFramework,
+            value: Io.java.JavaGeneratorAddition.SpringFramework,
             selected: true,
             description: $t5("question.subcommand.genCode.java.additions.springFramework")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.Jpa,
-            value: define_exports.java.JavaGeneratorAddition.Jpa,
+            title: Io.java.JavaGeneratorAddition.Jpa,
+            value: Io.java.JavaGeneratorAddition.Jpa,
             selected: false,
             description: $t5("question.subcommand.genCode.java.additions.jpa")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.Lombok,
-            value: define_exports.java.JavaGeneratorAddition.Lombok,
+            title: Io.java.JavaGeneratorAddition.Lombok,
+            value: Io.java.JavaGeneratorAddition.Lombok,
             selected: true,
             description: $t5("question.subcommand.genCode.java.additions.lombok")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.LombokBuilder,
-            value: define_exports.java.JavaGeneratorAddition.LombokBuilder,
+            title: Io.java.JavaGeneratorAddition.LombokBuilder,
+            value: Io.java.JavaGeneratorAddition.LombokBuilder,
             description: $t5("question.subcommand.genCode.java.additions.lombokBuilder")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.CommandHandler,
-            value: define_exports.java.JavaGeneratorAddition.CommandHandler,
+            title: Io.java.JavaGeneratorAddition.CommandHandler,
+            value: Io.java.JavaGeneratorAddition.CommandHandler,
             selected: true,
             description: $t5("question.subcommand.genCode.java.additions.commandHandler")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.RecordValueObject,
-            value: define_exports.java.JavaGeneratorAddition.RecordValueObject,
+            title: Io.java.JavaGeneratorAddition.RecordValueObject,
+            value: Io.java.JavaGeneratorAddition.RecordValueObject,
             description: $t5("question.subcommand.genCode.java.additions.recordValueObject")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.Timezone,
-            value: define_exports.java.JavaGeneratorAddition.Timezone,
+            title: Io.java.JavaGeneratorAddition.Timezone,
+            value: Io.java.JavaGeneratorAddition.Timezone,
             selected: true,
             description: $t5("question.subcommand.genCode.java.additions.timezone")
           }
@@ -17364,7 +18106,7 @@ async function requireGenJavaContext() {
     { onCancel }
   );
   let nonNullAnnotation = additions.includes(
-    define_exports.java.JavaGeneratorAddition.SpringFramework
+    Io.java.JavaGeneratorAddition.SpringFramework
   ) ? "org.springframework.lang.NonNull" : void 0;
   if (nonNullAnnotation === void 0) {
     nonNullAnnotation = (await (0, import_prompts.default)(
@@ -17383,7 +18125,7 @@ async function requireGenJavaContext() {
       { onCancel }
     )).nonNullAnnotation;
   }
-  if (additions.includes(define_exports.java.JavaGeneratorAddition.Jpa)) {
+  if (additions.includes(Io.java.JavaGeneratorAddition.Jpa)) {
     const { idGenStrategy } = await (0, import_prompts.default)(
       [
         {
@@ -17391,11 +18133,11 @@ async function requireGenJavaContext() {
           type: "select",
           message: $t5("question.subcommand.genCode.java.idGenStrategy"),
           choices: [
-            { title: "TABLE", value: define_exports.java.IdGenStrategy.TABLE },
-            { title: "SEQUENCE", value: define_exports.java.IdGenStrategy.SEQUENCE },
-            { title: "IDENTITY", value: define_exports.java.IdGenStrategy.IDENTITY },
-            { title: "UUID", value: define_exports.java.IdGenStrategy.UUID },
-            { title: "AUTO", value: define_exports.java.IdGenStrategy.AUTO }
+            { title: "TABLE", value: Io.java.IdGenStrategy.TABLE },
+            { title: "SEQUENCE", value: Io.java.IdGenStrategy.SEQUENCE },
+            { title: "IDENTITY", value: Io.java.IdGenStrategy.IDENTITY },
+            { title: "UUID", value: Io.java.IdGenStrategy.UUID },
+            { title: "AUTO", value: Io.java.IdGenStrategy.AUTO }
           ]
         }
       ],
@@ -17429,20 +18171,20 @@ async function requireGenKotlinContext() {
         message: $t6("question.subcommand.genCode.kotlin.additions"),
         choices: [
           {
-            title: define_exports.kotlin.KotlinGeneratorAddition.CommandHandler,
-            value: define_exports.kotlin.KotlinGeneratorAddition.CommandHandler,
+            title: Io.kotlin.KotlinGeneratorAddition.CommandHandler,
+            value: Io.kotlin.KotlinGeneratorAddition.CommandHandler,
             selected: true,
             description: $t6("question.subcommand.genCode.kotlin.additions.commandHandler")
           },
           {
-            title: define_exports.kotlin.KotlinGeneratorAddition.ValueClass,
-            value: define_exports.kotlin.KotlinGeneratorAddition.ValueClass,
+            title: Io.kotlin.KotlinGeneratorAddition.ValueClass,
+            value: Io.kotlin.KotlinGeneratorAddition.ValueClass,
             selected: true,
             description: $t6("question.subcommand.genCode.kotlin.additions.valueClass")
           },
           {
-            title: define_exports.kotlin.KotlinGeneratorAddition.Timezone,
-            value: define_exports.kotlin.KotlinGeneratorAddition.Timezone,
+            title: Io.kotlin.KotlinGeneratorAddition.Timezone,
+            value: Io.kotlin.KotlinGeneratorAddition.Timezone,
             description: $t6("question.subcommand.genCode.kotlin.additions.timezone")
           }
         ],
@@ -17475,32 +18217,32 @@ async function requireGenCsharpContext() {
         message: $t7("question.subcommand.genCode.csharp.additions"),
         choices: [
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.Timezone,
-            value: define_exports.csharp.CSharpGeneratorAddition.Timezone,
+            title: Io.csharp.CSharpGeneratorAddition.Timezone,
+            value: Io.csharp.CSharpGeneratorAddition.Timezone,
             selected: true,
             description: $t7("question.subcommand.genCode.csharp.additions.timezone")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.RecordStruct,
-            value: define_exports.csharp.CSharpGeneratorAddition.RecordStruct,
+            title: Io.csharp.CSharpGeneratorAddition.RecordStruct,
+            value: Io.csharp.CSharpGeneratorAddition.RecordStruct,
             selected: true,
             description: $t7("question.subcommand.genCode.csharp.additions.recordStruct")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.PrimaryConstructor,
-            value: define_exports.csharp.CSharpGeneratorAddition.PrimaryConstructor,
+            title: Io.csharp.CSharpGeneratorAddition.PrimaryConstructor,
+            value: Io.csharp.CSharpGeneratorAddition.PrimaryConstructor,
             selected: true,
             description: $t7("question.subcommand.genCode.csharp.additions.primaryConstructor")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
-            value: define_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
+            title: Io.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
+            value: Io.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
             selected: false,
             description: $t7("question.subcommand.genCode.csharp.additions.commandHandlerInterface")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.AggInterface,
-            value: define_exports.csharp.CSharpGeneratorAddition.AggInterface,
+            title: Io.csharp.CSharpGeneratorAddition.AggInterface,
+            value: Io.csharp.CSharpGeneratorAddition.AggInterface,
             selected: false,
             description: $t7("question.subcommand.genCode.csharp.additions.aggInterface")
           }
@@ -17512,7 +18254,7 @@ async function requireGenCsharpContext() {
   );
   context.additions = new Set(additions);
   context.namespace = namespace;
-  if (context.additions.has(define_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface)) {
+  if (context.additions.has(Io.csharp.CSharpGeneratorAddition.CommandHandlerInterface)) {
     const { commandHandlerInterface } = await (0, import_prompts3.default)(
       [
         {
@@ -17525,7 +18267,7 @@ async function requireGenCsharpContext() {
     );
     context.commandHandlerInterface = commandHandlerInterface;
   }
-  if (context.additions.has(define_exports.csharp.CSharpGeneratorAddition.AggInterface)) {
+  if (context.additions.has(Io.csharp.CSharpGeneratorAddition.AggInterface)) {
     const { aggInterface } = await (0, import_prompts3.default)(
       [
         {
@@ -17592,20 +18334,20 @@ async function requireGenCodeCommandArgs(params) {
         message: $t9("question.subcommand.genCode.language"),
         choices: [
           {
-            title: define_exports.Language.CSharp,
-            value: define_exports.Language.CSharp
+            title: Io.Language.CSharp,
+            value: Io.Language.CSharp
           },
           {
-            title: define_exports.Language.Go,
-            value: define_exports.Language.Go
+            title: Io.Language.Go,
+            value: Io.Language.Go
           },
           {
-            title: define_exports.Language.Java,
-            value: define_exports.Language.Java
+            title: Io.Language.Java,
+            value: Io.Language.Java
           },
           {
-            title: define_exports.Language.Kotlin,
-            value: define_exports.Language.Kotlin
+            title: Io.Language.Kotlin,
+            value: Io.Language.Kotlin
           }
         ]
       }
@@ -17613,13 +18355,13 @@ async function requireGenCodeCommandArgs(params) {
     { onCancel }
   )).language;
   params.args.language = language;
-  if (language === define_exports.Language.Java) {
+  if (language === Io.Language.Java) {
     params.args.context = await requireGenJavaContext();
-  } else if (language === define_exports.Language.Kotlin) {
+  } else if (language === Io.Language.Kotlin) {
     params.args.context = await requireGenKotlinContext();
-  } else if (language === define_exports.Language.CSharp) {
+  } else if (language === Io.Language.CSharp) {
     params.args.context = await requireGenCsharpContext();
-  } else if (language === define_exports.Language.Go) {
+  } else if (language === Io.Language.Go) {
     params.args.context = await requireGenGoContext();
   } else {
     isNever(language);
@@ -17658,37 +18400,37 @@ async function execute5(args) {
   log_default.printSuccess("================ Compliling ts code: Succeeded ================");
   log_default.printInfo("================ Generating code: Starting... ================");
   const files = import_fs6.default.readdirSync(import_path7.default.join(sourcePath, ".output", "esm"));
-  let agg5;
+  let agg4;
   let pluginLoaded = false;
   deleteFolderRecursive(`${sourcePath.replace(/\\/g, "/")}/.output/${args.language}`);
   for (const file of files) {
     if (import_fs6.default.statSync(import_path7.default.join(sourcePath, ".output", "esm", file)).isDirectory() || !file.endsWith(".mjs")) {
       continue;
     }
-    const m2 = await import(`file://${sourcePath.replace(/\\/g, "/")}/.output/esm/${file}`);
-    if (!m2 || !tr(m2.default)) {
+    const m = await import(`file://${sourcePath.replace(/\\/g, "/")}/.output/esm/${file}`);
+    if (!m || !Jn(m.default)) {
       continue;
     }
-    const designer = m2.default;
+    const designer = m.default;
     if (!pluginLoaded) {
-      if (args.language === define_exports.Language.Java) {
-        GeneratorPliginHelper.registerPlugin(generator_java_plugin_default);
-      } else if (args.language === define_exports.Language.Kotlin) {
-        GeneratorPliginHelper.registerPlugin(generator_kotlin_plugin_default);
-      } else if (args.language === define_exports.Language.CSharp) {
-        GeneratorPliginHelper.registerPlugin(generator_csharp_plugin_default);
-      } else if (args.language === define_exports.Language.Go) {
-        GeneratorPliginHelper.registerPlugin(generator_go_plugin_default);
+      if (args.language === Io.Language.Java) {
+        le2.registerPlugin(ko);
+      } else if (args.language === Io.Language.Kotlin) {
+        le2.registerPlugin(xo);
+      } else if (args.language === Io.Language.CSharp) {
+        le2.registerPlugin(Do);
+      } else if (args.language === Io.Language.Go) {
+        le2.registerPlugin(To);
       } else {
         isNever(args.language);
       }
       pluginLoaded = true;
     }
-    agg5 = useGeneratorAgg(designer);
-    agg5.commands.setDomainDesigner(designer);
+    agg4 = Oo(designer);
+    agg4.commands.setDomainDesigner(designer);
     args.context.moduleName = designer._getContext().getDesignerOptions().moduleName || file.split(".")[0];
-    agg5.commands.setContext(args.context);
-    const codeFiles = agg5.commands.genCodeFiles();
+    agg4.commands.setContext(args.context);
+    const codeFiles = agg4.commands.genCodeFiles();
     for (const codeFile of codeFiles) {
       const p = import_path7.default.join(sourcePath, ".output", args.language, ...codeFile.getParentDir());
       if (!import_fs6.default.existsSync(p)) {
@@ -17703,14 +18445,14 @@ async function execute5(args) {
 // src/domain/cli-args-agg/index.ts
 var { t: $t10, setCurrentLang } = useI18nAgg().commands;
 var environmentAgg6 = useEnvironmentAgg();
-var agg4 = X(() => {
-  const isReady = (0, import_reactivity5.ref)(false);
-  const currentCommand = (0, import_reactivity5.ref)("none" /* None */);
+var agg3 = B(() => {
+  const isReady = (0, import_reactivity4.ref)(false);
+  const currentCommand = (0, import_reactivity4.ref)("none" /* None */);
   const source = process.cwd();
-  const initCommandArgs = (0, import_reactivity5.reactive)({ source });
-  const updateWorkspaceCommandArgs = (0, import_reactivity5.reactive)({ source });
-  const runWebCommandArgs = (0, import_reactivity5.reactive)({ source });
-  const genCodeCommandArgs = (0, import_reactivity5.reactive)({ source });
+  const initCommandArgs = (0, import_reactivity4.reactive)({ source });
+  const updateWorkspaceCommandArgs = (0, import_reactivity4.reactive)({ source });
+  const runWebCommandArgs = (0, import_reactivity4.reactive)({ source });
+  const genCodeCommandArgs = (0, import_reactivity4.reactive)({ source });
   async function init() {
     if (isReady.value) {
       return;
@@ -17842,7 +18584,7 @@ var agg4 = X(() => {
   };
 });
 function useCliArgsAgg() {
-  return agg4.api;
+  return agg3.api;
 }
 
 // src/index.ts
@@ -17867,23 +18609,23 @@ async function start() {
   await cliArgsAgg.commands.exec();
 }
 /**
-* @vue/shared v3.5.14
+* @vue/shared v3.5.16
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 /*! #__NO_SIDE_EFFECTS__ */
 /**
-* @vue/reactivity v3.5.14
+* @vue/reactivity v3.5.16
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 /**
-* @vue/runtime-core v3.5.14
+* @vue/runtime-core v3.5.16
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 /**
-* vue v3.5.14
+* vue v3.5.16
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
@@ -17891,7 +18633,7 @@ async function start() {
 
 @vue/shared/dist/shared.cjs.prod.js:
   (**
-  * @vue/shared v3.5.14
+  * @vue/shared v3.5.16
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -17899,7 +18641,7 @@ async function start() {
 
 @vue/shared/dist/shared.cjs.js:
   (**
-  * @vue/shared v3.5.14
+  * @vue/shared v3.5.16
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -17907,14 +18649,14 @@ async function start() {
 
 @vue/reactivity/dist/reactivity.cjs.prod.js:
   (**
-  * @vue/reactivity v3.5.14
+  * @vue/reactivity v3.5.16
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
 
 @vue/reactivity/dist/reactivity.cjs.js:
   (**
-  * @vue/reactivity v3.5.14
+  * @vue/reactivity v3.5.16
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)

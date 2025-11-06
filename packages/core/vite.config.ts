@@ -1,10 +1,9 @@
 import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
-import wasm from 'vite-plugin-wasm'
 
 export default defineConfig({
-  plugins: [wasm()],
-  assetsInclude: ['**/*.wasm'],
+  plugins: [],
+  assetsInclude: [],
   build: {
     minify: 'esbuild',
     outDir: 'dist',

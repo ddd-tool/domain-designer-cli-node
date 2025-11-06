@@ -1,13 +1,11 @@
 {
   "name": "@ddd-tool/domain-designer-core",
   "private": true,
-  "version": "0.1.0-beta.10",
+  "version": "0.1.0-beta.11",
   "type": "module",
+  "main": "./lib/index.ts",
   "files": [
     "dist"
-  ],
-  "sideEffects": [
-    "./index.js"
   ],
   "module": "./dist/index.js",
   "license": "Apache-2.0",
@@ -18,21 +16,13 @@
   "repository": "https://github.com/ddd-tool/domain-designer-core-ts.git",
   "scripts": {
     "build": "pnpm build:pack && pnpm verify && pnpm test && pnpm build:sync",
-    "build:pack": "vite build && vite build ./lib/check",
+    "build:pack": "vite build",
     "build:sync": "node scripts/gen-package-info.mjs",
     "verify": "tsc -p tsconfig.build.json --composite false",
     "test": "vitest --run --coverage",
     "test-ui": "vitest --ui --coverage"
   },
   "devDependencies": {
-    "@rollup/plugin-wasm": "^6.2.2",
-    "@types/node": "^22.15.21",
-    "cross-fetch": "^4.1.0",
-    "ncp": "^2.0.0",
-    "read-pkg": "^9.0.1",
-    "vite-plugin-wasm": "^3.4.1"
-  },
-  "dependencies": {
-    "nanoid": "^5.1.5"
+    "read-pkg": "^9.0.1"
   }
 }

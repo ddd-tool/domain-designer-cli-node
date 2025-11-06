@@ -18,12 +18,9 @@
     "@ddd-tool/domain-designer-core": "workspace:^",
     "@ddd-tool/domain-designer-generator": "workspace:^",
     "@types/prompts": "^2.4.9",
-    "@vue/reactivity": "^3.5.14",
     "chalk": "^5.4.1",
     "commander": "^12.1.0",
-    "esbuild": "^0.24.2",
     "prompts": "^2.4.2",
-    "read-pkg": "^9.0.1",
-    "vue-fn": "0.1.0-beta.1"
+    "read-pkg": "^9.0.1"
   }
 }

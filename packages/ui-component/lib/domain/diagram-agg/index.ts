@@ -48,6 +48,10 @@ function createAgg(data: Record<string, DomainDesigner>) {
       })
       let item = generator.next()
       while (!item.done) {
+        if (!item.value) {
+          console.error('item.value is undefined')
+          continue
+        }
         code.push(item.value)
         item = generator.next()
       }
@@ -70,6 +74,9 @@ function createAgg(data: Record<string, DomainDesigner>) {
       const workflowsTmp = Object.keys(workflows.value).map((w) => w)
       for (const story in design.value._getContext().getUserStories()) {
         const values = design.value._getContext().getUserStories()[story]
+        if (values === undefined) {
+          throw new Error(`user story ${story} is undefined`)
+        }
         for (const f of values) {
           if (workflowsTmp.includes(f)) {
             workflowsTmp.splice(workflowsTmp.indexOf(f), 1)
@@ -95,9 +102,9 @@ function createAgg(data: Record<string, DomainDesigner>) {
       currentStory.value = userStory
       if (
         userStory !== EMPTY_STORY &&
-        (!workflow || !design.value?._getContext().getUserStories()[userStory].includes(workflow))
+        (!workflow || !design.value?._getContext()?.getUserStories()?.[userStory]?.includes(workflow))
       ) {
-        currentWorkflow.value = design.value?._getContext().getUserStories()[userStory][0] || undefined
+        currentWorkflow.value = design.value?._getContext()?.getUserStories()[userStory]?.[0] || undefined
       } else {
         currentWorkflow.value = workflow
       }
