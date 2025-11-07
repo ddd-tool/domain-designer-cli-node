@@ -15,6 +15,15 @@ export default defineConfig({
       promiseImportName: (i) => `__tla_${i}`,
     }),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
   optimizeDeps: {
     esbuildOptions: {
       target: 'es2017',

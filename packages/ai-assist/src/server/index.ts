@@ -3,13 +3,14 @@ import { useWrapper } from './wrapper'
 import { handleQuery } from './controller/query'
 import { handleTest } from './controller/test'
 import { handleUpload } from './controller/upload'
+import { handleConnect } from './controller/connent'
 
 export function startServer(serverPort: number = 3000) {
   const server = http.createServer(async (req, res) => {
     const wrapper = useWrapper('', req, res)
     try {
       if (wrapper.isMatchRoute('GET', '/connect')) {
-        wrapper.KeepAlive()
+        handleConnect(wrapper)
       } else if (wrapper.isMatchRoute('POST', '/query')) {
         await handleQuery(wrapper)
       } else if (wrapper.isMatchRoute('POST', '/upload')) {

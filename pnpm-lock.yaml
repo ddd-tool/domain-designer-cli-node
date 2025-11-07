@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       vue-fn:
-        specifier: 0.1.0-rc.2
-        version: 0.1.0-rc.2(@vue/reactivity@3.5.16)(vue@3.5.16(typescript@5.9.3))
+        specifier: 0.1.0-rc.5
+        version: 0.1.0-rc.5(@vue/reactivity@3.5.16)(vue@3.5.16(typescript@5.9.3))
     devDependencies:
       '@primeuix/themes':
         specifier: ^1.2.5
@@ -2352,8 +2352,8 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
-  vue-fn@0.1.0-rc.2:
-    resolution: {integrity: sha512-KOwj1dbXqtz26x/DSx3PynRJ9ivCqC1Ag4GlISIyjz89A6jRGZhXlnuncZaOSvQ5zAQjugXvrSRo6H41UId8oA==}
+  vue-fn@0.1.0-rc.5:
+    resolution: {integrity: sha512-xbRRQoKZORuzLCU7w8FToIhmsv/bBxzWeMH+OAlxrD0RN3Ecd/EvvX+Cad2iJuRgGMvUr5mCMPk1sMbIVqr7tQ==}
     peerDependencies:
       '@vue/reactivity': '>=3.5.0'
       vue: '>=3.5.0'
@@ -4504,7 +4504,7 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
-  vue-fn@0.1.0-rc.2(@vue/reactivity@3.5.16)(vue@3.5.16(typescript@5.9.3)):
+  vue-fn@0.1.0-rc.5(@vue/reactivity@3.5.16)(vue@3.5.16(typescript@5.9.3)):
     dependencies:
       immer: 10.2.0
       ts-deferred: 1.0.4

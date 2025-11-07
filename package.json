@@ -16,6 +16,8 @@
   ],
   "scripts": {
     "dev": "pnpm -F playground dev",
+    "dev:ai": "pnpm -F ai dev",
+    "dev:ui": "pnpm -F @ddd-tool/domain-designer-ui-component dev",
     "build": "pnpm syncver && pnpm -r build",
     "test": "pnpm -r test",
     "test:cli": "pnpm -F cli test",
@@ -60,6 +62,6 @@
     "zx": "^8.8.5"
   },
   "dependencies": {
-    "vue-fn": "0.1.0-rc.2"
+    "vue-fn": "0.1.0-rc.5"
   }
 }

@@ -1,6 +1,6 @@
 export default {
   "name": "cli",
-  "version": "0.1.0-beta.16",
+  "version": "0.2.0-aplha.0",
   "private": true,
   "type": "module",
   "files": [
@@ -15,5 +15,5 @@ export default {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "cli@0.1.0-beta.16"
+  "_id": "cli@0.2.0-aplha.0"
 }

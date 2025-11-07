@@ -3,7 +3,7 @@ import type { AIQueryRequestParam } from '../define'
 import { type HttpWrapper } from '../wrapper'
 
 function isAIQueryRequestParam(data: Record<string, any>): data is AIQueryRequestParam {
-  return typeof data.query === 'string' && !!data.query
+  return typeof data.query === 'string' && !!data.query && data.model === 'DeepSeek'
 }
 
 export async function handleQuery(httpWrapper: HttpWrapper) {
@@ -16,7 +16,7 @@ export async function handleQuery(httpWrapper: HttpWrapper) {
     httpWrapper.replyJson(400, { error: 'Invalid request' })
     return
   }
-  const stream = await queryStream('DeepSeek', token, data.query, data.attachments || [])
+  const stream = await queryStream(data.model, token, data.query, data.attachments || [])
   for await (const evnet of stream) {
     httpWrapper.sendMessage(JSON.stringify(evnet))
   }

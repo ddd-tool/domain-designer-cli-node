@@ -55,7 +55,13 @@ export function useWrapper(prefix: string, req: http.IncomingMessage, res: http.
       })
       this.sendHeartbeat()
       const intervalId = setInterval(() => {
-        this.sendHeartbeat()
+        try {
+          this.sendHeartbeat()
+        } catch (e) {
+          console.error(e)
+          clientMap.delete(clientId)
+          intervalId && clearInterval(intervalId)
+        }
       }, 8000)
       req.on('close', () => {
         clientMap.delete(clientId)

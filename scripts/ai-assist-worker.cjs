@@ -6500,7 +6500,13 @@ function useWrapper(prefix, req, res) {
       });
       this.sendHeartbeat();
       const intervalId = setInterval(() => {
-        this.sendHeartbeat();
+        try {
+          this.sendHeartbeat();
+        } catch (e2) {
+          console.error(e2);
+          clientMap.delete(clientId);
+          intervalId && clearInterval(intervalId);
+        }
       }, 8e3);
       req.on("close", () => {
         clientMap.delete(clientId);
@@ -13214,7 +13220,7 @@ async function upload(aiName, key, fileStream) {
 
 // src/server/controller/query.ts
 function isAIQueryRequestParam(data) {
-  return typeof data.query === "string" && !!data.query;
+  return typeof data.query === "string" && !!data.query && data.model === "DeepSeek";
 }
 async function handleQuery(httpWrapper) {
   const data = await httpWrapper.readReqBodyJson();
@@ -13226,7 +13232,7 @@ async function handleQuery(httpWrapper) {
     httpWrapper.replyJson(400, { error: "Invalid request" });
     return;
   }
-  const stream = await queryStream("DeepSeek", token, data.query, data.attachments || []);
+  const stream = await queryStream(data.model, token, data.query, data.attachments || []);
   for await (const evnet of stream) {
     httpWrapper.sendMessage(JSON.stringify(evnet));
   }
@@ -13241,10 +13247,7 @@ function handleTest(wrapper) {
 // src/server/controller/upload.ts
 var import_node_fs2 = __toESM(require("node:fs"));
 function isAIUploadRequestParam(data) {
-  if (typeof data.filePath !== "string" || !data.filePath) {
-    return false;
-  }
-  return true;
+  return typeof data.filePath === "string" && !!data.filePath && data.model === "DeepSeek";
 }
 async function handleUpload(httpWrapper) {
   const data = await httpWrapper.readReqBodyJson();
@@ -13260,8 +13263,13 @@ async function handleUpload(httpWrapper) {
     return;
   }
   const stream = import_node_fs2.default.createReadStream(data.filePath);
-  const file = await upload("DeepSeek", token, stream);
-  httpWrapper.replyJson(200, { id: file.id, filename: file.filename });
+  const file = await upload(data.model, token, stream);
+  httpWrapper.replyJson(200, file);
+}
+
+// src/server/controller/connent.ts
+function handleConnect(wrapper) {
+  wrapper.KeepAlive();
 }
 
 // src/server/index.ts
@@ -13270,7 +13278,7 @@ function startServer(serverPort = 3e3) {
     const wrapper = useWrapper("", req, res);
     try {
       if (wrapper.isMatchRoute("GET", "/connect")) {
-        wrapper.KeepAlive();
+        handleConnect(wrapper);
       } else if (wrapper.isMatchRoute("POST", "/query")) {
         await handleQuery(wrapper);
       } else if (wrapper.isMatchRoute("POST", "/upload")) {
