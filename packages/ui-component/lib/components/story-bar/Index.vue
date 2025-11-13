@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 import Button from 'primevue/button'
 import Dock from 'primevue/dock'
 import FloatLabel from 'primevue/floatlabel'
@@ -16,7 +16,9 @@ watch(currentStory, (story) => {
   if (story !== EMPTY_STORY) {
     currentWorkflow.value = diagramAgg.states.design.value?._getContext().getUserStories()?.[story]?.[0]
   }
-  diagramAgg.commands.focusFlow(currentWorkflow.value!, story)
+  nextTick(() => {
+    diagramAgg.commands.focusFlow(currentWorkflow.value!, story)
+  })
 })
 const userStoriesOptions = computed(() => {
   const result: { name: string; code: string }[] = []
