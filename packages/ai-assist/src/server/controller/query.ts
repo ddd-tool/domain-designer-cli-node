@@ -1,9 +1,10 @@
-import { queryStream } from '../ai-client'
-import type { AIQueryRequestParam } from '../define'
+import { kimiQueryStream, kimiUpload, queryStream } from '../ai-client'
+import type { AIQueryRequestParam } from './define'
 import { type HttpWrapper } from '../wrapper'
+import { AiMessage } from '../ai-client/define'
 
 function isAIQueryRequestParam(data: Record<string, any>): data is AIQueryRequestParam {
-  return typeof data.query === 'string' && !!data.query && data.model === 'DeepSeek'
+  return data?.query?.length > 0 && data?.host?.length > 0
 }
 
 export async function handleQuery(httpWrapper: HttpWrapper) {
@@ -16,7 +17,29 @@ export async function handleQuery(httpWrapper: HttpWrapper) {
     httpWrapper.replyJson(400, { error: 'Invalid request' })
     return
   }
-  const stream = await queryStream(data.model, token, data.query, data.attachments || [])
+  if (data.host === 'Kimi') {
+    let fileMessageResult: AiMessage[] = []
+    if (!data.attachments?.length) {
+      httpWrapper.replyJson(400, { error: 'Invalid request' })
+      return
+    } else {
+      for (const filePath of data.attachments) {
+        fileMessageResult = await kimiUpload('Kimi', token, filePath, fileMessageResult)
+      }
+    }
+    if (fileMessageResult.length === 0) {
+      httpWrapper.replyJson(400, { error: 'Invalid request' })
+      return
+    }
+    console.info('fileMessageResult', fileMessageResult)
+    const stream = await kimiQueryStream('Kimi', data.host, token, fileMessageResult)
+    for await (const evnet of stream) {
+      httpWrapper.sendMessage(JSON.stringify(evnet))
+    }
+    httpWrapper.close()
+    return
+  }
+  const stream = await queryStream(data.host, token, data.query, data.attachments || [])
   for await (const evnet of stream) {
     httpWrapper.sendMessage(JSON.stringify(evnet))
   }

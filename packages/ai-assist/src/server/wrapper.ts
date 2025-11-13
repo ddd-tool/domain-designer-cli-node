@@ -1,5 +1,5 @@
 import http from 'node:http'
-import type { HttpMethod } from './define'
+import type { HttpMethod } from './controller/define'
 import { nextClientId } from './common'
 
 export type HttpWrapper = ReturnType<typeof useWrapper>

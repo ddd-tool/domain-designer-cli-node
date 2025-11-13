@@ -12,6 +12,6 @@
     "verify": "tsc -p ./tsconfig.build-cli.json"
   },
   "dependencies": {
-    "openai": "^6.8.1"
+    "openai": "^4.20.1"
   }
 }

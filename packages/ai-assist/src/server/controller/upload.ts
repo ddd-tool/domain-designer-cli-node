@@ -1,10 +1,10 @@
 import fs from 'node:fs'
-import type { AIUploadRequestParam } from '../define'
+import type { AIUploadRequestParam } from './define'
 import { HttpWrapper } from '../wrapper'
 import { upload } from '../ai-client'
 
 function isAIUploadRequestParam(data: Record<string, string>): data is AIUploadRequestParam {
-  return typeof data.filePath === 'string' && !!data.filePath && data.model === 'DeepSeek'
+  return data?.filePath?.length > 0 && data?.model.length > 0
 }
 
 export async function handleUpload(httpWrapper: HttpWrapper) {
@@ -21,6 +21,6 @@ export async function handleUpload(httpWrapper: HttpWrapper) {
     return
   }
   const stream = fs.createReadStream(data.filePath)
-  const file = await upload(data.model, token, stream)
-  httpWrapper.replyJson(200, file)
+  // const file = await upload(data.model, token, stream)
+  httpWrapper.replyJson(200, { status: 'ok' })
 }
