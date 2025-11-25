@@ -67,41 +67,11 @@ type ContextInitializer = () => {
   createReadModel: DomainDesignReadModelProvider
 }
 
-export function defaultOptions(): Required<DomainDesignOptions> {
-  return {
-    moduleName: '',
-    ignoreValueObjects: [
-      'time',
-      'id',
-      'pid',
-      'name',
-      'state',
-      'status',
-      'version',
-      'code',
-      'message',
-      'type',
-      'result',
-      'data',
-      'payload',
-      'meta',
-      'context',
-      'sorting',
-    ],
-    __toFormatType: 'BngleBrackets',
-  }
-}
-
 export type DomainDesignInternalContext = ReturnType<typeof createInternalContext>
 const _internalContextMap: Record<string, DomainDesignInternalContext> = {}
 
 function createInternalContext(initFn: ContextInitializer) {
   const initResult = initFn()
-  if (!initResult.options) {
-    initResult.options = defaultOptions()
-  } else {
-    initResult.options = Object.assign(defaultOptions(), initResult.options)
-  }
   const info = initResult.createInfo()
 
   //NOTE: links的键为"srcRule,srcId,destRule,destId"

@@ -157,6 +157,7 @@ function createAgg(data: Record<string, DomainDesigner>) {
             displaySystem: linkSystem.value,
           })
         },
+
         setRenderRanker(v: Ranker) {
           renderConfig.ranker = v
         },

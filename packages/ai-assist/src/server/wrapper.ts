@@ -41,7 +41,18 @@ export function useWrapper(prefix: string, req: http.IncomingMessage, res: http.
     isMatchRoute(method: HttpMethod, path: string): boolean {
       return method === reqMethod && prefix + path === reqPathname
     },
-    KeepAlive() {
+    keepAlive() {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream; charset=utf-8',
+        'Cache-Control': 'no-cache, no-transform',
+        Connection: 'keep-alive',
+        // CORS 视情况而定（若浏览器跨域访问）
+        'Access-Control-Allow-Origin': '*',
+        'X-Accel-Buffering': 'no',
+        'X-Accel-Charset': 'utf-8',
+      })
+    },
+    keepAliveClient() {
       clientId = nextClientId()
       clientMap.set(clientId, this)
       res.writeHead(200, {

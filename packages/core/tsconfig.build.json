@@ -10,6 +10,7 @@
     "**/vite.config.ts",
   ],
   "compilerOptions": {
+    "strict": true,
     "composite": true,
     "baseUrl": ".",
     "module": "ESNext",

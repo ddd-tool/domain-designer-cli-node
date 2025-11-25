@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 import { createDomainDesigner } from '../index'
-import { defaultOptions } from '../common'
+import { defaultOptions } from '../index'
 
 it('测试默认配置', () => {
   const d = createDomainDesigner()

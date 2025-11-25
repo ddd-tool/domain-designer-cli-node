@@ -2,7 +2,7 @@
 import Nomnoml from '#lib/components/nomnoml/Index.vue'
 import DragZoom from '#lib/components/drag-zoom/Index.vue'
 import AiAssist from '#lib/components/ai-assist/Index.vue'
-import RightBar from '#lib/components/right-bar/Index.vue'
+import ToolBar from '#lib/components/tool-bar/Index.vue'
 import StoryBar from '#lib/components/story-bar/Index.vue'
 import { EMPTY_STORY, useDiagramAgg } from '#domain/diagram-agg'
 import Drawer from 'primevue/drawer'
@@ -261,8 +261,8 @@ const dockItems = ref([
 
 <template>
   <AiAssist></AiAssist>
-  <RightBar :designs="designs" :dragZoomRef="dragZoomRef"></RightBar>
-  <StoryBar></StoryBar>
+  <ToolBar :designs="designs"></ToolBar>
+  <StoryBar :dragZoomRef="dragZoomRef"></StoryBar>
   <template v-show="false">
     <Dock :model="dockItems" position="right" style="position: fixed">
       <template #itemicon="{ item }">
@@ -422,8 +422,11 @@ const dockItems = ref([
 .p-dock:hover {
   opacity: 1;
 }
+.p-dock .p-dock-item {
+  transition: 0.5s;
+}
 .p-dock .p-dock-item:hover {
-  scale: 1.1;
+  scale: 1.2;
 }
 .toolbar-drawer {
   width: 40%;

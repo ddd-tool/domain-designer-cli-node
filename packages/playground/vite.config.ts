@@ -8,6 +8,7 @@ export default defineConfig({
   esbuild: {
     drop: ['console', 'debugger'], // 移除 console 和 debugger 语句
   },
+  dev: {},
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

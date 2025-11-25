@@ -62,18 +62,23 @@ export async function execute(args: RunWebCommandArgs) {
   }
   log.printSuccess('================ 安装运行依赖: Succeeded ================')
 
-  log.printInfo('================ 装配代码文件: Starting... ================')
+  log.printInfo('================ 装配代码与环境变量: Starting... ================')
   configSource(webRoot, args.source)
-  log.printSuccess('================ 装配代码文件: Succeeded ================')
+  configEnvironment(webRoot, args.source)
+  log.printSuccess('================ 装配代码与环境变量: Succeeded ================')
 
   log.printInfo('================ 运行Web服务: Starting... ================')
-
+  if (environmentAgg.states.osType.value === 'windows') {
+    // 禁用 Windows 的 Ctrl+C 批处理提示
+    process.stdin.on('data', () => {})
+  }
   const worker = new Worker(`${webRoot}/scripts/ai-assist-worker.cjs`)
+  // worker启动一个http.server
   worker.on('online', () => {
     log.printDebug('worker online')
   })
-  function onExit() {
-    worker.terminate()
+  async function onExit() {
+    await worker.terminate()
   }
   process.on('SIGINT', onExit)
   process.on('SIGTERM', onExit)
@@ -111,6 +116,9 @@ export async function execute(args: RunWebCommandArgs) {
   })
 }
 
+const tsSuffixMatcher = new RegExp(/(.+)\.ts$/)
+const detailSuffix = '-detail'
+
 async function configSource(webRoot: string, source: string) {
   if (!fs.existsSync(source) || !fs.statSync(source).isDirectory()) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: source }))
@@ -133,15 +141,14 @@ async function configSource(webRoot: string, source: string) {
     )
   }
 
-  const designs: { name: string; flag: string; importCode: string }[] = []
-  const tsSuffixMatcher = new RegExp(/(.+)\.ts$/)
+  const designs: { name: string; identifier: string; importCode: string }[] = []
   let i = 0
   fs.readdirSync(source).forEach((file) => {
     if (tsSuffixMatcher.test(file)) {
       const name = tsSuffixMatcher.exec(file)![1]
       designs.push({
         name,
-        flag: `__d${++i}`,
+        identifier: `__d${++i}`,
         importCode: `(await import('${path.resolve(source, name).replace(/\\/g, '/')}')).default`,
       })
     }
@@ -151,7 +158,7 @@ async function configSource(webRoot: string, source: string) {
 
 ${designs
   .map((d) => {
-    return `const ${d.flag} = ${d.importCode}`
+    return `const ${d.identifier} = ${d.importCode}`
   })
   .join('\n')}
 
@@ -159,8 +166,8 @@ const data: Record<string, DomainDesigner> = {}
 
 ${designs
   .map((d) => {
-    return `if (isDomainDesigner(${d.flag})) {
-  data['${d.name}'] = ${d.flag}
+    return `if (isDomainDesigner(${d.identifier})) {
+  data['${d.name}'] = ${d.identifier}
 }`
   })
   .join('\n')}
@@ -171,4 +178,33 @@ export default data
   fs.writeFileSync(path.join(webRoot, 'packages', 'playground', 'src', 'views', 'index.ts'), mergedTsCode, {
     encoding: 'utf-8',
   })
+}
+
+function configEnvironment(webRoot: string, workspacePath: string) {
+  const result: Record<string, string[]> = {}
+  fs.readdirSync(workspacePath).forEach((file) => {
+    if (tsSuffixMatcher.test(file)) {
+      const name = tsSuffixMatcher.exec(file)![1]
+      const paths: string[] = [path.resolve(workspacePath, file)]
+      const detailDir = path.join(workspacePath, name + detailSuffix)
+      if (fs.existsSync(detailDir) && fs.statSync(detailDir).isDirectory()) {
+        findFilesRecursive(detailDir, tsSuffixMatcher, paths)
+      }
+      result[name] = paths
+    }
+  })
+  const envFilePath = path.join(webRoot, 'packages', 'playground', '.env')
+  fs.writeFileSync(envFilePath, `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`, { encoding: 'utf-8' })
+}
+
+function findFilesRecursive(dir: string, filter: RegExp, result: string[] = []): string[] {
+  fs.readdirSync(dir).forEach((file) => {
+    const filePath = path.join(dir, file)
+    if (fs.statSync(filePath).isDirectory()) {
+      findFilesRecursive(filePath, filter, result)
+    } else if (filter.test(filePath)) {
+      result.push(filePath)
+    }
+  })
+  return result
 }

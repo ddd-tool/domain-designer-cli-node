@@ -4,6 +4,7 @@
     "src/**/*",
     "__tests__",
     "scripts",
+    "vite-env.d.ts"
   ],
   "compilerOptions": {
     "strict": true,

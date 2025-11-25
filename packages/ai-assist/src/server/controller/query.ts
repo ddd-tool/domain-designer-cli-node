@@ -19,22 +19,26 @@ export async function handleQuery(httpWrapper: HttpWrapper) {
   }
   if (data.host === 'Kimi') {
     let fileMessageResult: AiMessage[] = []
-    if (!data.attachments?.length) {
-      httpWrapper.replyJson(400, { error: 'Invalid request' })
-      return
-    } else {
-      for (const filePath of data.attachments) {
-        fileMessageResult = await kimiUpload('Kimi', token, filePath, fileMessageResult)
-      }
-    }
-    if (fileMessageResult.length === 0) {
-      httpWrapper.replyJson(400, { error: 'Invalid request' })
-      return
-    }
+    // if (!data.attachments?.length) {
+    //   httpWrapper.replyJson(400, { error: 'Invalid request' })
+    //   return
+    // } else {
+    //   for (const filePath of data.attachments) {
+    //     fileMessageResult = await kimiUpload('Kimi', token, filePath, fileMessageResult)
+    //   }
+    // }
+    // if (fileMessageResult.length === 0) {
+    //   httpWrapper.replyJson(400, { error: 'Invalid request' })
+    //   return
+    // }
     console.info('fileMessageResult', fileMessageResult)
-    const stream = await kimiQueryStream('Kimi', data.host, token, fileMessageResult)
+    console.debug('token', token)
+    const stream = await kimiQueryStream('Kimi', token, data.query, fileMessageResult)
+    httpWrapper.keepAlive()
     for await (const evnet of stream) {
-      httpWrapper.sendMessage(JSON.stringify(evnet))
+      const obj = JSON.stringify(evnet)
+      httpWrapper.sendMessage(obj)
+      console.debug('send', obj)
     }
     httpWrapper.close()
     return

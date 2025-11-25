@@ -9,17 +9,15 @@ import RadioButton from 'primevue/radiobutton'
 import SelectButton from 'primevue/selectbutton'
 import Slider from 'primevue/slider'
 import ToggleSwitch from 'primevue/toggleswitch'
-import DragZoom from '#lib/components/drag-zoom/Index.vue'
 import { useDiagramAgg } from '#lib/domain/diagram-agg'
 import { useI18nAgg } from '#lib/domain/i18n-agg'
-import { DomainDesigner } from '@ddd-tool/domain-designer-core'
+import { type DomainDesigner } from '@ddd-tool/domain-designer-core'
 import { bindRef } from 'vue-fn/domain'
 import { VALID_EDGE_TYPES, VALID_RANKERS } from '#lib/domain/diagram-agg/define'
 
 type NonEmptyObject<T extends object> = keyof T extends never ? never : T
 interface Props {
   designs: NonEmptyObject<Record<string, DomainDesigner>>
-  dragZoomRef: InstanceType<typeof DragZoom> | undefined
 }
 
 const props = defineProps<Props>()
@@ -145,16 +143,9 @@ const dockItems = reactive([
   {
     label: t('menu.exportSvg'),
     icon: 'pi pi-file-export',
-    command() {
-      diagramAgg.commands.downloadSvg()
-    },
-  },
-  {
-    label: t('menu.resetPosition'),
-    icon: 'pi pi-sync',
     severity: 'success',
     command() {
-      props.dragZoomRef?.resetPosition()
+      diagramAgg.commands.downloadSvg()
     },
   },
   {
@@ -191,15 +182,6 @@ const dockItems = reactive([
     class="toolbar-drawer"
   >
     <div>
-      <ToggleSwitch v-model="linkReadModel" :true-value="true" :false-value="false" />
-      <label> {{ t('menu.settings.linkReadModel') }} </label>
-    </div>
-    <div>
-      <ToggleSwitch v-model="linkSystem" :true-value="true" :false-value="false" />
-      <label> {{ t('menu.settings.linkExternalSystem') }} </label>
-    </div>
-    <Divider></Divider>
-    <div>
       <h3>{{ t('menu.settings.language') }}</h3>
       <SelectButton
         v-model="language"
@@ -211,6 +193,16 @@ const dockItems = reactive([
     <Divider></Divider>
     <div>
       <h3>{{ t('menu.settings.render') }}</h3>
+      <h4>筛选节点</h4>
+      <span style="display: flex">
+        <ToggleSwitch v-model="linkReadModel" :true-value="true" :false-value="false" />
+        <label> {{ t('menu.settings.linkReadModel') }} </label>
+
+        <ToggleSwitch v-model="linkSystem" :true-value="true" :false-value="false" />
+        <label> {{ t('menu.settings.linkExternalSystem') }} </label>
+      </span>
+    </div>
+    <div>
       <h4>{{ t('menu.settings.render.ranker') }}</h4>
       <SelectButton v-model="renderRanker" :options="renderRankerOptions" option-label="label" option-value="value">
         <template #option="slotProps">

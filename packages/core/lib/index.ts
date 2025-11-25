@@ -11,7 +11,37 @@ import { createReadModelProvider } from './read-model'
 import { genId, useInternalContext } from './common'
 import { DomainDesigner, DomainDesignOptions } from './define'
 
+export function defaultOptions(): Required<DomainDesignOptions> {
+  return {
+    moduleName: '',
+    ignoreValueObjects: [
+      'time',
+      'id',
+      'pid',
+      'name',
+      'state',
+      'status',
+      'version',
+      'code',
+      'message',
+      'type',
+      'result',
+      'data',
+      'payload',
+      'meta',
+      'context',
+      'sorting',
+    ],
+    __toFormatType: 'BngleBrackets',
+  }
+}
+
 export function createDomainDesigner(opts?: DomainDesignOptions): DomainDesigner {
+  if (!opts) {
+    opts = defaultOptions()
+  } else {
+    opts = Object.assign(defaultOptions(), opts)
+  }
   const designId = genId()
   const createNote = createNoteProvider(designId)
   const createInfo = createInfoProvider(designId)
@@ -89,5 +119,3 @@ export {
   isDomainDesignSystem,
   isDomainDesigner,
 } from './define'
-
-export { defaultOptions } from './common'

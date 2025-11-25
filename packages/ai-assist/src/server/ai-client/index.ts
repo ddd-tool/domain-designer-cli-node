@@ -42,6 +42,7 @@ export async function queryStream(
       userMessage,
     ],
     tools: [],
+    temperature: 0,
     stream: true,
   })
 }
@@ -61,6 +62,7 @@ export async function kimiQueryStream(aiName: 'Kimi', key: string, query: string
         content: query,
       },
     ],
+    temperature: 0,
     stream: true,
   })
 }

@@ -66,7 +66,18 @@ function useWrapper(prefix, req, res) {
     isMatchRoute(method, path2) {
       return method === reqMethod && prefix + path2 === reqPathname;
     },
-    KeepAlive() {
+    keepAlive() {
+      res.writeHead(200, {
+        "Content-Type": "text/event-stream; charset=utf-8",
+        "Cache-Control": "no-cache, no-transform",
+        Connection: "keep-alive",
+        // CORS 视情况而定（若浏览器跨域访问）
+        "Access-Control-Allow-Origin": "*",
+        "X-Accel-Buffering": "no",
+        "X-Accel-Charset": "utf-8"
+      });
+    },
+    keepAliveClient() {
       clientId = nextClientId();
       clientMap.set(clientId, this);
       res.writeHead(200, {
@@ -137,9 +148,6 @@ function useWrapper(prefix, req, res) {
     }
   };
 }
-
-// src/server/ai-client/index.ts
-var import_fs = __toESM(require("fs"));
 
 // ../../node_modules/openai/internal/tslib.mjs
 function __classPrivateFieldSet(receiver, state, value, kind, f) {
@@ -7001,6 +7009,7 @@ async function queryStream(aiName, key, query, attachments = [], messageResult =
       userMessage
     ],
     tools: [],
+    temperature: 0,
     stream: true
   });
 }
@@ -7019,25 +7028,9 @@ async function kimiQueryStream(aiName, key, query, messageResult = []) {
         content: query
       }
     ],
+    temperature: 0,
     stream: true
   });
-}
-async function kimiUpload(aiName, key, filePath, messageResult = []) {
-  const client = getClient(aiName, key);
-  if (!import_fs.default.existsSync(filePath)) {
-    console.error("\u6587\u4EF6\u4E0D\u5B58\u5728", filePath);
-    throw new Error("\u6587\u4EF6\u4E0D\u5B58\u5728");
-  }
-  const file_object = await client.instance.files.create({
-    file: import_fs.default.createReadStream(filePath),
-    purpose: "file-extract"
-  });
-  let content = await (await client.instance.files.content(file_object.id)).text();
-  messageResult.push({
-    role: "system",
-    content
-  });
-  return messageResult;
 }
 
 // src/server/controller/query.ts
@@ -7056,22 +7049,14 @@ async function handleQuery(httpWrapper) {
   }
   if (data.host === "Kimi") {
     let fileMessageResult = [];
-    if (!data.attachments?.length) {
-      httpWrapper.replyJson(400, { error: "Invalid request" });
-      return;
-    } else {
-      for (const filePath of data.attachments) {
-        fileMessageResult = await kimiUpload("Kimi", token, filePath, fileMessageResult);
-      }
-    }
-    if (fileMessageResult.length === 0) {
-      httpWrapper.replyJson(400, { error: "Invalid request" });
-      return;
-    }
     console.info("fileMessageResult", fileMessageResult);
-    const stream2 = await kimiQueryStream("Kimi", data.host, token, fileMessageResult);
+    console.debug("token", token);
+    const stream2 = await kimiQueryStream("Kimi", token, data.query, fileMessageResult);
+    httpWrapper.keepAlive();
     for await (const evnet of stream2) {
-      httpWrapper.sendMessage(JSON.stringify(evnet));
+      const obj = JSON.stringify(evnet);
+      httpWrapper.sendMessage(obj);
+      console.debug("send", obj);
     }
     httpWrapper.close();
     return;
@@ -7112,7 +7097,7 @@ async function handleUpload(httpWrapper) {
 
 // src/server/controller/connent.ts
 function handleConnect(wrapper) {
-  wrapper.KeepAlive();
+  wrapper.keepAliveClient();
 }
 
 // src/server/index.ts
