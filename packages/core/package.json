@@ -18,9 +18,9 @@
     "build": "pnpm build:pack && pnpm verify && pnpm test && pnpm build:sync",
     "build:pack": "vite build",
     "build:sync": "node scripts/gen-package-info.mjs",
-    "verify": "tsc -p tsconfig.build.json --composite false",
-    "test": "vitest --run --coverage",
-    "test-ui": "vitest --ui --coverage"
+    "test": "run-p verify && vitest --run --coverage",
+    "test-ui": "vitest --ui --coverage",
+    "verify": "tsc -p tsconfig.build.json --composite false"
   },
   "devDependencies": {
     "read-pkg": "^9.0.1"

@@ -20,11 +20,11 @@ export class DomainObjectSet<T extends DomainDesignObject> implements Iterable<T
     let index = 0
     const items = Object.values(this.record)
     return {
-      next(): IteratorResult<T> {
+      next(): IteratorResult<T, null> {
         if (index < items.length) {
           return { value: items[index++], done: false }
         } else {
-          return { value: undefined as any, done: true }
+          return { value: null, done: true }
         }
       },
     }
@@ -442,7 +442,7 @@ export function isAnyDomainDesignObject(param: any): param is DomainDesignObject
 // ide推导 DomainDesigner类型
 // *********************************************************
 export function isDomainDesigner(param: any): param is DomainDesigner {
-  const d = param as DomainDesigner
+  const d = param satisfies DomainDesigner
   return (
     d &&
     typeof d.actor === 'function' &&

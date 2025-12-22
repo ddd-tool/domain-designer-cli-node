@@ -15,7 +15,7 @@ export function preprocessSvg(diagramAgg: ReturnType<typeof useDiagramAgg>, domS
     }
 
     // =========================== common styles ============================
-    const nodeDoc = svgDoc.querySelector(`[data-name="${node._attributes.__id}"]`)! as HTMLElement
+    const nodeDoc = svgDoc.querySelector(`[data-name="${node._attributes.__id}"]`) satisfies HTMLElement | null
     if (!nodeDoc) {
       continue
     }
@@ -26,7 +26,7 @@ export function preprocessSvg(diagramAgg: ReturnType<typeof useDiagramAgg>, domS
       }
       index++
     }
-    const nodeTitle = nodeDoc.querySelector('[data-compartment="0"]')! as HTMLElement
+    const nodeTitle = nodeDoc.querySelector('[data-compartment="0"]')! satisfies HTMLElement
     nodeTitle.parentElement!.classList.add('node')
     nodeTitle.onmouseover = () => {
       nodeTitle.parentElement!.classList.add('highlight-node')
@@ -44,7 +44,7 @@ export function preprocessSvg(diagramAgg: ReturnType<typeof useDiagramAgg>, domS
         `text[data-compartment="${
           (node as Record<string, any>).inner ? Object.keys((node as Record<string, any>).inner).length + 1 : 1
         }"]`
-      ) as unknown as HTMLElement[]
+      ) satisfies NodeListOf<HTMLElement>
       handleNote(diagramAgg, noteDocs, node._attributes.note)
     }
 
@@ -58,7 +58,7 @@ export function preprocessSvg(diagramAgg: ReturnType<typeof useDiagramAgg>, domS
       index++
       const info = node.inner[key]
       const infoId = info._attributes.__id
-      const infoDoc = nodeDoc.querySelector(`[data-compartment="${index}"]`) as HTMLElement
+      const infoDoc = nodeDoc.querySelector(`[data-compartment="${index}"]`) satisfies HTMLElement | null
       if (!infoDoc) {
         continue
       }
@@ -95,7 +95,11 @@ export function preprocessSvg(diagramAgg: ReturnType<typeof useDiagramAgg>, domS
   return svg as HTMLElement
 }
 
-function handleNote(diagramAgg: ReturnType<typeof useDiagramAgg>, els: HTMLElement[], note: DomainDesignNote) {
+function handleNote(
+  diagramAgg: ReturnType<typeof useDiagramAgg>,
+  els: NodeListOf<HTMLElement>,
+  note: DomainDesignNote
+) {
   if (!note || !els) {
     return ''
   }
@@ -116,7 +120,7 @@ function handleNote(diagramAgg: ReturnType<typeof useDiagramAgg>, els: HTMLEleme
       const id = i._attributes.__id
       const notes = document.body.querySelectorAll(
         `[data-compartment] [data-id="${id}"]`
-      ) as unknown as SVGTSpanElement[]
+      ) satisfies NodeListOf<SVGTSpanElement>
       for (const note of notes) {
         if (note.onmouseover) {
           continue

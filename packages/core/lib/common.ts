@@ -217,7 +217,7 @@ function createInternalContext(initFn: ContextInitializer) {
       arr: ARR
     ): CustomInfoArrayToInfoObject<ARR> {
       type T = Record<string, DomainDesignInfo<DomainDesignInfoType, G_NAME>>
-      return arr.reduce((map, v) => {
+      return arr.reduce<CustomInfoArrayToInfoObject<ARR>>((map, v) => {
         if (typeof v === 'string') {
           ;(map as T)[v] = info.valueObj(v)
         } else if (v instanceof Array) {
@@ -227,12 +227,12 @@ function createInternalContext(initFn: ContextInitializer) {
           ;(map as T)[v._attributes.name] = v
         }
         return map
-      }, {} as CustomInfoArrayToInfoObject<ARR>)
+      }, {} as any)
     },
     customInfoArrToInfoArr<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       arr: ARR
     ): DomainDesignInfo<DomainDesignInfoType, string>[] {
-      return arr.reduce((arr, v) => {
+      return arr.reduce<DomainDesignInfo<DomainDesignInfoType, string>[]>((arr, v) => {
         if (typeof v === 'string') {
           arr.push(info.valueObj(v))
         } else if (v instanceof Array) {
@@ -242,7 +242,7 @@ function createInternalContext(initFn: ContextInitializer) {
           arr.push(v)
         }
         return arr
-      }, [] as DomainDesignInfo<DomainDesignInfoType, string>[])
+      }, [])
     },
     toFormat<OBJ extends { _attributes: { __id: string; name: string } }>(obj: OBJ): string {
       if (initResult.options?.__toFormatType === 'BngleBrackets') {

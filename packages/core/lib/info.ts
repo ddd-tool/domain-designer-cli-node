@@ -27,7 +27,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
       let subtype: Array<DomainDesignInfoFuncDependsOn> = []
       let note: DomainDesignNote | undefined = undefined
       if (p2 instanceof Array) {
-        subtype = context.customInfoArrToInfoArr(p2 as any) as DomainDesignInfoFuncDependsOn[]
+        subtype = context.customInfoArrToInfoArr(p2) as DomainDesignInfoFuncDependsOn[]
         note = p3 as DomainDesignNote | undefined
       } else {
         note = p2 as DomainDesignNote | undefined
@@ -35,8 +35,8 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
       const result = {
         _attributes: {
           __id: genId(),
-          rule: 'Info' as const,
-          type: 'Function' as const,
+          rule: 'Info',
+          type: 'Function',
           subtype,
           name,
           note: context.createNote(note as any),
@@ -44,7 +44,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         toFormat() {
           return context.toFormat(this)
         },
-      }
+      } satisfies DomainDesignInfo<'Function', NAME>
       context.registerInfo(result)
       return result
     }
@@ -55,16 +55,16 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         const result = {
           _attributes: {
             __id: genId(),
-            rule: 'Info' as const,
-            type: 'Document' as const,
-            subtype: 'None' as const,
+            rule: 'Info',
+            type: 'Document',
+            subtype: 'None',
             name,
             note: context.createNote(note as any),
           },
           toFormat() {
             return context.toFormat(this)
           },
-        }
+        } satisfies DomainDesignInfo<'Document', NAME>
         context.registerInfo(result)
         return result
       },
@@ -74,16 +74,16 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         const result = {
           _attributes: {
             __id: genId(),
-            rule: 'Info' as const,
-            type: 'Id' as const,
-            subtype: 'None' as const,
+            rule: 'Info',
+            type: 'Id',
+            subtype: 'None',
             name,
             note: context.createNote(note as any),
           },
           toFormat() {
             return context.toFormat(this)
           },
-        }
+        } satisfies DomainDesignInfo<'Id', NAME>
         context.registerInfo(result)
         return result
       },
@@ -92,19 +92,19 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         note?: string | DomainDesignNote
       ): DomainDesignInfo<'ValueObject', NAME> {
         const context = useInternalContext(designId)
-        const result: DomainDesignInfo<'ValueObject', NAME> = {
+        const result = {
           _attributes: {
             __id: genId(),
-            rule: 'Info' as const,
-            type: 'ValueObject' as const,
-            subtype: 'None' as const,
+            rule: 'Info',
+            type: 'ValueObject',
+            subtype: 'None',
             name,
             note: context.createNote(note as any),
           },
           toFormat() {
             return context.toFormat(this)
           },
-        }
+        } satisfies DomainDesignInfo<'ValueObject', NAME>
         context.registerInfo(result)
         return result
       },
@@ -113,16 +113,16 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         const result = {
           _attributes: {
             __id: genId(),
-            rule: 'Info' as const,
-            type: 'Version' as const,
-            subtype: 'None' as const,
+            rule: 'Info',
+            type: 'Version',
+            subtype: 'None',
             name,
             note: context.createNote(note as any),
           },
           toFormat() {
             return context.toFormat(this)
           },
-        }
+        } satisfies DomainDesignInfo<'Version', NAME>
         context.registerInfo(result)
         return result
       },

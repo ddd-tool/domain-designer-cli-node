@@ -42,7 +42,7 @@ function toString(...args: any[]): string[] {
   if (!args) {
     return ['']
   }
-  return args.reduce((arr, item) => {
+  return args.reduce<string[]>((arr, item) => {
     if (!item) {
       arr.push('')
     }
@@ -56,5 +56,5 @@ function toString(...args: any[]): string[] {
       arr.push(item.toString())
     }
     return arr
-  }, [] as string[])
+  }, [])
 }

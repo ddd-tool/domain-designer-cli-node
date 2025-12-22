@@ -35,7 +35,9 @@ export function parseNode(node?: object): NodeDetail {
     relatedTypes: undefined,
     note: undefined,
   }
-  detail = parseInfo(node, detail)
+  if (isDomainDesignInfo(node)) {
+    detail = parseInfo(node, detail)
+  }
   detail = parseOthers(node, detail)
   return detail
 }
@@ -53,12 +55,7 @@ function parseOthers(node: object, detail: NodeDetail): NodeDetail {
   return detail
 }
 
-function parseInfo(node: object, detail: NodeDetail): NodeDetail {
-  if (!isDomainDesignInfo(node)) {
-    return detail
-  }
-  const info = node as DomainDesignInfo<DomainDesignInfoType, string>
-
+function parseInfo(info: DomainDesignInfo<DomainDesignInfoType, string>, detail: NodeDetail): NodeDetail {
   const type = info._attributes.type
   let typeStr = ''
   let subtype: string[] = []

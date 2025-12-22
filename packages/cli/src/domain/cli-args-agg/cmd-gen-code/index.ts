@@ -153,7 +153,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     if (!m || !isDomainDesigner(m.default)) {
       continue
     }
-    const designer = m.default as DomainDesigner
+    const designer = m.default satisfies DomainDesigner
     if (!pluginLoaded) {
       if (args.language === define.Language.Java) {
         GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)

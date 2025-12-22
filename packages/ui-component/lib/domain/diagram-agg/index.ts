@@ -6,10 +6,6 @@ import { defaultRenderConfig, EMPTY_STORY, type EdgeType, type Ranker } from './
 export { EMPTY_STORY }
 
 let agg: ReturnType<typeof createAgg>
-type FocusFlowFn = {
-  (workflow: undefined, userStory?: string): void
-  (workflow: string, userStory: string): void
-}
 
 function createAgg(data: Record<string, DomainDesigner>) {
   return createSingletonAgg(() => {
@@ -96,7 +92,7 @@ function createAgg(data: Record<string, DomainDesigner>) {
       displaySystem: linkSystem,
     })
 
-    function focusFlow(workflow: undefined): void
+    function focusFlow(workflow: undefined, userStory?: undefined): void
     function focusFlow(workflow: string, userStory: string): void
     function focusFlow(workflow: string | undefined, userStory: string = EMPTY_STORY) {
       currentStory.value = userStory
@@ -145,7 +141,7 @@ function createAgg(data: Record<string, DomainDesigner>) {
         linkSystem,
       },
       commands: {
-        focusFlow: focusFlow as FocusFlowFn,
+        focusFlow,
         downloadSvg() {
           onDownloadSvg.publish({})
         },

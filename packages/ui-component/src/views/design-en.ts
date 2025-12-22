@@ -85,13 +85,13 @@ d.startWorkflow('readModel')
 const userRead = d.actor('user', 'user (read model)')
 userRead.readModel(orderDetail)
 
-d.defineUserStory('as a mall user, I want to place an order and implement automatic payment to get the goods', [
+d.defineUserStory('As a mall user, I want to place an order and implement automatic payment to get the goods', [
   createOrderFailureWorkflow,
   createOrderSuccess_AutoDeductFailureWorkflow,
   createOrderSuccess_AutoDeductSuccessWorkflow,
 ])
 
-d.defineUserStory('as a mall user, I want to view the order status, so I can know the order status', [
+d.defineUserStory('As a mall user, I want to view the order status, so I can know the order status', [
   createOrderSuccess_AutoDeductSuccessWorkflow,
 ])
 

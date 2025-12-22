@@ -4,7 +4,7 @@ import { DomainDesignNote, DomainDesignNoteProvider, DomainDesignNoteInject } fr
 export function createNoteProvider(_designCode: string): DomainDesignNoteProvider {
   function noteFn(temp: undefined): undefined
   function noteFn(temp: string): DomainDesignNote
-  function noteFn(temp: DomainDesignNote): DomainDesignNote
+  function noteFn(temp: DomainDesignNote): DomainDesignNote // ✓ 泛型重载
   function noteFn(temp: TemplateStringsArray, ...values: DomainDesignNoteInject[]): DomainDesignNote
   function noteFn(
     temp: string | TemplateStringsArray | undefined | DomainDesignNote,
@@ -13,17 +13,21 @@ export function createNoteProvider(_designCode: string): DomainDesignNoteProvide
     if (temp === undefined) {
       return undefined
     } else if (isDomainDesignNote(temp)) {
-      return temp as DomainDesignNote
+      return temp
     }
     let template: Readonly<TemplateStringsArray>
     if (typeof temp === 'string') {
       const arr = new Array<string>()
       arr.push(temp)
-      ;(arr as any).raw = readonly([temp])
-      template = readonly(arr as unknown as TemplateStringsArray)
+      Object.defineProperty(arr, 'raw', {
+        value: Object.freeze([temp]),
+        writable: false,
+      })
+      template = readonly(arr) as TemplateStringsArray
     } else {
       template = temp
     }
+    // const template = typeof temp === 'string' ? createTemplateFromString(temp) : temp
     return {
       _attributes: {
         rule: 'Note',
