@@ -19,8 +19,7 @@
   "license": "ISC",
   "devDependencies": {
     "@ddd-tool/domain-designer-core": "workspace:^",
-    "read-pkg": "^9.0.1",
-    "vue-tsc": "^3.2.1"
+    "read-pkg": "^9.0.1"
   },
   "peerDependencies": {
     "@vue/reactivity": "3.5.26"

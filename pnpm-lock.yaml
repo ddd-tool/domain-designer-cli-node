@@ -63,6 +63,9 @@ importers:
       vue:
         specifier: ^3.5.26
         version: 3.5.26(typescript@5.9.3)
+      vue-tsc:
+        specifier: ^3.2.1
+        version: 3.2.1(typescript@5.9.3)
       zx:
         specifier: ^8.8.5
         version: 8.8.5
@@ -117,9 +120,6 @@ importers:
       read-pkg:
         specifier: ^9.0.1
         version: 9.0.1
-      vue-tsc:
-        specifier: ^3.2.1
-        version: 3.2.1(typescript@5.9.3)
 
   packages/generator/dist:
     dependencies:

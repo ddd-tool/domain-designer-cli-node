@@ -12,6 +12,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "esModuleInterop": true,
+    "noEmit": true,
     "sourceMap": true,
     "lib": [
       "DOM"

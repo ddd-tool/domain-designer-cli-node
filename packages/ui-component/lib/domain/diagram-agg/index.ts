@@ -85,12 +85,12 @@ function createAgg(data: Record<string, DomainDesigner>) {
     })
 
     // ======================== focus on workflow ========================
-    const onFocusFlow = createBroadcastEvent({
-      userStory: '' as string,
-      workflow: '' as string | undefined,
-      displayReadModel: linkReadModel,
-      displaySystem: linkSystem,
-    })
+    const onFocusFlow = createBroadcastEvent<{
+      userStory: string
+      workflow: string | undefined
+      displayReadModel: typeof linkReadModel
+      displaySystem: typeof linkSystem
+    }>()
 
     function focusFlow(workflow: undefined, userStory?: undefined): void
     function focusFlow(workflow: string, userStory: string): void
@@ -116,11 +116,11 @@ function createAgg(data: Record<string, DomainDesigner>) {
 
     // ======================== focus on node ========================
     const currentNode = ref<string | undefined>()
-    const onFocusNode = createBroadcastEvent({ id: '' as string | undefined })
+    const onFocusNode = createBroadcastEvent<{ id: string | undefined }>()
 
     // ======================== export ========================
     const downloadEnabled = ref(true)
-    const onDownloadSvg = createBroadcastEvent({})
+    const onDownloadSvg = createBroadcastEvent<{}>()
 
     return {
       states: {
