@@ -20,7 +20,7 @@
   "devDependencies": {
     "@ddd-tool/domain-designer-core": "workspace:^",
     "read-pkg": "^9.0.1",
-    "vue-tsc": "^2.2.10"
+    "vue-tsc": "^2.2.12"
   },
   "peerDependencies": {
     "@vue/reactivity": "3.5.16"
