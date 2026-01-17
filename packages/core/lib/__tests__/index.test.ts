@@ -1,7 +1,7 @@
 import { createDomainDesigner, isDomainDesigner } from '..'
 import { expect, it } from 'vitest'
 import { LinkType } from '../common'
-import { DomainDesignObject } from '../define'
+import { DomainDesignObject } from '../types'
 
 it('注册元素', () => {
   const d = createDomainDesigner()
@@ -70,17 +70,17 @@ it('连接', () => {
     expect(
       context.getLinks()[
         `${from._attributes.rule},${from._attributes.__id},${to._attributes.rule},${to._attributes.__id}`
-      ]
+      ],
     ).toBe(linkType)
     expect(context.getAssociationMap()[from._attributes.__id].has(to))
     expect(context.getAssociationMap()[to._attributes.__id].has(from))
     expect(
       [...context.getAssociationMap()[to._attributes.__id]].filter((i) => i._attributes.__id === from._attributes.__id)
-        .length
+        .length,
     ).toBe(1)
     expect(
       [...context.getAssociationMap()[from._attributes.__id]].filter((i) => i._attributes.__id === to._attributes.__id)
-        .length
+        .length,
     ).toBe(1)
   }
   checkLink(用户, 命令1)

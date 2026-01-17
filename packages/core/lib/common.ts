@@ -28,7 +28,7 @@ import {
   DomainDesignOptions,
   DomainObjectSet,
   DomainDesignObject,
-} from './define'
+} from './types'
 
 export type LinkType = 'Association' | 'Dependency' | 'Aggregation' | 'Composition'
 type Rule =
@@ -44,11 +44,11 @@ type Rule =
   | 'ReadModel'
 
 export function genId(): string {
-  const id = nanoid()
-  if (id === undefined) {
-    throw new Error('id is undefined')
+  try {
+    return nanoid()
+  } catch (error) {
+    throw new Error(`Failed to generate ID: ${error}`)
   }
-  return id
 }
 
 type ContextInitializer = () => {
@@ -214,7 +214,7 @@ function createInternalContext(initFn: ContextInitializer) {
       readModels.push(readModel)
     },
     customInfoArrToInfoObj<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
-      arr: ARR
+      arr: ARR,
     ): CustomInfoArrayToInfoObject<ARR> {
       type T = Record<string, DomainDesignInfo<DomainDesignInfoType, G_NAME>>
       return arr.reduce<CustomInfoArrayToInfoObject<ARR>>((map, v) => {
@@ -230,7 +230,7 @@ function createInternalContext(initFn: ContextInitializer) {
       }, {} as any)
     },
     customInfoArrToInfoArr<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
-      arr: ARR
+      arr: ARR,
     ): DomainDesignInfo<DomainDesignInfoType, string>[] {
       return arr.reduce<DomainDesignInfo<DomainDesignInfoType, string>[]>((arr, v) => {
         if (typeof v === 'string') {

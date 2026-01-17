@@ -10,7 +10,7 @@ import {
   DomainDesignPolicyProvider,
   DomainDesignService,
   NonEmptyArray,
-} from './define'
+} from './types'
 
 export function createPolicyProvider(designId: string): DomainDesignPolicyProvider {
   const RULE = 'Policy'
@@ -21,16 +21,16 @@ export function createPolicyProvider(designId: string): DomainDesignPolicyProvid
     function command<COMMAND extends DomainDesignCommand<any>>(c: COMMAND): COMMAND
     function command<
       G_NAME extends string,
-      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(name: string, infos: ARR, note?: string | DomainDesignNote): DomainDesignCommand<CustomInfoArrayToInfoObject<ARR>>
     function command<
       COMMAND extends DomainDesignCommand<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       param1: COMMAND | string,
       infos?: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): COMMAND | DomainDesignCommand<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
@@ -44,20 +44,20 @@ export function createPolicyProvider(designId: string): DomainDesignPolicyProvid
     function facadeCmd<FACADECMD extends DomainDesignFacadeCommand<any>>(param: FACADECMD): FACADECMD
     function facadeCmd<
       G_NAME extends string,
-      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       name: string,
       infos: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>>
     function facadeCmd<
       FACADECMD extends DomainDesignFacadeCommand<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       param1: FACADECMD | string,
       infos?: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): FACADECMD | DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)

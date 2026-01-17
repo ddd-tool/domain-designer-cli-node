@@ -87,7 +87,6 @@ const dockItems = computed(() => [
       <div v-if="item.is === 'builtinStoryMode'">
         <ToggleButton
           v-model="builtinStoryMode"
-          :disabled="true"
           on-label="既定故事"
           off-label="自选流程"
           on-icon="pi pi-lock"

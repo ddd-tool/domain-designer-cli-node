@@ -11,18 +11,18 @@ import {
   CustomInfoArrayToInfoObject,
   NonEmptyInitFunc,
   CustomInfo,
-} from './define'
+} from './types'
 
 export function createCommandProvider(designId: string): DomainDesignCommandProvider {
   const RULE = 'Command'
   return <G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
     name: string,
     infoInitializer: ARR | NonEmptyInitFunc<() => ARR>,
-    note?: string | DomainDesignNote
+    note?: string | DomainDesignNote,
   ): DomainDesignCommand<CustomInfoArrayToInfoObject<ARR>> => {
     const context = useInternalContext(designId)
     const infos = context.customInfoArrToInfoObj(
-      infoInitializer instanceof Function ? infoInitializer() : infoInitializer
+      infoInitializer instanceof Function ? infoInitializer() : infoInitializer,
     )
     const __id = genId()
 
@@ -30,16 +30,16 @@ export function createCommandProvider(designId: string): DomainDesignCommandProv
     function agg<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       agg: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignAgg<CustomInfoArrayToInfoObject<ARR>>
     function agg<
       AGG extends DomainDesignAgg<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>
+      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
     >(
       param1: AGG | string,
       infos?: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): AGG | DomainDesignAgg<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
@@ -74,11 +74,11 @@ export function createFacadeCmdProvider(designId: string): DomainDesignFacadeCom
   return <G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
     name: string,
     infoInitializer: ARR | NonEmptyInitFunc<() => ARR>,
-    note?: string | DomainDesignNote
+    note?: string | DomainDesignNote,
   ): DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>> => {
     const context = useInternalContext(designId)
     const infos = context.customInfoArrToInfoObj(
-      infoInitializer instanceof Function ? infoInitializer() : infoInitializer
+      infoInitializer instanceof Function ? infoInitializer() : infoInitializer,
     )
     const __id = genId()
 
@@ -86,16 +86,16 @@ export function createFacadeCmdProvider(designId: string): DomainDesignFacadeCom
     function agg<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       agg: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignAgg<CustomInfoArrayToInfoObject<ARR>>
     function agg<
       AGG extends DomainDesignAgg<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>
+      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
     >(
       param1: AGG | string,
       infos?: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): AGG | DomainDesignAgg<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)

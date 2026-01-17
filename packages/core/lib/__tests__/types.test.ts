@@ -14,7 +14,7 @@ import {
   isDomainDesignReadModel,
   isDomainDesignService,
   isDomainDesignSystem,
-} from '../define'
+} from '../types'
 import { createDomainDesigner } from '..'
 
 it('DomainObjectSet api', () => {

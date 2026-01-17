@@ -1,5 +1,5 @@
 import { readonly } from 'vue'
-import { DomainDesignNote, DomainDesignNoteProvider, DomainDesignNoteInject } from './define'
+import { DomainDesignNote, DomainDesignNoteProvider, DomainDesignNoteInject } from './types'
 
 export function createNoteProvider(_designCode: string): DomainDesignNoteProvider {
   function noteFn(temp: undefined): undefined

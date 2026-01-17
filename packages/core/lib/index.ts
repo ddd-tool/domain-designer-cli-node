@@ -9,7 +9,7 @@ import { createPolicyProvider } from './policy'
 import { createServiceProvider } from './service'
 import { createReadModelProvider } from './read-model'
 import { genId, useInternalContext } from './common'
-import { DomainDesigner, DomainDesignOptions } from './define'
+import { DomainDesigner, DomainDesignOptions } from './types'
 
 export function defaultOptions(): Required<DomainDesignOptions> {
   return {
@@ -118,4 +118,4 @@ export {
   isDomainDesignService,
   isDomainDesignSystem,
   isDomainDesigner,
-} from './define'
+} from './types'

@@ -10,18 +10,18 @@ import {
   NonEmptyArray,
   CustomInfoArrayToInfoObject,
   CustomInfo,
-} from './define'
+} from './types'
 
 export function eventProvider(designId: string): DomainDesignEventProvider {
   const RULE = 'Event'
   return <G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
     name: string,
     infoInitializer: ARR | NonEmptyInitFunc<() => ARR>,
-    note?: string | DomainDesignNote
+    note?: string | DomainDesignNote,
   ): DomainDesignEvent<CustomInfoArrayToInfoObject<ARR>> => {
     const context = useInternalContext(designId)
     const infos = context.customInfoArrToInfoObj(
-      infoInitializer instanceof Function ? infoInitializer() : infoInitializer
+      infoInitializer instanceof Function ? infoInitializer() : infoInitializer,
     )
     const __id = genId()
 
@@ -53,16 +53,16 @@ export function eventProvider(designId: string): DomainDesignEventProvider {
     function readModel<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       infos: ARR | NonEmptyInitFunc<() => ARR>,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignReadModel<CustomInfoArrayToInfoObject<ARR>>
     function readModel<
       READ_MODEL extends DomainDesignReadModel<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>
+      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
     >(
       param1: READ_MODEL | string,
       infos?: ARR | NonEmptyInitFunc<() => ARR>,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): READ_MODEL | DomainDesignReadModel<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id, 'Aggregation')

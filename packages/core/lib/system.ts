@@ -9,7 +9,7 @@ import {
   DomainDesignSystemProvider,
   NonEmptyArray,
   DomainDesignEvent,
-} from './define'
+} from './types'
 
 export function createSystemProvider(designId: string): DomainDesignSystemProvider {
   const RULE = 'System'
@@ -20,16 +20,16 @@ export function createSystemProvider(designId: string): DomainDesignSystemProvid
     function command<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       infos: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignCommand<CustomInfoArrayToInfoObject<ARR>>
     function command<
       COMMAND extends DomainDesignCommand<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>
+      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
     >(
       param1: COMMAND | string,
       infos?: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): COMMAND | DomainDesignCommand<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
@@ -44,16 +44,16 @@ export function createSystemProvider(designId: string): DomainDesignSystemProvid
     function facadeCmd<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       infos: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>>
     function facadeCmd<
       FACADECMD extends DomainDesignFacadeCommand<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>
+      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
     >(
       param1: FACADECMD | string,
       infos?: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): FACADECMD | DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
@@ -69,12 +69,12 @@ export function createSystemProvider(designId: string): DomainDesignSystemProvid
     function event<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       infos: ARR,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignEvent<CustomInfoArrayToInfoObject<ARR>>
     function event<
       EVENT extends DomainDesignEvent<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>
+      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
     >(param1: EVENT | string, infos?: ARR, note?: string | DomainDesignNote) {
       if (typeof param1 === 'object') {
         context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)

@@ -5,7 +5,7 @@ import type {
   DomainDesignInfoProvider,
   DomainDesignInfoFuncDependsOn,
   NonEmptyArray,
-} from './define'
+} from './types'
 
 export function createInfoProvider(designId: string): DomainDesignInfoProvider {
   return () => {
@@ -13,7 +13,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
     function func<NAME extends string>(
       name: NAME,
       dependsOn: NonEmptyArray<DomainDesignInfoFuncDependsOn | string | [string, string | DomainDesignNote]>,
-      note?: string | DomainDesignNote
+      note?: string | DomainDesignNote,
     ): DomainDesignInfo<'Function', NAME>
     function func<NAME extends string>(
       name: NAME,
@@ -21,7 +21,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         | NonEmptyArray<DomainDesignInfoFuncDependsOn | string | [string, string | DomainDesignNote]>
         | string
         | DomainDesignNote,
-      p3?: string | DomainDesignNote
+      p3?: string | DomainDesignNote,
     ): DomainDesignInfo<'Function', NAME> {
       const context = useInternalContext(designId)
       let subtype: Array<DomainDesignInfoFuncDependsOn> = []
@@ -89,7 +89,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
       },
       valueObj<NAME extends string>(
         name: NAME,
-        note?: string | DomainDesignNote
+        note?: string | DomainDesignNote,
       ): DomainDesignInfo<'ValueObject', NAME> {
         const context = useInternalContext(designId)
         const result = {
