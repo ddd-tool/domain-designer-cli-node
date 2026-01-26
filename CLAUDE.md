@@ -12,6 +12,8 @@ Key principles:
 - Express "WHY" through workflows and user stories, not just "HOW"
 - Code generation is a productivity booster, not a low-code platform
 
+**Important**: Core and generator packages contain `DEFECTS.md` files tracking known issues. Review these when debugging unexpected behavior.
+
 ## Package Manager
 
 - **Primary**: pnpm (>= 9)
@@ -28,7 +30,7 @@ pnpm dev:ui           # Run UI component dev server
 
 # Build
 pnpm build            # Build all packages (syncs versions first)
-pnpm verify           # Run verification across all packages
+pnpm verify           # Run package-specific verification scripts (type checking, linting, etc.)
 
 # Testing
 pnpm test             # Run all tests
@@ -53,8 +55,9 @@ packages/
 ├── core/             # Core domain designer engine (@ddd-tool/domain-designer-core)
 ├── generator/        # Code generation utilities (@ddd-tool/domain-designer-generator)
 ├── ui-component/     # Vue 3 UI components (@ddd-tool/domain-designer-ui-component)
+├── web/              # Web visualization server
 ├── playground/       # Development demo environment
-└── ai-assist/        # AI assistance features
+└── ai-assist/        # AI assistance features (@ddd-tool/ai-assist)
 ```
 
 ### Core Package Architecture
@@ -95,6 +98,10 @@ The `@ddd-tool/domain-designer-generator` package provides:
 - Language plugins: `GENERATOR_JAVA_PLUGIN`, `GENERATOR_KOTLIN_PLUGIN`, `GENERATOR_GO_PLUGIN`, `GENERATOR_CSHARP_PLUGIN`
 
 Each plugin implements code generation for a specific target language.
+
+### AI Assist Package
+
+The `@ddd-tool/ai-assist` package provides AI-powered assistance for domain modeling. It runs a development server accessible via `pnpm dev:ai`.
 
 ## Workspace Data Sources
 
