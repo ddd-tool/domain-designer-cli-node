@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-ui-component",
-  "version": "0.2.0-aplha.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "./lib/index.ts",
