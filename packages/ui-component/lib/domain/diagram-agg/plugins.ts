@@ -1,6 +1,6 @@
 import { watch } from 'vue'
 import { DiagramPluginHelper } from '.'
-import { defaultRenderConfig, type RenderConfig } from './define'
+import { defaultRenderConfig, type RenderConfig } from './types'
 
 export const DIAGRAM_STORAGE_PLUGIN = DiagramPluginHelper.createSetupPlugin({
   mount({ api }) {
@@ -19,10 +19,7 @@ export const DIAGRAM_STORAGE_PLUGIN = DiagramPluginHelper.createSetupPlugin({
       api.commands.setRenderRanker(ranker || defRenderConfig.ranker)
     }
     watch(api.states.renderConfig, () => {
-      localStorage.setItem(
-        RENDER_CONFIG_KEY,
-        JSON.stringify(api.states.renderConfig),
-      )
+      localStorage.setItem(RENDER_CONFIG_KEY, JSON.stringify(api.states.renderConfig))
     })
 
     const DESIGN_KEY = 'diagram-current-design'

@@ -1,16 +1,12 @@
 import http from 'node:http'
-import type { HttpMethod } from './controller/define'
+import type { HttpMethod } from './controller/types'
 import { nextClientId } from './common'
 
 export type HttpWrapper = ReturnType<typeof useWrapper>
 
 const clientMap = new Map<number, HttpWrapper>()
 
-export function useWrapper(
-  prefix: string,
-  req: http.IncomingMessage,
-  res: http.ServerResponse,
-) {
+export function useWrapper(prefix: string, req: http.IncomingMessage, res: http.ServerResponse) {
   let clientId = 0
   let errorCode = NaN
   const url = new URL(req.url || '/', `http://${req.headers.host}`)

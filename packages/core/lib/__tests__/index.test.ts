@@ -28,26 +28,14 @@ it('注册元素', () => {
 
   const context = d._getContext()
   expect(context.getActors()[0]._attributes.__id).toEqual(用户._attributes.__id)
-  expect(context.getCommands()[0]._attributes.__id).toEqual(
-    命令1._attributes.__id,
-  )
-  expect(context.getFacadeCommands()[0]._attributes.__id).toEqual(
-    命令2._attributes.__id,
-  )
+  expect(context.getCommands()[0]._attributes.__id).toEqual(命令1._attributes.__id)
+  expect(context.getFacadeCommands()[0]._attributes.__id).toEqual(命令2._attributes.__id)
   expect(context.getAggs()[0]._attributes.__id).toEqual(聚合._attributes.__id)
   expect(context.getEvents()[0]._attributes.__id).toEqual(事件._attributes.__id)
-  expect(context.getPolicies()[0]._attributes.__id).toEqual(
-    策略._attributes.__id,
-  )
-  expect(context.getServices()[0]._attributes.__id).toEqual(
-    服务._attributes.__id,
-  )
-  expect(context.getSystems()[0]._attributes.__id).toEqual(
-    外部系统._attributes.__id,
-  )
-  expect(context.getReadModels()[0]._attributes.__id).toEqual(
-    读模型._attributes.__id,
-  )
+  expect(context.getPolicies()[0]._attributes.__id).toEqual(策略._attributes.__id)
+  expect(context.getServices()[0]._attributes.__id).toEqual(服务._attributes.__id)
+  expect(context.getSystems()[0]._attributes.__id).toEqual(外部系统._attributes.__id)
+  expect(context.getReadModels()[0]._attributes.__id).toEqual(读模型._attributes.__id)
 })
 
 it('连接', () => {

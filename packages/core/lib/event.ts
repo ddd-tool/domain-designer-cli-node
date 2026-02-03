@@ -26,21 +26,13 @@ export function eventProvider(designId: string): DomainDesignEventProvider {
     const __id = genId()
 
     function policy(param: DomainDesignPolicy): DomainDesignPolicy
-    function policy(
-      name: string,
-      note?: string | DomainDesignNote,
-    ): DomainDesignPolicy
+    function policy(name: string, note?: string | DomainDesignNote): DomainDesignPolicy
     function policy(
       param1: DomainDesignPolicy | string,
       note?: string | DomainDesignNote,
     ): DomainDesignPolicy {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const p = context.createPolicy(param1, note)
@@ -49,21 +41,13 @@ export function eventProvider(designId: string): DomainDesignEventProvider {
     }
 
     function system(param: DomainDesignSystem): DomainDesignSystem
-    function system(
-      name: string,
-      note?: string | DomainDesignNote,
-    ): DomainDesignSystem
+    function system(name: string, note?: string | DomainDesignNote): DomainDesignSystem
     function system(
       param1: DomainDesignSystem | string,
       note?: string | DomainDesignNote,
     ): DomainDesignSystem {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const s = context.createSystem(param1, note)
@@ -71,13 +55,8 @@ export function eventProvider(designId: string): DomainDesignEventProvider {
       return s
     }
 
-    function readModel<READ_MODEL extends DomainDesignReadModel<any>>(
-      param: READ_MODEL,
-    ): READ_MODEL
-    function readModel<
-      G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
-    >(
+    function readModel<READ_MODEL extends DomainDesignReadModel<any>>(param: READ_MODEL): READ_MODEL
+    function readModel<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       infos: ARR | NonEmptyInitFunc<() => ARR>,
       note?: string | DomainDesignNote,
@@ -92,23 +71,11 @@ export function eventProvider(designId: string): DomainDesignEventProvider {
       note?: string | DomainDesignNote,
     ): READ_MODEL | DomainDesignReadModel<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-          'Aggregation',
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id, 'Aggregation')
         return param1
       }
       const c = context.createReadModel(name, infos!, note)
-      context.linkTo(
-        RULE,
-        __id,
-        c._attributes.rule,
-        c._attributes.__id,
-        'Aggregation',
-      )
+      context.linkTo(RULE, __id, c._attributes.rule, c._attributes.__id, 'Aggregation')
       return c
     }
     const event: DomainDesignEvent<CustomInfoArrayToInfoObject<ARR>> = {

@@ -1,6 +1,6 @@
 import { spawnSync } from 'child_process'
 import { Worker } from 'worker_threads'
-import { RunWebCommandArgs, SubcommandEnum } from './define'
+import { RunWebCommandArgs, Subcommand } from './types'
 import path from 'path'
 import fs from 'fs'
 import { useI18nAgg } from '../i18n-agg'
@@ -10,20 +10,20 @@ import chalk from 'chalk'
 import { Reactive, Ref } from '@vue/reactivity'
 import { Command } from 'commander'
 import { useEnvironmentAgg } from '../environment-agg'
-import { PackageManager } from '../environment-agg/define'
+import { PackageManager } from '../environment-agg/types'
 
 const $t = useI18nAgg().commands.t
 const environmentAgg = useEnvironmentAgg()
 
 export function requireRunWebCommand(params: {
-  currentCommand: Ref<SubcommandEnum>
+  currentCommand: Ref<Subcommand>
   args: Reactive<RunWebCommandArgs>
 }) {
   return new Command()
     .name('runWeb')
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
-      params.currentCommand.value = SubcommandEnum.RunWeb
+      params.currentCommand.value = Subcommand.RunWeb
       if (options.source) {
         params.args.source = options.source
       }
@@ -33,10 +33,10 @@ export function requireRunWebCommand(params: {
 }
 
 export async function requireRunWebCommandArgs(params: {
-  currentCommand: Ref<SubcommandEnum>
+  currentCommand: Ref<Subcommand>
   args: Reactive<RunWebCommandArgs>
 }) {
-  params.currentCommand.value = SubcommandEnum.RunWeb
+  params.currentCommand.value = Subcommand.RunWeb
 }
 
 export async function execute(args: RunWebCommandArgs) {
@@ -62,14 +62,10 @@ export async function execute(args: RunWebCommandArgs) {
   }
   log.printSuccess('================ 安装运行依赖: Succeeded ================')
 
-  log.printInfo(
-    '================ 装配代码与环境变量: Starting... ================',
-  )
+  log.printInfo('================ 装配代码与环境变量: Starting... ================')
   configSource(webRoot, args.source)
   configEnvironment(webRoot, args.source)
-  log.printSuccess(
-    '================ 装配代码与环境变量: Succeeded ================',
-  )
+  log.printSuccess('================ 装配代码与环境变量: Succeeded ================')
 
   log.printInfo('================ 运行Web服务: Starting... ================')
   if (environmentAgg.states.osType.value === 'windows') {
@@ -204,18 +200,12 @@ function configEnvironment(webRoot: string, workspacePath: string) {
     }
   })
   const envFilePath = path.join(webRoot, 'packages', 'playground', '.env')
-  fs.writeFileSync(
-    envFilePath,
-    `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`,
-    { encoding: 'utf-8' },
-  )
+  fs.writeFileSync(envFilePath, `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`, {
+    encoding: 'utf-8',
+  })
 }
 
-function findFilesRecursive(
-  dir: string,
-  filter: RegExp,
-  result: string[] = [],
-): string[] {
+function findFilesRecursive(dir: string, filter: RegExp, result: string[] = []): string[] {
   fs.readdirSync(dir).forEach((file) => {
     const filePath = path.join(dir, file)
     if (fs.statSync(filePath).isDirectory()) {

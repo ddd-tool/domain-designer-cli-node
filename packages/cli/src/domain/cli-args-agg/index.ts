@@ -5,24 +5,16 @@ import log from '@/utils/log'
 import * as signal from '@/utils/signal'
 import { createSingletonAgg } from 'vue-fn/domain-server'
 import {
-  SubcommandEnum,
+  Subcommand,
   InitCommandArgs,
   UpdateWorkspaceCommandArgs,
   RunWebCommandArgs,
   GenCodeCommandArgs,
-} from './define'
+} from './types'
 import { useI18nAgg } from '../i18n-agg'
 import packageInfo from '@/utils/package-info'
-import {
-  requireInitCommand,
-  requireInitCommandArgs,
-  execute as executeInit,
-} from './cmd-init'
-import {
-  requireInfoCommand,
-  requireInfoCommandArgs,
-  execute as executeInfo,
-} from './cmd-info'
+import { requireInitCommand, requireInitCommandArgs, execute as executeInit } from './cmd-init'
+import { requireInfoCommand, requireInfoCommandArgs, execute as executeInfo } from './cmd-info'
 import {
   requireUpdateWorkspaceCommand,
   requireUpdateWorkspaceCommandArgs,
@@ -45,7 +37,7 @@ const environmentAgg = useEnvironmentAgg()
 
 const agg = createSingletonAgg(() => {
   const isReady = ref(false)
-  const currentCommand = ref(SubcommandEnum.None)
+  const currentCommand = ref<Subcommand>(Subcommand.None)
   const source = process.cwd()
   const initCommandArgs = reactive<InitCommandArgs>({ source })
   const updateWorkspaceCommandArgs = reactive<UpdateWorkspaceCommandArgs>({
@@ -79,30 +71,17 @@ const agg = createSingletonAgg(() => {
           args: updateWorkspaceCommandArgs,
         }),
       )
-      .addCommand(
-        requireRunWebCommand({ currentCommand, args: runWebCommandArgs }),
-      )
-      .addCommand(
-        requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }),
-      )
+      .addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs }))
+      .addCommand(requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }))
 
     program.parse(process.argv)
 
     if (environmentAgg.states.debugMode.value === true) {
-      log.printDebug(
-        '- DEBUG: args信息：',
-        `[\n\t${process.argv.join('\n\t')}\n]`,
-      )
-      log.printDebug(
-        '- DEBUG: packageManager',
-        environmentAgg.states.packageManager.value,
-      )
+      log.printDebug('- DEBUG: args信息：', `[\n\t${process.argv.join('\n\t')}\n]`)
+      log.printDebug('- DEBUG: packageManager', environmentAgg.states.packageManager.value)
     }
 
-    if (
-      SubcommandEnum.GenCode !== currentCommand.value &&
-      SubcommandEnum.None !== currentCommand.value
-    ) {
+    if (Subcommand.GenCode !== currentCommand.value && Subcommand.None !== currentCommand.value) {
       isReady.value = true
       return
     }
@@ -136,7 +115,7 @@ const agg = createSingletonAgg(() => {
     }
     setCurrentLang(lang)
 
-    if (currentCommand.value === SubcommandEnum.None) {
+    if (currentCommand.value === Subcommand.None) {
       const result = await prompts(
         [
           {
@@ -146,23 +125,23 @@ const agg = createSingletonAgg(() => {
             choices: [
               {
                 title: $t('question.subcommand.genCode'),
-                value: SubcommandEnum.GenCode,
+                value: Subcommand.GenCode,
               },
               {
                 title: $t('question.subcommand.init'),
-                value: SubcommandEnum.Init,
+                value: Subcommand.Init,
               },
               {
                 title: $t('question.subcommand.updateWorkspace'),
-                value: SubcommandEnum.UpdateWorkspace,
+                value: Subcommand.UpdateWorkspace,
               },
               {
                 title: $t('question.subcommand.runWeb'),
-                value: SubcommandEnum.RunWeb,
+                value: Subcommand.RunWeb,
               },
               {
                 title: $t('question.subcommand.info'),
-                value: SubcommandEnum.Info,
+                value: Subcommand.Info,
               },
             ],
           },
@@ -173,26 +152,26 @@ const agg = createSingletonAgg(() => {
     }
     const subcommand = currentCommand.value
 
-    if (subcommand === SubcommandEnum.Init) {
+    if (subcommand === Subcommand.Init) {
       await requireInitCommandArgs({ currentCommand, args: initCommandArgs })
-    } else if (subcommand === SubcommandEnum.UpdateWorkspace) {
+    } else if (subcommand === Subcommand.UpdateWorkspace) {
       await requireUpdateWorkspaceCommandArgs({
         currentCommand,
         args: updateWorkspaceCommandArgs,
       })
-    } else if (subcommand === SubcommandEnum.RunWeb) {
+    } else if (subcommand === Subcommand.RunWeb) {
       await requireRunWebCommandArgs({
         currentCommand,
         args: runWebCommandArgs,
       })
-    } else if (subcommand === SubcommandEnum.Info) {
+    } else if (subcommand === Subcommand.Info) {
       await requireInfoCommandArgs({ currentCommand })
-    } else if (subcommand === SubcommandEnum.GenCode) {
+    } else if (subcommand === Subcommand.GenCode) {
       await requireGenCodeCommandArgs({
         currentCommand,
         args: genCodeCommandArgs,
       })
-    } else if (subcommand === SubcommandEnum.None) {
+    } else if (subcommand === Subcommand.None) {
       return
     } else {
       isNever(subcommand)
@@ -208,19 +187,17 @@ const agg = createSingletonAgg(() => {
       init,
       async exec() {
         const c = currentCommand.value
-        if (c === SubcommandEnum.Info) {
+        if (c === Subcommand.Info) {
           await executeInfo()
-        } else if (c === SubcommandEnum.Init) {
+        } else if (c === Subcommand.Init) {
           await executeInit(initCommandArgs)
-        } else if (c === SubcommandEnum.RunWeb) {
+        } else if (c === Subcommand.RunWeb) {
           await executeRunWeb(runWebCommandArgs)
-        } else if (c === SubcommandEnum.UpdateWorkspace) {
+        } else if (c === Subcommand.UpdateWorkspace) {
           await executeUpdate(updateWorkspaceCommandArgs)
-        } else if (c === SubcommandEnum.GenCode) {
-          await executeGenCode(
-            genCodeCommandArgs as Required<GenCodeCommandArgs>,
-          )
-        } else if (c === SubcommandEnum.None) {
+        } else if (c === Subcommand.GenCode) {
+          await executeGenCode(genCodeCommandArgs as Required<GenCodeCommandArgs>)
+        } else if (c === Subcommand.None) {
         } else {
           isNever(c)
         }

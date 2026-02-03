@@ -23,7 +23,7 @@ import { computed, reactive, ref, watch } from 'vue'
 import { useI18nAgg } from './domain/i18n-agg'
 import { type DomainDesigner } from '@ddd-tool/domain-designer-core'
 import { parseNode } from './ui'
-import { VALID_RANKERS, VALID_EDGE_TYPES } from './domain/diagram-agg/define'
+import { Ranker, EdgeType } from './domain/diagram-agg/types'
 import { bindRef } from 'vue-fn/domain'
 
 type NonEmptyObject<T extends object> = keyof T extends never ? never : T
@@ -113,18 +113,18 @@ const renderRanker = bindRef(
 )
 const renderRankerOptions = reactive([
   {
-    label: VALID_RANKERS.NetworkSimplex,
-    value: VALID_RANKERS.NetworkSimplex,
+    label: Ranker.NetworkSimplex,
+    value: Ranker.NetworkSimplex,
     note: t('menu.settings.render.ranker.NetworkSimplex.note'),
   },
   {
-    label: VALID_RANKERS.TightTree,
-    value: VALID_RANKERS.TightTree,
+    label: Ranker.TightTree,
+    value: Ranker.TightTree,
     note: t('menu.settings.render.ranker.TightTree.note'),
   },
   {
-    label: VALID_RANKERS.LongestPath,
-    value: VALID_RANKERS.LongestPath,
+    label: Ranker.LongestPath,
+    value: Ranker.LongestPath,
     note: t('menu.settings.render.ranker.LongestPath.note'),
   },
 ])
@@ -150,11 +150,11 @@ const renderEdgesType = bindRef(
 const renderEdgesTypeOptions = reactive([
   {
     label: t('menu.settings.render.edgesType.hard'),
-    value: VALID_EDGE_TYPES.Hard,
+    value: EdgeType.Hard,
   },
   {
     label: t('menu.settings.render.edgesType.rounded'),
-    value: VALID_EDGE_TYPES.Rounded,
+    value: EdgeType.Rounded,
   },
 ])
 
@@ -365,7 +365,7 @@ const dockItems = ref([
           option-value="value"
         ></SelectButton>
       </div>
-      <div v-show="renderEdgesType === VALID_EDGE_TYPES.Rounded">
+      <div v-show="renderEdgesType === EdgeType.Rounded">
         <h4>{{ t('menu.settings.render.bendSize') }}: {{ renderBendSize }}</h4>
         <div>
           <Slider v-model="renderBendSize" :step="0.1" :min="0.1" :max="0.6"></Slider>

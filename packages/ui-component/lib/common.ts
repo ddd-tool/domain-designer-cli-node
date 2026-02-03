@@ -1,8 +1,5 @@
 //函数节流
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-): T {
+export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): T {
   let timer: any = null
   const throttledFunction = function (this: any, ...args: Parameters<T>): void {
     if (!timer) {

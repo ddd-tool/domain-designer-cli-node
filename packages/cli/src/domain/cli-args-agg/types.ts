@@ -1,16 +1,17 @@
 import packageInfo from '@/utils/package-info'
 import log from '@/utils/log'
-import { define } from '@ddd-tool/domain-designer-generator'
+import { type types } from '@ddd-tool/domain-designer-generator'
 import { useEnvironmentAgg } from '../environment-agg'
 
-export enum SubcommandEnum {
-  Init = 'init',
-  UpdateWorkspace = 'updateWorkspace',
-  RunWeb = 'runWeb',
-  Info = 'info',
-  GenCode = 'GenCode',
-  None = 'none',
-}
+export const Subcommand = Object.freeze({
+  Init: 'init',
+  UpdateWorkspace: 'updateWorkspace',
+  RunWeb: 'runWeb',
+  Info: 'info',
+  GenCode: 'GenCode',
+  None: 'none',
+} as const)
+export type Subcommand = Enum<typeof Subcommand>
 
 export type InitCommandArgs = {
   source: string
@@ -26,12 +27,12 @@ export type RunWebCommandArgs = {
 
 export type GenCodeCommandArgs = {
   source: string
-  language?: define.Language
+  language?: types.Language
   context?:
-    | define.GeneratorContext<define.Language.Java>
-    | define.GeneratorContext<define.Language.Kotlin>
-    | define.GeneratorContext<define.Language.Go>
-    | define.GeneratorContext<define.Language.CSharp>
+    | types.GeneratorContext<'java'>
+    | types.GeneratorContext<'kotlin'>
+    | types.GeneratorContext<'go'>
+    | types.GeneratorContext<'csharp'>
 }
 
 export type Script = {

@@ -1,11 +1,11 @@
 import { Reactive, Ref } from '@vue/reactivity'
 import {
-  SubcommandEnum,
+  Subcommand,
   UpdateWorkspaceCommandArgs,
   getGenCodeScript,
   getGitignore,
   getRunWebScript,
-} from './define'
+} from './types'
 import { Command } from 'commander'
 import fs from 'fs'
 import path from 'path'
@@ -17,14 +17,14 @@ import { useEnvironmentAgg } from '../environment-agg'
 const environmentAgg = useEnvironmentAgg()
 
 export function requireUpdateWorkspaceCommand(params: {
-  currentCommand: Ref<SubcommandEnum>
+  currentCommand: Ref<Subcommand>
   args: Reactive<UpdateWorkspaceCommandArgs>
 }) {
   return new Command()
     .name('update')
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
-      params.currentCommand.value = SubcommandEnum.UpdateWorkspace
+      params.currentCommand.value = Subcommand.UpdateWorkspace
       if (options.source) {
         params.args.source = path.resolve(options.source)
       }
@@ -34,10 +34,10 @@ export function requireUpdateWorkspaceCommand(params: {
 }
 
 export async function requireUpdateWorkspaceCommandArgs(params: {
-  currentCommand: Ref<SubcommandEnum>
+  currentCommand: Ref<Subcommand>
   args: Reactive<UpdateWorkspaceCommandArgs>
 }) {
-  params.currentCommand.value = SubcommandEnum.UpdateWorkspace
+  params.currentCommand.value = Subcommand.UpdateWorkspace
 }
 
 export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
@@ -80,36 +80,16 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
     fs.rmSync(path.join(distDir, gitignore.name))
   }
 
-  copyFolderRecursive(
-    path.join(environmentAgg.states.webRoot.value, 'templates'),
-    distDir,
-    {
-      ignore: [
-        'simple-example.ts',
-        'complex-example.ts',
-        'complex-example-detail',
-      ],
-    },
-  )
+  copyFolderRecursive(path.join(environmentAgg.states.webRoot.value, 'templates'), distDir, {
+    ignore: ['simple-example.ts', 'complex-example.ts', 'complex-example-detail'],
+  })
   if (runWebScript) {
-    fs.writeFileSync(
-      path.join(distDir, runWebScript.name),
-      runWebScript.content,
-      'utf-8',
-    )
+    fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
   }
   if (genCodeScript) {
-    fs.writeFileSync(
-      path.join(distDir, genCodeScript.name),
-      genCodeScript.content,
-      'utf-8',
-    )
+    fs.writeFileSync(path.join(distDir, genCodeScript.name), genCodeScript.content, 'utf-8')
   }
-  fs.writeFileSync(
-    path.join(distDir, gitignore.name),
-    gitignore.content,
-    'utf-8',
-  )
+  fs.writeFileSync(path.join(distDir, gitignore.name), gitignore.content, 'utf-8')
 
   log.print(`目录已更新至 ${packageInfo.version}`)
 

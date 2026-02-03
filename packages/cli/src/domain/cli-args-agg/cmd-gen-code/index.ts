@@ -1,18 +1,15 @@
 import log from '@/utils/log'
 import fs from 'fs'
 import path from 'path'
-import { GenCodeCommandArgs, SubcommandEnum } from '../define'
+import { GenCodeCommandArgs, Subcommand } from '../types'
 import { spawnSync } from 'child_process'
-import {
-  DomainDesigner,
-  isDomainDesigner,
-} from '@ddd-tool/domain-designer-core'
+import { DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
 import {
   useGeneratorAgg,
   GeneratorPliginHelper,
   GENERATOR_JAVA_PLUGIN,
   GENERATOR_KOTLIN_PLUGIN,
-  define,
+  types,
   GENERATOR_CSHARP_PLUGIN,
   GENERATOR_GO_PLUGIN,
 } from '@ddd-tool/domain-designer-generator'
@@ -34,14 +31,14 @@ const { t: $t } = useI18nAgg().commands
 const environmentAgg = useEnvironmentAgg()
 
 export function requireGenCodeCommand(params: {
-  currentCommand: Ref<SubcommandEnum>
+  currentCommand: Ref<Subcommand>
   args: Reactive<GenCodeCommandArgs>
 }) {
   return new Command()
     .name('genCode')
     .option('--source <sourceDir>', "ts files' dir")
     .action((options) => {
-      params.currentCommand.value = SubcommandEnum.GenCode
+      params.currentCommand.value = Subcommand.GenCode
       if (options.source) {
         params.args.source = path.resolve(options.source)
       }
@@ -51,10 +48,10 @@ export function requireGenCodeCommand(params: {
 }
 
 export async function requireGenCodeCommandArgs(params: {
-  currentCommand: Ref<SubcommandEnum>
+  currentCommand: Ref<Subcommand>
   args: Reactive<GenCodeCommandArgs>
 }) {
-  const language: define.Language = (
+  const language: types.Language = (
     await prompts(
       [
         {
@@ -63,20 +60,20 @@ export async function requireGenCodeCommandArgs(params: {
           message: $t('question.subcommand.genCode.language'),
           choices: [
             {
-              title: define.Language.CSharp,
-              value: define.Language.CSharp,
+              title: types.Language.CSharp,
+              value: types.Language.CSharp,
             },
             {
-              title: define.Language.Go,
-              value: define.Language.Go,
+              title: types.Language.Go,
+              value: types.Language.Go,
             },
             {
-              title: define.Language.Java,
-              value: define.Language.Java,
+              title: types.Language.Java,
+              value: types.Language.Java,
             },
             {
-              title: define.Language.Kotlin,
-              value: define.Language.Kotlin,
+              title: types.Language.Kotlin,
+              value: types.Language.Kotlin,
             },
           ],
         },
@@ -86,13 +83,13 @@ export async function requireGenCodeCommandArgs(params: {
   ).language
   params.args.language = language
 
-  if (language === define.Language.Java) {
+  if (language === types.Language.Java) {
     params.args.context = await requireGenJavaContext()
-  } else if (language === define.Language.Kotlin) {
+  } else if (language === types.Language.Kotlin) {
     params.args.context = await requireGenKotlinContext()
-  } else if (language === define.Language.CSharp) {
+  } else if (language === types.Language.CSharp) {
     params.args.context = await requireGenCsharpContext()
-  } else if (language === define.Language.Go) {
+  } else if (language === types.Language.Go) {
     params.args.context = await requireGenGoContext()
   } else {
     isNever(language)
@@ -111,24 +108,15 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
   ) {
     log.printWarn('检测到工作目录版本与脚手架版本不匹配')
-    log.printWarn(
-      '当前工作目录版本：',
-      fs.readFileSync(versionFilePath, 'utf-8').trim(),
-    )
+    log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
     log.printWarn('脚手架版本：      ', packageInfo.version)
-    log.printWarn(
-      '如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新',
-    )
+    log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
     log.print(
-      chalk.bgYellow(
-        `${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli update`,
-      ),
+      chalk.bgYellow(`${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli update`),
     )
   }
 
-  log.printInfo(
-    '================ Install dependencies: Starting... ================',
-  )
+  log.printInfo('================ Install dependencies: Starting... ================')
   if (packageManager === 'bun') {
     spawnSync(`bun i --cwd "${webRoot}"`, {
       encoding: 'utf-8',
@@ -150,13 +138,9 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   } else {
     isNever(packageManager)
   }
-  log.printSuccess(
-    '================ Install dependencies: Succeeded ================',
-  )
+  log.printSuccess('================ Install dependencies: Succeeded ================')
 
-  log.printInfo(
-    '================ Compliling ts code: Starting... ================',
-  )
+  log.printInfo('================ Compliling ts code: Starting... ================')
   const exeCmd = packageManager === 'bun' ? 'bunx' : 'pnpx'
   // spawnSync(`pnpx zx ${webRoot.replace('\\', '/')}/scripts/build-ts.mjs --source=${sourcePath}`, {
   spawnSync(
@@ -167,47 +151,37 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
       shell: true,
     },
   )
-  log.printSuccess(
-    '================ Compliling ts code: Succeeded ================',
-  )
+  log.printSuccess('================ Compliling ts code: Succeeded ================')
 
-  log.printInfo(
-    '================ Generating code: Starting... ================',
-  )
+  log.printInfo('================ Generating code: Starting... ================')
 
   const files = fs.readdirSync(path.join(sourcePath, '.output', 'esm'))
 
   let agg: ReturnType<typeof useGeneratorAgg>
   let pluginLoaded = false
 
-  deleteFolderRecursive(
-    `${sourcePath.replace(/\\/g, '/')}/.output/${args.language}`,
-  )
+  deleteFolderRecursive(`${sourcePath.replace(/\\/g, '/')}/.output/${args.language}`)
 
   for (const file of files) {
     if (
-      fs
-        .statSync(path.join(sourcePath, '.output', 'esm', file))
-        .isDirectory() ||
+      fs.statSync(path.join(sourcePath, '.output', 'esm', file)).isDirectory() ||
       !file.endsWith('.mjs')
     ) {
       continue
     }
-    const m = await import(
-      `file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`
-    )
+    const m = await import(`file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`)
     if (!m || !isDomainDesigner(m.default)) {
       continue
     }
     const designer = m.default satisfies DomainDesigner
     if (!pluginLoaded) {
-      if (args.language === define.Language.Java) {
+      if (args.language === types.Language.Java) {
         GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)
-      } else if (args.language === define.Language.Kotlin) {
+      } else if (args.language === types.Language.Kotlin) {
         GeneratorPliginHelper.registerPlugin(GENERATOR_KOTLIN_PLUGIN)
-      } else if (args.language === define.Language.CSharp) {
+      } else if (args.language === types.Language.CSharp) {
         GeneratorPliginHelper.registerPlugin(GENERATOR_CSHARP_PLUGIN)
-      } else if (args.language === define.Language.Go) {
+      } else if (args.language === types.Language.Go) {
         GeneratorPliginHelper.registerPlugin(GENERATOR_GO_PLUGIN)
       } else {
         isNever(args.language)
@@ -217,29 +191,17 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     agg = useGeneratorAgg(designer)
     agg.commands.setDomainDesigner(designer)
     args.context.moduleName =
-      designer._getContext().getDesignerOptions().moduleName ||
-      file.split('.')[0]
+      designer._getContext().getDesignerOptions().moduleName || file.split('.')[0]
     agg.commands.setContext(args.context)
     const codeFiles = agg.commands.genCodeFiles()
     for (const codeFile of codeFiles) {
-      const p = path.join(
-        sourcePath,
-        '.output',
-        args.language,
-        ...codeFile.getParentDir(),
-      )
+      const p = path.join(sourcePath, '.output', args.language, ...codeFile.getParentDir())
       if (!fs.existsSync(p)) {
         fs.mkdirSync(p, { recursive: true })
       }
-      fs.writeFileSync(
-        path.join(p, codeFile.getName()),
-        codeFile.getContent(),
-        'utf-8',
-      )
+      fs.writeFileSync(path.join(p, codeFile.getName()), codeFile.getContent(), 'utf-8')
     }
   }
 
-  log.printSuccess(
-    '================ Generating code: Succeeded ================',
-  )
+  log.printSuccess('================ Generating code: Succeeded ================')
 }

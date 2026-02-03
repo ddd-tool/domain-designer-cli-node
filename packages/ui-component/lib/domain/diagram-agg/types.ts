@@ -1,19 +1,19 @@
 export const EMPTY_STORY = '__Empty__'
 
-export const VALID_RANKERS = Object.freeze({
+export const Ranker = Object.freeze({
   NetworkSimplex: 'network-simplex',
   TightTree: 'tight-tree',
   LongestPath: 'longest-path',
-})
+} as const)
 
-export type Ranker = (typeof VALID_RANKERS)[keyof typeof VALID_RANKERS]
+export type Ranker = Enum<typeof Ranker>
 
-export const VALID_EDGE_TYPES = Object.freeze({
+export const EdgeType = Object.freeze({
   Rounded: 'rounded',
   Hard: 'hard',
-})
+} as const)
 
-export type EdgeType = (typeof VALID_EDGE_TYPES)[keyof typeof VALID_EDGE_TYPES]
+export type EdgeType = Enum<typeof EdgeType>
 
 export type RenderConfig = {
   ranker: Ranker
@@ -25,10 +25,10 @@ export type RenderConfig = {
 
 export function defaultRenderConfig(): RenderConfig {
   return {
-    ranker: VALID_RANKERS.NetworkSimplex,
+    ranker: Ranker.NetworkSimplex,
     padding: 4,
     fontSize: 14,
-    edges: VALID_EDGE_TYPES.Hard,
+    edges: EdgeType.Hard,
     bendSize: 0.3,
   }
 }

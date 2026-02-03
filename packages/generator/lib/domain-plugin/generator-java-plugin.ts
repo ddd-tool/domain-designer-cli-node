@@ -11,7 +11,7 @@ import {
 } from '@ddd-tool/domain-designer-core'
 import { GeneratorPliginHelper } from '../domain/generator-agg'
 import { strUtil } from '../common'
-import { CodeFile, CodeSnippets, java } from '../domain/define'
+import { CodeFile, CodeSnippets, java } from '../domain/types'
 import { Ref } from '@vue/reactivity'
 
 const JavaGeneratorAddition = java.JavaGeneratorAddition
@@ -41,12 +41,8 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         ._getContext()
         .getDesignerOptions()
         .ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s))
-      function isValueObject(
-        info: DomainDesignInfo<DomainDesignInfoType, string>,
-      ): boolean {
-        return !ignoredValueObjects.includes(
-          strUtil.stringToLowerCamel(info._attributes.name),
-        )
+      function isValueObject(info: DomainDesignInfo<DomainDesignInfoType, string>): boolean {
+        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name))
       }
       function inferObjectValueTypeByInfo(
         imports: Set<string>,
@@ -75,14 +71,9 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           )
         }
       }
-      function inferJavaTypeByName(
-        imports: Set<string>,
-        obj: DomainDesignObject,
-      ): string {
+      function inferJavaTypeByName(imports: Set<string>, obj: DomainDesignObject): string {
         const additions = context.value.additions
-        const name = strUtil
-          .stringToLowerSnake(obj._attributes.name)
-          .replace(/_/, ' ')
+        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, ' ')
         if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
           if (additions.has(JavaGeneratorAddition.Timezone)) {
             imports.add('java.time.OffsetDateTime')
@@ -91,9 +82,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             imports.add('java.time.LocalDateTime')
             return 'LocalDateTime'
           }
-        } else if (
-          /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)
-        ) {
+        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
           return 'Integer'
         } else if (/\b(price)$/.test(name)) {
           imports.add('java.math.BigDecimal')
@@ -113,14 +102,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       }
 
       api.commands._setInfoCodeProvider(
-        (
-          info: DomainDesignInfo<DomainDesignInfoType, string>,
-        ): CodeSnippets<'Info'>[] => {
+        (info: DomainDesignInfo<DomainDesignInfoType, string>): CodeSnippets<'Info'>[] => {
           const imports = new Set<string>()
           imports.add(context.value.nonNullAnnotation)
-          const nonNullAnnotation = context.value.nonNullAnnotation
-            .split('.')
-            .pop()
+          const nonNullAnnotation = context.value.nonNullAnnotation.split('.').pop()
           const className = getDomainObjectName(info)
           const additions = context.value.additions
           const code: string[] = []
@@ -153,9 +138,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               code.push('@Embeddable')
             }
             code.push(`public class ${className} {`)
-            code.push(
-              `    private final ${inferJavaTypeByName(imports, info)} value;`,
-            )
+            code.push(`    private final ${inferJavaTypeByName(imports, info)} value;`)
             code.push(``)
             code.push(
               `    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`,
@@ -175,9 +158,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               code.push('@Embeddable')
             }
             code.push(`public class ${getDomainObjectName(info)} {`)
-            code.push(
-              `    private final ${inferJavaTypeByName(imports, info)} value;`,
-            )
+            code.push(`    private final ${inferJavaTypeByName(imports, info)} value;`)
             code.push(``)
             code.push(
               `    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`,
@@ -186,9 +167,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             code.push(`        this.value = value;`)
             code.push(`    }`)
             code.push(``)
-            code.push(
-              `    public ${inferJavaTypeByName(imports, info)} getValue() {`,
-            )
+            code.push(`    public ${inferJavaTypeByName(imports, info)} getValue() {`)
             code.push(`        return this.value;`)
             code.push(`    }`)
             code.push(`}`)
@@ -209,9 +188,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         ): CodeSnippets<'Command' | 'CommandHandler'>[] => {
           const codeSnippets: CodeSnippets<'Command' | 'CommandHandler'>[] = []
           const additions = context.value.additions
-          const nonNullAnnotation = context.value.nonNullAnnotation
-            .split('.')
-            .pop()
+          const nonNullAnnotation = context.value.nonNullAnnotation.split('.').pop()
 
           {
             const imports = new Set<string>()
@@ -287,9 +264,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                 code.push(
                   `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`,
                 )
-                code.push(
-                  `        return this.${strUtil.lowerFirst(infoName)};`,
-                )
+                code.push(`        return this.${strUtil.lowerFirst(infoName)};`)
                 code.push(`    }`)
               }
               code.push(`}`)
@@ -318,9 +293,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             }
             code.push(`public class ${className}Handler {`)
             const aggs = [
-              ...api.states.designer.value._getContext().getAssociationMap()[
-                cmd._attributes.__id
-              ],
+              ...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id],
             ].filter((agg) => agg._attributes.rule === 'Agg')
             for (const agg of aggs) {
               imports.add(
@@ -344,13 +317,9 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
       api.commands._setFacadeCommandCodeProvider(
         (cmd: DomainDesignFacadeCommand<DomainDesignInfoRecord>) => {
-          const codeSnippets: CodeSnippets<
-            'FacadeCommand' | 'FacadeCommandHandler'
-          >[] = []
+          const codeSnippets: CodeSnippets<'FacadeCommand' | 'FacadeCommandHandler'>[] = []
           const additions = context.value.additions
-          const nonNullAnnotation = context.value.nonNullAnnotation
-            .split('.')
-            .pop()
+          const nonNullAnnotation = context.value.nonNullAnnotation.split('.').pop()
 
           {
             const imports = new Set<string>()
@@ -426,9 +395,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                 code.push(
                   `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`,
                 )
-                code.push(
-                  `        return this.${strUtil.lowerFirst(infoName)};`,
-                )
+                code.push(`        return this.${strUtil.lowerFirst(infoName)};`)
                 code.push(`    }`)
               }
               code.push(`}`)
@@ -457,9 +424,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             }
             code.push(`public class ${className}Handler {`)
             const aggs = [
-              ...api.states.designer.value._getContext().getAssociationMap()[
-                cmd._attributes.__id
-              ],
+              ...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id],
             ].filter((agg) => agg._attributes.rule === 'Agg')
             for (const agg of aggs) {
               imports.add(
@@ -483,14 +448,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setAggCodeProvider(
-        (
-          agg: DomainDesignAgg<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Agg' | 'AggImpl'>[] => {
+        (agg: DomainDesignAgg<DomainDesignInfoRecord>): CodeSnippets<'Agg' | 'AggImpl'>[] => {
           const additions = context.value.additions
           const designer = api.states.designer.value
-          const nonNullAnnotation = context.value.nonNullAnnotation
-            .split('.')
-            .pop()
+          const nonNullAnnotation = context.value.nonNullAnnotation.split('.').pop()
           const className = getDomainObjectName(agg)
           const codeSnippets: CodeSnippets<'Agg' | 'AggImpl'>[] = []
           const infos = Object.values(agg.inner)
@@ -503,19 +464,14 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             code.push(`public interface ${className} {`)
             for (const info of infos) {
               const infoName = getDomainObjectName(info)
-              code.push(
-                `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}();`,
-              )
+              code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}();`)
               code.push('')
             }
             const commands = [
-              ...designer._getContext().getAssociationMap()[
-                agg._attributes.__id
-              ],
+              ...designer._getContext().getAssociationMap()[agg._attributes.__id],
             ].filter((item) => {
               return (
-                item._attributes.rule === 'Command' ||
-                item._attributes.rule === 'FacadeCommand'
+                item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand'
               )
             })
             for (const command of commands) {
@@ -559,13 +515,9 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                     ? 'javax.persistence.Table'
                     : 'jakarta.persistence.Table',
                 )
-                code.push(
-                  `@Table(name = "${strUtil.camelToLowerSnake(className)}")`,
-                )
+                code.push(`@Table(name = "${strUtil.camelToLowerSnake(className)}")`)
               }
-              code.push(
-                `public class ${className}Impl implements ${className} {`,
-              )
+              code.push(`public class ${className}Impl implements ${className} {`)
               for (const info of infos) {
                 const infoName = getDomainObjectName(info)
                 code.push(`    @${nonNullAnnotation}`)
@@ -620,9 +572,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                         ? 'javax.persistence.Column'
                         : 'jakarta.persistence.Column',
                     )
-                    code.push(
-                      `    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`,
-                    )
+                    code.push(`    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`)
                   }
                 }
                 code.push(
@@ -630,13 +580,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                 )
               }
               const commands = [
-                ...designer._getContext().getAssociationMap()[
-                  agg._attributes.__id
-                ],
+                ...designer._getContext().getAssociationMap()[agg._attributes.__id],
               ].filter((item) => {
                 return (
-                  item._attributes.rule === 'Command' ||
-                  item._attributes.rule === 'FacadeCommand'
+                  item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand'
                 )
               })
               for (const command of commands) {
@@ -667,13 +614,9 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                     ? 'javax.persistence.Table'
                     : 'jakarta.persistence.Table',
                 )
-                code.push(
-                  `@Table(name = "${strUtil.camelToLowerSnake(className)}")`,
-                )
+                code.push(`@Table(name = "${strUtil.camelToLowerSnake(className)}")`)
               }
-              code.push(
-                `public class ${className}Impl implements ${className} {`,
-              )
+              code.push(`public class ${className}Impl implements ${className} {`)
               for (const info of infos) {
                 const infoName = getDomainObjectName(info)
                 code.push(`    @${nonNullAnnotation}`)
@@ -728,9 +671,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                         ? 'javax.persistence.Column'
                         : 'jakarta.persistence.Column',
                     )
-                    code.push(
-                      `    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`,
-                    )
+                    code.push(`    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`)
                   }
                 }
                 code.push(
@@ -763,19 +704,14 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                 code.push(
                   `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}() {`,
                 )
-                code.push(
-                  `        return this.${strUtil.lowerFirst(infoName)};`,
-                )
+                code.push(`        return this.${strUtil.lowerFirst(infoName)};`)
                 code.push(`    }`)
               }
               const commands = [
-                ...designer._getContext().getAssociationMap()[
-                  agg._attributes.__id
-                ],
+                ...designer._getContext().getAssociationMap()[agg._attributes.__id],
               ].filter(
                 (item) =>
-                  item._attributes.rule === 'Command' ||
-                  item._attributes.rule === 'FacadeCommand',
+                  item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand',
               )
               for (const command of commands) {
                 const commandName = getDomainObjectName(command)
@@ -804,14 +740,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setEventCodeProvider(
-        (
-          event: DomainDesignEvent<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Event'>[] => {
+        (event: DomainDesignEvent<DomainDesignInfoRecord>): CodeSnippets<'Event'>[] => {
           const imports = new Set<string>()
           imports.add(context.value.nonNullAnnotation)
-          const nonNullAnnotation = context.value.nonNullAnnotation
-            .split('.')
-            .pop()
+          const nonNullAnnotation = context.value.nonNullAnnotation.split('.').pop()
           const additions = context.value.additions
           const className = getDomainObjectName(event)
           const code: string[] = []
@@ -859,9 +791,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             for (const info of infos) {
               const infoName = getDomainObjectName(info)
               code.push(`    @${nonNullAnnotation}`)
-              code.push(
-                `    private final ${infoName} ${strUtil.lowerFirst(infoName)};`,
-              )
+              code.push(`    private final ${infoName} ${strUtil.lowerFirst(infoName)};`)
             }
             code.push(``)
             const argsCode: string[] = []
@@ -947,10 +877,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           ]
           codes.forEach((code) => {
             if (code.type === 'Command') {
-              const file = new CodeFile(
-                parentDir,
-                getDomainObjectName(command) + '.java',
-              )
+              const file = new CodeFile(parentDir, getDomainObjectName(command) + '.java')
               file.appendContentln(
                 `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`,
               )
@@ -963,10 +890,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               file.appendContentln(code.content)
               codeFiles.push(file)
             } else if (code.type === 'CommandHandler') {
-              const file = new CodeFile(
-                parentDir,
-                getDomainObjectName(command) + 'Handler.java',
-              )
+              const file = new CodeFile(parentDir, getDomainObjectName(command) + 'Handler.java')
               file.appendContentln(
                 `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`,
               )
@@ -983,9 +907,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             }
           })
         }
-        const facadeCommands = api.states.designer.value
-          ._getContext()
-          .getFacadeCommands()
+        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands()
         for (const facadeCmd of facadeCommands) {
           genInfos(facadeCmd.inner)
           const codes = api.commands._genFacadeCommandCode(facadeCmd)
@@ -996,10 +918,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           ]
           codes.forEach((code) => {
             if (code.type === 'FacadeCommand') {
-              const file = new CodeFile(
-                parentDir,
-                getDomainObjectName(facadeCmd) + '.java',
-              )
+              const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + '.java')
               file.appendContentln(
                 `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`,
               )
@@ -1012,10 +931,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               file.appendContentln(code.content)
               codeFiles.push(file)
             } else if (code.type === 'FacadeCommandHandler') {
-              const file = new CodeFile(
-                parentDir,
-                getDomainObjectName(facadeCmd) + 'Handler.java',
-              )
+              const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + 'Handler.java')
               file.appendContentln(
                 `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`,
               )
@@ -1036,16 +952,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         for (const agg of aggs) {
           genInfos(agg.inner)
           const codes = api.commands._genAggCode(agg)
-          const parentDir = [
-            ...context.value.namespace.split(/\./),
-            context.value.moduleName,
-          ]
+          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName]
           codes.forEach((code) => {
             if (code.type === 'Agg') {
-              const file = new CodeFile(
-                parentDir,
-                getDomainObjectName(agg) + '.java',
-              )
+              const file = new CodeFile(parentDir, getDomainObjectName(agg) + '.java')
               file.appendContentln(
                 `package ${context.value.namespace}.${context.value.moduleName};`,
               )
@@ -1058,10 +968,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               file.appendContentln(code.content)
               codeFiles.push(file)
             } else if (code.type === 'AggImpl') {
-              const file = new CodeFile(
-                parentDir,
-                getDomainObjectName(agg) + 'Impl.java',
-              )
+              const file = new CodeFile(parentDir, getDomainObjectName(agg) + 'Impl.java')
               file.appendContentln(
                 `package ${context.value.namespace}.${context.value.moduleName};`,
               )
@@ -1088,10 +995,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             EVENT_PACKAGE,
           ]
           codes.forEach((code) => {
-            const file = new CodeFile(
-              parentDir,
-              getDomainObjectName(event) + '.java',
-            )
+            const file = new CodeFile(parentDir, getDomainObjectName(event) + '.java')
             file.appendContentln(
               `package ${context.value.namespace}.${context.value.moduleName}.${EVENT_PACKAGE};`,
             )

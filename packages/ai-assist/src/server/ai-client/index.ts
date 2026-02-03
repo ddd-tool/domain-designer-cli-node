@@ -2,16 +2,15 @@ import OpenAI from 'openai'
 import { AIName } from './config'
 import fs from 'fs'
 import { getClient } from './client'
-import type { AiMessage } from './define'
+import type { AiMessage } from './types'
 import { FileCreateParams } from 'openai/resources/files.mjs'
 
-type DeepSeekChatCompletionMessageParam =
-  OpenAI.Chat.ChatCompletionMessageParam & {
-    attachments?: {
-      file_id: string
-      tools: { type: 'file_search' }[]
-    }[]
-  }
+type DeepSeekChatCompletionMessageParam = OpenAI.Chat.ChatCompletionMessageParam & {
+  attachments?: {
+    file_id: string
+    tools: { type: 'file_search' }[]
+  }[]
+}
 
 export async function queryStream(
   aiName: AIName,
@@ -73,11 +72,7 @@ export async function kimiQueryStream(
   })
 }
 
-export async function upload(
-  aiName: AIName,
-  key: string,
-  fileStream: fs.ReadStream,
-) {
+export async function upload(aiName: AIName, key: string, fileStream: fs.ReadStream) {
   // try {
   //   const client = getClient(aiName, key)
   //   const file = await client.instance.files.create({
@@ -105,9 +100,7 @@ export async function kimiUpload(
     file: fs.createReadStream(filePath),
     purpose: 'file-extract',
   } as unknown as FileCreateParams)
-  let content = await (
-    await client.instance.files.content(file_object.id)
-  ).text()
+  let content = await (await client.instance.files.content(file_object.id)).text()
   // const content = fs.readFileSync(filePath, { encoding: 'utf-8' })
   messageResult.push({
     role: 'system',

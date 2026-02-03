@@ -3,7 +3,7 @@ import os from 'os'
 import path from 'path'
 import { ref } from '@vue/reactivity'
 import { createSingletonAgg } from 'vue-fn/domain-server'
-import { OsType, PackageManager } from './define'
+import { OsType, PackageManager } from './types'
 import { findWebRoot } from './web-root'
 import log from '@/utils/log'
 
@@ -48,11 +48,7 @@ const agg = createSingletonAgg(() => {
       if (typeof navigator !== 'undefined') {
         const nav = navigator as any
         return (
-          nav.language ||
-          nav.userLanguage ||
-          nav.browserLanguage ||
-          nav.systemLanguage ||
-          'en-US'
+          nav.language || nav.userLanguage || nav.browserLanguage || nav.systemLanguage || 'en-US'
         )
       }
       if (typeof process !== 'undefined') {

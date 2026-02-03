@@ -30,9 +30,7 @@ export const AI_ASSIST_PLUGIN = AiAssistAggPluginHelper.createHotSwapPlugin({
       localStorage.setItem(API_KEY_KEY, k)
     }
     let aiKeyHandle: WatchHandle | null = (() => {
-      return api.states.isCacheAiKey.value
-        ? watch(api.states.apiKey, aiKeyWatcher)
-        : null
+      return api.states.isCacheAiKey.value ? watch(api.states.apiKey, aiKeyWatcher) : null
     })()
   },
   unmount() {},

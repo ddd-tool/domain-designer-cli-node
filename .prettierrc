@@ -7,13 +7,13 @@
     {
       "files": "*.ts",
       "options": {
-        "printWidth": 80
+        "printWidth": 100
       }
     },
     {
       "files": "*.md",
       "options": {
-        "printWidth": 80
+        "printWidth": 100
       }
     }
   ]

@@ -10,17 +10,9 @@ export const 管理员 = d.actor('管理员')
 export const 会员 = d.actor('会员')
 export const 定时器 = d.actor('定时器')
 
-const 会员账户已暂停 = d.event(
-  'UserAccountSuspended',
-  ['userId'],
-  '会员账户已暂停',
-)
+const 会员账户已暂停 = d.event('UserAccountSuspended', ['userId'], '会员账户已暂停')
 
-const 会员账户已启用 = d.event(
-  'UserAccountResumed',
-  ['userId'],
-  '会员账户已启用',
-)
+const 会员账户已启用 = d.event('UserAccountResumed', ['userId'], '会员账户已启用')
 
 const 启用会员账户 = d.command(
   'ResumeAccount',
@@ -66,18 +58,9 @@ const 暂停会员流程 = d.startWorkflow('暂停会员流程')
 用户聚合.event(会员账户已暂停).readModel(会员账号读模型)
 
 const 启动会员流程 = d.startWorkflow('启动会员流程')
-管理员
-  .command(启用会员账户)
-  .agg(用户聚合)
-  .event(会员账户已启用)
-  .readModel(会员账号读模型)
+管理员.command(启用会员账户).agg(用户聚合).event(会员账户已启用).readModel(会员账号读模型)
 
 const 增加逾期次数流程 = d.startWorkflow('增加逾期次数流程')
 管理员.command(增加逾期次数).agg(用户聚合)
 
-d.defineUserStory('会员管理', [
-  创建会员流程,
-  暂停会员流程,
-  启动会员流程,
-  增加逾期次数流程,
-])
+d.defineUserStory('会员管理', [创建会员流程, 暂停会员流程, 启动会员流程, 增加逾期次数流程])

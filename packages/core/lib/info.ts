@@ -16,9 +16,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
     function func<NAME extends string>(
       name: NAME,
       dependsOn: NonEmptyArray<
-        | DomainDesignInfoFuncDependsOn
-        | string
-        | [string, string | DomainDesignNote]
+        DomainDesignInfoFuncDependsOn | string | [string, string | DomainDesignNote]
       >,
       note?: string | DomainDesignNote,
     ): DomainDesignInfo<'Function', NAME>
@@ -26,9 +24,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
       name: NAME,
       p2?:
         | NonEmptyArray<
-            | DomainDesignInfoFuncDependsOn
-            | string
-            | [string, string | DomainDesignNote]
+            DomainDesignInfoFuncDependsOn | string | [string, string | DomainDesignNote]
           >
         | string
         | DomainDesignNote,
@@ -38,9 +34,7 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
       let subtype: Array<DomainDesignInfoFuncDependsOn> = []
       let note: DomainDesignNote | undefined = undefined
       if (p2 instanceof Array) {
-        subtype = context.customInfoArrToInfoArr(
-          p2,
-        ) as DomainDesignInfoFuncDependsOn[]
+        subtype = context.customInfoArrToInfoArr(p2) as DomainDesignInfoFuncDependsOn[]
         note = p3 as DomainDesignNote | undefined
       } else {
         note = p2 as DomainDesignNote | undefined

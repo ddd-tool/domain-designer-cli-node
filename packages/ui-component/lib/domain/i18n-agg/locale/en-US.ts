@@ -39,8 +39,7 @@ const messages: I18nMessages = {
   'menu.help.zoom': 'Zoom:',
   'menu.help.zoom.content': 'Scoll mouse wheel',
   'menu.help.drag': 'Drag:',
-  'menu.help.drag.content':
-    'Press middle mouse button or press space + left mouse button',
+  'menu.help.drag.content': 'Press middle mouse button or press space + left mouse button',
   'menu.exportSvg': 'Export SVG',
   'menu.resetPosition': 'Reset Position',
 }

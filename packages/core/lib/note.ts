@@ -1,20 +1,11 @@
 import { readonly } from 'vue'
-import {
-  DomainDesignNote,
-  DomainDesignNoteProvider,
-  DomainDesignNoteInject,
-} from './types'
+import { DomainDesignNote, DomainDesignNoteProvider, DomainDesignNoteInject } from './types'
 
-export function createNoteProvider(
-  _designCode: string,
-): DomainDesignNoteProvider {
+export function createNoteProvider(_designCode: string): DomainDesignNoteProvider {
   function noteFn(temp: undefined): undefined
   function noteFn(temp: string): DomainDesignNote
   function noteFn(temp: DomainDesignNote): DomainDesignNote // ✓ 泛型重载
-  function noteFn(
-    temp: TemplateStringsArray,
-    ...values: DomainDesignNoteInject[]
-  ): DomainDesignNote
+  function noteFn(temp: TemplateStringsArray, ...values: DomainDesignNoteInject[]): DomainDesignNote
   function noteFn(
     temp: string | TemplateStringsArray | undefined | DomainDesignNote,
     ...values: DomainDesignNoteInject[]

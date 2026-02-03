@@ -66,9 +66,9 @@ function parseInfo(
     typeStr = t('constant.type.document').value
   } else if (type === 'Function') {
     typeStr = t('constant.type.function').value
-    subtype = (
-      info as DomainDesignInfo<'Function', string>
-    )._attributes.subtype.map((i) => i._attributes.name)
+    subtype = (info as DomainDesignInfo<'Function', string>)._attributes.subtype.map(
+      (i) => i._attributes.name,
+    )
   } else if (type === 'Id') {
     typeStr = t('constant.type.id').value
   } else if (type === 'ValueObject') {

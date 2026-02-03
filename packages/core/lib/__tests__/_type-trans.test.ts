@@ -29,9 +29,7 @@ it('', () => {
   expect(命令.inner.e._attributes.name).toBe('e')
 
   const 事件 = d.event('事件', ['中文， 【 ? 事件'])
-  expect(事件.inner['中文， 【 ? 事件']._attributes.name).toBe(
-    '中文， 【 ? 事件',
-  )
+  expect(事件.inner['中文， 【 ? 事件']._attributes.name).toBe('中文， 【 ? 事件')
 
   const 聚合 = d.agg('聚合', ['id', d.info.valueObj('name')])
   expect(聚合.inner.id._attributes.name).toBe('id')

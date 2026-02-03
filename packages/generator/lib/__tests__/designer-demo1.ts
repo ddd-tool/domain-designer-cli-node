@@ -53,18 +53,12 @@ const 下单命令 = d.command('createOrderCommand', [
   订单聚合.inner.orderId,
   订单聚合.inner.userAccount,
 ])
-const 下单失败事件 = d.event('orderFailedEvent', [
-  订单聚合.inner.orderId,
-  'time',
-])
+const 下单失败事件 = d.event('orderFailedEvent', [订单聚合.inner.orderId, 'time'])
 商城用户.command(下单命令).agg(订单聚合).event(下单失败事件)
 下单失败事件.system(物流系统)
 
-const 创建订单成功_自动扣款失败流程 =
-  d.startWorkflow('创建订单成功_自动扣款失败流程')
-const 自动扣款命令 = d.facadeCmd('autoDeductFacadeCommand', [
-  订单聚合.inner.orderId,
-])
+const 创建订单成功_自动扣款失败流程 = d.startWorkflow('创建订单成功_自动扣款失败流程')
+const 自动扣款命令 = d.facadeCmd('autoDeductFacadeCommand', [订单聚合.inner.orderId])
 const 下单成功事件 = d.event('orderSucceedEvent', [
   订单聚合.inner.orderId,
   订单聚合.inner.orderTime,
@@ -84,10 +78,7 @@ const 订单详情读模型 = d.readModel('orderDetailReadModel', [
   订单聚合.inner.orderId,
   订单聚合.inner.orderTime,
 ])
-const 扣款失败事件 = d.event('deductFailedEvent', [
-  订单聚合.inner.orderId,
-  'time',
-])
+const 扣款失败事件 = d.event('deductFailedEvent', [订单聚合.inner.orderId, 'time'])
 商城用户
   .command(下单命令)
   .agg(订单聚合)
@@ -100,8 +91,7 @@ const 扣款失败事件 = d.event('deductFailedEvent', [
 扣款失败事件.readModel(订单详情读模型)
 扣款失败事件.system(物流系统)
 
-const 创建订单成功_自动扣款成功流程 =
-  d.startWorkflow('创建订单成功_自动扣款成功流程')
+const 创建订单成功_自动扣款成功流程 = d.startWorkflow('创建订单成功_自动扣款成功流程')
 const 扣款成功事件 = d.event('deductSucceedEvent', [
   订单聚合.inner.orderId,
   订单聚合.inner.orderTime,
@@ -126,14 +116,11 @@ d.startWorkflow('readModel')
 const userRead = d.actor('user', 'user (read model)')
 userRead.readModel(订单详情读模型)
 
-d.defineUserStory(
-  '作为商城用户，我要下单并且实现自动扣款，以便购得心仪得商品',
-  [
-    创建订单失败流程,
-    创建订单成功_自动扣款失败流程,
-    创建订单成功_自动扣款成功流程,
-  ],
-)
+d.defineUserStory('作为商城用户，我要下单并且实现自动扣款，以便购得心仪得商品', [
+  创建订单失败流程,
+  创建订单成功_自动扣款失败流程,
+  创建订单成功_自动扣款成功流程,
+])
 
 d.defineUserStory('作为商城用户，我要查看订单情况，以便了解订单状态', [
   创建订单成功_自动扣款成功流程,

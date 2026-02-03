@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest'
 import { GeneratorPliginHelper, useGeneratorAgg } from '../domain/generator-agg'
 import designer1 from './designer-demo1'
-import { csharp } from '../domain/define'
+import { csharp } from '../domain/types'
 import { GENERATOR_CSHARP_PLUGIN } from '..'
 
 it('designer1', () => {
@@ -12,8 +12,7 @@ it('designer1', () => {
       // csharp.CSharpGeneratorAddition.PrimaryConstructor,
       // csharp.CSharpGeneratorAddition.AggInterface,
     ]),
-    moduleName:
-      designer1._getContext().getDesignerOptions().moduleName || 'User',
+    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'User',
     namespace: 'Application.Domain',
     aggInterface: 'MyAgg',
   }
@@ -31,8 +30,7 @@ it('designer1-ignoredValueObjects1', () => {
       // csharp.CSharpGeneratorAddition.PrimaryConstructor,
       // csharp.CSharpGeneratorAddition.AggInterface,
     ]),
-    moduleName:
-      designer1._getContext().getDesignerOptions().moduleName || 'User',
+    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'User',
     namespace: 'Application.Domain',
     aggInterface: 'MyAgg',
   }

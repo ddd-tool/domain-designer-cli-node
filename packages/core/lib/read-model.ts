@@ -9,9 +9,7 @@ import {
   NonEmptyInitFunc,
 } from './types'
 
-export function createReadModelProvider(
-  designId: string,
-): DomainDesignReadModelProvider {
+export function createReadModelProvider(designId: string): DomainDesignReadModelProvider {
   const RULE = 'ReadModel'
   return <G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
     name: string,
@@ -21,9 +19,7 @@ export function createReadModelProvider(
     const context = useInternalContext(designId)
     const __id = genId()
     const infos = context.customInfoArrToInfoObj(
-      infosInitializer instanceof Function
-        ? infosInitializer()
-        : infosInitializer,
+      infosInitializer instanceof Function ? infosInitializer() : infosInitializer,
     )
     const readModel: DomainDesignReadModel<CustomInfoArrayToInfoObject<ARR>> = {
       _attributes: {

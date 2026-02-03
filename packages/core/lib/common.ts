@@ -30,11 +30,7 @@ import {
   DomainDesignObject,
 } from './types'
 
-export type LinkType =
-  | 'Association'
-  | 'Dependency'
-  | 'Aggregation'
-  | 'Composition'
+export type LinkType = 'Association' | 'Dependency' | 'Aggregation' | 'Composition'
 type Rule =
   | 'Info'
   | 'Actor'
@@ -71,9 +67,7 @@ type ContextInitializer = () => {
   createReadModel: DomainDesignReadModelProvider
 }
 
-export type DomainDesignInternalContext = ReturnType<
-  typeof createInternalContext
->
+export type DomainDesignInternalContext = ReturnType<typeof createInternalContext>
 const _internalContextMap: Record<string, DomainDesignInternalContext> = {}
 
 function createInternalContext(initFn: ContextInitializer) {
@@ -122,9 +116,7 @@ function createInternalContext(initFn: ContextInitializer) {
       if (currentWorkflowName && workflows[currentWorkflowName]) {
         if (
           workflows[currentWorkflowName].length === 0 ||
-          workflows[currentWorkflowName][
-            workflows[currentWorkflowName].length - 1
-          ] !== srcId
+          workflows[currentWorkflowName][workflows[currentWorkflowName].length - 1] !== srcId
         ) {
           workflows[currentWorkflowName].push(srcId)
         }
@@ -227,10 +219,9 @@ function createInternalContext(initFn: ContextInitializer) {
       idMap[readModel._attributes.__id] = readModel
       readModels.push(readModel)
     },
-    customInfoArrToInfoObj<
-      G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
-    >(arr: ARR): CustomInfoArrayToInfoObject<ARR> {
+    customInfoArrToInfoObj<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
+      arr: ARR,
+    ): CustomInfoArrayToInfoObject<ARR> {
       type T = Record<string, DomainDesignInfo<DomainDesignInfoType, G_NAME>>
       return arr.reduce<CustomInfoArrayToInfoObject<ARR>>((map, v) => {
         if (typeof v === 'string') {
@@ -244,28 +235,22 @@ function createInternalContext(initFn: ContextInitializer) {
         return map
       }, {} as any)
     },
-    customInfoArrToInfoArr<
-      G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
-    >(arr: ARR): DomainDesignInfo<DomainDesignInfoType, string>[] {
-      return arr.reduce<DomainDesignInfo<DomainDesignInfoType, string>[]>(
-        (arr, v) => {
-          if (typeof v === 'string') {
-            arr.push(info.valueObj(v))
-          } else if (v instanceof Array) {
-            const [name, note] = v
-            arr.push(info.valueObj(name, note))
-          } else {
-            arr.push(v)
-          }
-          return arr
-        },
-        [],
-      )
+    customInfoArrToInfoArr<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
+      arr: ARR,
+    ): DomainDesignInfo<DomainDesignInfoType, string>[] {
+      return arr.reduce<DomainDesignInfo<DomainDesignInfoType, string>[]>((arr, v) => {
+        if (typeof v === 'string') {
+          arr.push(info.valueObj(v))
+        } else if (v instanceof Array) {
+          const [name, note] = v
+          arr.push(info.valueObj(name, note))
+        } else {
+          arr.push(v)
+        }
+        return arr
+      }, [])
     },
-    toFormat<OBJ extends { _attributes: { __id: string; name: string } }>(
-      obj: OBJ,
-    ): string {
+    toFormat<OBJ extends { _attributes: { __id: string; name: string } }>(obj: OBJ): string {
       if (initResult.options?.__toFormatType === 'BngleBrackets') {
         return `<${obj._attributes.name}>`
       } else if (initResult.options?.__toFormatType === 'JSON') {

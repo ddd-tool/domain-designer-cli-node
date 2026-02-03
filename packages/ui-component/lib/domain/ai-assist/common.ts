@@ -3,11 +3,7 @@ export function svgToBase64(svgStr: string) {
 }
 
 export function genId(offset = 0) {
-  return (
-    offset +
-    new Date().getTime().toString() +
-    Math.floor(Math.random() * 100000)
-  )
+  return offset + new Date().getTime().toString() + Math.floor(Math.random() * 100000)
 }
 
 export function readableSize(size: number): string {

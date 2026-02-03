@@ -46,9 +46,7 @@ it('self design', () => {
     强类型需求.inner.性能指标,
   ])
 
-  const 未确定软件价值 = d.event('未确定软件价值', [
-    d.info.document('模糊地带'),
-  ])
+  const 未确定软件价值 = d.event('未确定软件价值', [d.info.document('模糊地带')])
 
   const 沟通策略 = d.policy(
     '继续沟通',
@@ -62,16 +60,9 @@ it('self design', () => {
   开发人员.command(确定软件价值).agg(强类型需求).event(已确定软件价值)
 
   const 开发人员未确定软件价值 = d.startWorkflow('开发人员未确定软件价值')
-  开发人员
-    .command(确定软件价值)
-    .agg(强类型需求)
-    .event(未确定软件价值)
-    .policy(沟通策略)
+  开发人员.command(确定软件价值).agg(强类型需求).event(未确定软件价值).policy(沟通策略)
 
-  d.defineUserStory('用户故事：确定软件价值', [
-    开发人员成功确定软件价值,
-    开发人员未确定软件价值,
-  ])
+  d.defineUserStory('用户故事：确定软件价值', [开发人员成功确定软件价值, 开发人员未确定软件价值])
 
   expect(Object.keys(d._getContext().getUserStories()).length).toBe(1)
   expect(Object.values(d._getContext().getUserStories())[0].length).toBe(2)

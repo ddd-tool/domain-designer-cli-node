@@ -6,10 +6,10 @@
   "prettier.printWidth": 120,
   "prettier.singleQuote": true,
   "[typescript]": {
-    "prettier.printWidth": 80,
+    "prettier.printWidth": 100,
   },
   "[markdown]": {
-    "prettier.printWidth": 80,
+    "prettier.printWidth": 100,
   },
   "i18n-ally.enabledParsers": [
     "ts",

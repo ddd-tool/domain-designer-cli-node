@@ -9,6 +9,7 @@ import DragZoom from '#lib/components/drag-zoom/Index.vue'
 import ToggleButton from 'primevue/togglebutton'
 import { EMPTY_STORY, useDiagramAgg } from '#domain/diagram-agg'
 import { useI18nAgg } from '#domain/i18n-agg'
+import { bindRef } from 'vue-fn/domain'
 interface Props {
   dragZoomRef: InstanceType<typeof DragZoom> | undefined
 }
@@ -59,8 +60,17 @@ function handleReplay() {
     diagramAgg.commands.focusFlow(currentWorkflow.value, currentStory.value)
   }
 }
-const builtinStoryMode = ref(true)
-const customStory = ref<string[]>([])
+const builtinStoryMode = bindRef(diagramAgg.states.builtinStoryMode, (v) => {
+  diagramAgg.commands.setBuiltinStoryMode(v)
+})
+const customWorkflowNames = bindRef(
+  () => {
+    return diagramAgg.states.customWorkflowNames.value.map((name) => ({ name }))
+  },
+  (v) => {
+    diagramAgg.commands.setCustomWorkflowNames(v.map((obj) => obj.name))
+  },
+)
 const customStoryOptions = computed(() => {
   return Object.keys(diagramAgg.states.workflows.value).map((key) => {
     return { name: key }
@@ -96,13 +106,13 @@ const dockItems = computed(() => [
       <template v-if="!builtinStoryMode">
         <div v-if="item.is === 'CustomWorkflow'">
           <MultiSelect
-            v-model="customStory"
+            v-model="customWorkflowNames"
             :options="customStoryOptions"
             optionLabel="name"
             filter
             placeholder="选择流程"
             :maxSelectedLabels="3"
-            class="w-full md:w-80"
+            style="width: 20rem"
           />
         </div>
       </template>

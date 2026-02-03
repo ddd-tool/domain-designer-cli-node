@@ -1,4 +1,4 @@
-import type { Conversation, CreateMessageOptions } from './define'
+import type { Conversation, CreateMessageOptions } from './types'
 import { genId } from './common'
 
 export function createConversation(id: string): Conversation {

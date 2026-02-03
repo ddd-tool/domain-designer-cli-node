@@ -1,15 +1,10 @@
 import { spawnSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
-import { OsType, PackageManager } from './define'
+import { OsType, PackageManager } from './types'
 
-export function findWebRoot(
-  osType: OsType,
-  packageManager: PackageManager,
-): string {
-  let webRoot = path
-    .resolve(path.dirname(process.argv[1]), '..')
-    .replace(/\\/g, '/')
+export function findWebRoot(osType: OsType, packageManager: PackageManager): string {
+  let webRoot = path.resolve(path.dirname(process.argv[1]), '..').replace(/\\/g, '/')
   if (!verifyWebRoot(webRoot)) {
     if (packageManager === PackageManager.BUN) {
       webRoot = path
@@ -23,10 +18,7 @@ export function findWebRoot(
           'domain-designer-cli',
         )
         .replace(/\\/g, '/')
-    } else if (
-      packageManager === PackageManager.PNPM ||
-      packageManager === PackageManager.NPM
-    ) {
+    } else if (packageManager === PackageManager.PNPM || packageManager === PackageManager.NPM) {
       if (osType === 'windows') {
         const result = spawnSync('where.exe domain-designer-cli', {
           encoding: 'utf-8',
@@ -43,13 +35,7 @@ export function findWebRoot(
             break
           }
           // fnm
-          p = path.resolve(
-            p,
-            'lib',
-            'node_modules',
-            '@ddd-tool',
-            'domain-designer-cli',
-          )
+          p = path.resolve(p, 'lib', 'node_modules', '@ddd-tool', 'domain-designer-cli')
           if (verifyWebRoot(p)) {
             webRoot = p
             break
@@ -72,13 +58,7 @@ export function findWebRoot(
             break
           }
           // fnm
-          p = path.resolve(
-            p,
-            'lib',
-            'node_modules',
-            '@ddd-tool',
-            'domain-designer-cli',
-          )
+          p = path.resolve(p, 'lib', 'node_modules', '@ddd-tool', 'domain-designer-cli')
           if (verifyWebRoot(p)) {
             webRoot = p
             break
@@ -102,10 +82,7 @@ function verifyWebRoot(dirPath: string): boolean {
     return false
   }
   const templatesDir = path.join(dirPath, 'templates')
-  if (
-    !fs.existsSync(templatesDir) ||
-    !fs.statSync(templatesDir).isDirectory()
-  ) {
+  if (!fs.existsSync(templatesDir) || !fs.statSync(templatesDir).isDirectory()) {
     return false
   }
   return true
@@ -116,10 +93,7 @@ function mustBeWebRoot(dirPath: string): void {
     throw new Error('webRoot is invalid')
   }
   const templatesDir = path.join(dirPath, 'templates')
-  if (
-    !fs.existsSync(templatesDir) ||
-    !fs.statSync(templatesDir).isDirectory()
-  ) {
+  if (!fs.existsSync(templatesDir) || !fs.statSync(templatesDir).isDirectory()) {
     throw new Error('webRoot is invalid')
   }
 }

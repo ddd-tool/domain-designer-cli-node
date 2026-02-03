@@ -1,19 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import designer1 from './designer-demo1'
-import {
-  useGeneratorAgg,
-  GENERATOR_JAVA_PLUGIN,
-  GeneratorPliginHelper,
-} from '..'
-import { java } from '../domain/define'
+import { useGeneratorAgg, GENERATOR_JAVA_PLUGIN, GeneratorPliginHelper } from '..'
+import { java } from '../domain/types'
 
 it('base testing', () => {
   const agg = useGeneratorAgg(designer1)
   GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)
   const context: java.JavaContext = {
     additions: new Set([java.JavaGeneratorAddition.CommandHandler]),
-    moduleName:
-      designer1._getContext().getDesignerOptions().moduleName || 'test',
+    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'test',
     namespace: 'com.github.example',
     nonNullAnnotation: 'org.springframework.lang.NonNull',
     nullableAnnotation: 'org.springframework.lang.Nullable',
@@ -52,9 +47,7 @@ it('base testing', () => {
     .includes('import com.github.example.order.command.CreateOrderCommand')
     .includes('String getName()')
     .not.includes('import com.github.example.order.value.Name')
-  expect(
-    files.filter((f) => f.getName() === 'OrderAggImpl.java')[0].getContent(),
-  )
+  expect(files.filter((f) => f.getName() === 'OrderAggImpl.java')[0].getContent())
     .includes('import com.github.example.order.command.CreateOrderCommand')
     .includes('String name;')
     .not.includes('import com.github.example.order.value.Name')
@@ -66,8 +59,7 @@ it('unmount', () => {
   GeneratorPliginHelper.unregisterPlugin(GENERATOR_JAVA_PLUGIN)
   const context: java.JavaContext = {
     additions: new Set([java.JavaGeneratorAddition.CommandHandler]),
-    moduleName:
-      designer1._getContext().getDesignerOptions().moduleName || 'test',
+    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'test',
     namespace: 'com.github.example',
     nonNullAnnotation: 'org.springframework.lang.NonNull',
     nullableAnnotation: 'org.springframework.lang.Nullable',
@@ -170,10 +162,7 @@ const testCases = [
   },
   {
     caseName: 'Jpa',
-    additions: new Set([
-      java.JavaGeneratorAddition.CommandHandler,
-      java.JavaGeneratorAddition.Jpa,
-    ]),
+    additions: new Set([java.JavaGeneratorAddition.CommandHandler, java.JavaGeneratorAddition.Jpa]),
     expect: [
       {
         type: ExpectType.IncludeContent,
@@ -400,49 +389,41 @@ const testCases = [
   },
 ]
 
-describe.each(testCases)(
-  '$caseName',
-  ({ additions, jdkVersion, expect: caseExpects }) => {
-    const agg = useGeneratorAgg(designer1)
-    GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)
-    const context: java.JavaContext = {
-      additions,
-      moduleName:
-        designer1._getContext().getDesignerOptions().moduleName || 'test',
-      namespace: 'com.github.alphafoxz.oneboot.domain.test',
-      nonNullAnnotation: 'org.springframework.lang.NonNull',
-      nullableAnnotation: 'org.springframework.lang.Nullable',
-      idGenStrategy: java.IdGenStrategy.SEQUENCE,
-      jdkVersion: jdkVersion || '17',
-    }
-    agg.commands.setContext(context)
-    const files = agg.commands.genCodeFiles()
-    for (const currentExpect of caseExpects) {
-      it(`type = ${currentExpect.type}, fileName = ${currentExpect.file}`, () => {
-        if (currentExpect.type === ExpectType.IncludeFile) {
-          expect(
-            files.find((f) => f.getName() === currentExpect.file),
-          ).not.toBeUndefined()
-        } else if (currentExpect.type === ExpectType.IncludeContent) {
-          const f = files.find((f) => f.getName() === currentExpect.file)
-          expect(f).not.toBeUndefined()
-          for (const content of currentExpect.contents) {
-            expect(f!.getContent()).includes(content)
-          }
-        } else if (currentExpect.type === ExpectType.ExcludeFile) {
-          expect(
-            files.find((f) => f.getName() === currentExpect.file),
-          ).toBeUndefined()
-        } else if (currentExpect.type === ExpectType.ExcludeContent) {
-          const f = files.find((f) => f.getName() === currentExpect.file)
-          expect(f).not.toBeUndefined()
-          for (const content of currentExpect.contents) {
-            expect(f!.getContent()).not.includes(content)
-          }
-        } else {
-          isNever(currentExpect.type)
+describe.each(testCases)('$caseName', ({ additions, jdkVersion, expect: caseExpects }) => {
+  const agg = useGeneratorAgg(designer1)
+  GeneratorPliginHelper.registerPlugin(GENERATOR_JAVA_PLUGIN)
+  const context: java.JavaContext = {
+    additions,
+    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'test',
+    namespace: 'com.github.alphafoxz.oneboot.domain.test',
+    nonNullAnnotation: 'org.springframework.lang.NonNull',
+    nullableAnnotation: 'org.springframework.lang.Nullable',
+    idGenStrategy: java.IdGenStrategy.SEQUENCE,
+    jdkVersion: jdkVersion || '17',
+  }
+  agg.commands.setContext(context)
+  const files = agg.commands.genCodeFiles()
+  for (const currentExpect of caseExpects) {
+    it(`type = ${currentExpect.type}, fileName = ${currentExpect.file}`, () => {
+      if (currentExpect.type === ExpectType.IncludeFile) {
+        expect(files.find((f) => f.getName() === currentExpect.file)).not.toBeUndefined()
+      } else if (currentExpect.type === ExpectType.IncludeContent) {
+        const f = files.find((f) => f.getName() === currentExpect.file)
+        expect(f).not.toBeUndefined()
+        for (const content of currentExpect.contents) {
+          expect(f!.getContent()).includes(content)
         }
-      })
-    }
-  },
-)
+      } else if (currentExpect.type === ExpectType.ExcludeFile) {
+        expect(files.find((f) => f.getName() === currentExpect.file)).toBeUndefined()
+      } else if (currentExpect.type === ExpectType.ExcludeContent) {
+        const f = files.find((f) => f.getName() === currentExpect.file)
+        expect(f).not.toBeUndefined()
+        for (const content of currentExpect.contents) {
+          expect(f!.getContent()).not.includes(content)
+        }
+      } else {
+        isNever(currentExpect.type)
+      }
+    })
+  }
+})

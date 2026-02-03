@@ -1,7 +1,4 @@
-import {
-  type DomainDesigner,
-  isDomainDesigner,
-} from '@ddd-tool/domain-designer-core'
+import { type DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
 
 const __d1 = (
   await import('F:/vscode_projects/@ddd-tool/domain-designer-cli-node/demo/complex-example')

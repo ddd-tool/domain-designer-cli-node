@@ -13784,6 +13784,20 @@ var import_os = __toESM(require("os"), 1);
 var import_path2 = __toESM(require("path"), 1);
 var import_reactivity3 = __toESM(require_reactivity(), 1);
 
+// src/domain/environment-agg/types.ts
+var PackageManager = Object.freeze({
+  PNPM: "pnpm",
+  NPM: "npm",
+  // YARN = 'yarn',
+  BUN: "bun"
+});
+var OsType = Object.freeze({
+  Windows: "windows",
+  Linux: "linux",
+  Mac: "mac",
+  Undefined: "undefined"
+});
+
 // src/domain/environment-agg/web-root.ts
 var import_child_process = require("child_process");
 var import_fs = __toESM(require("fs"), 1);
@@ -13791,7 +13805,7 @@ var import_path = __toESM(require("path"), 1);
 function findWebRoot(osType, packageManager) {
   let webRoot = import_path.default.resolve(import_path.default.dirname(process.argv[1]), "..").replace(/\\/g, "/");
   if (!verifyWebRoot(webRoot)) {
-    if (packageManager === "bun" /* BUN */) {
+    if (packageManager === PackageManager.BUN) {
       webRoot = import_path.default.resolve(
         import_path.default.dirname(process.argv[1]),
         "..",
@@ -13801,9 +13815,12 @@ function findWebRoot(osType, packageManager) {
         "@ddd-tool",
         "domain-designer-cli"
       ).replace(/\\/g, "/");
-    } else if (packageManager === "pnpm" /* PNPM */ || packageManager === "npm" /* NPM */) {
+    } else if (packageManager === PackageManager.PNPM || packageManager === PackageManager.NPM) {
       if (osType === "windows") {
-        const result = (0, import_child_process.spawnSync)("where.exe domain-designer-cli", { encoding: "utf-8", shell: true });
+        const result = (0, import_child_process.spawnSync)("where.exe domain-designer-cli", {
+          encoding: "utf-8",
+          shell: true
+        });
         if (result.status !== 0) {
           throw new Error("domain-designer-cli not found");
         }
@@ -13822,7 +13839,10 @@ function findWebRoot(osType, packageManager) {
         }
         mustBeWebRoot(webRoot);
       } else if (osType === "linux" || osType === "mac") {
-        const result = (0, import_child_process.spawnSync)("whereis domain-designer-cli", { encoding: "utf-8", shell: true });
+        const result = (0, import_child_process.spawnSync)("whereis domain-designer-cli", {
+          encoding: "utf-8",
+          shell: true
+        });
         if (result.status !== 0) {
           throw new Error("domain-designer-cli not found");
         }
@@ -13878,24 +13898,24 @@ var agg2 = G(() => {
     (function() {
       const osType2 = import_os.default.type();
       if (osType2 === "Windows_NT") {
-        return "windows" /* Windows */;
+        return OsType.Windows;
       } else if (osType2 === "Linux") {
-        return "linux" /* Linux */;
+        return OsType.Linux;
       } else if (osType2 === "Darwin") {
-        return "mac" /* Mac */;
+        return OsType.Mac;
       }
-      return "undefined" /* Undefined */;
+      return OsType.Undefined;
     })()
   );
   const executable = import_path2.default.basename(process.argv[0]);
-  const packageManager = (0, import_reactivity3.ref)("npm" /* NPM */);
+  const packageManager = (0, import_reactivity3.ref)(PackageManager.NPM);
   if (executable.includes("bun") || process.argv[1].includes("/.bun/")) {
-    packageManager.value = "bun" /* BUN */;
+    packageManager.value = PackageManager.BUN;
   } else if (executable.includes("node")) {
     if (checkPnpm()) {
-      packageManager.value = "pnpm" /* PNPM */;
+      packageManager.value = PackageManager.PNPM;
     } else {
-      packageManager.value = "npm" /* NPM */;
+      packageManager.value = PackageManager.NPM;
     }
   } else {
     throw new Error("unknown package manager");
@@ -13994,7 +14014,15 @@ function useEnvironmentAgg() {
   return agg2.api;
 }
 
-// src/domain/cli-args-agg/define.ts
+// src/domain/cli-args-agg/types.ts
+var Subcommand = Object.freeze({
+  Init: "init",
+  UpdateWorkspace: "updateWorkspace",
+  RunWeb: "runWeb",
+  Info: "info",
+  GenCode: "GenCode",
+  None: "none"
+});
 function getRunWebScript() {
   const environmentAgg7 = useEnvironmentAgg();
   const packageManager = environmentAgg7.states.packageManager.value;
@@ -14159,14 +14187,14 @@ var $t2 = useI18nAgg().commands.t;
 var environmentAgg = useEnvironmentAgg();
 function requireInitCommand(params) {
   return new Command().name("init").option("--source <sourceDir>", "ts files' dir").action((options) => {
-    params.currentCommand.value = "init" /* Init */;
+    params.currentCommand.value = Subcommand.Init;
     if (options.source) {
       params.args.source = import_path4.default.resolve(options.source);
     }
   }).addHelpText("before", "Initialize the workspace.\n").addHelpText("before", "\u521D\u59CB\u5316\u4E00\u4E2A\u5DE5\u4F5C\u7A7A\u95F4\n");
 }
 async function requireInitCommandArgs(params) {
-  params.currentCommand.value = "init" /* Init */;
+  params.currentCommand.value = Subcommand.Init;
 }
 async function execute(args) {
   const distDir = import_path4.default.join(args.source);
@@ -14185,7 +14213,9 @@ async function execute(args) {
     copyIgnores.push("node_modules");
   }
   log_default.printInfo("================ \u521D\u59CB\u5316\u5DE5\u4F5C\u7A7A\u95F4: Starting... ================");
-  copyFolderRecursive(import_path4.default.join(environmentAgg.states.webRoot.value, "templates"), distDir, { ignore: copyIgnores });
+  copyFolderRecursive(import_path4.default.join(environmentAgg.states.webRoot.value, "templates"), distDir, {
+    ignore: copyIgnores
+  });
   const runWebScript = getRunWebScript();
   if (runWebScript) {
     import_fs3.default.writeFileSync(import_path4.default.join(distDir, runWebScript.name), runWebScript.content, "utf-8");
@@ -14204,15 +14234,19 @@ var import_child_process3 = require("child_process");
 var environmentAgg2 = useEnvironmentAgg();
 function requireInfoCommand(params) {
   return new Command().name("info").action(() => {
-    params.currentCommand.value = "info" /* Info */;
+    params.currentCommand.value = Subcommand.Info;
   }).addHelpText("before", "Print info.\n").addHelpText("before", "\u6253\u5370\u4FE1\u606F\n");
 }
 async function requireInfoCommandArgs(params) {
-  params.currentCommand.value = "info" /* Info */;
+  params.currentCommand.value = Subcommand.Info;
 }
 async function execute2() {
   log_default.printInfo("================ Print info: Starting... ================");
-  (0, import_child_process3.spawnSync)('echo "print domain-designer info"', { encoding: "utf-8", stdio: "inherit", shell: true });
+  (0, import_child_process3.spawnSync)('echo "print domain-designer info"', {
+    encoding: "utf-8",
+    stdio: "inherit",
+    shell: true
+  });
   log_default.print("");
   log_default.print(log_default.info("DEBUG_MODE:"), environmentAgg2.states.debugMode.value);
   log_default.print("");
@@ -14235,14 +14269,14 @@ var import_path5 = __toESM(require("path"), 1);
 var environmentAgg3 = useEnvironmentAgg();
 function requireUpdateWorkspaceCommand(params) {
   return new Command().name("update").option("--source <sourceDir>", "ts files' dir").action((options) => {
-    params.currentCommand.value = "updateWorkspace" /* UpdateWorkspace */;
+    params.currentCommand.value = Subcommand.UpdateWorkspace;
     if (options.source) {
       params.args.source = import_path5.default.resolve(options.source);
     }
   }).addHelpText("before", "Update the workspace.\n").addHelpText("before", "\u66F4\u65B0\u5DE5\u4F5C\u7A7A\u95F4\n");
 }
 async function requireUpdateWorkspaceCommandArgs(params) {
-  params.currentCommand.value = "updateWorkspace" /* UpdateWorkspace */;
+  params.currentCommand.value = Subcommand.UpdateWorkspace;
 }
 async function execute3(args) {
   const distDir = import_path5.default.join(args.source);
@@ -14296,29 +14330,29 @@ var $t3 = useI18nAgg().commands.t;
 var environmentAgg4 = useEnvironmentAgg();
 function requireRunWebCommand(params) {
   return new Command().name("runWeb").option("--source <sourceDir>", "ts files' dir").action((options) => {
-    params.currentCommand.value = "runWeb" /* RunWeb */;
+    params.currentCommand.value = Subcommand.RunWeb;
     if (options.source) {
       params.args.source = options.source;
     }
   }).addHelpText("before", "Run web server.\n").addHelpText("before", "\u8FD0\u884C web \u670D\u52A1\n");
 }
 async function requireRunWebCommandArgs(params) {
-  params.currentCommand.value = "runWeb" /* RunWeb */;
+  params.currentCommand.value = Subcommand.RunWeb;
 }
 async function execute4(args) {
   const webRoot = environmentAgg4.states.webRoot.value;
   log_default.printDebug("webRoot\u8DEF\u5F84", webRoot);
   const packageManager = environmentAgg4.states.packageManager.value;
   log_default.printInfo("================ \u5B89\u88C5\u8FD0\u884C\u4F9D\u8D56: Starting... ================");
-  if (packageManager === "bun" /* BUN */) {
+  if (packageManager === PackageManager.BUN) {
     const cmd = `bun i --cwd "${webRoot}"`;
     log_default.printDebug(cmd);
     (0, import_child_process4.spawnSync)(cmd, { encoding: "utf-8", stdio: "inherit", shell: true });
-  } else if (packageManager === "pnpm" /* PNPM */) {
+  } else if (packageManager === PackageManager.PNPM) {
     const cmd = `pnpm i --prefix "${webRoot}"`;
     log_default.printDebug(cmd);
     (0, import_child_process4.spawnSync)(cmd, { encoding: "utf-8", stdio: "inherit", shell: true });
-  } else if (packageManager === "npm" /* NPM */) {
+  } else if (packageManager === PackageManager.NPM) {
     const cmd = `npm i --prefix "${webRoot}"`;
     log_default.printDebug(cmd);
     (0, import_child_process4.spawnSync)(cmd);
@@ -14347,7 +14381,7 @@ async function execute4(args) {
   process.on("SIGQUIT", onExit);
   console.debug("worker threadId", worker.threadId);
   process.nextTick(() => {
-    if (packageManager === "bun" /* BUN */) {
+    if (packageManager === PackageManager.BUN) {
       const cmd = `bun --cwd "${webRoot}" dev`;
       log_default.printDebug(cmd);
       (0, import_child_process4.spawnSync)(cmd, {
@@ -14355,7 +14389,7 @@ async function execute4(args) {
         stdio: "inherit",
         shell: true
       });
-    } else if (packageManager === "pnpm" /* PNPM */) {
+    } else if (packageManager === PackageManager.PNPM) {
       const cmd = `pnpm --prefix "${webRoot}" dev`;
       log_default.printDebug(cmd);
       (0, import_child_process4.spawnSync)(cmd, {
@@ -14363,7 +14397,7 @@ async function execute4(args) {
         stdio: "inherit",
         shell: true
       });
-    } else if (packageManager === "npm" /* NPM */) {
+    } else if (packageManager === PackageManager.NPM) {
       const cmd = `npm --prefix "${webRoot}" run dev`;
       log_default.printDebug(cmd);
       (0, import_child_process4.spawnSync)(cmd, {
@@ -14391,7 +14425,9 @@ async function configSource(webRoot, source) {
       })
     );
     log_default.print(
-      source_default.bgYellow(`${environmentAgg4.states.packageManager.value === "bun" ? "bunx " : ""}domain-designer-cli update`)
+      source_default.bgYellow(
+        `${environmentAgg4.states.packageManager.value === "bun" ? "bunx " : ""}domain-designer-cli update`
+      )
     );
   }
   const designs = [];
@@ -14422,9 +14458,13 @@ ${designs.map((d) => {
 
 export default data
 `;
-  import_fs5.default.writeFileSync(import_path6.default.join(webRoot, "packages", "playground", "src", "views", "index.ts"), mergedTsCode, {
-    encoding: "utf-8"
-  });
+  import_fs5.default.writeFileSync(
+    import_path6.default.join(webRoot, "packages", "playground", "src", "views", "index.ts"),
+    mergedTsCode,
+    {
+      encoding: "utf-8"
+    }
+  );
 }
 function configEnvironment(webRoot, workspacePath) {
   const result = {};
@@ -14440,7 +14480,9 @@ function configEnvironment(webRoot, workspacePath) {
     }
   });
   const envFilePath = import_path6.default.join(webRoot, "packages", "playground", ".env");
-  import_fs5.default.writeFileSync(envFilePath, `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`, { encoding: "utf-8" });
+  import_fs5.default.writeFileSync(envFilePath, `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`, {
+    encoding: "utf-8"
+  });
 }
 function findFilesRecursive(dir, filter, result = []) {
   import_fs5.default.readdirSync(dir).forEach((file) => {
@@ -15308,9 +15350,9 @@ function useGeneratorAgg(designer) {
   return agg3.api;
 }
 
-// ../generator/lib/domain/define.ts
-var define_exports = {};
-__export(define_exports, {
+// ../generator/lib/domain/types.ts
+var types_exports = {};
+__export(types_exports, {
   CodeFile: () => CodeFile,
   Language: () => Language,
   csharp: () => csharp,
@@ -15322,13 +15364,12 @@ __export(define_exports, {
 function isStruct(o) {
   return Un(o) || Ln(o) || $n(o) || Kn(o) || Wn(o);
 }
-var Language = /* @__PURE__ */ ((Language2) => {
-  Language2["Java"] = "java";
-  Language2["Kotlin"] = "kotlin";
-  Language2["CSharp"] = "csharp";
-  Language2["Go"] = "go";
-  return Language2;
-})(Language || {});
+var Language = Object.freeze({
+  Java: "java",
+  Kotlin: "kotlin",
+  CSharp: "csharp",
+  Go: "go"
+});
 var CodeFile = class {
   imports = /* @__PURE__ */ new Set();
   parentDir;
@@ -15373,51 +15414,46 @@ var CodeFile = class {
 };
 var java;
 ((java2) => {
-  let JavaGeneratorAddition2;
-  ((JavaGeneratorAddition3) => {
-    JavaGeneratorAddition3["Lombok"] = "Lombok";
-    JavaGeneratorAddition3["LombokBuilder"] = "LombokBuilder";
-    JavaGeneratorAddition3["RecordValueObject"] = "RecordValueObject";
-    JavaGeneratorAddition3["CommandHandler"] = "CommandHandler";
-    JavaGeneratorAddition3["Jpa"] = "Jpa";
-    JavaGeneratorAddition3["Timezone"] = "Timezone";
-    JavaGeneratorAddition3["SpringFramework"] = "SpringFramework";
-  })(JavaGeneratorAddition2 = java2.JavaGeneratorAddition || (java2.JavaGeneratorAddition = {}));
-  let IdGenStrategy;
-  ((IdGenStrategy2) => {
-    IdGenStrategy2["TABLE"] = "TABLE";
-    IdGenStrategy2["SEQUENCE"] = "SEQUENCE";
-    IdGenStrategy2["IDENTITY"] = "IDENTITY";
-    IdGenStrategy2["UUID"] = "UUID";
-    IdGenStrategy2["AUTO"] = "AUTO";
-  })(IdGenStrategy = java2.IdGenStrategy || (java2.IdGenStrategy = {}));
+  java2.JavaGeneratorAddition = Object.freeze({
+    Lombok: "Lombok",
+    LombokBuilder: "LombokBuilder",
+    RecordValueObject: "RecordValueObject",
+    CommandHandler: "CommandHandler",
+    Jpa: "Jpa",
+    Timezone: "Timezone",
+    SpringFramework: "SpringFramework"
+  });
+  java2.IdGenStrategy = Object.freeze({
+    TABLE: "TABLE",
+    SEQUENCE: "SEQUENCE",
+    IDENTITY: "IDENTITY",
+    UUID: "UUID",
+    AUTO: "AUTO"
+  });
 })(java || (java = {}));
 var kotlin;
 ((kotlin2) => {
-  let KotlinGeneratorAddition2;
-  ((KotlinGeneratorAddition3) => {
-    KotlinGeneratorAddition3["ValueClass"] = "ValueClass";
-    KotlinGeneratorAddition3["CommandHandler"] = "CommandHandler";
-    KotlinGeneratorAddition3["Timezone"] = "Timezone";
-  })(KotlinGeneratorAddition2 = kotlin2.KotlinGeneratorAddition || (kotlin2.KotlinGeneratorAddition = {}));
+  kotlin2.KotlinGeneratorAddition = Object.freeze({
+    ValueClass: "ValueClass",
+    CommandHandler: "CommandHandler",
+    Timezone: "Timezone"
+  });
 })(kotlin || (kotlin = {}));
 var csharp;
 ((csharp2) => {
-  let CSharpGeneratorAddition2;
-  ((CSharpGeneratorAddition3) => {
-    CSharpGeneratorAddition3["Timezone"] = "Timezone";
-    CSharpGeneratorAddition3["RecordStruct"] = "RecordStruct";
-    CSharpGeneratorAddition3["PrimaryConstructor"] = "PrimaryConstructor";
-    CSharpGeneratorAddition3["CommandHandlerInterface"] = "CommandHandlerInterface";
-    CSharpGeneratorAddition3["AggInterface"] = "AggInterface";
-  })(CSharpGeneratorAddition2 = csharp2.CSharpGeneratorAddition || (csharp2.CSharpGeneratorAddition = {}));
+  csharp2.CSharpGeneratorAddition = Object.freeze({
+    Timezone: "Timezone",
+    RecordStruct: "RecordStruct",
+    PrimaryConstructor: "PrimaryConstructor",
+    CommandHandlerInterface: "CommandHandlerInterface",
+    AggInterface: "AggInterface"
+  });
 })(csharp || (csharp = {}));
 var go;
 ((go3) => {
-  let GoGeneratorAddition;
-  ((GoGeneratorAddition2) => {
-    GoGeneratorAddition2["SinglePackageEachDesigner"] = "SinglePackageEachDesigner";
-  })(GoGeneratorAddition = go3.GoGeneratorAddition || (go3.GoGeneratorAddition = {}));
+  go3.GoGeneratorAddition = Object.freeze({
+    SinglePackageEachDesigner: "SinglePackageEachDesigner"
+  });
 })(go || (go = {}));
 
 // ../generator/lib/common.ts
@@ -15500,7 +15536,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
       function inferObjectValueTypeByInfo(imports, obj) {
         if (isValueObject(obj)) {
           const infoName = getDomainObjectName(obj);
-          imports.add(`${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}.${infoName}`);
+          imports.add(
+            `${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}.${infoName}`
+          );
           return infoName;
         }
         return inferJavaTypeByName(imports, obj);
@@ -15555,7 +15593,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               );
               code.push("@Embeddable");
             }
-            code.push(`public record ${className}(@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`);
+            code.push(
+              `public record ${className}(@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`
+            );
             code.push(`    public ${className} {`);
             code.push(`        // HACK check value`);
             code.push(`    }`);
@@ -15571,7 +15611,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
             code.push(`public class ${className} {`);
             code.push(`    private final ${inferJavaTypeByName(imports, info)} value;`);
             code.push(``);
-            code.push(`    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`);
+            code.push(
+              `    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`
+            );
             code.push(`        // HACK check value`);
             code.push(`        this.value = value;`);
             code.push(`    }`);
@@ -15586,7 +15628,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
             code.push(`public class ${getDomainObjectName(info)} {`);
             code.push(`    private final ${inferJavaTypeByName(imports, info)} value;`);
             code.push(``);
-            code.push(`    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`);
+            code.push(
+              `    public ${className} (@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} value) {`
+            );
             code.push(`        // HACK check value`);
             code.push(`        this.value = value;`);
             code.push(`    }`);
@@ -15671,7 +15715,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                 argsCode.push(
                   `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
                 );
-                argsStatementCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+                argsStatementCode.push(
+                  `this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`
+                );
               }
               code.push(`    public ${className}(${argsCode.join(", ")}) {`);
               code.push(`        ${argsStatementCode.join("\n        ")}`);
@@ -15679,7 +15725,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               for (const info of infos) {
                 const infoName = getDomainObjectName(info);
                 code.push(``);
-                code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`);
+                code.push(
+                  `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`
+                );
                 code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
                 code.push(`    }`);
               }
@@ -15707,12 +15755,16 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               code.push(`@lombok.RequiredArgsConstructor`);
             }
             code.push(`public class ${className}Handler {`);
-            const aggs = [...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]].filter(
-              (agg5) => agg5._attributes.rule === "Agg"
-            );
+            const aggs = [
+              ...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]
+            ].filter((agg5) => agg5._attributes.rule === "Agg");
             for (const agg5 of aggs) {
-              imports.add(`${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`);
-              code.push(`    public ${getDomainObjectName(agg5)} handle(@${nonNullAnnotation} ${className} command) {`);
+              imports.add(
+                `${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`
+              );
+              code.push(
+                `    public ${getDomainObjectName(agg5)} handle(@${nonNullAnnotation} ${className} command) {`
+              );
               code.push(`        // HACK Implement`);
               code.push(`    }`);
             }
@@ -15726,125 +15778,135 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
           return codeSnippets;
         }
       );
-      api.commands._setFacadeCommandCodeProvider((cmd) => {
-        const codeSnippets = [];
-        const additions = context.value.additions;
-        const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
-        {
-          const imports = /* @__PURE__ */ new Set();
-          imports.add(context.value.nonNullAnnotation);
-          const className = getDomainObjectName(cmd);
-          const code = [];
-          const infos = Object.values(cmd.inner);
-          importInfos(imports, infos);
-          if (additions.has(JavaGeneratorAddition.RecordValueObject)) {
-            if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-              code.push(`@lombok.Builder(toBuilder = true)`);
-            }
-            code.push(`public record ${className}(`);
-            const infoCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              infoCode.push(
-                `        @${nonNullAnnotation}
+      api.commands._setFacadeCommandCodeProvider(
+        (cmd) => {
+          const codeSnippets = [];
+          const additions = context.value.additions;
+          const nonNullAnnotation = context.value.nonNullAnnotation.split(".").pop();
+          {
+            const imports = /* @__PURE__ */ new Set();
+            imports.add(context.value.nonNullAnnotation);
+            const className = getDomainObjectName(cmd);
+            const code = [];
+            const infos = Object.values(cmd.inner);
+            importInfos(imports, infos);
+            if (additions.has(JavaGeneratorAddition.RecordValueObject)) {
+              if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
+                code.push(`@lombok.Builder(toBuilder = true)`);
+              }
+              code.push(`public record ${className}(`);
+              const infoCode = [];
+              for (const info of infos) {
+                const infoName = getDomainObjectName(info);
+                infoCode.push(
+                  `        @${nonNullAnnotation}
         ${inferObjectValueTypeByInfo(
-                  imports,
-                  info
-                )} ${strUtil.lowerFirst(infoName)}`
-              );
-            }
-            code.push(infoCode.join(",\n"));
-            code.push(`) {`);
-            code.push(`    public ${className} {`);
-            code.push(`        // HACK check value`);
-            code.push(`    }`);
-            code.push(`}`);
-          } else if (additions.has(JavaGeneratorAddition.Lombok)) {
-            code.push(`@lombok.AllArgsConstructor`);
-            code.push(`@lombok.Getter`);
-            if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
-              code.push(`@lombok.Builder(toBuilder = true)`);
-            }
-            code.push(`public class ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    @${nonNullAnnotation}`);
-              code.push(
-                `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
-              );
-            }
-            code.push(`}`);
-          } else {
-            code.push(`public class ${className} {`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              code.push(`    @${nonNullAnnotation}`);
-              code.push(
-                `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
-              );
-            }
-            code.push(``);
-            const argsCode = [];
-            const argsStatementCode = [];
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
-              argsCode.push(
-                `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
-              );
-              argsStatementCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
-            }
-            code.push(`    public ${className}(${argsCode.join(", ")}) {`);
-            code.push(`        ${argsStatementCode.join("\n        ")}`);
-            code.push(`    }`);
-            for (const info of infos) {
-              const infoName = getDomainObjectName(info);
+                    imports,
+                    info
+                  )} ${strUtil.lowerFirst(infoName)}`
+                );
+              }
+              code.push(infoCode.join(",\n"));
+              code.push(`) {`);
+              code.push(`    public ${className} {`);
+              code.push(`        // HACK check value`);
+              code.push(`    }`);
+              code.push(`}`);
+            } else if (additions.has(JavaGeneratorAddition.Lombok)) {
+              code.push(`@lombok.AllArgsConstructor`);
+              code.push(`@lombok.Getter`);
+              if (additions.has(JavaGeneratorAddition.LombokBuilder)) {
+                code.push(`@lombok.Builder(toBuilder = true)`);
+              }
+              code.push(`public class ${className} {`);
+              for (const info of infos) {
+                const infoName = getDomainObjectName(info);
+                code.push(`    @${nonNullAnnotation}`);
+                code.push(
+                  `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+                );
+              }
+              code.push(`}`);
+            } else {
+              code.push(`public class ${className} {`);
+              for (const info of infos) {
+                const infoName = getDomainObjectName(info);
+                code.push(`    @${nonNullAnnotation}`);
+                code.push(
+                  `    private final ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+                );
+              }
               code.push(``);
-              code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`);
-              code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
+              const argsCode = [];
+              const argsStatementCode = [];
+              for (const info of infos) {
+                const infoName = getDomainObjectName(info);
+                argsCode.push(
+                  `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
+                );
+                argsStatementCode.push(
+                  `this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`
+                );
+              }
+              code.push(`    public ${className}(${argsCode.join(", ")}) {`);
+              code.push(`        ${argsStatementCode.join("\n        ")}`);
+              code.push(`    }`);
+              for (const info of infos) {
+                const infoName = getDomainObjectName(info);
+                code.push(``);
+                code.push(
+                  `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName} () {`
+                );
+                code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
+                code.push(`    }`);
+              }
+              code.push(`}`);
+            }
+            codeSnippets.push({
+              type: "FacadeCommand",
+              imports,
+              content: code.join("\n")
+            });
+          }
+          if (!additions.has(JavaGeneratorAddition.CommandHandler)) {
+            return codeSnippets;
+          }
+          {
+            const imports = /* @__PURE__ */ new Set();
+            imports.add(context.value.nonNullAnnotation);
+            const className = getDomainObjectName(cmd);
+            const code = [];
+            if (additions.has(JavaGeneratorAddition.SpringFramework)) {
+              imports.add("org.springframework.stereotype.Component");
+              code.push(`@Component`);
+            }
+            if (additions.has(JavaGeneratorAddition.Lombok)) {
+              code.push(`@lombok.RequiredArgsConstructor`);
+            }
+            code.push(`public class ${className}Handler {`);
+            const aggs = [
+              ...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]
+            ].filter((agg5) => agg5._attributes.rule === "Agg");
+            for (const agg5 of aggs) {
+              imports.add(
+                `${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`
+              );
+              code.push(
+                `    public ${getDomainObjectName(agg5)} handle(@${nonNullAnnotation} ${className} command) {`
+              );
+              code.push(`        // HACK Implement`);
               code.push(`    }`);
             }
             code.push(`}`);
+            codeSnippets.push({
+              type: "FacadeCommandHandler",
+              imports,
+              content: code.join("\n")
+            });
           }
-          codeSnippets.push({
-            type: "FacadeCommand",
-            imports,
-            content: code.join("\n")
-          });
-        }
-        if (!additions.has(JavaGeneratorAddition.CommandHandler)) {
           return codeSnippets;
         }
-        {
-          const imports = /* @__PURE__ */ new Set();
-          imports.add(context.value.nonNullAnnotation);
-          const className = getDomainObjectName(cmd);
-          const code = [];
-          if (additions.has(JavaGeneratorAddition.SpringFramework)) {
-            imports.add("org.springframework.stereotype.Component");
-            code.push(`@Component`);
-          }
-          if (additions.has(JavaGeneratorAddition.Lombok)) {
-            code.push(`@lombok.RequiredArgsConstructor`);
-          }
-          code.push(`public class ${className}Handler {`);
-          const aggs = [...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]].filter(
-            (agg5) => agg5._attributes.rule === "Agg"
-          );
-          for (const agg5 of aggs) {
-            imports.add(`${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`);
-            code.push(`    public ${getDomainObjectName(agg5)} handle(@${nonNullAnnotation} ${className} command) {`);
-            code.push(`        // HACK Implement`);
-            code.push(`    }`);
-          }
-          code.push(`}`);
-          codeSnippets.push({
-            type: "FacadeCommandHandler",
-            imports,
-            content: code.join("\n")
-          });
-        }
-        return codeSnippets;
-      });
+      );
       api.commands._setAggCodeProvider(
         (agg5) => {
           const additions = context.value.additions;
@@ -15863,13 +15925,19 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}();`);
               code.push("");
             }
-            const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
+            const commands = [
+              ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+            ].filter((item) => {
               return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
             });
             for (const command of commands) {
               const commandName = getDomainObjectName(command);
-              imports.add(`${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`);
-              code.push(`    public void handle${commandName}(@${nonNullAnnotation} ${commandName} command);`);
+              imports.add(
+                `${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`
+              );
+              code.push(
+                `    public void handle${commandName}(@${nonNullAnnotation} ${commandName} command);`
+              );
               code.push("");
             }
             code.push(`}`);
@@ -15894,7 +15962,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                   context.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
                 );
                 code.push("@Entity");
-                imports.add(context.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table");
+                imports.add(
+                  context.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table"
+                );
                 code.push(`@Table(name = "${strUtil.camelToLowerSnake(className)}")`);
               }
               code.push(`public class ${className}Impl implements ${className} {`);
@@ -15941,14 +16011,20 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                     code.push(`    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`);
                   }
                 }
-                code.push(`    private ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`);
+                code.push(
+                  `    private ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+                );
               }
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
+              const commands = [
+                ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+              ].filter((item) => {
                 return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
               });
               for (const command of commands) {
                 const commandName = getDomainObjectName(command);
-                imports.add(`${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`);
+                imports.add(
+                  `${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`
+                );
                 code.push(``);
                 code.push(
                   `    public void handle${commandName}(@${nonNullAnnotation} ${commandName} ${strUtil.lowerFirst(
@@ -15965,7 +16041,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                   context.value.jdkVersion === "8" ? "javax.persistence.Entity" : "jakarta.persistence.Entity"
                 );
                 code.push("@Entity");
-                imports.add(context.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table");
+                imports.add(
+                  context.value.jdkVersion === "8" ? "javax.persistence.Table" : "jakarta.persistence.Table"
+                );
                 code.push(`@Table(name = "${strUtil.camelToLowerSnake(className)}")`);
               }
               code.push(`public class ${className}Impl implements ${className} {`);
@@ -16012,7 +16090,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                     code.push(`    @Column(name = "${strUtil.camelToLowerSnake(infoName)}")`);
                   }
                 }
-                code.push(`    private ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`);
+                code.push(
+                  `    private ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)};`
+                );
               }
               code.push(``);
               const argsCode = [];
@@ -16025,7 +16105,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                 argsCode.push(
                   `@${nonNullAnnotation} ${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)}`
                 );
-                initArgsCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+                initArgsCode.push(
+                  `this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`
+                );
               }
               code.push(`    public ${className}Impl(${argsCode.join(", ")}) {`);
               code.push(`        ${initArgsCode.join("\n        ")}`);
@@ -16034,16 +16116,22 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
                 const infoName = getDomainObjectName(info);
                 code.push(``);
                 code.push(`    @${nonNullAnnotation}`);
-                code.push(`    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}() {`);
+                code.push(
+                  `    public ${inferObjectValueTypeByInfo(imports, info)} get${infoName}() {`
+                );
                 code.push(`        return this.${strUtil.lowerFirst(infoName)};`);
                 code.push(`    }`);
               }
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter(
+              const commands = [
+                ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+              ].filter(
                 (item) => item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand"
               );
               for (const command of commands) {
                 const commandName = getDomainObjectName(command);
-                imports.add(`${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`);
+                imports.add(
+                  `${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE}.${commandName}`
+                );
                 code.push(``);
                 code.push(
                   `    public void handle${commandName}(@${nonNullAnnotation} ${commandName} ${strUtil.lowerFirst(
@@ -16126,7 +16214,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               argsCode.push(
                 `@${nonNullAnnotation} ${inferJavaTypeByName(imports, info)} ${strUtil.lowerFirst(infoName)}`
               );
-              initArgsCode.push(`this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`);
+              initArgsCode.push(
+                `this.${strUtil.lowerFirst(infoName)} = ${strUtil.lowerFirst(infoName)};`
+              );
             }
             code.push(`    public ${className}(${argsCode.join(", ")}) {`);
             code.push(`        ${initArgsCode.join("\n        ")}`);
@@ -16158,7 +16248,11 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
             if (!isValueObject(info)) {
               continue;
             }
-            const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, VALUE_PACKAGE];
+            const parentDir = [
+              ...context.value.namespace.split(/\./),
+              context.value.moduleName,
+              VALUE_PACKAGE
+            ];
             const fileName = getDomainObjectName(info) + ".java";
             if (infoMap[`${parentDir.join("/")}/${fileName}`] === true) {
               continue;
@@ -16168,7 +16262,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               continue;
             }
             const file = new CodeFile(parentDir, fileName);
-            file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE};`);
+            file.appendContentln(
+              `package ${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE};`
+            );
             file.appendContentln("");
             for (const imp of codes[0].imports) {
               file.appendContentln(`import ${imp};`);
@@ -16183,11 +16279,17 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
         for (const command of commands) {
           genInfos(command.inner);
           const codes = api.commands._genCommandCode(command);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, COMMAND_PACKAGE];
+          const parentDir = [
+            ...context.value.namespace.split(/\./),
+            context.value.moduleName,
+            COMMAND_PACKAGE
+          ];
           codes.forEach((code) => {
             if (code.type === "Command") {
               const file = new CodeFile(parentDir, getDomainObjectName(command) + ".java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
+              file.appendContentln(
+                `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`
+              );
               file.appendContentln("");
               file.addImports(code.imports);
               for (const imp of code.imports) {
@@ -16198,7 +16300,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               codeFiles.push(file);
             } else if (code.type === "CommandHandler") {
               const file = new CodeFile(parentDir, getDomainObjectName(command) + "Handler.java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
+              file.appendContentln(
+                `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`
+              );
               file.appendContentln("");
               file.addImports(code.imports);
               for (const imp of code.imports) {
@@ -16216,11 +16320,17 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
         for (const facadeCmd of facadeCommands) {
           genInfos(facadeCmd.inner);
           const codes = api.commands._genFacadeCommandCode(facadeCmd);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, COMMAND_PACKAGE];
+          const parentDir = [
+            ...context.value.namespace.split(/\./),
+            context.value.moduleName,
+            COMMAND_PACKAGE
+          ];
           codes.forEach((code) => {
             if (code.type === "FacadeCommand") {
               const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + ".java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
+              file.appendContentln(
+                `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`
+              );
               file.appendContentln("");
               file.addImports(code.imports);
               for (const imp of code.imports) {
@@ -16231,7 +16341,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               codeFiles.push(file);
             } else if (code.type === "FacadeCommandHandler") {
               const file = new CodeFile(parentDir, getDomainObjectName(facadeCmd) + "Handler.java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`);
+              file.appendContentln(
+                `package ${context.value.namespace}.${context.value.moduleName}.${COMMAND_PACKAGE};`
+              );
               file.appendContentln("");
               file.addImports(code.imports);
               for (const imp of code.imports) {
@@ -16253,7 +16365,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
           codes.forEach((code) => {
             if (code.type === "Agg") {
               const file = new CodeFile(parentDir, getDomainObjectName(agg5) + ".java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName};`);
+              file.appendContentln(
+                `package ${context.value.namespace}.${context.value.moduleName};`
+              );
               file.appendContentln("");
               file.addImports(code.imports);
               for (const imp of code.imports) {
@@ -16264,7 +16378,9 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
               codeFiles.push(file);
             } else if (code.type === "AggImpl") {
               const file = new CodeFile(parentDir, getDomainObjectName(agg5) + "Impl.java");
-              file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName};`);
+              file.appendContentln(
+                `package ${context.value.namespace}.${context.value.moduleName};`
+              );
               file.appendContentln("");
               file.addImports(code.imports);
               for (const imp of code.imports) {
@@ -16282,10 +16398,16 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
         for (const event of events) {
           genInfos(event.inner);
           const codes = api.commands._genEventCode(event);
-          const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, EVENT_PACKAGE];
+          const parentDir = [
+            ...context.value.namespace.split(/\./),
+            context.value.moduleName,
+            EVENT_PACKAGE
+          ];
           codes.forEach((code) => {
             const file = new CodeFile(parentDir, getDomainObjectName(event) + ".java");
-            file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${EVENT_PACKAGE};`);
+            file.appendContentln(
+              `package ${context.value.namespace}.${context.value.moduleName}.${EVENT_PACKAGE};`
+            );
             file.appendContentln("");
             file.addImports(code.imports);
             for (const imp of code.imports) {
@@ -16376,7 +16498,9 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
           if (additions.has(KotlinGeneratorAddition.ValueClass)) {
             imports.add("kotlin.jvm.JvmInline");
             code.push("@JvmInline");
-            code.push(`value class ${className}(val value: ${inferKotlinTypeByName(imports, info)})`);
+            code.push(
+              `value class ${className}(val value: ${inferKotlinTypeByName(imports, info)})`
+            );
           } else {
             code.push(`data class ${className}(val value: ${inferKotlinTypeByName(imports, info)})`);
           }
@@ -16402,7 +16526,9 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
             const infoCode = [];
             for (const info of infos) {
               const infoName = getDomainObjectName(info);
-              infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
+              infoCode.push(
+                `val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`
+              );
             }
             code.push(`data class ${className}(${infoCode.join(", ")})`);
             codeSnippets.push({
@@ -16419,11 +16545,13 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
             const className = getDomainObjectName(cmd);
             const code = [];
             code.push(`class ${className}Handler {`);
-            const aggs = [...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]].filter(
-              (agg5) => agg5._attributes.rule === "Agg"
-            );
+            const aggs = [
+              ...api.states.designer.value._getContext().getAssociationMap()[cmd._attributes.__id]
+            ].filter((agg5) => agg5._attributes.rule === "Agg");
             for (const agg5 of aggs) {
-              imports.add(`${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`);
+              imports.add(
+                `${context.value.namespace}.${context.value.moduleName}.${getDomainObjectName(agg5)}`
+              );
               code.push(`    fun handle(command: ${className}): ${getDomainObjectName(agg5)} {`);
               code.push(`        // HACK Implement`);
               code.push(`    }`);
@@ -16448,7 +16576,9 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
           const infoCode = [];
           for (const info of infos) {
             const infoName = getDomainObjectName(info);
-            infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
+            infoCode.push(
+              `val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`
+            );
           }
           code.push(`data class ${className}(${infoCode.join(", ")})`);
           return [
@@ -16460,48 +16590,54 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
           ];
         }
       );
-      api.commands._setAggCodeProvider((agg5) => {
-        const imports = /* @__PURE__ */ new Set();
-        const designer = api.states.designer.value;
-        const className = getDomainObjectName(agg5);
-        const code = [];
-        const infos = Object.values(agg5.inner);
-        importInfos(imports, infos);
-        const interCode = [];
-        const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-          return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-        });
-        for (const command of commands) {
-          const commandName = getDomainObjectName(command);
-          interCode.push(`fun handle(command: ${commandName})`);
-        }
-        code.push(`interface ${className} {`);
-        code.push(`    ${interCode.join("\n    ")}`);
-        code.push(`}`);
-        code.push(``);
-        code.push(`class ${className}Impl(`);
-        const infoCode = [];
-        for (const info of infos) {
-          const infoName = getDomainObjectName(info);
-          infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
-        }
-        code.push(`    ${infoCode.join(",\n    ")}`);
-        code.push(`): ${className} {`);
-        for (const command of commands) {
-          const commandName = getDomainObjectName(command);
-          code.push(`    override fun handle(command: ${commandName}) {`);
-          code.push(`        // HACK Implement`);
-          code.push(`    }`);
-        }
-        code.push(`}`);
-        return [
-          {
-            type: "Agg",
-            imports,
-            content: code.join("\n")
+      api.commands._setAggCodeProvider(
+        (agg5) => {
+          const imports = /* @__PURE__ */ new Set();
+          const designer = api.states.designer.value;
+          const className = getDomainObjectName(agg5);
+          const code = [];
+          const infos = Object.values(agg5.inner);
+          importInfos(imports, infos);
+          const interCode = [];
+          const commands = [
+            ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+          ].filter((item) => {
+            return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
+          });
+          for (const command of commands) {
+            const commandName = getDomainObjectName(command);
+            interCode.push(`fun handle(command: ${commandName})`);
           }
-        ];
-      });
+          code.push(`interface ${className} {`);
+          code.push(`    ${interCode.join("\n    ")}`);
+          code.push(`}`);
+          code.push(``);
+          code.push(`class ${className}Impl(`);
+          const infoCode = [];
+          for (const info of infos) {
+            const infoName = getDomainObjectName(info);
+            infoCode.push(
+              `val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`
+            );
+          }
+          code.push(`    ${infoCode.join(",\n    ")}`);
+          code.push(`): ${className} {`);
+          for (const command of commands) {
+            const commandName = getDomainObjectName(command);
+            code.push(`    override fun handle(command: ${commandName}) {`);
+            code.push(`        // HACK Implement`);
+            code.push(`    }`);
+          }
+          code.push(`}`);
+          return [
+            {
+              type: "Agg",
+              imports,
+              content: code.join("\n")
+            }
+          ];
+        }
+      );
       api.commands._setEventCodeProvider(
         (event) => {
           const imports = /* @__PURE__ */ new Set();
@@ -16512,7 +16648,9 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
           const infoCode = [];
           for (const info of infos) {
             const infoName = getDomainObjectName(info);
-            infoCode.push(`val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`);
+            infoCode.push(
+              `val ${strUtil.lowerFirst(infoName)}: ${inferObjectValueTypeByInfo(imports, info)}`
+            );
           }
           code.push(`data class ${className}(${infoCode.join(", ")})`);
           return [
@@ -16533,7 +16671,11 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
             if (!isValueObject(info)) {
               continue;
             }
-            const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName, VALUE_PACKAGE];
+            const parentDir = [
+              ...context.value.namespace.split(/\./),
+              context.value.moduleName,
+              VALUE_PACKAGE
+            ];
             const fileName = getDomainObjectName(info) + ".kt";
             if (infoMap[`${parentDir.join("/")}/${fileName}`] === true) {
               continue;
@@ -16543,7 +16685,9 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
               continue;
             }
             const file = new CodeFile(parentDir, fileName);
-            file.appendContentln(`package ${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}`);
+            file.appendContentln(
+              `package ${context.value.namespace}.${context.value.moduleName}.${VALUE_PACKAGE}`
+            );
             file.appendContentln("");
             for (const imp of codes[0].imports) {
               file.appendContentln(`import ${imp}`);
@@ -16754,7 +16898,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           code.push(`type ${cmdStruct} struct {`);
           const infos = Object.values(cmd.inner);
           for (const info of infos) {
-            code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
+            code.push(
+              `    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
           }
           code.push(`}`);
           for (const info of infos) {
@@ -16770,7 +16916,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           const argsCode = [];
           const structParams = [];
           for (const info of infos) {
-            argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
+            argsCode.push(
+              `${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
             structParams.push(getLowerDomainObjectName(info));
           }
           code.push(`func New${cmdStruct}(${argsCode.join(", ")}) ${cmdStruct} {`);
@@ -16791,7 +16939,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           const code = [];
           code.push(`type ${cmdStruct} struct {`);
           for (const info of infos) {
-            code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
+            code.push(
+              `    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
           }
           code.push(`}`);
           for (const info of infos) {
@@ -16807,7 +16957,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           const argsCode = [];
           const structParams = [];
           for (const info of infos) {
-            argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
+            argsCode.push(
+              `${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
             structParams.push(getLowerDomainObjectName(info));
           }
           code.push(`func New${cmdStruct}(${argsCode.join(", ")}) ${cmdStruct} {`);
@@ -16825,59 +16977,67 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           ];
         }
       );
-      api.commands._setAggCodeProvider((agg5) => {
-        const designer = api.states.designer.value;
-        const aggStruct = getUpperDomainObjectName(agg5);
-        const aggVal = getLowerDomainObjectName(agg5);
-        const infos = Object.values(agg5.inner);
-        const imports = /* @__PURE__ */ new Set();
-        const code = [];
-        code.push(`type ${aggStruct} struct {`);
-        for (const info of infos) {
-          code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-        }
-        code.push(`}`);
-        for (const info of infos) {
-          code.push(
-            `func (${aggVal} ${aggStruct}) Get${getUpperDomainObjectName(info)} () ${inferObjectValueTypeByInfo(
-              imports,
-              info
-            )} {`
-          );
-          code.push(`    return ${aggVal}.${getLowerDomainObjectName(info)}`);
-          code.push(`}`);
-        }
-        const argsCode = [];
-        const structParams = [];
-        for (const info of infos) {
-          argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
-          structParams.push(getLowerDomainObjectName(info));
-        }
-        code.push(`func New${aggStruct}(${argsCode.join(", ")}) ${aggStruct} {`);
-        code.push(`    // HACK check value`);
-        code.push(`    return ${aggStruct}{`);
-        code.push(`        ${structParams.join(",\n        ")},`);
-        code.push(`    }`);
-        code.push(`}`);
-        code.push(``);
-        const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
-          return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
-        });
-        for (const cmd of commands) {
-          const cmdStruct = getUpperDomainObjectName(cmd);
-          const cmdVal = getLowerDomainObjectName(cmd);
-          code.push(`func (${aggVal} ${aggStruct}) Handle${cmdStruct} (${cmdVal} ${cmdStruct}) {`);
-          code.push(`    // HACK implement`);
-          code.push(`}`);
-        }
-        return [
-          {
-            type: "Agg",
-            imports,
-            content: code.join("\n")
+      api.commands._setAggCodeProvider(
+        (agg5) => {
+          const designer = api.states.designer.value;
+          const aggStruct = getUpperDomainObjectName(agg5);
+          const aggVal = getLowerDomainObjectName(agg5);
+          const infos = Object.values(agg5.inner);
+          const imports = /* @__PURE__ */ new Set();
+          const code = [];
+          code.push(`type ${aggStruct} struct {`);
+          for (const info of infos) {
+            code.push(
+              `    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
           }
-        ];
-      });
+          code.push(`}`);
+          for (const info of infos) {
+            code.push(
+              `func (${aggVal} ${aggStruct}) Get${getUpperDomainObjectName(info)} () ${inferObjectValueTypeByInfo(
+                imports,
+                info
+              )} {`
+            );
+            code.push(`    return ${aggVal}.${getLowerDomainObjectName(info)}`);
+            code.push(`}`);
+          }
+          const argsCode = [];
+          const structParams = [];
+          for (const info of infos) {
+            argsCode.push(
+              `${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
+            structParams.push(getLowerDomainObjectName(info));
+          }
+          code.push(`func New${aggStruct}(${argsCode.join(", ")}) ${aggStruct} {`);
+          code.push(`    // HACK check value`);
+          code.push(`    return ${aggStruct}{`);
+          code.push(`        ${structParams.join(",\n        ")},`);
+          code.push(`    }`);
+          code.push(`}`);
+          code.push(``);
+          const commands = [
+            ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+          ].filter((item) => {
+            return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
+          });
+          for (const cmd of commands) {
+            const cmdStruct = getUpperDomainObjectName(cmd);
+            const cmdVal = getLowerDomainObjectName(cmd);
+            code.push(`func (${aggVal} ${aggStruct}) Handle${cmdStruct} (${cmdVal} ${cmdStruct}) {`);
+            code.push(`    // HACK implement`);
+            code.push(`}`);
+          }
+          return [
+            {
+              type: "Agg",
+              imports,
+              content: code.join("\n")
+            }
+          ];
+        }
+      );
       api.commands._setEventCodeProvider(
         (event) => {
           const code = [];
@@ -16887,7 +17047,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           const eventVal = getLowerDomainObjectName(event);
           code.push(`type ${eventStruct} struct {`);
           for (const info of infos) {
-            code.push(`    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
+            code.push(
+              `    ${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
           }
           code.push(`}`);
           for (const info of infos) {
@@ -16903,7 +17065,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
           const argsCode = [];
           const structParams = [];
           for (const info of infos) {
-            argsCode.push(`${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`);
+            argsCode.push(
+              `${getLowerDomainObjectName(info)} ${inferObjectValueTypeByInfo(imports, info)}`
+            );
             structParams.push(getLowerDomainObjectName(info));
           }
           code.push(`func New${eventStruct}(${argsCode.join(", ")}) ${eventStruct} {`);
@@ -17008,7 +17172,9 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
         infoFile.appendContentln(``);
         if (infoFile.getImports().length > 0) {
           infoFile.appendContentln(`import (`);
-          infoFile.appendContentln(`    ${[...infoFile.getImports()].map((i) => `"${i}"`).join("\n    ")}`);
+          infoFile.appendContentln(
+            `    ${[...infoFile.getImports()].map((i) => `"${i}"`).join("\n    ")}`
+          );
           infoFile.appendContentln(`)`);
           infoFile.appendContentln(``);
         }
@@ -17112,7 +17278,9 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
             const infoCode = [];
             for (const info of infos) {
               const infoName = getDomainObjectName(info);
-              infoCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`);
+              infoCode.push(
+                `${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`
+              );
             }
             code.push(`    ${infoCode.join(",\n    ")}`);
             code.push(`)`);
@@ -17162,7 +17330,9 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
             const infoCode = [];
             for (const info of infos) {
               const infoName = getDomainObjectName(info);
-              infoCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`);
+              infoCode.push(
+                `${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`
+              );
             }
             code.push(`    ${infoCode.join(",\n    ")}`);
             code.push(`)`);
@@ -17215,7 +17385,9 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
             code.push(`public interface I${getDomainObjectName(agg5)}${aggInterface}`);
             code.push(`{`);
             const funCode = [];
-            const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
+            const commands = [
+              ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+            ].filter((item) => {
               return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
             });
             for (const command of commands) {
@@ -17243,13 +17415,17 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
               return "";
             })();
             if (additions.has(CSharpGeneratorAddition.PrimaryConstructor)) {
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
+              const commands = [
+                ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+              ].filter((item) => {
                 return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
               });
               const paramCode = [];
               for (const info of infos) {
                 const infoName = getDomainObjectName(info);
-                paramCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)}`);
+                paramCode.push(
+                  `${inferObjectValueTypeByInfo(imports, info)} ${strUtil.lowerFirst(infoName)}`
+                );
               }
               code.push(`public class ${aggName}`);
               code.push(`(`);
@@ -17278,7 +17454,9 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
               code.push(`    ${funCode.join("\n    ")}`);
               code.push(`}`);
             } else {
-              const commands = [...designer._getContext().getAssociationMap()[agg5._attributes.__id]].filter((item) => {
+              const commands = [
+                ...designer._getContext().getAssociationMap()[agg5._attributes.__id]
+              ].filter((item) => {
                 return item._attributes.rule === "Command" || item._attributes.rule === "FacadeCommand";
               });
               code.push(`public class ${aggName} : I${aggName}${aggInterface}`);
@@ -17337,7 +17515,9 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
           const infoCode = [];
           for (const info of infos) {
             const infoName = getDomainObjectName(info);
-            infoCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`);
+            infoCode.push(
+              `${inferObjectValueTypeByInfo(imports, info)} ${strUtil.upperFirst(infoName)}`
+            );
           }
           code.push(`    ${infoCode.join(",\n    ")}`);
           code.push(`)`);
@@ -17356,7 +17536,10 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
       api.commands._setCodeFileProvider(() => {
         const codeFiles = [];
         const infoMap = {};
-        const parentDir = [...context.value.namespace.split(/\./), strUtil.stringToUpperCamel(context.value.moduleName)];
+        const parentDir = [
+          ...context.value.namespace.split(/\./),
+          strUtil.stringToUpperCamel(context.value.moduleName)
+        ];
         function genInfos(infos) {
           for (const info of Object.values(infos)) {
             if (!isValueObject(info)) {
@@ -17497,42 +17680,42 @@ async function requireGenJavaContext() {
         message: $t4("question.subcommand.genCode.java.additions"),
         choices: [
           {
-            title: define_exports.java.JavaGeneratorAddition.SpringFramework,
-            value: define_exports.java.JavaGeneratorAddition.SpringFramework,
+            title: types_exports.java.JavaGeneratorAddition.SpringFramework,
+            value: types_exports.java.JavaGeneratorAddition.SpringFramework,
             selected: true,
             description: $t4("question.subcommand.genCode.java.additions.springFramework")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.Jpa,
-            value: define_exports.java.JavaGeneratorAddition.Jpa,
+            title: types_exports.java.JavaGeneratorAddition.Jpa,
+            value: types_exports.java.JavaGeneratorAddition.Jpa,
             selected: false,
             description: $t4("question.subcommand.genCode.java.additions.jpa")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.Lombok,
-            value: define_exports.java.JavaGeneratorAddition.Lombok,
+            title: types_exports.java.JavaGeneratorAddition.Lombok,
+            value: types_exports.java.JavaGeneratorAddition.Lombok,
             selected: true,
             description: $t4("question.subcommand.genCode.java.additions.lombok")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.LombokBuilder,
-            value: define_exports.java.JavaGeneratorAddition.LombokBuilder,
+            title: types_exports.java.JavaGeneratorAddition.LombokBuilder,
+            value: types_exports.java.JavaGeneratorAddition.LombokBuilder,
             description: $t4("question.subcommand.genCode.java.additions.lombokBuilder")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.CommandHandler,
-            value: define_exports.java.JavaGeneratorAddition.CommandHandler,
+            title: types_exports.java.JavaGeneratorAddition.CommandHandler,
+            value: types_exports.java.JavaGeneratorAddition.CommandHandler,
             selected: true,
             description: $t4("question.subcommand.genCode.java.additions.commandHandler")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.RecordValueObject,
-            value: define_exports.java.JavaGeneratorAddition.RecordValueObject,
+            title: types_exports.java.JavaGeneratorAddition.RecordValueObject,
+            value: types_exports.java.JavaGeneratorAddition.RecordValueObject,
             description: $t4("question.subcommand.genCode.java.additions.recordValueObject")
           },
           {
-            title: define_exports.java.JavaGeneratorAddition.Timezone,
-            value: define_exports.java.JavaGeneratorAddition.Timezone,
+            title: types_exports.java.JavaGeneratorAddition.Timezone,
+            value: types_exports.java.JavaGeneratorAddition.Timezone,
             selected: true,
             description: $t4("question.subcommand.genCode.java.additions.timezone")
           }
@@ -17543,7 +17726,7 @@ async function requireGenJavaContext() {
     { onCancel }
   );
   let nonNullAnnotation = additions.includes(
-    define_exports.java.JavaGeneratorAddition.SpringFramework
+    types_exports.java.JavaGeneratorAddition.SpringFramework
   ) ? "org.springframework.lang.NonNull" : void 0;
   if (nonNullAnnotation === void 0) {
     nonNullAnnotation = (await (0, import_prompts.default)(
@@ -17553,16 +17736,25 @@ async function requireGenJavaContext() {
           type: "select",
           message: $t4("question.subcommand.genCode.java.nonNullAnnotation"),
           choices: [
-            { title: "org.springframework.lang.NonNull", value: "org.springframework.lang.NonNull" },
-            { title: "org.jetbrains.annotations.NotNull", value: "org.jetbrains.annotations.NotNull" },
-            { title: "javax.annotation.Nonnull", value: "javax.annotation.Nonnull" }
+            {
+              title: "org.springframework.lang.NonNull",
+              value: "org.springframework.lang.NonNull"
+            },
+            {
+              title: "org.jetbrains.annotations.NotNull",
+              value: "org.jetbrains.annotations.NotNull"
+            },
+            {
+              title: "javax.annotation.Nonnull",
+              value: "javax.annotation.Nonnull"
+            }
           ]
         }
       ],
       { onCancel }
     )).nonNullAnnotation;
   }
-  if (additions.includes(define_exports.java.JavaGeneratorAddition.Jpa)) {
+  if (additions.includes(types_exports.java.JavaGeneratorAddition.Jpa)) {
     const { idGenStrategy } = await (0, import_prompts.default)(
       [
         {
@@ -17570,11 +17762,11 @@ async function requireGenJavaContext() {
           type: "select",
           message: $t4("question.subcommand.genCode.java.idGenStrategy"),
           choices: [
-            { title: "TABLE", value: define_exports.java.IdGenStrategy.TABLE },
-            { title: "SEQUENCE", value: define_exports.java.IdGenStrategy.SEQUENCE },
-            { title: "IDENTITY", value: define_exports.java.IdGenStrategy.IDENTITY },
-            { title: "UUID", value: define_exports.java.IdGenStrategy.UUID },
-            { title: "AUTO", value: define_exports.java.IdGenStrategy.AUTO }
+            { title: "TABLE", value: types_exports.java.IdGenStrategy.TABLE },
+            { title: "SEQUENCE", value: types_exports.java.IdGenStrategy.SEQUENCE },
+            { title: "IDENTITY", value: types_exports.java.IdGenStrategy.IDENTITY },
+            { title: "UUID", value: types_exports.java.IdGenStrategy.UUID },
+            { title: "AUTO", value: types_exports.java.IdGenStrategy.AUTO }
           ]
         }
       ],
@@ -17608,20 +17800,20 @@ async function requireGenKotlinContext() {
         message: $t5("question.subcommand.genCode.kotlin.additions"),
         choices: [
           {
-            title: define_exports.kotlin.KotlinGeneratorAddition.CommandHandler,
-            value: define_exports.kotlin.KotlinGeneratorAddition.CommandHandler,
+            title: types_exports.kotlin.KotlinGeneratorAddition.CommandHandler,
+            value: types_exports.kotlin.KotlinGeneratorAddition.CommandHandler,
             selected: true,
             description: $t5("question.subcommand.genCode.kotlin.additions.commandHandler")
           },
           {
-            title: define_exports.kotlin.KotlinGeneratorAddition.ValueClass,
-            value: define_exports.kotlin.KotlinGeneratorAddition.ValueClass,
+            title: types_exports.kotlin.KotlinGeneratorAddition.ValueClass,
+            value: types_exports.kotlin.KotlinGeneratorAddition.ValueClass,
             selected: true,
             description: $t5("question.subcommand.genCode.kotlin.additions.valueClass")
           },
           {
-            title: define_exports.kotlin.KotlinGeneratorAddition.Timezone,
-            value: define_exports.kotlin.KotlinGeneratorAddition.Timezone,
+            title: types_exports.kotlin.KotlinGeneratorAddition.Timezone,
+            value: types_exports.kotlin.KotlinGeneratorAddition.Timezone,
             description: $t5("question.subcommand.genCode.kotlin.additions.timezone")
           }
         ],
@@ -17654,32 +17846,32 @@ async function requireGenCsharpContext() {
         message: $t6("question.subcommand.genCode.csharp.additions"),
         choices: [
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.Timezone,
-            value: define_exports.csharp.CSharpGeneratorAddition.Timezone,
+            title: types_exports.csharp.CSharpGeneratorAddition.Timezone,
+            value: types_exports.csharp.CSharpGeneratorAddition.Timezone,
             selected: true,
             description: $t6("question.subcommand.genCode.csharp.additions.timezone")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.RecordStruct,
-            value: define_exports.csharp.CSharpGeneratorAddition.RecordStruct,
+            title: types_exports.csharp.CSharpGeneratorAddition.RecordStruct,
+            value: types_exports.csharp.CSharpGeneratorAddition.RecordStruct,
             selected: true,
             description: $t6("question.subcommand.genCode.csharp.additions.recordStruct")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.PrimaryConstructor,
-            value: define_exports.csharp.CSharpGeneratorAddition.PrimaryConstructor,
+            title: types_exports.csharp.CSharpGeneratorAddition.PrimaryConstructor,
+            value: types_exports.csharp.CSharpGeneratorAddition.PrimaryConstructor,
             selected: true,
             description: $t6("question.subcommand.genCode.csharp.additions.primaryConstructor")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
-            value: define_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
+            title: types_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
+            value: types_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface,
             selected: false,
             description: $t6("question.subcommand.genCode.csharp.additions.commandHandlerInterface")
           },
           {
-            title: define_exports.csharp.CSharpGeneratorAddition.AggInterface,
-            value: define_exports.csharp.CSharpGeneratorAddition.AggInterface,
+            title: types_exports.csharp.CSharpGeneratorAddition.AggInterface,
+            value: types_exports.csharp.CSharpGeneratorAddition.AggInterface,
             selected: false,
             description: $t6("question.subcommand.genCode.csharp.additions.aggInterface")
           }
@@ -17691,7 +17883,7 @@ async function requireGenCsharpContext() {
   );
   context.additions = new Set(additions);
   context.namespace = namespace;
-  if (context.additions.has(define_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface)) {
+  if (context.additions.has(types_exports.csharp.CSharpGeneratorAddition.CommandHandlerInterface)) {
     const { commandHandlerInterface } = await (0, import_prompts3.default)(
       [
         {
@@ -17704,7 +17896,7 @@ async function requireGenCsharpContext() {
     );
     context.commandHandlerInterface = commandHandlerInterface;
   }
-  if (context.additions.has(define_exports.csharp.CSharpGeneratorAddition.AggInterface)) {
+  if (context.additions.has(types_exports.csharp.CSharpGeneratorAddition.AggInterface)) {
     const { aggInterface } = await (0, import_prompts3.default)(
       [
         {
@@ -17756,7 +17948,7 @@ var { t: $t8 } = useI18nAgg().commands;
 var environmentAgg5 = useEnvironmentAgg();
 function requireGenCodeCommand(params) {
   return new Command().name("genCode").option("--source <sourceDir>", "ts files' dir").action((options) => {
-    params.currentCommand.value = "GenCode" /* GenCode */;
+    params.currentCommand.value = Subcommand.GenCode;
     if (options.source) {
       params.args.source = import_path7.default.resolve(options.source);
     }
@@ -17771,20 +17963,20 @@ async function requireGenCodeCommandArgs(params) {
         message: $t8("question.subcommand.genCode.language"),
         choices: [
           {
-            title: define_exports.Language.CSharp,
-            value: define_exports.Language.CSharp
+            title: types_exports.Language.CSharp,
+            value: types_exports.Language.CSharp
           },
           {
-            title: define_exports.Language.Go,
-            value: define_exports.Language.Go
+            title: types_exports.Language.Go,
+            value: types_exports.Language.Go
           },
           {
-            title: define_exports.Language.Java,
-            value: define_exports.Language.Java
+            title: types_exports.Language.Java,
+            value: types_exports.Language.Java
           },
           {
-            title: define_exports.Language.Kotlin,
-            value: define_exports.Language.Kotlin
+            title: types_exports.Language.Kotlin,
+            value: types_exports.Language.Kotlin
           }
         ]
       }
@@ -17792,13 +17984,13 @@ async function requireGenCodeCommandArgs(params) {
     { onCancel }
   )).language;
   params.args.language = language;
-  if (language === define_exports.Language.Java) {
+  if (language === types_exports.Language.Java) {
     params.args.context = await requireGenJavaContext();
-  } else if (language === define_exports.Language.Kotlin) {
+  } else if (language === types_exports.Language.Kotlin) {
     params.args.context = await requireGenKotlinContext();
-  } else if (language === define_exports.Language.CSharp) {
+  } else if (language === types_exports.Language.CSharp) {
     params.args.context = await requireGenCsharpContext();
-  } else if (language === define_exports.Language.Go) {
+  } else if (language === types_exports.Language.Go) {
     params.args.context = await requireGenGoContext();
   } else {
     isNever(language);
@@ -17814,26 +18006,43 @@ async function execute5(args) {
     log_default.printWarn("\u5F53\u524D\u5DE5\u4F5C\u76EE\u5F55\u7248\u672C\uFF1A", import_fs6.default.readFileSync(versionFilePath, "utf-8").trim());
     log_default.printWarn("\u811A\u624B\u67B6\u7248\u672C\uFF1A      ", package_info_default.version);
     log_default.printWarn("\u5982\u679C\u8981\u4EE5\u672C\u5730\u811A\u624B\u67B6\u7248\u672C\u4E3A\u51C6\uFF0C\u8BF7\u6267\u884C\u5728\u5DE5\u4F5C\u76EE\u5F55\u6267\u884Cupdate\u547D\u4EE4\u8FDB\u884C\u66F4\u65B0");
-    log_default.print(source_default.bgYellow(`${packageManager === "bun" ? "bunx " : ""}domain-designer-cli update`));
+    log_default.print(
+      source_default.bgYellow(`${packageManager === "bun" ? "bunx " : ""}domain-designer-cli update`)
+    );
   }
   log_default.printInfo("================ Install dependencies: Starting... ================");
   if (packageManager === "bun") {
-    (0, import_child_process5.spawnSync)(`bun i --cwd "${webRoot}"`, { encoding: "utf-8", stdio: "inherit", shell: true });
+    (0, import_child_process5.spawnSync)(`bun i --cwd "${webRoot}"`, {
+      encoding: "utf-8",
+      stdio: "inherit",
+      shell: true
+    });
   } else if (packageManager === "pnpm") {
-    (0, import_child_process5.spawnSync)(`pnpm i --prefix "${webRoot}"`, { encoding: "utf-8", stdio: "inherit", shell: true });
+    (0, import_child_process5.spawnSync)(`pnpm i --prefix "${webRoot}"`, {
+      encoding: "utf-8",
+      stdio: "inherit",
+      shell: true
+    });
   } else if (packageManager === "npm") {
-    (0, import_child_process5.spawnSync)(`npm i --prefix "${webRoot}"`, { encoding: "utf-8", stdio: "inherit", shell: true });
+    (0, import_child_process5.spawnSync)(`npm i --prefix "${webRoot}"`, {
+      encoding: "utf-8",
+      stdio: "inherit",
+      shell: true
+    });
   } else {
     isNever(packageManager);
   }
   log_default.printSuccess("================ Install dependencies: Succeeded ================");
   log_default.printInfo("================ Compliling ts code: Starting... ================");
   const exeCmd = packageManager === "bun" ? "bunx" : "pnpx";
-  (0, import_child_process5.spawnSync)(`${exeCmd} zx ${webRoot.replace(/\\/g, "/")}/scripts/build-ts.mjs --source=${sourcePath}`, {
-    encoding: "utf-8",
-    stdio: "inherit",
-    shell: true
-  });
+  (0, import_child_process5.spawnSync)(
+    `${exeCmd} zx ${webRoot.replace(/\\/g, "/")}/scripts/build-ts.mjs --source=${sourcePath}`,
+    {
+      encoding: "utf-8",
+      stdio: "inherit",
+      shell: true
+    }
+  );
   log_default.printSuccess("================ Compliling ts code: Succeeded ================");
   log_default.printInfo("================ Generating code: Starting... ================");
   const files = import_fs6.default.readdirSync(import_path7.default.join(sourcePath, ".output", "esm"));
@@ -17850,13 +18059,13 @@ async function execute5(args) {
     }
     const designer = m.default;
     if (!pluginLoaded) {
-      if (args.language === define_exports.Language.Java) {
+      if (args.language === types_exports.Language.Java) {
         GeneratorPliginHelper.registerPlugin(generator_java_plugin_default);
-      } else if (args.language === define_exports.Language.Kotlin) {
+      } else if (args.language === types_exports.Language.Kotlin) {
         GeneratorPliginHelper.registerPlugin(generator_kotlin_plugin_default);
-      } else if (args.language === define_exports.Language.CSharp) {
+      } else if (args.language === types_exports.Language.CSharp) {
         GeneratorPliginHelper.registerPlugin(generator_csharp_plugin_default);
-      } else if (args.language === define_exports.Language.Go) {
+      } else if (args.language === types_exports.Language.Go) {
         GeneratorPliginHelper.registerPlugin(generator_go_plugin_default);
       } else {
         isNever(args.language);
@@ -17884,10 +18093,12 @@ var { t: $t9, setCurrentLang } = useI18nAgg().commands;
 var environmentAgg6 = useEnvironmentAgg();
 var agg4 = G(() => {
   const isReady = (0, import_reactivity5.ref)(false);
-  const currentCommand = (0, import_reactivity5.ref)("none" /* None */);
+  const currentCommand = (0, import_reactivity5.ref)(Subcommand.None);
   const source = process.cwd();
   const initCommandArgs = (0, import_reactivity5.reactive)({ source });
-  const updateWorkspaceCommandArgs = (0, import_reactivity5.reactive)({ source });
+  const updateWorkspaceCommandArgs = (0, import_reactivity5.reactive)({
+    source
+  });
   const runWebCommandArgs = (0, import_reactivity5.reactive)({ source });
   const genCodeCommandArgs = (0, import_reactivity5.reactive)({ source });
   async function init() {
@@ -17902,7 +18113,12 @@ var agg4 = G(() => {
       } else {
         environmentAgg6.commands.setDebugMode(false);
       }
-    }).addCommand(requireInitCommand({ currentCommand, args: initCommandArgs })).addCommand(requireInfoCommand({ currentCommand })).addCommand(requireUpdateWorkspaceCommand({ currentCommand, args: updateWorkspaceCommandArgs })).addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs })).addCommand(requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }));
+    }).addCommand(requireInitCommand({ currentCommand, args: initCommandArgs })).addCommand(requireInfoCommand({ currentCommand })).addCommand(
+      requireUpdateWorkspaceCommand({
+        currentCommand,
+        args: updateWorkspaceCommandArgs
+      })
+    ).addCommand(requireRunWebCommand({ currentCommand, args: runWebCommandArgs })).addCommand(requireGenCodeCommand({ currentCommand, args: genCodeCommandArgs }));
     program2.parse(process.argv);
     if (environmentAgg6.states.debugMode.value === true) {
       log_default.printDebug("- DEBUG: args\u4FE1\u606F\uFF1A", `[
@@ -17910,7 +18126,7 @@ var agg4 = G(() => {
 ]`);
       log_default.printDebug("- DEBUG: packageManager", environmentAgg6.states.packageManager.value);
     }
-    if ("GenCode" /* GenCode */ !== currentCommand.value && "none" /* None */ !== currentCommand.value) {
+    if (Subcommand.GenCode !== currentCommand.value && Subcommand.None !== currentCommand.value) {
       isReady.value = true;
       return;
     }
@@ -17941,7 +18157,7 @@ var agg4 = G(() => {
       lang = language;
     }
     setCurrentLang(lang);
-    if (currentCommand.value === "none" /* None */) {
+    if (currentCommand.value === Subcommand.None) {
       const result = await (0, import_prompts6.default)(
         [
           {
@@ -17951,23 +18167,23 @@ var agg4 = G(() => {
             choices: [
               {
                 title: $t9("question.subcommand.genCode"),
-                value: "GenCode" /* GenCode */
+                value: Subcommand.GenCode
               },
               {
                 title: $t9("question.subcommand.init"),
-                value: "init" /* Init */
+                value: Subcommand.Init
               },
               {
                 title: $t9("question.subcommand.updateWorkspace"),
-                value: "updateWorkspace" /* UpdateWorkspace */
+                value: Subcommand.UpdateWorkspace
               },
               {
                 title: $t9("question.subcommand.runWeb"),
-                value: "runWeb" /* RunWeb */
+                value: Subcommand.RunWeb
               },
               {
                 title: $t9("question.subcommand.info"),
-                value: "info" /* Info */
+                value: Subcommand.Info
               }
             ]
           }
@@ -17977,17 +18193,26 @@ var agg4 = G(() => {
       currentCommand.value = result.subcommand;
     }
     const subcommand = currentCommand.value;
-    if (subcommand === "init" /* Init */) {
+    if (subcommand === Subcommand.Init) {
       await requireInitCommandArgs({ currentCommand, args: initCommandArgs });
-    } else if (subcommand === "updateWorkspace" /* UpdateWorkspace */) {
-      await requireUpdateWorkspaceCommandArgs({ currentCommand, args: updateWorkspaceCommandArgs });
-    } else if (subcommand === "runWeb" /* RunWeb */) {
-      await requireRunWebCommandArgs({ currentCommand, args: runWebCommandArgs });
-    } else if (subcommand === "info" /* Info */) {
+    } else if (subcommand === Subcommand.UpdateWorkspace) {
+      await requireUpdateWorkspaceCommandArgs({
+        currentCommand,
+        args: updateWorkspaceCommandArgs
+      });
+    } else if (subcommand === Subcommand.RunWeb) {
+      await requireRunWebCommandArgs({
+        currentCommand,
+        args: runWebCommandArgs
+      });
+    } else if (subcommand === Subcommand.Info) {
       await requireInfoCommandArgs({ currentCommand });
-    } else if (subcommand === "GenCode" /* GenCode */) {
-      await requireGenCodeCommandArgs({ currentCommand, args: genCodeCommandArgs });
-    } else if (subcommand === "none" /* None */) {
+    } else if (subcommand === Subcommand.GenCode) {
+      await requireGenCodeCommandArgs({
+        currentCommand,
+        args: genCodeCommandArgs
+      });
+    } else if (subcommand === Subcommand.None) {
       return;
     } else {
       isNever(subcommand);
@@ -18002,17 +18227,17 @@ var agg4 = G(() => {
       init,
       async exec() {
         const c = currentCommand.value;
-        if (c === "info" /* Info */) {
+        if (c === Subcommand.Info) {
           await execute2();
-        } else if (c === "init" /* Init */) {
+        } else if (c === Subcommand.Init) {
           await execute(initCommandArgs);
-        } else if (c === "runWeb" /* RunWeb */) {
+        } else if (c === Subcommand.RunWeb) {
           await execute4(runWebCommandArgs);
-        } else if (c === "updateWorkspace" /* UpdateWorkspace */) {
+        } else if (c === Subcommand.UpdateWorkspace) {
           await execute3(updateWorkspaceCommandArgs);
-        } else if (c === "GenCode" /* GenCode */) {
+        } else if (c === Subcommand.GenCode) {
           await execute5(genCodeCommandArgs);
-        } else if (c === "none" /* None */) {
+        } else if (c === Subcommand.None) {
         } else {
           isNever(c);
         }

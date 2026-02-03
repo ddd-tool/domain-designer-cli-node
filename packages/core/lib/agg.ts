@@ -25,10 +25,7 @@ export function createAggProvider(designId: string): DomainDesignAggProvider {
     const __id = genId()
 
     function event<EVENT extends DomainDesignEvent<any>>(e: EVENT): EVENT
-    function event<
-      G_NAME extends string,
-      INFOS extends NonEmptyArray<CustomInfo<G_NAME>>,
-    >(
+    function event<G_NAME extends string, INFOS extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       infos: NonEmptyObject<INFOS>,
       note?: string | DomainDesignNote,
@@ -43,12 +40,7 @@ export function createAggProvider(designId: string): DomainDesignAggProvider {
       note?: string | DomainDesignNote,
     ): EVENT | DomainDesignEvent<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const e = context.createEvent(param1, infos!, note)

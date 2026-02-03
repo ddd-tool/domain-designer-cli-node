@@ -1,6 +1,6 @@
 import { Ref } from '@vue/reactivity'
 import { GeneratorPliginHelper } from '../domain/generator-agg'
-import { CodeFile, CodeSnippets, go } from '../domain/define'
+import { CodeFile, CodeSnippets, go } from '../domain/types'
 import {
   DomainDesignAgg,
   DomainDesignCommand,
@@ -35,12 +35,8 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         ._getContext()
         .getDesignerOptions()
         .ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s))
-      function isValueObject(
-        info: DomainDesignInfo<DomainDesignInfoType, string>,
-      ): boolean {
-        return !ignoredValueObjects.includes(
-          strUtil.stringToLowerCamel(info._attributes.name),
-        )
+      function isValueObject(info: DomainDesignInfo<DomainDesignInfoType, string>): boolean {
+        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name))
       }
       function inferObjectValueTypeByInfo(
         imports: Set<string>,
@@ -60,19 +56,12 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         return strUtil.stringToLowerCamel(info._attributes.name)
       }
 
-      function inferGoTypeByName(
-        imports: Set<string>,
-        obj: DomainDesignObject,
-      ) {
-        const name = strUtil
-          .stringToLowerSnake(obj._attributes.name)
-          .replace(/_/, ' ')
+      function inferGoTypeByName(imports: Set<string>, obj: DomainDesignObject) {
+        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, ' ')
         if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
           imports.add('time')
           return 'time.Time'
-        } else if (
-          /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)
-        ) {
+        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
           return 'int'
         } else if (/\b(price)$/.test(name)) {
           // imports.add('math/big')
@@ -92,9 +81,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       }
 
       api.commands._setInfoCodeProvider(
-        (
-          info: DomainDesignInfo<DomainDesignInfoType, string>,
-        ): CodeSnippets<'Info'>[] => {
+        (info: DomainDesignInfo<DomainDesignInfoType, string>): CodeSnippets<'Info'>[] => {
           const imports = new Set<string>()
           const code: string[] = []
           code.push(`type ${getUpperDomainObjectName(info)} struct {`)
@@ -124,9 +111,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setCommandCodeProvider(
-        (
-          cmd: DomainDesignCommand<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Command'>[] => {
+        (cmd: DomainDesignCommand<DomainDesignInfoRecord>): CodeSnippets<'Command'>[] => {
           const cmdStruct = getUpperDomainObjectName(cmd)
           const cmdVal = getLowerDomainObjectName(cmd)
           const imports = new Set<string>()
@@ -157,9 +142,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             )
             structParams.push(getLowerDomainObjectName(info))
           }
-          code.push(
-            `func New${cmdStruct}(${argsCode.join(', ')}) ${cmdStruct} {`,
-          )
+          code.push(`func New${cmdStruct}(${argsCode.join(', ')}) ${cmdStruct} {`)
           code.push(`    // HACK check value`)
           code.push(`    return ${cmdStruct}{`)
           code.push(`        ${structParams.join(',\n        ')},`)
@@ -204,9 +187,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             )
             structParams.push(getLowerDomainObjectName(info))
           }
-          code.push(
-            `func New${cmdStruct}(${argsCode.join(', ')}) ${cmdStruct} {`,
-          )
+          code.push(`func New${cmdStruct}(${argsCode.join(', ')}) ${cmdStruct} {`)
           code.push(`    // HACK check value`)
           code.push(`    return ${cmdStruct}{`)
           code.push(`        ${structParams.join(',\n        ')},`)
@@ -223,9 +204,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setAggCodeProvider(
-        (
-          agg: DomainDesignAgg<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Agg'>[] => {
+        (agg: DomainDesignAgg<DomainDesignInfoRecord>): CodeSnippets<'Agg'>[] => {
           const designer = api.states.designer.value
           const aggStruct = getUpperDomainObjectName(agg)
           const aggVal = getLowerDomainObjectName(agg)
@@ -259,9 +238,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             )
             structParams.push(getLowerDomainObjectName(info))
           }
-          code.push(
-            `func New${aggStruct}(${argsCode.join(', ')}) ${aggStruct} {`,
-          )
+          code.push(`func New${aggStruct}(${argsCode.join(', ')}) ${aggStruct} {`)
           code.push(`    // HACK check value`)
           code.push(`    return ${aggStruct}{`)
           code.push(`        ${structParams.join(',\n        ')},`)
@@ -272,17 +249,12 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           const commands = [
             ...designer._getContext().getAssociationMap()[agg._attributes.__id],
           ].filter((item) => {
-            return (
-              item._attributes.rule === 'Command' ||
-              item._attributes.rule === 'FacadeCommand'
-            )
+            return item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand'
           })
           for (const cmd of commands) {
             const cmdStruct = getUpperDomainObjectName(cmd)
             const cmdVal = getLowerDomainObjectName(cmd)
-            code.push(
-              `func (${aggVal} ${aggStruct}) Handle${cmdStruct} (${cmdVal} ${cmdStruct}) {`,
-            )
+            code.push(`func (${aggVal} ${aggStruct}) Handle${cmdStruct} (${cmdVal} ${cmdStruct}) {`)
             code.push(`    // HACK implement`)
             code.push(`}`)
           }
@@ -297,9 +269,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setEventCodeProvider(
-        (
-          event: DomainDesignEvent<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Event'>[] => {
+        (event: DomainDesignEvent<DomainDesignInfoRecord>): CodeSnippets<'Event'>[] => {
           const code: string[] = []
           const imports = new Set<string>()
           const infos = Object.values(event.inner)
@@ -320,9 +290,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
                 info,
               )} {`,
             )
-            code.push(
-              `    return ${eventVal}.${getLowerDomainObjectName(info)}`,
-            )
+            code.push(`    return ${eventVal}.${getLowerDomainObjectName(info)}`)
             code.push(`}`)
           }
           const argsCode: string[] = []
@@ -333,9 +301,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             )
             structParams.push(getLowerDomainObjectName(info))
           }
-          code.push(
-            `func New${eventStruct}(${argsCode.join(', ')}) ${eventStruct} {`,
-          )
+          code.push(`func New${eventStruct}(${argsCode.join(', ')}) ${eventStruct} {`)
           code.push(`    // HACK check value`)
           code.push(`    return ${eventStruct}{`)
           code.push(`        ${structParams.join(',\n        ')},`)
@@ -356,16 +322,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         const codeFiles: CodeFile[] = []
         const infoMap: Record<string, boolean> = {}
 
-        const parentDir = [
-          ...context.value.namespace.split(/\./),
-          context.value.moduleName,
-        ]
+        const parentDir = [...context.value.namespace.split(/\./), context.value.moduleName]
         const file = new CodeFile(parentDir, `${context.value.moduleName}.go`)
         const fileCode: string[] = []
-        const infoFile = new CodeFile(
-          parentDir,
-          `${context.value.moduleName}_value_object.go`,
-        )
+        const infoFile = new CodeFile(parentDir, `${context.value.moduleName}_value_object.go`)
         const infoFileCode: string[] = []
 
         function genInfos(infos: DomainDesignInfoRecord) {
@@ -401,9 +361,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           }
         }
 
-        const facadeCommands = api.states.designer.value
-          ._getContext()
-          .getFacadeCommands()
+        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands()
         for (const facadeCommand of facadeCommands) {
           genInfos(facadeCommand.inner)
           const codes = api.commands._genFacadeCommandCode(facadeCommand)

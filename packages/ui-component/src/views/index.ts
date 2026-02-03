@@ -1,7 +1,4 @@
-import {
-  DomainDesigner,
-  isDomainDesigner,
-} from '@ddd-tool/domain-designer-core'
+import { DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
 
 const __d1 = (await import('./design-self')).default
 const __d2 = (await import('./design-zh')).default

@@ -13,9 +13,7 @@ import {
   CustomInfo,
 } from './types'
 
-export function createCommandProvider(
-  designId: string,
-): DomainDesignCommandProvider {
+export function createCommandProvider(designId: string): DomainDesignCommandProvider {
   const RULE = 'Command'
   return <G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
     name: string,
@@ -29,10 +27,7 @@ export function createCommandProvider(
     const __id = genId()
 
     function agg<AGG extends DomainDesignAgg<any>>(a: AGG): AGG
-    function agg<
-      G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
-    >(
+    function agg<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       agg: ARR,
       note?: string | DomainDesignNote,
@@ -47,12 +42,7 @@ export function createCommandProvider(
       note?: string | DomainDesignNote,
     ): AGG | DomainDesignAgg<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       } else {
         const agg = context.createAgg(param1, infos!, note)
@@ -79,9 +69,7 @@ export function createCommandProvider(
   }
 }
 
-export function createFacadeCmdProvider(
-  designId: string,
-): DomainDesignFacadeCommandProvider {
+export function createFacadeCmdProvider(designId: string): DomainDesignFacadeCommandProvider {
   const RULE = 'FacadeCommand'
   return <G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
     name: string,
@@ -95,10 +83,7 @@ export function createFacadeCmdProvider(
     const __id = genId()
 
     function agg<AGG extends DomainDesignAgg<any>>(a: AGG): AGG
-    function agg<
-      G_NAME extends string,
-      ARR extends NonEmptyArray<CustomInfo<G_NAME>>,
-    >(
+    function agg<G_NAME extends string, ARR extends NonEmptyArray<CustomInfo<G_NAME>>>(
       name: string,
       agg: ARR,
       note?: string | DomainDesignNote,
@@ -113,12 +98,7 @@ export function createFacadeCmdProvider(
       note?: string | DomainDesignNote,
     ): AGG | DomainDesignAgg<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       } else {
         const agg = context.createAgg(param1, infos!, note)
@@ -128,30 +108,20 @@ export function createFacadeCmdProvider(
     }
 
     function service(param: DomainDesignService): DomainDesignService
-    function service(
-      name: string,
-      note?: string | DomainDesignNote,
-    ): DomainDesignService
+    function service(name: string, note?: string | DomainDesignNote): DomainDesignService
     function service(
       param1: DomainDesignService | string,
       note?: string | DomainDesignNote,
     ): DomainDesignService {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const s = context.createService(param1, note)
       context.linkTo(RULE, __id, s._attributes.rule, s._attributes.__id)
       return s
     }
-    const facadeCmd: DomainDesignFacadeCommand<
-      CustomInfoArrayToInfoObject<ARR>
-    > = {
+    const facadeCmd: DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>> = {
       _attributes: {
         __id,
         rule: RULE,

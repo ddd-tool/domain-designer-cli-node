@@ -31,12 +31,13 @@ export function isStruct(o: object): o is DomainNode {
   )
 }
 
-export enum Language {
-  Java = 'java',
-  Kotlin = 'kotlin',
-  CSharp = 'csharp',
-  Go = 'go',
-}
+export const Language = Object.freeze({
+  Java: 'java',
+  Kotlin: 'kotlin',
+  CSharp: 'csharp',
+  Go: 'go',
+} as const)
+export type Language = Enum<typeof Language>
 
 export class CodeFile {
   private readonly imports: Set<string> = new Set()
@@ -102,23 +103,27 @@ export interface CodeSnippets<
 // 生成器选项
 // ***************************************************************************
 export namespace java {
-  export enum JavaGeneratorAddition {
-    Lombok = 'Lombok',
-    LombokBuilder = 'LombokBuilder',
-    RecordValueObject = 'RecordValueObject',
-    CommandHandler = 'CommandHandler',
-    Jpa = 'Jpa',
-    Timezone = 'Timezone',
-    SpringFramework = 'SpringFramework',
-  }
-  export enum IdGenStrategy {
-    TABLE = 'TABLE',
-    SEQUENCE = 'SEQUENCE',
-    IDENTITY = 'IDENTITY',
-    UUID = 'UUID',
-    AUTO = 'AUTO',
-  }
-  export interface JavaContext extends GeneratorContext<Language.Java> {
+  export const JavaGeneratorAddition = Object.freeze({
+    Lombok: 'Lombok',
+    LombokBuilder: 'LombokBuilder',
+    RecordValueObject: 'RecordValueObject',
+    CommandHandler: 'CommandHandler',
+    Jpa: 'Jpa',
+    Timezone: 'Timezone',
+    SpringFramework: 'SpringFramework',
+  } as const)
+  export type JavaGeneratorAddition = Enum<typeof JavaGeneratorAddition>
+
+  export const IdGenStrategy = Object.freeze({
+    TABLE: 'TABLE',
+    SEQUENCE: 'SEQUENCE',
+    IDENTITY: 'IDENTITY',
+    UUID: 'UUID',
+    AUTO: 'AUTO',
+  } as const)
+  export type IdGenStrategy = Enum<typeof IdGenStrategy>
+
+  export interface JavaContext extends GeneratorContext<'java'> {
     nonNullAnnotation: string
     nullableAnnotation: string
     jdkVersion: '8' | '17' | '21'
@@ -126,31 +131,37 @@ export namespace java {
   }
 }
 export namespace kotlin {
-  export enum KotlinGeneratorAddition {
-    ValueClass = 'ValueClass',
-    CommandHandler = 'CommandHandler',
-    Timezone = 'Timezone',
-  }
-  export interface KotlinContext extends GeneratorContext<Language.Kotlin> {}
+  export const KotlinGeneratorAddition = Object.freeze({
+    ValueClass: 'ValueClass',
+    CommandHandler: 'CommandHandler',
+    Timezone: 'Timezone',
+  } as const)
+  export type KotlinGeneratorAddition = Enum<typeof KotlinGeneratorAddition>
+
+  export interface KotlinContext extends GeneratorContext<'kotlin'> {}
 }
 export namespace csharp {
-  export enum CSharpGeneratorAddition {
-    Timezone = 'Timezone',
-    RecordStruct = 'RecordStruct',
-    PrimaryConstructor = 'PrimaryConstructor',
-    CommandHandlerInterface = 'CommandHandlerInterface',
-    AggInterface = 'AggInterface',
-  }
-  export interface CSharpContext extends GeneratorContext<Language.CSharp> {
+  export const CSharpGeneratorAddition = Object.freeze({
+    Timezone: 'Timezone',
+    RecordStruct: 'RecordStruct',
+    PrimaryConstructor: 'PrimaryConstructor',
+    CommandHandlerInterface: 'CommandHandlerInterface',
+    AggInterface: 'AggInterface',
+  } as const)
+  export type CSharpGeneratorAddition = Enum<typeof CSharpGeneratorAddition>
+
+  export interface CSharpContext extends GeneratorContext<'csharp'> {
     commandHandlerInterface?: string
     aggInterface?: string
   }
 }
 export namespace go {
-  export enum GoGeneratorAddition {
-    SinglePackageEachDesigner = 'SinglePackageEachDesigner',
-  }
-  export interface GoContext extends GeneratorContext<Language.Go> {}
+  export const GoGeneratorAddition = Object.freeze({
+    SinglePackageEachDesigner: 'SinglePackageEachDesigner',
+  } as const)
+  export type GoGeneratorAddition = Enum<typeof GoGeneratorAddition>
+
+  export interface GoContext extends GeneratorContext<'go'> {}
 }
 
 export type GeneratorAddition<LANG extends Language> = LANG extends 'java'

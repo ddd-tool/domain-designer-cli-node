@@ -5,13 +5,13 @@ import {
   createSingletonAgg,
 } from 'vue-fn/domain'
 import type { DomainDesigner } from '@ddd-tool/domain-designer-core'
-import { filterContext, nomnomlCodeGenerator } from './gen-code'
 import {
-  defaultRenderConfig,
-  EMPTY_STORY,
-  type EdgeType,
-  type Ranker,
-} from './define'
+  filterContextByStory,
+  filterContextByWorkflows,
+  nomnomlCodeGenerator,
+  type FilterMode,
+} from './gen-code'
+import { defaultRenderConfig, EMPTY_STORY, type EdgeType, type Ranker } from './types'
 export { EMPTY_STORY }
 
 let agg: ReturnType<typeof createAgg>
@@ -19,9 +19,7 @@ let agg: ReturnType<typeof createAgg>
 function createAgg(data: Record<string, DomainDesigner>) {
   return createSingletonAgg(() => {
     const designRecords = ref(data)
-    const currentDesignKey = ref(
-      Object.keys(data).length ? Object.keys(data)[0] : undefined,
-    )
+    const currentDesignKey = ref(Object.keys(data).length ? Object.keys(data)[0] : undefined)
     const design = computed(() => {
       if (!currentDesignKey.value) {
         return undefined
@@ -34,6 +32,8 @@ function createAgg(data: Record<string, DomainDesigner>) {
       }
       return Object.keys(designRecords.value)
     })
+    const builtinStoryMode = ref(true)
+    const customWorkflowNames = ref<string[]>([])
 
     const renderConfig = reactive(defaultRenderConfig())
 
@@ -47,12 +47,26 @@ function createAgg(data: Record<string, DomainDesigner>) {
         return ''
       }
       const code: string[] = []
-      const generator = nomnomlCodeGenerator({
-        design: design.value,
-        currentStory: currentStory.value,
-        linkReadModel: linkReadModel.value,
-        linkSystem: linkSystem.value,
-      })
+      const generator = (() => {
+        let filter: FilterMode
+        if (builtinStoryMode.value) {
+          filter = {
+            mode: 'story',
+            currentStory: currentStory.value,
+          }
+        } else {
+          filter = {
+            mode: 'workflows',
+            customWorkflowNames: customWorkflowNames.value,
+          }
+        }
+        return nomnomlCodeGenerator({
+          design: design.value,
+          filter,
+          linkReadModel: linkReadModel.value,
+          linkSystem: linkSystem.value,
+        })
+      })()
       let item = generator.next()
       while (!item.done) {
         if (!item.value) {
@@ -105,22 +119,15 @@ function createAgg(data: Record<string, DomainDesigner>) {
 
     function focusFlow(workflow: undefined, userStory?: undefined): void
     function focusFlow(workflow: string, userStory: string): void
-    function focusFlow(
-      workflow: string | undefined,
-      userStory: string = EMPTY_STORY,
-    ) {
+    function focusFlow(workflow: string | undefined, userStory: string = EMPTY_STORY) {
       currentStory.value = userStory
       if (
         userStory !== EMPTY_STORY &&
         (!workflow ||
-          !design.value
-            ?._getContext()
-            ?.getUserStories()
-            ?.[userStory]?.includes(workflow))
+          !design.value?._getContext()?.getUserStories()?.[userStory]?.includes(workflow))
       ) {
         currentWorkflow.value =
-          design.value?._getContext()?.getUserStories()[userStory]?.[0] ||
-          undefined
+          design.value?._getContext()?.getUserStories()[userStory]?.[0] || undefined
       } else {
         currentWorkflow.value = workflow
       }
@@ -159,21 +166,36 @@ function createAgg(data: Record<string, DomainDesigner>) {
         downloadEnabled,
         linkReadModel,
         linkSystem,
+        builtinStoryMode,
+        customWorkflowNames,
       },
       commands: {
         focusFlow,
         downloadSvg() {
           onDownloadSvg.publish({})
         },
-        filterContext() {
-          return filterContext({
+        getFilteredContext() {
+          if (builtinStoryMode.value) {
+            return filterContextByStory({
+              design: design.value!,
+              currentStory: currentStory.value,
+              displayReadModel: linkReadModel.value,
+              displaySystem: linkSystem.value,
+            })
+          }
+          return filterContextByWorkflows({
             design: design.value!,
-            currentStory: currentStory.value,
+            workflowNames: customWorkflowNames.value,
             displayReadModel: linkReadModel.value,
             displaySystem: linkSystem.value,
           })
         },
-
+        setBuiltinStoryMode(b: boolean) {
+          builtinStoryMode.value = b
+        },
+        setCustomWorkflowNames(v: string[]) {
+          customWorkflowNames.value = v
+        },
         setRenderRanker(v: Ranker) {
           renderConfig.ranker = v
         },

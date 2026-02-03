@@ -1,5 +1,5 @@
 import { GeneratorPliginHelper } from '../domain/generator-agg'
-import { csharp, CodeSnippets, CodeFile } from '../domain/define'
+import { csharp, CodeSnippets, CodeFile } from '../domain/types'
 import { Ref } from '@vue/reactivity'
 import {
   DomainDesignAgg,
@@ -42,12 +42,8 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         ._getContext()
         .getDesignerOptions()
         .ignoreValueObjects.map((s) => strUtil.stringToLowerCamel(s))
-      function isValueObject(
-        info: DomainDesignInfo<DomainDesignInfoType, string>,
-      ): boolean {
-        return !ignoredValueObjects.includes(
-          strUtil.stringToLowerCamel(info._attributes.name),
-        )
+      function isValueObject(info: DomainDesignInfo<DomainDesignInfoType, string>): boolean {
+        return !ignoredValueObjects.includes(strUtil.stringToLowerCamel(info._attributes.name))
       }
       function inferObjectValueTypeByInfo(
         imports: Set<string>,
@@ -63,31 +59,20 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         return strUtil.stringToUpperCamel(info._attributes.name)
       }
 
-      function getStructModifier(
-        additions: Set<csharp.CSharpGeneratorAddition>,
-      ): string {
-        return additions.has(CSharpGeneratorAddition.RecordStruct)
-          ? ' struct'
-          : ''
+      function getStructModifier(additions: Set<csharp.CSharpGeneratorAddition>): string {
+        return additions.has(CSharpGeneratorAddition.RecordStruct) ? ' struct' : ''
       }
 
-      function inferCsharpTypeByName(
-        _imports: Set<string>,
-        obj: DomainDesignObject,
-      ): string {
+      function inferCsharpTypeByName(_imports: Set<string>, obj: DomainDesignObject): string {
         const additions = context.value.additions
-        const name = strUtil
-          .stringToLowerSnake(obj._attributes.name)
-          .replace(/_/, ' ')
+        const name = strUtil.stringToLowerSnake(obj._attributes.name).replace(/_/, ' ')
         if (/\b(time|timestamp|date|deadline|expire)\b/.test(name)) {
           if (additions.has(CSharpGeneratorAddition.Timezone)) {
             return 'System.DateTimeOffset'
           } else {
             return 'System.DateTime'
           }
-        } else if (
-          /\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)
-        ) {
+        } else if (/\b(enum|gender|sex|count|amount|num|number|flag|times)\b/.test(name)) {
           return 'int'
         } else if (/\b(price)$/.test(name)) {
           return 'decimal'
@@ -106,9 +91,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       }
 
       api.commands._setInfoCodeProvider(
-        (
-          info: DomainDesignInfo<DomainDesignInfoType, string>,
-        ): CodeSnippets<'Info'>[] => {
+        (info: DomainDesignInfo<DomainDesignInfoType, string>): CodeSnippets<'Info'>[] => {
           const additions = context.value.additions
           const imports = new Set<string>()
           const code: string[] = []
@@ -139,9 +122,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           {
             const code: string[] = []
             const infos = Object.values(cmd.inner)
-            code.push(
-              `public record${getStructModifier(additions)} ${commandName}`,
-            )
+            code.push(`public record${getStructModifier(additions)} ${commandName}`)
             code.push(`(`)
             const infoCode: string[] = []
             for (const info of infos) {
@@ -162,17 +143,13 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           }
           {
             const commandHandlerInterface = (() => {
-              if (
-                additions.has(CSharpGeneratorAddition.CommandHandlerInterface)
-              ) {
+              if (additions.has(CSharpGeneratorAddition.CommandHandlerInterface)) {
                 return ` : ${context.value.commandHandlerInterface}`
               }
               return ''
             })()
             const code: string[] = []
-            code.push(
-              `public class ${commandName}Handler${commandHandlerInterface}`,
-            )
+            code.push(`public class ${commandName}Handler${commandHandlerInterface}`)
             code.push(`{`)
             code.push(`    public void Handle(${commandName} command)`)
             code.push(`    {`)
@@ -193,18 +170,14 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
         (
           cmd: DomainDesignFacadeCommand<DomainDesignInfoRecord>,
         ): CodeSnippets<'FacadeCommand' | 'FacadeCommandHandler'>[] => {
-          const result: CodeSnippets<
-            'FacadeCommand' | 'FacadeCommandHandler'
-          >[] = []
+          const result: CodeSnippets<'FacadeCommand' | 'FacadeCommandHandler'>[] = []
           const additions = context.value.additions
           const imports = new Set<string>()
           const commandName = getDomainObjectName(cmd)
           {
             const code: string[] = []
             const infos = Object.values(cmd.inner)
-            code.push(
-              `public record${getStructModifier(additions)} ${commandName}`,
-            )
+            code.push(`public record${getStructModifier(additions)} ${commandName}`)
             code.push(`(`)
             const infoCode: string[] = []
             for (const info of infos) {
@@ -225,17 +198,13 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           }
           {
             const commandHandlerInterface = (() => {
-              if (
-                additions.has(CSharpGeneratorAddition.CommandHandlerInterface)
-              ) {
+              if (additions.has(CSharpGeneratorAddition.CommandHandlerInterface)) {
                 return ` : ${context.value.commandHandlerInterface}`
               }
               return ''
             })()
             const code: string[] = []
-            code.push(
-              `public class ${commandName}Handler${commandHandlerInterface}`,
-            )
+            code.push(`public class ${commandName}Handler${commandHandlerInterface}`)
             code.push(`{`)
             code.push(`    public void Handle(${commandName} command)`)
             code.push(`    {`)
@@ -253,9 +222,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setAggCodeProvider(
-        (
-          agg: DomainDesignAgg<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Agg' | 'AggImpl'>[] => {
+        (agg: DomainDesignAgg<DomainDesignInfoRecord>): CodeSnippets<'Agg' | 'AggImpl'>[] => {
           const result: CodeSnippets<'Agg' | 'AggImpl'>[] = []
           const designer = api.states.designer.value
           const additions = context.value.additions
@@ -268,19 +235,14 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               }
               return ''
             })()
-            code.push(
-              `public interface I${getDomainObjectName(agg)}${aggInterface}`,
-            )
+            code.push(`public interface I${getDomainObjectName(agg)}${aggInterface}`)
             code.push(`{`)
             const funCode: string[] = []
             const commands = [
-              ...designer._getContext().getAssociationMap()[
-                agg._attributes.__id
-              ],
+              ...designer._getContext().getAssociationMap()[agg._attributes.__id],
             ].filter((item) => {
               return (
-                item._attributes.rule === 'Command' ||
-                item._attributes.rule === 'FacadeCommand'
+                item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand'
               )
             })
             for (const command of commands) {
@@ -309,13 +271,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
             })()
             if (additions.has(CSharpGeneratorAddition.PrimaryConstructor)) {
               const commands = [
-                ...designer._getContext().getAssociationMap()[
-                  agg._attributes.__id
-                ],
+                ...designer._getContext().getAssociationMap()[agg._attributes.__id],
               ].filter((item) => {
                 return (
-                  item._attributes.rule === 'Command' ||
-                  item._attributes.rule === 'FacadeCommand'
+                  item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand'
                 )
               })
               const paramCode: string[] = []
@@ -342,9 +301,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               const funCode: string[] = []
               for (const command of commands) {
                 const commandName = getDomainObjectName(command)
-                funCode.push(
-                  `public void Handle${commandName}(${commandName} command)`,
-                )
+                funCode.push(`public void Handle${commandName}(${commandName} command)`)
                 funCode.push(`{`)
                 funCode.push(`    // HACK implement`)
                 funCode.push(`}`)
@@ -354,13 +311,10 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               code.push(`}`)
             } else {
               const commands = [
-                ...designer._getContext().getAssociationMap()[
-                  agg._attributes.__id
-                ],
+                ...designer._getContext().getAssociationMap()[agg._attributes.__id],
               ].filter((item) => {
                 return (
-                  item._attributes.rule === 'Command' ||
-                  item._attributes.rule === 'FacadeCommand'
+                  item._attributes.rule === 'Command' || item._attributes.rule === 'FacadeCommand'
                 )
               })
               code.push(`public class ${aggName} : I${aggName}${aggInterface}`)
@@ -377,25 +331,19 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
               const paramCode: string[] = []
               for (const info of infos) {
                 const infoName = getDomainObjectName(info)
-                paramCode.push(
-                  `${inferObjectValueTypeByInfo(imports, info)} ${infoName}`,
-                )
+                paramCode.push(`${inferObjectValueTypeByInfo(imports, info)} ${infoName}`)
               }
               code.push(`    public ${aggName}(${paramCode.join(', ')})`)
               code.push(`    {`)
               for (const info of infos) {
                 const infoName = getDomainObjectName(info)
-                code.push(
-                  `        ${infoName} = ${strUtil.lowerFirst(infoName)};`,
-                )
+                code.push(`        ${infoName} = ${strUtil.lowerFirst(infoName)};`)
               }
               code.push(`    }`)
               const funCode: string[] = []
               for (const command of commands) {
                 const commandName = getDomainObjectName(command)
-                funCode.push(
-                  `public void Handle${commandName}(${commandName} command)`,
-                )
+                funCode.push(`public void Handle${commandName}(${commandName} command)`)
                 funCode.push(`{`)
                 funCode.push(`    // HACK implement`)
                 funCode.push(`}`)
@@ -416,9 +364,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
       )
 
       api.commands._setEventCodeProvider(
-        (
-          event: DomainDesignEvent<DomainDesignInfoRecord>,
-        ): CodeSnippets<'Event'>[] => {
+        (event: DomainDesignEvent<DomainDesignInfoRecord>): CodeSnippets<'Event'>[] => {
           const additions = context.value.additions
           const eventName = getDomainObjectName(event)
           const imports = new Set<string>()
@@ -510,9 +456,7 @@ export default GeneratorPliginHelper.createHotSwapPlugin(() => {
           codeFiles.push(file)
         }
 
-        const facadeCommands = api.states.designer.value
-          ._getContext()
-          .getFacadeCommands()
+        const facadeCommands = api.states.designer.value._getContext().getFacadeCommands()
         for (const command of facadeCommands) {
           genInfos(command.inner)
           const fileName = getDomainObjectName(command) + '.cs'

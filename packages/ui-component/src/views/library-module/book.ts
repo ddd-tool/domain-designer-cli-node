@@ -1,12 +1,5 @@
 import { i, d } from './util'
-import {
-  管理员,
-  会员,
-  userValues,
-  定时器,
-  用户聚合,
-  会员账号读模型,
-} from './user'
+import { 管理员, 会员, userValues, 定时器, 用户聚合, 会员账号读模型 } from './user'
 
 export const bookValues = {
   二维码: i.id('qrCode', '二维码，一书一码，业务id'),
@@ -18,13 +11,7 @@ export const bookValues = {
 
 const 新书已入库 = d.event(
   'BookPutInStorage',
-  [
-    bookValues.二维码,
-    bookValues.ISBN,
-    bookValues.书名,
-    bookValues.图片,
-    bookValues.简介,
-  ],
+  [bookValues.二维码, bookValues.ISBN, bookValues.书名, bookValues.图片, bookValues.简介],
   '新书已入库',
 )
 
@@ -82,13 +69,7 @@ const 还书已逾期 = d.event(
 
 const 入库新书 = d.command(
   'PutBookInStorage',
-  [
-    bookValues.二维码,
-    bookValues.ISBN,
-    bookValues.书名,
-    bookValues.图片,
-    bookValues.简介,
-  ],
+  [bookValues.二维码, bookValues.ISBN, bookValues.书名, bookValues.图片, bookValues.简介],
   d.note`入库新书
     1. 二维码不能重复`,
 )
@@ -168,16 +149,9 @@ const 逾期 = d.command(
 
 const 书聚合 = d.agg('BookAgg', [bookValues.二维码], '书聚合')
 
-const 用户占用书聚合 = d.agg(
-  'UserOcuppyBookAgg',
-  [userValues.用户id, '占用数量'],
-  '用户占用书聚合',
-)
+const 用户占用书聚合 = d.agg('UserOcuppyBookAgg', [userValues.用户id, '占用数量'], '用户占用书聚合')
 
-const 增加账户逾期次数规则 = d.policy(
-  'SuspendAccountWhenTimeOut',
-  d.note`增加账户逾期次数`,
-)
+const 增加账户逾期次数规则 = d.policy('SuspendAccountWhenTimeOut', d.note`增加账户逾期次数`)
 
 const 增加逾期次数 = d.command(
   'IncreaseAccountTimeOutCount',
@@ -195,10 +169,7 @@ const 上架被找回的遗失的书规则 = d.policy(
     1.书被借出后遗失`,
 )
 
-const 下架书时取消预定规则 = d.policy(
-  'CancelReserveWhenRemoveFromShelf',
-  '下架书时取消预定规则',
-)
+const 下架书时取消预定规则 = d.policy('CancelReserveWhenRemoveFromShelf', '下架书时取消预定规则')
 
 const 用户占用书规则 = d.policy(
   'modifyUserOcuppyBookPolicy',
@@ -233,11 +204,7 @@ const 借出聚合 = d.agg(
 
 const 可预订书聚合 = d.agg(
   'AvailableBooksAgg',
-  [
-    bookValues.ISBN,
-    i.valueObj('二维码集合', d.note`${bookValues.二维码}`),
-    i.func('是否包含书'),
-  ],
+  [bookValues.ISBN, i.valueObj('二维码集合', d.note`${bookValues.二维码}`), i.func('是否包含书')],
   '可预订书聚合',
 )
 
@@ -276,23 +243,11 @@ const 借书服务 = d.service(
     书已预定时借书人是预定则可借`,
 )
 
-const 借出书 = d.command(
-  'BorrowOutCmd',
-  ['借书人id', bookValues.二维码],
-  '借出书',
-)
+const 借出书 = d.command('BorrowOutCmd', ['借书人id', bookValues.二维码], '借出书')
 
 const ISBN读模型 = d.readModel(
   'ISBNStatsRM',
-  [
-    bookValues.ISBN,
-    '累计借出次数',
-    '当前在馆数',
-    '当前借出数',
-    '书名',
-    '图片',
-    '简介',
-  ],
+  [bookValues.ISBN, '累计借出次数', '当前在馆数', '当前借出数', '书名', '图片', '简介'],
   'ISBN读模型',
 )
 
@@ -337,11 +292,7 @@ const 上架流程 = d.startWorkflow('上架流程')
 
 const 下架流程 = d.startWorkflow('下架流程')
 管理员.command(下架书).agg(书聚合).event(书已下架)
-书已下架
-  .policy(移除可预订策略)
-  .command(移除可预订书)
-  .agg(可预订书聚合)
-  .event(书已不可预订)
+书已下架.policy(移除可预订策略).command(移除可预订书).agg(可预订书聚合).event(书已不可预订)
 书已下架
   .policy(下架书时取消预定规则)
   .command(取消预定)
@@ -361,11 +312,7 @@ const 预定流程 = d.startWorkflow('预定流程')
   .command(调整用户占书量)
   .agg(用户占用书聚合)
   .event(用户占用书变化了)
-书已被预定
-  .policy(移除可预订策略)
-  .command(移除可预订书)
-  .agg(可预订书聚合)
-  .event(书已不可预订)
+书已被预定.policy(移除可预订策略).command(移除可预订书).agg(可预订书聚合).event(书已不可预订)
 
 const 取消预定流程 = d.startWorkflow('取消预定流程')
 会员.command(取消预定).agg(预定聚合).event(预定已取消)
@@ -374,11 +321,7 @@ const 取消预定流程 = d.startWorkflow('取消预定流程')
   .command(调整用户占书量)
   .agg(用户占用书聚合)
   .event(用户占用书变化了)
-预定已取消
-  .policy(添加可预订策略)
-  .command(添加可预订书)
-  .agg(可预订书聚合)
-  .event(书已可预订)
+预定已取消.policy(添加可预订策略).command(添加可预订书).agg(可预订书聚合).event(书已可预订)
 
 const 借书流程 = d.startWorkflow('借书流程')
 会员.facadeCmd(借出书装饰命令).service(借书服务)
@@ -395,10 +338,7 @@ const 借书流程 = d.startWorkflow('借书流程')
   .event(用户占用书变化了)
 
 const 还书流程 = d.startWorkflow('还书流程')
-会员.command(还书)
-  .agg(借出聚合)
-  .event(书已被还)
-  .policy(上架被找回的遗失的书规则)
+会员.command(还书).agg(借出聚合).event(书已被还).policy(上架被找回的遗失的书规则)
 
 const 上报遗失流程 = d.startWorkflow('上报遗失流程')
 会员.command(上报遗失)
@@ -438,10 +378,6 @@ const 自动处理预定超时流程 = d.startWorkflow('自动处理预定超时
   .command(调整用户占书量)
   .agg(用户占用书聚合)
   .event(用户占用书变化了)
-预定已超时
-  .policy(添加可预订策略)
-  .command(添加可预订书)
-  .agg(可预订书聚合)
-  .event(书已可预订)
+预定已超时.policy(添加可预订策略).command(添加可预订书).agg(可预订书聚合).event(书已可预订)
 
 d.defineUserStory('定时任务', [自动处理预定超时流程, 自动处理逾期流程])

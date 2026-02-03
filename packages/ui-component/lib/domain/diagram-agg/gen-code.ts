@@ -3,25 +3,52 @@ import type {
   DomainDesigner,
   DomainDesignInfo,
   DomainDesignInfoType,
+  DomainDesignCommand,
+  DomainDesignSystem,
+  DomainDesignFacadeCommand,
+  DomainDesignAgg,
+  DomainDesignEvent,
+  DomainDesignService,
+  DomainDesignActor,
+  DomainDesignPolicy,
+  DomainDesignReadModel,
 } from '@ddd-tool/domain-designer-core'
-import { EMPTY_STORY } from './define'
+import { EMPTY_STORY } from './types'
+import type { LinkType } from '@ddd-tool/domain-designer-core/common'
 
-export function* nomnomlCodeGenerator<T extends DomainDesigner>(params: {
-  design: T
-  currentStory: string
+export type FilterMode =
+  | { mode: 'story'; currentStory: string }
+  | { mode: 'workflows'; customWorkflowNames: string[] }
+
+export function* nomnomlCodeGenerator(params: {
+  design: DomainDesigner
+  filter: FilterMode
   linkReadModel: boolean
   linkSystem: boolean
 }) {
   const design = params.design
-  const currentStory = params.currentStory
   const displayReadModel = params.linkReadModel
   const displaySystem = params.linkSystem
-  const context = filterContext({
-    design,
-    currentStory,
-    displayReadModel,
-    displaySystem,
-  })
+  const context = (() => {
+    if (params.filter.mode === 'story') {
+      return filterContextByStory({
+        design,
+        currentStory: params.filter.currentStory,
+        displayReadModel,
+        displaySystem,
+      })
+    } else if (params.filter.mode === 'workflows') {
+      return filterContextByWorkflows({
+        design,
+        workflowNames: params.filter.customWorkflowNames,
+        displayReadModel,
+        displaySystem,
+      })
+    } else {
+      isNever(params.filter)
+      throw new Error('filter mode error')
+    }
+  })()
   for (const agg of context.aggs) {
     yield `[<aggregation id=${agg._attributes.__id}> ${agg._attributes.name}: Aggregation ${infosToCode(
       agg._attributes.infos,
@@ -70,10 +97,7 @@ export function* nomnomlCodeGenerator<T extends DomainDesigner>(params: {
   for (const i in context.links) {
     const linkType = context.links[i]
     const [_rule1, from, _rule2, to] = i.split(',')
-    if (
-      !params.linkReadModel &&
-      (_rule1 === 'ReadModel' || _rule2 === 'ReadModel')
-    ) {
+    if (!params.linkReadModel && (_rule1 === 'ReadModel' || _rule2 === 'ReadModel')) {
       continue
     }
     if (!params.linkSystem && (_rule1 === 'System' || _rule2 === 'System')) {
@@ -89,7 +113,7 @@ export function* nomnomlCodeGenerator<T extends DomainDesigner>(params: {
   }
 }
 
-export function filterContext(params: {
+export function filterContextByStory(params: {
   design: DomainDesigner
   currentStory: string
   displayReadModel: boolean
@@ -109,8 +133,6 @@ export function filterContext(params: {
   let systems = originalContext.getSystems()
   let links = originalContext.getLinks()
 
-  originalContext.getUserStories
-
   if (isEmptyStory(params.currentStory)) {
     return {
       aggs,
@@ -128,18 +150,14 @@ export function filterContext(params: {
   }
 
   const workflows: string[] = []
-  for (const workflowName of originalContext?.getUserStories()?.[
-    params.currentStory
-  ]!) {
+  for (const workflowName of originalContext?.getUserStories()?.[params.currentStory]!) {
     for (const id of originalContext?.getWorkflows()?.[workflowName]!) {
       workflows.push(id)
     }
   }
 
   commands = commands.filter((i) => workflows.includes(i._attributes.__id))
-  facadeCommands = facadeCommands.filter((i) =>
-    workflows.includes(i._attributes.__id),
-  )
+  facadeCommands = facadeCommands.filter((i) => workflows.includes(i._attributes.__id))
   aggs = aggs.filter((i) => workflows.includes(i._attributes.__id))
   events = events.filter((i) => workflows.includes(i._attributes.__id))
   services = services.filter((i) => workflows.includes(i._attributes.__id))
@@ -160,7 +178,87 @@ export function filterContext(params: {
     }
   }
 
-  // TODO: filter by story
+  return {
+    aggs,
+    commands,
+    facadeCommands,
+    events,
+    services,
+    actors,
+    policies,
+    readModels,
+    systems,
+    links,
+    getIdMap,
+  }
+}
+
+export function filterContextByWorkflows(params: {
+  design: DomainDesigner
+  workflowNames: string[]
+  displayReadModel: boolean
+  displaySystem: boolean
+}) {
+  const originalContext = params.design._getContext()
+  const getIdMap = originalContext.getIdMap
+
+  let commands: DomainDesignCommand<any>[] = []
+  let facadeCommands: DomainDesignFacadeCommand<any>[] = []
+  let aggs: DomainDesignAgg<any>[] = []
+  let events: DomainDesignEvent<any>[] = []
+  let services: DomainDesignService[] = []
+  let actors: DomainDesignActor[] = []
+  let policies: DomainDesignPolicy[] = []
+  let readModels: DomainDesignReadModel<any>[] = []
+  let systems: DomainDesignSystem[] = []
+  let links: Record<string, LinkType> = {}
+
+  if (params.workflowNames.length === 0) {
+    return {
+      aggs,
+      commands,
+      facadeCommands,
+      events,
+      services,
+      actors,
+      policies,
+      readModels,
+      systems,
+      links,
+      getIdMap,
+    }
+  }
+
+  const workflows: string[] = []
+  for (const workflowName of params.workflowNames) {
+    for (const id of originalContext?.getWorkflows()?.[workflowName]!) {
+      workflows.push(id)
+    }
+  }
+
+  commands = originalContext.getCommands().filter((i) => workflows.includes(i._attributes.__id))
+  facadeCommands = originalContext
+    .getFacadeCommands()
+    .filter((i) => workflows.includes(i._attributes.__id))
+  aggs = originalContext.getAggs().filter((i) => workflows.includes(i._attributes.__id))
+  events = originalContext.getEvents().filter((i) => workflows.includes(i._attributes.__id))
+  services = originalContext.getServices().filter((i) => workflows.includes(i._attributes.__id))
+  actors = originalContext.getActors().filter((i) => workflows.includes(i._attributes.__id))
+  policies = originalContext.getPolicies().filter((i) => workflows.includes(i._attributes.__id))
+  readModels = originalContext.getReadModels().filter((i) => workflows.includes(i._attributes.__id))
+  systems = originalContext.getSystems().filter((i) => workflows.includes(i._attributes.__id))
+
+  const originalContextLinks = originalContext.getLinks()
+  for (const k of Object.keys(originalContextLinks)) {
+    const [_srcRule, srcId, _targetRule, targetId] = k.split(',')
+    if (!srcId || !targetId) {
+      throw new Error(`invalid link: ${k}`)
+    }
+    if (workflows.includes(srcId) && workflows.includes(targetId)) {
+      links[k] = originalContextLinks[k]!
+    }
+  }
+
   return {
     aggs,
     commands,
@@ -180,9 +278,9 @@ function isEmptyStory(story: string): boolean {
   return story === EMPTY_STORY
 }
 
-function infosToCode<
-  T extends Record<string, DomainDesignInfo<DomainDesignInfoType, string>>,
->(infos: T): string {
+function infosToCode<T extends Record<string, DomainDesignInfo<DomainDesignInfoType, string>>>(
+  infos: T,
+): string {
   if (!infos) {
     return ''
   }

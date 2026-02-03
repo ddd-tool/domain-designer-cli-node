@@ -15,7 +15,7 @@ export function preprocessSvg(
     return document.createElement('svg')
   }
   const svgDoc = parser.parseFromString(domStr, 'image/svg+xml')
-  const context = diagramAgg.commands.filterContext()
+  const context = diagramAgg.commands.getFilteredContext()
   for (const node of Object.values(context.getIdMap())) {
     if (!isNodeLike(node)) {
       continue
@@ -35,9 +35,7 @@ export function preprocessSvg(
       }
       index++
     }
-    const nodeTitle = nodeDoc.querySelector(
-      '[data-compartment="0"]',
-    )! satisfies HTMLElement
+    const nodeTitle = nodeDoc.querySelector('[data-compartment="0"]')! satisfies HTMLElement
     nodeTitle.parentElement!.classList.add('node')
     nodeTitle.onmouseover = () => {
       nodeTitle.parentElement!.classList.add('highlight-node')
@@ -86,9 +84,7 @@ export function preprocessSvg(
 
       setTimeout(() => {
         infoDoc.onmouseover = () => {
-          for (const el of document.body.querySelectorAll(
-            `[data-id="${infoId}"]`,
-          )) {
+          for (const el of document.body.querySelectorAll(`[data-id="${infoId}"]`)) {
             console.debug('highlight-info', (el as HTMLElement).dataset.id)
             el.classList.add('highlight-info')
           }
@@ -97,9 +93,7 @@ export function preprocessSvg(
           handleActive(diagramAgg, info)
         }
         infoDoc.onmouseout = () => {
-          for (const el of document.body.querySelectorAll(
-            `[data-id="${infoId}"]`,
-          )) {
+          for (const el of document.body.querySelectorAll(`[data-id="${infoId}"]`)) {
             el.classList.remove('highlight-info')
           }
         }
@@ -161,12 +155,8 @@ function handleNote(
   })
 }
 
-function handleActive(
-  diagramAgg: ReturnType<typeof useDiagramAgg>,
-  node: DomainDesignObject,
-) {
-  const needActive =
-    diagramAgg.states.currentNode.value !== node._attributes.__id
+function handleActive(diagramAgg: ReturnType<typeof useDiagramAgg>, node: DomainDesignObject) {
+  const needActive = diagramAgg.states.currentNode.value !== node._attributes.__id
   const isNode = !isDomainDesignInfo(node)
 
   if (needActive) {
@@ -186,10 +176,7 @@ function handleActive(
       ?.forEach((el) => el.classList.remove('active'))
   }
   for (const el of document.body.querySelectorAll(`[data-id]`)) {
-    if (
-      (el as HTMLElement).dataset.id === node._attributes.__id &&
-      needActive
-    ) {
+    if ((el as HTMLElement).dataset.id === node._attributes.__id && needActive) {
       el.classList.add('active')
     } else {
       el.classList.remove('active')

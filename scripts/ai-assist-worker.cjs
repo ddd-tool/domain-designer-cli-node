@@ -7029,7 +7029,9 @@ async function handleQuery(httpWrapper) {
   const data = await httpWrapper.readReqBodyJson();
   const token = httpWrapper.getReqHeaders().authorization?.substring("Bearer ".length);
   if (!token?.length) {
-    httpWrapper.replyJson(401, { error: "Need a token in header. Authorization: Bearer <token>" });
+    httpWrapper.replyJson(401, {
+      error: "Need a token in header. Authorization: Bearer <token>"
+    });
     return;
   } else if (!isAIQueryRequestParam(data)) {
     httpWrapper.replyJson(400, { error: "Invalid request" });
@@ -7070,7 +7072,9 @@ async function handleUpload(httpWrapper) {
   const data = await httpWrapper.readReqBodyJson();
   const token = httpWrapper.getReqHeaders().authorization?.substring("Bearer ".length);
   if (!token?.length) {
-    httpWrapper.replyJson(401, { error: "Need a token in header. Authorization: Bearer <token>" });
+    httpWrapper.replyJson(401, {
+      error: "Need a token in header. Authorization: Bearer <token>"
+    });
     return;
   } else if (!isAIUploadRequestParam(data)) {
     httpWrapper.replyJson(400, { error: "Invalid request" });

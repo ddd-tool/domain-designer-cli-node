@@ -1,10 +1,6 @@
 import { reactive, ref } from 'vue'
-import {
-  createBroadcastEvent,
-  createSingletonAgg,
-  createPluginHelperByAgg,
-} from 'vue-fn/domain'
-import type { Conversation, SseEvent } from './define'
+import { createBroadcastEvent, createSingletonAgg, createPluginHelperByAgg } from 'vue-fn/domain'
+import type { Conversation, SseEvent } from './types'
 import { genId } from './common'
 import { createConversation } from './conversation'
 

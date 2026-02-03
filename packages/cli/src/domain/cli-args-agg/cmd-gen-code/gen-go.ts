@@ -1,12 +1,12 @@
-import { define } from '@ddd-tool/domain-designer-generator'
+import { types } from '@ddd-tool/domain-designer-generator'
 import prompts from 'prompts'
 import * as signal from '@/utils/signal'
 import { useI18nAgg } from '@/domain/i18n-agg'
 
 const { t: $t } = useI18nAgg().commands
 
-export async function requireGenGoContext(): Promise<define.go.GoContext> {
-  const context = {} as define.go.GoContext
+export async function requireGenGoContext(): Promise<types.go.GoContext> {
+  const context = {} as types.go.GoContext
   const { namespace /* additions */ } = await prompts(
     [
       {

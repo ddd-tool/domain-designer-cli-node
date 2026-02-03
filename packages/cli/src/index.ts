@@ -22,10 +22,7 @@ start()
 process.on('SIGINT', onCancel)
 
 async function start() {
-  log.print(
-    `Repo Addr:`,
-    log.info(packageInfo.repository.url.replace(/git\+/g, '')),
-  )
+  log.print(`Repo Addr:`, log.info(packageInfo.repository.url.replace(/git\+/g, '')))
   log.print('')
   log.print(`Script Version:`, log.info(packageInfo.version))
   log.print('')

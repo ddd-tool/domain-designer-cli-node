@@ -15,30 +15,14 @@ it('字符串转换模板函数', () => {
   const facadeCmd = d.facadeCmd('facadeCmd', [agg.inner.id], '')
   expect(note._attributes.template.reduce).instanceOf(Function)
   expect(agg._attributes.note?._attributes.template.reduce).instanceOf(Function)
-  expect(event._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(policy._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(actor._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(system._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(service._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(infoId._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(command._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
-  expect(facadeCmd._attributes.note?._attributes.template.reduce).instanceOf(
-    Function,
-  )
+  expect(event._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(policy._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(actor._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(system._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(service._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(infoId._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(command._attributes.note?._attributes.template.reduce).instanceOf(Function)
+  expect(facadeCmd._attributes.note?._attributes.template.reduce).instanceOf(Function)
 })
 
 it('字符串模板类型校验', () => {

@@ -24,11 +24,9 @@ function calculateIntersection(
   }
 
   const intersectX =
-    ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) /
-    denominator
+    ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denominator
   const intersectY =
-    ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) /
-    denominator
+    ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denominator
 
   // 检查交点是否在两个线段内
   const onLine1 =
@@ -50,12 +48,7 @@ function calculateIntersection(
   }
 }
 
-function findCircleAndIntersections(
-  A: Vector,
-  B: Vector,
-  C: Vector,
-  radius: number,
-) {
+function findCircleAndIntersections(A: Vector, B: Vector, C: Vector, radius: number) {
   // 判断方向（顺时针或逆时针）
   const angleDirection = determineAngleDirection(A, B, C)
   // 计算 BA 和 BC 的向量
@@ -128,12 +121,7 @@ function determineAngleDirection(A: Point, B: Point, C: Point): AngleDirection {
 //   return { x: rotatedX, y: rotatedY }
 // }
 
-function calculateLineIntersection(
-  A: Point,
-  B: Point,
-  C: Point,
-  D: Point,
-): Point | null {
+function calculateLineIntersection(A: Point, B: Point, C: Point, D: Point): Point | null {
   const x1 = A.x,
     y1 = A.y
   const x2 = B.x,
@@ -151,11 +139,9 @@ function calculateLineIntersection(
   }
 
   const intersectX =
-    ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) /
-    denominator
+    ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denominator
   const intersectY =
-    ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) /
-    denominator
+    ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denominator
 
   // 检查交点是否在两条线段上
   const onLineAB =

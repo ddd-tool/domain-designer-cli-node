@@ -12,22 +12,16 @@ import {
   NonEmptyArray,
 } from './types'
 
-export function createPolicyProvider(
-  designId: string,
-): DomainDesignPolicyProvider {
+export function createPolicyProvider(designId: string): DomainDesignPolicyProvider {
   const RULE = 'Policy'
   return (name: string, note?: string | DomainDesignNote) => {
     const context = useInternalContext(designId)
     const __id = genId()
 
-    function command<COMMAND extends DomainDesignCommand<any>>(
-      c: COMMAND,
-    ): COMMAND
+    function command<COMMAND extends DomainDesignCommand<any>>(c: COMMAND): COMMAND
     function command<
       G_NAME extends string,
-      ARR extends NonEmptyArray<
-        DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME
-      >,
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       name: string,
       infos: ARR,
@@ -36,21 +30,14 @@ export function createPolicyProvider(
     function command<
       COMMAND extends DomainDesignCommand<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<
-        DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME
-      >,
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       param1: COMMAND | string,
       infos?: ARR,
       note?: string | DomainDesignNote,
     ): COMMAND | DomainDesignCommand<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const c = context.createCommand(name, infos!, note)
@@ -63,9 +50,7 @@ export function createPolicyProvider(
     ): FACADECMD
     function facadeCmd<
       G_NAME extends string,
-      ARR extends NonEmptyArray<
-        DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME
-      >,
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       name: string,
       infos: ARR,
@@ -74,21 +59,14 @@ export function createPolicyProvider(
     function facadeCmd<
       FACADECMD extends DomainDesignFacadeCommand<any>,
       G_NAME extends string,
-      ARR extends NonEmptyArray<
-        DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME
-      >,
+      ARR extends NonEmptyArray<DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME>,
     >(
       param1: FACADECMD | string,
       infos?: ARR,
       note?: string | DomainDesignNote,
     ): FACADECMD | DomainDesignFacadeCommand<CustomInfoArrayToInfoObject<ARR>> {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const c = context.createFacadeCommand(name, infos!, note)
@@ -97,21 +75,13 @@ export function createPolicyProvider(
     }
 
     function service(param: DomainDesignService): DomainDesignService
-    function service(
-      name: string,
-      note?: string | DomainDesignNote,
-    ): DomainDesignService
+    function service(name: string, note?: string | DomainDesignNote): DomainDesignService
     function service(
       param1: DomainDesignService | string,
       note?: string | DomainDesignNote,
     ): DomainDesignService {
       if (typeof param1 === 'object') {
-        context.linkTo(
-          RULE,
-          __id,
-          param1._attributes.rule,
-          param1._attributes.__id,
-        )
+        context.linkTo(RULE, __id, param1._attributes.rule, param1._attributes.__id)
         return param1
       }
       const s = context.createService(param1, note)

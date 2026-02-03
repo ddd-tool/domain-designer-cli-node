@@ -20,10 +20,7 @@ const orderAggregation = d.agg(
 )
 
 // command
-const createOrder = d.command('createOrder', [
-  orderAggregation.inner.orderId,
-  userAccount,
-])
+const createOrder = d.command('createOrder', [orderAggregation.inner.orderId, userAccount])
 const autoDeduct = d.command('autoDeduct', [orderId])
 
 // event

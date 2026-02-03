@@ -1,12 +1,12 @@
 import { useI18nAgg } from '@/domain/i18n-agg'
-import { define } from '@ddd-tool/domain-designer-generator'
+import { types } from '@ddd-tool/domain-designer-generator'
 import prompts from 'prompts'
 import * as signal from '@/utils/signal'
 
 const { t: $t } = useI18nAgg().commands
 
-export async function requireGenJavaContext(): Promise<define.java.JavaContext> {
-  const context = {} as define.java.JavaContext
+export async function requireGenJavaContext(): Promise<types.java.JavaContext> {
+  const context = {} as types.java.JavaContext
   const { namespace, additions } = await prompts(
     [
       {
@@ -21,56 +21,44 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
         message: $t('question.subcommand.genCode.java.additions'),
         choices: [
           {
-            title: define.java.JavaGeneratorAddition.SpringFramework,
-            value: define.java.JavaGeneratorAddition.SpringFramework,
+            title: types.java.JavaGeneratorAddition.SpringFramework,
+            value: types.java.JavaGeneratorAddition.SpringFramework,
             selected: true,
-            description: $t(
-              'question.subcommand.genCode.java.additions.springFramework',
-            ),
+            description: $t('question.subcommand.genCode.java.additions.springFramework'),
           },
           {
-            title: define.java.JavaGeneratorAddition.Jpa,
-            value: define.java.JavaGeneratorAddition.Jpa,
+            title: types.java.JavaGeneratorAddition.Jpa,
+            value: types.java.JavaGeneratorAddition.Jpa,
             selected: false,
             description: $t('question.subcommand.genCode.java.additions.jpa'),
           },
           {
-            title: define.java.JavaGeneratorAddition.Lombok,
-            value: define.java.JavaGeneratorAddition.Lombok,
+            title: types.java.JavaGeneratorAddition.Lombok,
+            value: types.java.JavaGeneratorAddition.Lombok,
             selected: true,
-            description: $t(
-              'question.subcommand.genCode.java.additions.lombok',
-            ),
+            description: $t('question.subcommand.genCode.java.additions.lombok'),
           },
           {
-            title: define.java.JavaGeneratorAddition.LombokBuilder,
-            value: define.java.JavaGeneratorAddition.LombokBuilder,
-            description: $t(
-              'question.subcommand.genCode.java.additions.lombokBuilder',
-            ),
+            title: types.java.JavaGeneratorAddition.LombokBuilder,
+            value: types.java.JavaGeneratorAddition.LombokBuilder,
+            description: $t('question.subcommand.genCode.java.additions.lombokBuilder'),
           },
           {
-            title: define.java.JavaGeneratorAddition.CommandHandler,
-            value: define.java.JavaGeneratorAddition.CommandHandler,
+            title: types.java.JavaGeneratorAddition.CommandHandler,
+            value: types.java.JavaGeneratorAddition.CommandHandler,
             selected: true,
-            description: $t(
-              'question.subcommand.genCode.java.additions.commandHandler',
-            ),
+            description: $t('question.subcommand.genCode.java.additions.commandHandler'),
           },
           {
-            title: define.java.JavaGeneratorAddition.RecordValueObject,
-            value: define.java.JavaGeneratorAddition.RecordValueObject,
-            description: $t(
-              'question.subcommand.genCode.java.additions.recordValueObject',
-            ),
+            title: types.java.JavaGeneratorAddition.RecordValueObject,
+            value: types.java.JavaGeneratorAddition.RecordValueObject,
+            description: $t('question.subcommand.genCode.java.additions.recordValueObject'),
           },
           {
-            title: define.java.JavaGeneratorAddition.Timezone,
-            value: define.java.JavaGeneratorAddition.Timezone,
+            title: types.java.JavaGeneratorAddition.Timezone,
+            value: types.java.JavaGeneratorAddition.Timezone,
             selected: true,
-            description: $t(
-              'question.subcommand.genCode.java.additions.timezone',
-            ),
+            description: $t('question.subcommand.genCode.java.additions.timezone'),
           },
         ],
         hint: $t('question.subcommand.genCode.additions.hint'),
@@ -79,7 +67,7 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
     { onCancel: signal.onCancel },
   )
   let nonNullAnnotation: string | undefined = (additions as string[]).includes(
-    define.java.JavaGeneratorAddition.SpringFramework,
+    types.java.JavaGeneratorAddition.SpringFramework,
   )
     ? 'org.springframework.lang.NonNull'
     : undefined
@@ -113,9 +101,7 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
   }
 
   if (
-    (additions as define.java.JavaGeneratorAddition[]).includes(
-      define.java.JavaGeneratorAddition.Jpa,
-    )
+    (additions as types.java.JavaGeneratorAddition[]).includes(types.java.JavaGeneratorAddition.Jpa)
   ) {
     const { idGenStrategy } = await prompts(
       [
@@ -124,17 +110,17 @@ export async function requireGenJavaContext(): Promise<define.java.JavaContext> 
           type: 'select',
           message: $t('question.subcommand.genCode.java.idGenStrategy'),
           choices: [
-            { title: 'TABLE', value: define.java.IdGenStrategy.TABLE },
-            { title: 'SEQUENCE', value: define.java.IdGenStrategy.SEQUENCE },
-            { title: 'IDENTITY', value: define.java.IdGenStrategy.IDENTITY },
-            { title: 'UUID', value: define.java.IdGenStrategy.UUID },
-            { title: 'AUTO', value: define.java.IdGenStrategy.AUTO },
+            { title: 'TABLE', value: types.java.IdGenStrategy.TABLE },
+            { title: 'SEQUENCE', value: types.java.IdGenStrategy.SEQUENCE },
+            { title: 'IDENTITY', value: types.java.IdGenStrategy.IDENTITY },
+            { title: 'UUID', value: types.java.IdGenStrategy.UUID },
+            { title: 'AUTO', value: types.java.IdGenStrategy.AUTO },
           ],
         },
       ],
       { onCancel: signal.onCancel },
     )
-    context.idGenStrategy = idGenStrategy as define.java.IdGenStrategy
+    context.idGenStrategy = idGenStrategy as types.java.IdGenStrategy
   }
 
   context.namespace = namespace

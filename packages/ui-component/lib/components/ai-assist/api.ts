@@ -1,5 +1,5 @@
 import { useAiAssistAgg } from '#lib/domain/ai-assist'
-import type { SseEvent } from '#lib/domain/ai-assist/define'
+import type { SseEvent } from '#lib/domain/ai-assist/types'
 
 const aiAssistAgg = useAiAssistAgg()
 const decoder = new TextDecoder('utf-8')

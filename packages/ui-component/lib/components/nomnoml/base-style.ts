@@ -1,4 +1,4 @@
-import type { RenderConfig } from '#lib/domain/diagram-agg/define'
+import type { RenderConfig } from '#lib/domain/diagram-agg/types'
 
 export default function (config: RenderConfig) {
   return `
