@@ -25,7 +25,7 @@ const agg = createSingletonAgg(() => {
 
   const executable = path.basename(process.argv[0])
   const packageManager = ref<PackageManager>(PackageManager.NPM)
-  if (executable.includes('bun') || process.argv[1].includes('/.bun/')) {
+  if (executable.includes('bun') || process.argv[1].replace(/\\/g, '/').includes('/.bun/')) {
     packageManager.value = PackageManager.BUN
   } else if (executable.includes('node')) {
     if (checkPnpm()) {
