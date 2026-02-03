@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Nomnoml from '#lib/components/nomnoml/Index.vue'
 import DragZoom from '#lib/components/drag-zoom/Index.vue'
-import AiAssist from '#lib/components/ai-assist/Index.vue'
 import ToolBar from '#lib/components/tool-bar/Index.vue'
 import StoryBar from '#lib/components/story-bar/Index.vue'
 import { EMPTY_STORY, useDiagramAgg } from '#domain/diagram-agg'
@@ -88,7 +87,7 @@ const toggle = (event: Event) => {
 
 // =========================== Settings ===========================
 const drawerVisible = ref(false)
-const drawerType = ref<'UserStories' | 'Settings' | 'AiAssistant' | undefined>(undefined)
+const drawerType = ref<'UserStories' | 'Settings' | undefined>(undefined)
 const workflowPlayInterval = bindRef(diagramAgg.states.workflowPlayInterval, (v) => {
   diagramAgg.commands.setWorkflowPlayInterval(v)
 })
@@ -260,7 +259,6 @@ const dockItems = ref([
 </script>
 
 <template>
-  <AiAssist></AiAssist>
   <ToolBar :designs="designs"></ToolBar>
   <StoryBar :dragZoomRef="dragZoomRef"></StoryBar>
   <template v-show="false">

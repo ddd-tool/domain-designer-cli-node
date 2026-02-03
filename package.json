@@ -16,7 +16,6 @@
   ],
   "scripts": {
     "dev": "pnpm -F playground dev",
-    "dev:ai": "pnpm -F ai dev",
     "dev:ui": "pnpm -F @ddd-tool/domain-designer-ui-component dev",
     "build": "pnpm syncver && pnpm -r build && pnpm fmt",
     "fmt": "pnpm exec prettier --write \"**/*.{vue,ts}\"",
