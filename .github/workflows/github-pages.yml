@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          cache-dependency-path: github-pages/pnpm-lock.yaml # 指定 lockfile 路径
+          cache-dependency-path: pnpm-lock.yaml
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
