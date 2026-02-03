@@ -47,6 +47,32 @@ const workflowName = d.startWorkflow('CreateOrder')
 actor.command(createOrder).agg(orderAgg).event(orderCreated)
 ```
 
+### Node Method Reference
+
+Each type of node has specific methods that can be called in a workflow:
+
+| Node Type | Available Methods | Description |
+| :--- | :--- | :--- |
+| **Actor** | `.command()`, `.facadeCmd()`, `.readModel()` | Initiates commands or reads data |
+| **Command** | `.agg()` | Targets an aggregate |
+| **FacadeCommand** | `.agg()`, `.service()` | Targets aggregate or calls service |
+| **Aggregate** | `.event()`, `.command()` | Emits event or creates nested command |
+| **Event** | `.policy()`, `.system()`, `.readModel()`, `.command()` | Triggers policy/system/readModel/command |
+| **Policy** | `.command()`, `.facadeCmd()`, `.service()` | Issues commands or calls service |
+| **Service** | `.command()`, `.facadeCmd()`, `.agg()` | Issues commands or targets aggregate |
+| **System** | `.command()`, `.facadeCmd()`, `.event()` | Issues commands or emits events |
+
+**Important**: Each method call in a workflow returns a reference to the target node, allowing you to continue chaining:
+
+```typescript
+d.startWorkflow('Example')
+//      Actor       →    Command    →  Aggregate  →   Event
+customer.command(createOrder).agg(orderAgg).event(orderCreated)
+//                                                      ↓
+//                                            Event → Policy
+//                                              orderCreated.policy(autoConfirmPolicy)
+```
+
 ### Complete Example
 
 ```typescript
@@ -191,20 +217,48 @@ const orderCreated = d.command('订单已创建') // Avoid - sounds like an even
 Policies automate business rules:
 
 ```typescript
-const paymentPolicy = d.policy('支付超时取消规则')
+const paymentTimeoutPolicy = d.policy('支付超时取消规则')
 const cancelOrder = d.command('取消订单')
+const orderCancelled = d.event('订单已取消')
+const orderAgg = d.agg('订单聚合', [d.info.id('订单号')])
 
-// When payment timeout event occurs, trigger cancellation
-paymentTimeout.event(cancelOrder)
+// When payment timeout event occurs, policy triggers cancellation
+d.startWorkflow('支付超时取消流程')
+paymentTimeout
+  .policy(paymentTimeoutPolicy)
+  .command(cancelOrder)
+  .agg(orderAgg)
+  .event(orderCancelled)
 ```
 
-### External Systems
+### Event to External Systems
 
-Integrate with external systems:
+Events can trigger actions in external systems:
 
 ```typescript
 const emailSystem = d.system('邮件系统')
-orderCreated.event(emailSystem)
+const smsSystem = d.system('短信系统')
+
+// In a workflow, connect events to systems
+d.startWorkflow('订单创建通知流程')
+orderCreated.system(emailSystem)
+orderCreated.system(smsSystem)
+```
+
+### Event to Read Models
+
+Events update read models:
+
+```typescript
+const orderSummary = d.readModel('订单汇总读模型', [
+  d.info.id('订单号'),
+  d.info.document('商品信息'),
+  d.info.version('订单状态'),
+])
+
+// In a workflow, connect events to read models
+d.startWorkflow('订单查询流程')
+orderCreated.readModel(orderSummary)
 ```
 
 ### Read Models
