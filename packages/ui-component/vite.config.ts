@@ -1,13 +1,15 @@
-import { fileURLToPath, URL } from 'url'
+import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
 import topLevelAwait from 'vite-plugin-top-level-await'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    vueDevTools(),
     topLevelAwait({
       // The export name of top-level await promise for each chunk module
       promiseExportName: '__tla',
@@ -38,7 +40,7 @@ export default defineConfig({
       '#lib': fileURLToPath(new URL('./lib', import.meta.url)),
       '#domain': fileURLToPath(new URL('./lib/domain', import.meta.url)),
       '@ddd-tool/domain-designer-core': fileURLToPath(
-        new URL('./node_modules/@ddd-tool/domain-designer-core', import.meta.url)
+        new URL('./node_modules/@ddd-tool/domain-designer-core', import.meta.url),
       ),
     },
   },

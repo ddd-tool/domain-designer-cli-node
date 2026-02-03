@@ -22,6 +22,6 @@
     "read-pkg": "^9.0.1"
   },
   "peerDependencies": {
-    "@vue/reactivity": "3.5.26"
+    "@vue/reactivity": "3.5.27"
   }
 }
