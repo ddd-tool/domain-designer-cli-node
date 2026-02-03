@@ -1,6 +1,6 @@
 {
   "name": "@ddd-tool/domain-designer-cli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "description": "",
   "type": "module",
@@ -9,7 +9,9 @@
   },
   "files": [
     "./bin",
+    "./packages/core/dist",
     "./packages/playground",
+    "./packages/ui-component/dist",
     "./scripts",
     "./templates",
     "./tsconfig.json"

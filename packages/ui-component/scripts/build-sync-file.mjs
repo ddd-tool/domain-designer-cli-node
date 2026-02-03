@@ -15,4 +15,17 @@ delete distPackageInfo.readme
 distPackageInfo.private = false
 distPackageInfo.main = 'index.umd.cjs'
 distPackageInfo.module = 'index.js'
+
+// Replace workspace: dependencies with file: relative paths for embedded distribution
+if (distPackageInfo.dependencies) {
+  for (const [name, version] of Object.entries(distPackageInfo.dependencies)) {
+    if (version === 'workspace:^' || version === 'workspace:*' || version === 'workspace:~') {
+      // Replace with file: relative path for core package
+      if (name === '@ddd-tool/domain-designer-core') {
+        distPackageInfo.dependencies[name] = 'file:../../core/dist'
+      }
+    }
+  }
+}
+
 fs.writeFileSync(path.join(rootDir, 'dist', 'package.json'), JSON.stringify(distPackageInfo, null, 2))

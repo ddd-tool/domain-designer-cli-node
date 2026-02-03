@@ -25,7 +25,17 @@ const agg = createSingletonAgg(() => {
 
   const executable = path.basename(process.argv[0])
   const packageManager = ref<PackageManager>(PackageManager.NPM)
-  if (executable.includes('bun') || process.argv[1].replace(/\\/g, '/').includes('/.bun/')) {
+
+  // Check for Bun by examining execPath and environment
+  const execPath = process.execPath.toLowerCase()
+  const execDir = path.dirname(process.execPath).toLowerCase()
+  const isBun =
+    executable.includes('bun') ||
+    execPath.includes('bun') ||
+    execDir.includes('.bun') ||
+    (process.argv[1] && process.argv[1].replace(/\\/g, '/').includes('/.bun/'))
+
+  if (isBun) {
     packageManager.value = PackageManager.BUN
   } else if (executable.includes('node')) {
     if (checkPnpm()) {

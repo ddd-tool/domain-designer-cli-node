@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "",
   "type": "module",
@@ -11,8 +11,6 @@
     "verify": "vue-tsc -p ./tsconfig.json"
   },
   "devDependencies": {
-    "@ddd-tool/domain-designer-core": "workspace:^",
-    "@ddd-tool/domain-designer-ui-component": "workspace:^",
     "@primeuix/themes": "^2.0.3",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",

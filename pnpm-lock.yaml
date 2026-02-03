@@ -145,12 +145,6 @@ importers:
 
   packages/playground:
     devDependencies:
-      '@ddd-tool/domain-designer-core':
-        specifier: workspace:^
-        version: link:../core/dist
-      '@ddd-tool/domain-designer-ui-component':
-        specifier: workspace:^
-        version: link:../ui-component/dist
       '@primeuix/themes':
         specifier: ^2.0.3
         version: 2.0.3
@@ -210,7 +204,7 @@ importers:
   packages/ui-component/dist:
     dependencies:
       '@ddd-tool/domain-designer-core':
-        specifier: workspace:^
+        specifier: file:../../core/dist
         version: link:../../core/dist
       '@primeuix/themes':
         specifier: ^2.0.3
