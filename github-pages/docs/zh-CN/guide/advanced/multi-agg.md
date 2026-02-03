@@ -80,14 +80,14 @@ const 订单聚合 = d.agg(
 
 ::: code-group
 
-```ts [/mall.ts]
+```ts [/order.ts]
 import { d } from './order-detail/common'
 import './order-detail/book'
 import './order-detail/order'
 export default d
 ```
 
-```ts [/mall-detail/order.ts]
+```ts [/order-detail/order.ts]
 import { d, i } from './common'
 import { bookValues } from './book'
 
@@ -98,7 +98,7 @@ const 已下单 = d.event(
 )
 ```
 
-```ts [/mall-detail/book.ts]
+```ts [/order-detail/book.ts]
 import { d, i } from './common'
 
 export const bookValues = {
@@ -113,7 +113,7 @@ const 图书聚合 = d.agg(
 )
 ```
 
-```ts [/mall-detail/common.ts]
+```ts [/order-detail/common.ts]
 import { createDomainDesigner } from '@ddd-tool/domain-designer-core'
 export const d = createDomainDesigner()
 export const i = d.info

@@ -95,9 +95,9 @@ d.facadeCmd(
 d.command(
   'CreateUserFacadeCmd',
   [
-    d.info.valueObject('userName'),
-    d.info.valueObject('email'),
-    d.info.valueObject('gender', '性别'),
+    d.info.valueObj('userName'),
+    d.info.valueObj('email'),
+    d.info.valueObj('gender', '性别'),
   ],
   '创建用户外观命令'
 )
@@ -119,9 +119,9 @@ d.command(
 d.command(
   'CreateUserCmd',
   [
-    d.info.valueObject('userName'),
-    d.info.valueObject('email'),
-    d.info.valueObject('gender', '性别'),
+    d.info.valueObj('userName'),
+    d.info.valueObj('email'),
+    d.info.valueObj('gender', '性别'),
   ],
   '创建用户命令'
 )
@@ -210,7 +210,7 @@ d.readModel(
 ```ts
 d.readModel(
   'OrderDetailReadModel',
-  [d.info.id('orderId'), d.info.valueObject('orderTime', '下单时间')],
+  [d.info.id('orderId'), d.info.valueObj('orderTime', '下单时间')],
   '订单详情读模型'
 )
 ```

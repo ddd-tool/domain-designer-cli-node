@@ -18,7 +18,7 @@ const 订单聚合 = d.agg(
   'OrderAgg',
   [
     orderValues.订单流水号,
-    d.valueObj(
+    d.info.valueObj(
       '最终价格',
       d.note`最终价格 = ${bookValues.图书价格} * ${orderValues.订购数量}`
     ),

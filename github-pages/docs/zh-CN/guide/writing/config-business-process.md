@@ -99,12 +99,12 @@ const 银行拆借流程 = d.startWorkflow('银行拆借流程')
 const 个人贷合同重定价流程 = d.startWorkflow('外币收款结汇流程')
 // ...
 
-d.userStory('作为高贵的用户，我要办理Shibor基准浮息类个人贷款', [
+d.defineUserStory('作为高贵的用户，我要办理Shibor基准浮息类个人贷款', [
   银行拆借流程,
   个人贷合同重定价流程,
   Shibor基准浮息类个人贷款流程,
 ])
-d.userStory('作为高贵的用户，我要办理一般个人贷款', [
+d.defineUserStory('作为高贵的用户，我要办理一般个人贷款', [
   个人贷合同重定价流程,
   一般个人贷款流程,
 ])
