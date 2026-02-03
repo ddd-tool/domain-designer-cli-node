@@ -14502,25 +14502,38 @@ var import_path7 = __toESM(require("path"), 1);
 var import_child_process5 = require("child_process");
 
 // ../core/dist/index.js
-function jn(t2) {
+var jn = Object.freeze({
+  Note: "Note",
+  Info: "Info",
+  Actor: "Actor",
+  Command: "Command",
+  FacadeCommand: "FacadeCommand",
+  Event: "Event",
+  Agg: "Agg",
+  System: "System",
+  Policy: "Policy",
+  Service: "Service",
+  ReadModel: "ReadModel"
+});
+function Mn(t2) {
   return t2 && t2._attributes && t2._attributes.rule === "Info";
 }
-function $n(t2) {
+function Un(t2) {
   return t2 && t2._attributes && t2._attributes.rule === "Agg";
 }
-function Un(t2) {
+function Ln(t2) {
   return t2 && t2._attributes && t2._attributes.rule === "Command";
 }
-function Ln(t2) {
+function Kn(t2) {
   return t2 && t2._attributes && t2._attributes.rule === "FacadeCommand";
 }
-function Kn(t2) {
+function Hn(t2) {
   return t2 && t2._attributes && t2._attributes.rule === "Event";
 }
-function Wn(t2) {
+function Bn(t2) {
   return t2 && t2._attributes && t2._attributes.rule === "ReadModel";
 }
-function Yn(t2) {
+function qn(t2) {
   const e = t2;
   return e && typeof e.actor == "function" && typeof e.startWorkflow == "function" && typeof e.defineUserStory == "function" && typeof e._getContext == "function" && typeof e.note == "function" && typeof e.info == "object" && typeof e.command == "function" && typeof e.facadeCmd == "function" && typeof e.agg == "function" && typeof e.event == "function" && typeof e.system == "function" && typeof e.policy == "function" && typeof e.service == "function" && typeof e.readModel == "function";
 }
@@ -14774,7 +14787,7 @@ function Ze(t2, e, n2, s = true, r = false) {
 var S2 = [];
 var C2 = -1;
 var K = [];
-var V2 = null;
+var I2 = null;
 var U = 0;
 var tn = /* @__PURE__ */ Promise.resolve();
 var wt = null;
@@ -14798,22 +14811,22 @@ function te() {
   wt || (wt = tn.then(ee));
 }
 function on(t2) {
-  N2(t2) ? K.push(...t2) : V2 && t2.id === -1 ? V2.splice(U + 1, 0, t2) : t2.flags & 1 || (K.push(t2), t2.flags |= 1), te();
+  N2(t2) ? K.push(...t2) : I2 && t2.id === -1 ? I2.splice(U + 1, 0, t2) : t2.flags & 1 || (K.push(t2), t2.flags |= 1), te();
 }
 function sn(t2) {
   if (K.length) {
     const e = [...new Set(K)].sort(
       (n2, s) => Q(n2) - Q(s)
     );
-    if (K.length = 0, V2) {
-      V2.push(...e);
+    if (K.length = 0, I2) {
+      I2.push(...e);
       return;
     }
-    for (V2 = e, process.env.NODE_ENV !== "production" && (t2 = t2 || /* @__PURE__ */ new Map()), U = 0; U < V2.length; U++) {
-      const n2 = V2[U];
+    for (I2 = e, process.env.NODE_ENV !== "production" && (t2 = t2 || /* @__PURE__ */ new Map()), U = 0; U < I2.length; U++) {
+      const n2 = I2[U];
       process.env.NODE_ENV !== "production" && ne(t2, n2) || (n2.flags & 4 && (n2.flags &= -2), n2.flags & 8 || n2(), n2.flags &= -2);
     }
-    V2 = null, U = 0;
+    I2 = null, U = 0;
   }
 }
 var Q = (t2) => t2.id == null ? t2.flags & 2 ? -1 : 1 / 0 : t2.id;
@@ -15362,7 +15375,7 @@ __export(types_exports, {
   kotlin: () => kotlin
 });
 function isStruct(o) {
-  return Un(o) || Ln(o) || $n(o) || Kn(o) || Wn(o);
+  return Ln(o) || Kn(o) || Un(o) || Hn(o) || Bn(o);
 }
 var Language = Object.freeze({
   Java: "java",
@@ -15573,7 +15586,7 @@ var generator_java_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(()
         } else if (/^(if|is)\b/.test(name)) {
           return "Boolean";
         }
-        if (jn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
+        if (Mn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
           return "Long";
         }
         return "String";
@@ -16484,7 +16497,7 @@ var generator_kotlin_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
         } else if (/^(if|is)\b/.test(name)) {
           return "Boolean";
         }
-        if (jn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version") || /\b(id|identifier|ver|version)$/.test(name)) {
+        if (Mn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version") || /\b(id|identifier|ver|version)$/.test(name)) {
           return "Long";
         }
         return "String";
@@ -16856,7 +16869,7 @@ var generator_go_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(() =
         } else if (/^(if|is)\b/.test(name)) {
           return "bool";
         }
-        if (jn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
+        if (Mn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
           return "int64";
         }
         return "string";
@@ -17239,7 +17252,7 @@ var generator_csharp_plugin_default = GeneratorPliginHelper.createHotSwapPlugin(
         } else if (/^(if|is)\b/.test(name)) {
           return "bool";
         }
-        if (jn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
+        if (Mn(obj) && (obj._attributes.type === "Id" || obj._attributes.type === "Version" || /\b(id|identifier|ver|version)$/.test(name))) {
           return "long";
         }
         return "string";
@@ -18054,7 +18067,7 @@ async function execute5(args) {
       continue;
     }
     const m = await import(`file://${sourcePath.replace(/\\/g, "/")}/.output/esm/${file}`);
-    if (!m || !Yn(m.default)) {
+    if (!m || !qn(m.default)) {
       continue;
     }
     const designer = m.default;
