@@ -20,12 +20,25 @@ Key principles:
 - **Fallback**: bun is also supported
 - Monorepo with pnpm workspaces (`pnpm-workspace.yaml`)
 
+## Critical Build Note
+
+When modifying the `@ddd-tool/domain-designer-core` package's public API (adding/removing exports), you MUST rebuild the core package:
+
+```bash
+pnpm --filter @ddd-tool/domain-designer-core build
+```
+
+This is required because other packages consume the pre-built `dist/` files (via `package.json` → `module` field), not the source TypeScript files. Without rebuilding, you'll see runtime errors like:
+
+```text
+The requested module does not provide an export named 'X'
+```
+
 ## Common Commands
 
 ```bash
 # Development
 pnpm dev              # Run playground dev server
-pnpm dev:ai           # Run AI assist dev server
 pnpm dev:ui           # Run UI component dev server
 
 # Build
@@ -56,8 +69,7 @@ packages/
 ├── generator/        # Code generation utilities (@ddd-tool/domain-designer-generator)
 ├── ui-component/     # Vue 3 UI components (@ddd-tool/domain-designer-ui-component)
 ├── web/              # Web visualization server
-├── playground/       # Development demo environment
-└── ai-assist/        # AI assistance features (@ddd-tool/ai-assist)
+└── playground/       # Development demo environment
 ```
 
 ### Core Package Architecture
@@ -99,10 +111,6 @@ The `@ddd-tool/domain-designer-generator` package provides:
 
 Each plugin implements code generation for a specific target language.
 
-### AI Assist Package
-
-The `@ddd-tool/ai-assist` package provides AI-powered assistance for domain modeling. It runs a development server accessible via `pnpm dev:ai`.
-
 ## Workspace Data Sources
 
 **Critical Rule**: Only TypeScript files in the workspace root that **default export a DomainDesigner instance** are recognized as "data sources":
@@ -124,6 +132,43 @@ Multiple data source files are recognized as switchable data sources in the web 
 - **Module resolution**: Bundler
 - **Target**: ESNext
 - Composite builds: Each package has its own `tsconfig.*.json`
+
+## TypeScript Patterns
+
+### Discriminated Unions for Mutually Exclusive Parameters
+
+The codebase uses discriminated unions to enforce mutually exclusive parameters at compile time:
+
+```typescript
+export type FilterMode =
+  | { mode: 'story'; currentStory: string }
+  | { mode: 'workflows'; customWorkflowNames: string[] }
+
+export function* nomnomlCodeGenerator(params: {
+  design: DomainDesigner
+  filter: FilterMode  // Exactly one mode must be provided
+  linkReadModel: boolean
+  linkSystem: boolean
+}) {
+  if (params.filter.mode === 'story') {
+    // currentStory is available
+  } else if (params.filter.mode === 'workflows') {
+    // customWorkflowNames is available
+  } else {
+    isNever(params.filter)  // Exhaustive check
+    throw new Error('filter mode error')
+  }
+}
+```
+
+This pattern prevents API misuse by making invalid states unrepresentable.
+
+### Global Type Helpers
+
+The project defines global utility types in each package's `globals.d.ts`:
+
+- `isNever(...args: never[])` - Helper for exhaustive type checking in discriminated unions
+- `Enum<T>` - Extracts union type values from an object (e.g., `Enum<typeof DomainDesignRule>`)
 
 ## Testing
 
@@ -149,6 +194,7 @@ Built with Vue 3 + PrimeVue:
 - User story display
 - Workflow animations
 - Completeness analysis
+- Custom workflow filtering via `customWorkflowNames` state (for non-story-based filtering)
 
 ## Design Philosophy
 
