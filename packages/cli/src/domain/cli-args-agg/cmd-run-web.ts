@@ -62,10 +62,14 @@ export async function execute(args: RunWebCommandArgs) {
   }
   log.printSuccess('================ 安装运行依赖: Succeeded ================')
 
-  log.printInfo('================ 装配代码与环境变量: Starting... ================')
+  log.printInfo(
+    '================ 装配代码与环境变量: Starting... ================',
+  )
   configSource(webRoot, args.source)
   configEnvironment(webRoot, args.source)
-  log.printSuccess('================ 装配代码与环境变量: Succeeded ================')
+  log.printSuccess(
+    '================ 装配代码与环境变量: Succeeded ================',
+  )
 
   log.printInfo('================ 运行Web服务: Starting... ================')
   if (environmentAgg.states.osType.value === 'windows') {
@@ -134,10 +138,12 @@ async function configSource(webRoot: string, source: string) {
       $t('warning.needUpdate{workspaceVer}{scriptVer}', {
         workspaceVer: fs.readFileSync(versionFilePath, 'utf-8').trim(),
         scriptVer: packageInfo.version,
-      })
+      }),
     )
     log.print(
-      chalk.bgYellow(`${environmentAgg.states.packageManager.value === 'bun' ? 'bunx ' : ''}domain-designer-cli update`)
+      chalk.bgYellow(
+        `${environmentAgg.states.packageManager.value === 'bun' ? 'bunx ' : ''}domain-designer-cli update`,
+      ),
     )
   }
 
@@ -175,9 +181,13 @@ ${designs
 export default data
 `
 
-  fs.writeFileSync(path.join(webRoot, 'packages', 'playground', 'src', 'views', 'index.ts'), mergedTsCode, {
-    encoding: 'utf-8',
-  })
+  fs.writeFileSync(
+    path.join(webRoot, 'packages', 'playground', 'src', 'views', 'index.ts'),
+    mergedTsCode,
+    {
+      encoding: 'utf-8',
+    },
+  )
 }
 
 function configEnvironment(webRoot: string, workspacePath: string) {
@@ -194,10 +204,18 @@ function configEnvironment(webRoot: string, workspacePath: string) {
     }
   })
   const envFilePath = path.join(webRoot, 'packages', 'playground', '.env')
-  fs.writeFileSync(envFilePath, `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`, { encoding: 'utf-8' })
+  fs.writeFileSync(
+    envFilePath,
+    `VITE_DESIGNER_PATHS=${JSON.stringify(result)}`,
+    { encoding: 'utf-8' },
+  )
 }
 
-function findFilesRecursive(dir: string, filter: RegExp, result: string[] = []): string[] {
+function findFilesRecursive(
+  dir: string,
+  filter: RegExp,
+  result: string[] = [],
+): string[] {
   fs.readdirSync(dir).forEach((file) => {
     const filePath = path.join(dir, file)
     if (fs.statSync(filePath).isDirectory()) {

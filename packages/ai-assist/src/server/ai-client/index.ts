@@ -5,19 +5,20 @@ import { getClient } from './client'
 import type { AiMessage } from './define'
 import { FileCreateParams } from 'openai/resources/files.mjs'
 
-type DeepSeekChatCompletionMessageParam = OpenAI.Chat.ChatCompletionMessageParam & {
-  attachments?: {
-    file_id: string
-    tools: { type: 'file_search' }[]
-  }[]
-}
+type DeepSeekChatCompletionMessageParam =
+  OpenAI.Chat.ChatCompletionMessageParam & {
+    attachments?: {
+      file_id: string
+      tools: { type: 'file_search' }[]
+    }[]
+  }
 
 export async function queryStream(
   aiName: AIName,
   key: string,
   query: string,
   attachments: string[] = [],
-  messageResult: AiMessage[] = []
+  messageResult: AiMessage[] = [],
 ) {
   const client = getClient(aiName, key)
   const userMessage: DeepSeekChatCompletionMessageParam = {
@@ -47,7 +48,12 @@ export async function queryStream(
   })
 }
 
-export async function kimiQueryStream(aiName: 'Kimi', key: string, query: string, messageResult: AiMessage[] = []) {
+export async function kimiQueryStream(
+  aiName: 'Kimi',
+  key: string,
+  query: string,
+  messageResult: AiMessage[] = [],
+) {
   const client = getClient(aiName, key)
   return await client.instance.chat.completions.create({
     model: client.model,
@@ -67,7 +73,11 @@ export async function kimiQueryStream(aiName: 'Kimi', key: string, query: string
   })
 }
 
-export async function upload(aiName: AIName, key: string, fileStream: fs.ReadStream) {
+export async function upload(
+  aiName: AIName,
+  key: string,
+  fileStream: fs.ReadStream,
+) {
   // try {
   //   const client = getClient(aiName, key)
   //   const file = await client.instance.files.create({
@@ -80,7 +90,12 @@ export async function upload(aiName: AIName, key: string, fileStream: fs.ReadStr
   // }
 }
 
-export async function kimiUpload(aiName: 'Kimi', key: string, filePath: string, messageResult: AiMessage[] = []) {
+export async function kimiUpload(
+  aiName: 'Kimi',
+  key: string,
+  filePath: string,
+  messageResult: AiMessage[] = [],
+) {
   const client = getClient(aiName, key)
   if (!fs.existsSync(filePath)) {
     console.error('文件不存在', filePath)
@@ -90,7 +105,9 @@ export async function kimiUpload(aiName: 'Kimi', key: string, filePath: string, 
     file: fs.createReadStream(filePath),
     purpose: 'file-extract',
   } as unknown as FileCreateParams)
-  let content = await (await client.instance.files.content(file_object.id)).text()
+  let content = await (
+    await client.instance.files.content(file_object.id)
+  ).text()
   // const content = fs.readFileSync(filePath, { encoding: 'utf-8' })
   messageResult.push({
     role: 'system',

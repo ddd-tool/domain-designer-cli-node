@@ -53,6 +53,7 @@
     "@vue/tsconfig": "^0.8.1",
     "esbuild": "^0.27.2",
     "npm-run-all2": "^8.0.4",
+    "prettier": "^3.8.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
     "typescript": "^5.9.3",

@@ -12,8 +12,16 @@ const agg = createSingletonAgg(() => {
   const currentLanguage = ref<Language>('zh-CN')
 
   function t(key: I18nMessageKeys, defaultValue?: string): string
-  function t(key: I18nMessageKeys, attr: Record<string, string | number>, defaultValue?: string): string
-  function t(key: I18nMessageKeys, attr1?: string | Record<string, string | number>, attr2?: string): string {
+  function t(
+    key: I18nMessageKeys,
+    attr: Record<string, string | number>,
+    defaultValue?: string,
+  ): string
+  function t(
+    key: I18nMessageKeys,
+    attr1?: string | Record<string, string | number>,
+    attr2?: string,
+  ): string {
     let v = locale.value[key]
     if (!v) {
       if (typeof attr1 === 'string') {
@@ -34,11 +42,15 @@ const agg = createSingletonAgg(() => {
   }
 
   function $t(key: I18nMessageKeys, defaultValue?: string): ComputedRef<string>
-  function $t(key: I18nMessageKeys, attr: Record<string, string | number>, defaultValue?: string): ComputedRef<string>
+  function $t(
+    key: I18nMessageKeys,
+    attr: Record<string, string | number>,
+    defaultValue?: string,
+  ): ComputedRef<string>
   function $t(
     key: I18nMessageKeys,
     attr1?: string | Record<string, string | number>,
-    attr2?: string
+    attr2?: string,
   ): ComputedRef<string> {
     if (typeof attr1 === 'object') {
       return computed(() => t(key, attr1, attr2))

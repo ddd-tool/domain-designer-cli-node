@@ -5,16 +5,8 @@
   "prettier.semi": false,
   "prettier.printWidth": 120,
   "prettier.singleQuote": true,
-  "[rust]": {
-    "editor.tabSize": 4,
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
-  },
-  "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
-  },
-  "[pest]": {
-    "editor.tabSize": 4,
-    "editor.defaultFormatter": "pest.pest-ide-tools"
+  "[typescript]": {
+    "prettier.printWidth": 80,
   },
   "[markdown]": {
     "prettier.printWidth": 80,

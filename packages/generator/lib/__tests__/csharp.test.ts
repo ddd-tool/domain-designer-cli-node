@@ -12,7 +12,8 @@ it('designer1', () => {
       // csharp.CSharpGeneratorAddition.PrimaryConstructor,
       // csharp.CSharpGeneratorAddition.AggInterface,
     ]),
-    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'User',
+    moduleName:
+      designer1._getContext().getDesignerOptions().moduleName || 'User',
     namespace: 'Application.Domain',
     aggInterface: 'MyAgg',
   }
@@ -30,7 +31,8 @@ it('designer1-ignoredValueObjects1', () => {
       // csharp.CSharpGeneratorAddition.PrimaryConstructor,
       // csharp.CSharpGeneratorAddition.AggInterface,
     ]),
-    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'User',
+    moduleName:
+      designer1._getContext().getDesignerOptions().moduleName || 'User',
     namespace: 'Application.Domain',
     aggInterface: 'MyAgg',
   }
@@ -41,6 +43,6 @@ it('designer1-ignoredValueObjects1', () => {
     files
       .filter((i) => i.getName() === 'DeductFailedEvent.cs')[0]
       .getContent()
-      .includes('System.DateTime Time')
+      .includes('System.DateTime Time'),
   ).toBeTruthy()
 })

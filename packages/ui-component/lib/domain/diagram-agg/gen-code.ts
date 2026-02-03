@@ -24,12 +24,12 @@ export function* nomnomlCodeGenerator<T extends DomainDesigner>(params: {
   })
   for (const agg of context.aggs) {
     yield `[<aggregation id=${agg._attributes.__id}> ${agg._attributes.name}: Aggregation ${infosToCode(
-      agg._attributes.infos
+      agg._attributes.infos,
     )} ${noteToCode(agg._attributes.note)}]`
   }
   for (const command of context.commands) {
     yield `[<command id=${command._attributes.__id}> ${command._attributes.name}: Command ${infosToCode(
-      command._attributes.infos
+      command._attributes.infos,
     )} ${noteToCode(command._attributes.note)}]`
   }
   for (const facadeCommand of context.facadeCommands) {
@@ -39,38 +39,41 @@ export function* nomnomlCodeGenerator<T extends DomainDesigner>(params: {
   }
   for (const event of context.events) {
     yield `[<event id=${event._attributes.__id}> ${event._attributes.name}: Event ${infosToCode(
-      event._attributes.infos
+      event._attributes.infos,
     )} ${noteToCode(event._attributes.note)}]`
   }
   for (const service of context.services) {
     yield `[<service id=${service._attributes.__id}> ${service._attributes.name}: Service ${noteToCode(
-      service._attributes.note
+      service._attributes.note,
     )}]`
   }
   for (const actor of context.actors) {
     yield `[<actor id=${actor._attributes.__id}> ${actor._attributes.name}: Actor ${noteToCode(
-      actor._attributes.note
+      actor._attributes.note,
     )}]`
   }
   for (const policy of context.policies) {
     yield `[<policy id=${policy._attributes.__id}> ${policy._attributes.name}: Policy ${noteToCode(
-      policy._attributes.note
+      policy._attributes.note,
     )}]`
   }
   for (const readModel of context.readModels) {
     yield `[<readModel id=${readModel._attributes.__id}> ${readModel._attributes.name}: ReadModel ${infosToCode(
-      readModel._attributes.infos
+      readModel._attributes.infos,
     )} ${noteToCode(readModel._attributes.note)}]`
   }
   for (const system of context.systems) {
     yield `[<system id=${system._attributes.__id}> ${system._attributes.name}: System ${noteToCode(
-      system._attributes.note
+      system._attributes.note,
     )}]`
   }
   for (const i in context.links) {
     const linkType = context.links[i]
     const [_rule1, from, _rule2, to] = i.split(',')
-    if (!params.linkReadModel && (_rule1 === 'ReadModel' || _rule2 === 'ReadModel')) {
+    if (
+      !params.linkReadModel &&
+      (_rule1 === 'ReadModel' || _rule2 === 'ReadModel')
+    ) {
       continue
     }
     if (!params.linkSystem && (_rule1 === 'System' || _rule2 === 'System')) {
@@ -125,14 +128,18 @@ export function filterContext(params: {
   }
 
   const workflows: string[] = []
-  for (const workflowName of originalContext?.getUserStories()?.[params.currentStory]!) {
+  for (const workflowName of originalContext?.getUserStories()?.[
+    params.currentStory
+  ]!) {
     for (const id of originalContext?.getWorkflows()?.[workflowName]!) {
       workflows.push(id)
     }
   }
 
   commands = commands.filter((i) => workflows.includes(i._attributes.__id))
-  facadeCommands = facadeCommands.filter((i) => workflows.includes(i._attributes.__id))
+  facadeCommands = facadeCommands.filter((i) =>
+    workflows.includes(i._attributes.__id),
+  )
   aggs = aggs.filter((i) => workflows.includes(i._attributes.__id))
   events = events.filter((i) => workflows.includes(i._attributes.__id))
   services = services.filter((i) => workflows.includes(i._attributes.__id))
@@ -173,7 +180,9 @@ function isEmptyStory(story: string): boolean {
   return story === EMPTY_STORY
 }
 
-function infosToCode<T extends Record<string, DomainDesignInfo<DomainDesignInfoType, string>>>(infos: T): string {
+function infosToCode<
+  T extends Record<string, DomainDesignInfo<DomainDesignInfoType, string>>,
+>(infos: T): string {
   if (!infos) {
     return ''
   }

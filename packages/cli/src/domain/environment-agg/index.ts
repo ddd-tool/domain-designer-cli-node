@@ -20,7 +20,7 @@ const agg = createSingletonAgg(() => {
         return OsType.Mac
       }
       return OsType.Undefined
-    })()
+    })(),
   )
 
   const executable = path.basename(process.argv[0])
@@ -47,7 +47,13 @@ const agg = createSingletonAgg(() => {
       }
       if (typeof navigator !== 'undefined') {
         const nav = navigator as any
-        return nav.language || nav.userLanguage || nav.browserLanguage || nav.systemLanguage || 'en-US'
+        return (
+          nav.language ||
+          nav.userLanguage ||
+          nav.browserLanguage ||
+          nav.systemLanguage ||
+          'en-US'
+        )
       }
       if (typeof process !== 'undefined') {
         const env = process.env
@@ -56,7 +62,7 @@ const agg = createSingletonAgg(() => {
       }
 
       return 'en-US'
-    })()
+    })(),
   )
 
   const webRoot = ref(findWebRoot(osType.value, packageManager.value))

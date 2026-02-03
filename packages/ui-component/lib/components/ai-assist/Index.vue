@@ -29,7 +29,7 @@ const isCacheAiKey = bindRef(
   (v) => {
     aiAssistAgg.commands.setIsCacheAiKey(v)
   },
-  { forceSync: true }
+  { forceSync: true },
 )
 const aiKey = bindRef(aiAssistAgg.states.apiKey, (v) => {
   aiKeyError.value = aiAssistAgg.commands.setAiKey(v)

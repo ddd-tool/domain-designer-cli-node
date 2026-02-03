@@ -15,11 +15,14 @@ const orderAmount = d.info.func('orderAmount', [productPrice, productQuantity])
 const orderAggregation = d.agg(
   'orderAggregation',
   [orderId, orderTime, userAccount, productPrice, productQuantity, orderAmount],
-  'this is order aggregation'
+  'this is order aggregation',
 )
 
 // command
-const createOrder = d.command('createOrder', [orderAggregation.inner.orderId, userAccount])
+const createOrder = d.command('createOrder', [
+  orderAggregation.inner.orderId,
+  userAccount,
+])
 const autoDeduct = d.command('autoDeduct', [orderId])
 
 // event
@@ -36,10 +39,13 @@ rule 1:
 rule 2:
 rule 3:
 ... ...
-  `
+  `,
 )
 // service
-const autoDeductService = d.service('autoDeductService', 'initiate automatic payment based on payment rule')
+const autoDeductService = d.service(
+  'autoDeductService',
+  'initiate automatic payment based on payment rule',
+)
 // external system
 const logisticsSystem = d.system('logisticsSystem')
 const mailSystem = d.system('mailSystem')
@@ -51,7 +57,9 @@ const createOrderFailureWorkflow = d.startWorkflow('createOrderFailure')
 user.command(createOrder).agg(orderAggregation).event(orderFailure)
 orderFailure.system(mailSystem)
 
-const createOrderSuccess_AutoDeductFailureWorkflow = d.startWorkflow('createOrderSuccess_AutoDeductFailure')
+const createOrderSuccess_AutoDeductFailureWorkflow = d.startWorkflow(
+  'createOrderSuccess_AutoDeductFailure',
+)
 user
   .command(createOrder)
   .agg(orderAggregation)
@@ -64,7 +72,9 @@ user
 deductFailure.readModel(orderDetail)
 deductFailure.system(mailSystem)
 
-const createOrderSuccess_AutoDeductSuccessWorkflow = d.startWorkflow('createOrderSuccess_AutoDeductSuccess')
+const createOrderSuccess_AutoDeductSuccessWorkflow = d.startWorkflow(
+  'createOrderSuccess_AutoDeductSuccess',
+)
 user
   .command(createOrder)
   .agg(orderAggregation)
@@ -85,14 +95,18 @@ d.startWorkflow('readModel')
 const userRead = d.actor('user', 'user (read model)')
 userRead.readModel(orderDetail)
 
-d.defineUserStory('As a mall user, I want to place an order and implement automatic payment to get the goods', [
-  createOrderFailureWorkflow,
-  createOrderSuccess_AutoDeductFailureWorkflow,
-  createOrderSuccess_AutoDeductSuccessWorkflow,
-])
+d.defineUserStory(
+  'As a mall user, I want to place an order and implement automatic payment to get the goods',
+  [
+    createOrderFailureWorkflow,
+    createOrderSuccess_AutoDeductFailureWorkflow,
+    createOrderSuccess_AutoDeductSuccessWorkflow,
+  ],
+)
 
-d.defineUserStory('As a mall user, I want to view the order status, so I can know the order status', [
-  createOrderSuccess_AutoDeductSuccessWorkflow,
-])
+d.defineUserStory(
+  'As a mall user, I want to view the order status, so I can know the order status',
+  [createOrderSuccess_AutoDeductSuccessWorkflow],
+)
 
 export default d

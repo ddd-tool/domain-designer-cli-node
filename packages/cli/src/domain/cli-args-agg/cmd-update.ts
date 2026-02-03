@@ -1,5 +1,11 @@
 import { Reactive, Ref } from '@vue/reactivity'
-import { SubcommandEnum, UpdateWorkspaceCommandArgs, getGenCodeScript, getGitignore, getRunWebScript } from './define'
+import {
+  SubcommandEnum,
+  UpdateWorkspaceCommandArgs,
+  getGenCodeScript,
+  getGitignore,
+  getRunWebScript,
+} from './define'
 import { Command } from 'commander'
 import fs from 'fs'
 import path from 'path'
@@ -37,7 +43,10 @@ export async function requireUpdateWorkspaceCommandArgs(params: {
 export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
   const distDir = path.join(args.source)
   log.printInfo('================ 更新依赖: Starting... ================')
-  if (!fs.existsSync(path.join(distDir, 'node_modules')) || fs.existsSync(path.join(args.source, 'package.json'))) {
+  if (
+    !fs.existsSync(path.join(distDir, 'node_modules')) ||
+    fs.existsSync(path.join(args.source, 'package.json'))
+  ) {
     log.printWarn('该目录不是工作空间，无法更新')
     log.printWarn('================ 更新依赖: End ================')
     return
@@ -47,8 +56,8 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
   const workspaceVer = !fs.existsSync(versionFilePath)
     ? 'unknown'
     : !fs.statSync(versionFilePath).isFile()
-    ? 'unknown'
-    : fs.readFileSync(versionFilePath).toString().trim()
+      ? 'unknown'
+      : fs.readFileSync(versionFilePath).toString().trim()
 
   if (workspaceVer === packageInfo.version) {
     log.print('工作目录已是最新版本，无需更新')
@@ -71,16 +80,36 @@ export async function execute(args: Readonly<UpdateWorkspaceCommandArgs>) {
     fs.rmSync(path.join(distDir, gitignore.name))
   }
 
-  copyFolderRecursive(path.join(environmentAgg.states.webRoot.value, 'templates'), distDir, {
-    ignore: ['simple-example.ts', 'complex-example.ts', 'complex-example-detail'],
-  })
+  copyFolderRecursive(
+    path.join(environmentAgg.states.webRoot.value, 'templates'),
+    distDir,
+    {
+      ignore: [
+        'simple-example.ts',
+        'complex-example.ts',
+        'complex-example-detail',
+      ],
+    },
+  )
   if (runWebScript) {
-    fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
+    fs.writeFileSync(
+      path.join(distDir, runWebScript.name),
+      runWebScript.content,
+      'utf-8',
+    )
   }
   if (genCodeScript) {
-    fs.writeFileSync(path.join(distDir, genCodeScript.name), genCodeScript.content, 'utf-8')
+    fs.writeFileSync(
+      path.join(distDir, genCodeScript.name),
+      genCodeScript.content,
+      'utf-8',
+    )
   }
-  fs.writeFileSync(path.join(distDir, gitignore.name), gitignore.content, 'utf-8')
+  fs.writeFileSync(
+    path.join(distDir, gitignore.name),
+    gitignore.content,
+    'utf-8',
+  )
 
   log.print(`目录已更新至 ${packageInfo.version}`)
 

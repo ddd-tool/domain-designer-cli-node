@@ -29,7 +29,9 @@ it('', () => {
   expect(命令.inner.e._attributes.name).toBe('e')
 
   const 事件 = d.event('事件', ['中文， 【 ? 事件'])
-  expect(事件.inner['中文， 【 ? 事件']._attributes.name).toBe('中文， 【 ? 事件')
+  expect(事件.inner['中文， 【 ? 事件']._attributes.name).toBe(
+    '中文， 【 ? 事件',
+  )
 
   const 聚合 = d.agg('聚合', ['id', d.info.valueObj('name')])
   expect(聚合.inner.id._attributes.name).toBe('id')
@@ -39,7 +41,11 @@ it('', () => {
   const command = actor.command('命令', ['a1', d.info.valueObj('a2')])
   expect(command.inner.a1._attributes.name).toBe('a1')
   expect(command.inner.a2._attributes.name).toBe('a2')
-  const agg = command.agg('聚合', ['b1', d.info.valueObj('b2'), d.info.func('b3', ['b4', d.info.valueObj('b5')])])
+  const agg = command.agg('聚合', [
+    'b1',
+    d.info.valueObj('b2'),
+    d.info.func('b3', ['b4', d.info.valueObj('b5')]),
+  ])
   expect(agg.inner.b1._attributes.name).toBe('b1')
   expect(agg.inner.b2._attributes.name).toBe('b2')
   expect(agg.inner.b3._attributes.name).toBe('b3')

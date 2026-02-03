@@ -8,7 +8,11 @@ import path from 'path'
  * @param {object} opts 配置选项
  * @param {string[]} [opts.ignore] 要忽略的文件或文件夹名称
  */
-export function copyFolderRecursive(src: string, dest: string, opts: { ignore?: string[]; pattern?: RegExp } = {}) {
+export function copyFolderRecursive(
+  src: string,
+  dest: string,
+  opts: { ignore?: string[]; pattern?: RegExp } = {},
+) {
   // 检查源文件夹是否存在
   if (!fs.existsSync(src)) {
     throw new Error(`Source folder does not exist: ${src}`)

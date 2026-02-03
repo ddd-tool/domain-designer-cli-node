@@ -2,7 +2,11 @@ export namespace strUtil {
   export function stringToUpperCamel(str: string | String) {
     return str
       .trim()
-      .split(str.includes('_') || str.includes('-') || str.includes(' ') ? /_|\s|-/ : /(?=[A-Z])/g)
+      .split(
+        str.includes('_') || str.includes('-') || str.includes(' ')
+          ? /_|\s|-/
+          : /(?=[A-Z])/g,
+      )
       .map((s) => s.charAt(0).toUpperCase() + s.toLowerCase().slice(1))
       .join('')
   }
@@ -10,7 +14,11 @@ export namespace strUtil {
     let first = true
     return str
       .trim()
-      .split(str.includes('_') || str.includes('-') || str.includes(' ') ? /_|\s|-/ : /(?=[A-Z])/g)
+      .split(
+        str.includes('_') || str.includes('-') || str.includes(' ')
+          ? /_|\s|-/
+          : /(?=[A-Z])/g,
+      )
       .map((s) => {
         if (first) {
           first = false

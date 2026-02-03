@@ -1,6 +1,14 @@
 import { AIName } from '../ai-client/config'
 
-export type HttpMethod = 'POST' | 'GET' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD' | undefined
+export type HttpMethod =
+  | 'POST'
+  | 'GET'
+  | 'PUT'
+  | 'DELETE'
+  | 'PATCH'
+  | 'OPTIONS'
+  | 'HEAD'
+  | undefined
 export type AIQueryRequestParam = {
   host: AIName
   query: string

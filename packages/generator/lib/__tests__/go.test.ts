@@ -9,7 +9,8 @@ it('designer1', () => {
   GeneratorPliginHelper.registerPlugin(GENERATOR_GO_PLUGIN)
   const context: go.GoContext = {
     additions: new Set([]),
-    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'test',
+    moduleName:
+      designer1._getContext().getDesignerOptions().moduleName || 'test',
     namespace: 'domain',
   }
   agg.commands.setContext(context)
@@ -24,22 +25,25 @@ it('designer1-ignoredValueObjects1', () => {
   GeneratorPliginHelper.registerPlugin(GENERATOR_GO_PLUGIN)
   const context: go.GoContext = {
     additions: new Set([]),
-    moduleName: designer1._getContext().getDesignerOptions().moduleName || 'test',
+    moduleName:
+      designer1._getContext().getDesignerOptions().moduleName || 'test',
     namespace: 'domain',
   }
   agg.commands.setContext(context)
   const files = agg.commands.genCodeFiles()
-  expect(files.filter((i) => i.getName() === 'order_value_object.go').length).toBe(1)
+  expect(
+    files.filter((i) => i.getName() === 'order_value_object.go').length,
+  ).toBe(1)
   expect(
     files
       .filter((i) => i.getName() === 'order_value_object.go')[0]
       .getContent()
-      .includes('type Time struct')
+      .includes('type Time struct'),
   ).toBeFalsy()
   expect(
     files
       .filter((i) => i.getName() === 'order.go')[0]
       .getContent()
-      .includes('time time.Time')
+      .includes('time time.Time'),
   ).toBeTruthy()
 })

@@ -24,24 +24,30 @@ export async function requireGenKotlinContext(): Promise<define.kotlin.KotlinCon
             title: define.kotlin.KotlinGeneratorAddition.CommandHandler,
             value: define.kotlin.KotlinGeneratorAddition.CommandHandler,
             selected: true,
-            description: $t('question.subcommand.genCode.kotlin.additions.commandHandler'),
+            description: $t(
+              'question.subcommand.genCode.kotlin.additions.commandHandler',
+            ),
           },
           {
             title: define.kotlin.KotlinGeneratorAddition.ValueClass,
             value: define.kotlin.KotlinGeneratorAddition.ValueClass,
             selected: true,
-            description: $t('question.subcommand.genCode.kotlin.additions.valueClass'),
+            description: $t(
+              'question.subcommand.genCode.kotlin.additions.valueClass',
+            ),
           },
           {
             title: define.kotlin.KotlinGeneratorAddition.Timezone,
             value: define.kotlin.KotlinGeneratorAddition.Timezone,
-            description: $t('question.subcommand.genCode.kotlin.additions.timezone'),
+            description: $t(
+              'question.subcommand.genCode.kotlin.additions.timezone',
+            ),
           },
         ],
         hint: $t('question.subcommand.genCode.additions.hint'),
       },
     ],
-    { onCancel: signal.onCancel }
+    { onCancel: signal.onCancel },
   )
   context.namespace = namespace
   context.additions = new Set(additions)

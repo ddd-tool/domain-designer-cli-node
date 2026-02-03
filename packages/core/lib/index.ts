@@ -36,7 +36,9 @@ export function defaultOptions(): Required<DomainDesignOptions> {
   }
 }
 
-export function createDomainDesigner(opts?: DomainDesignOptions): DomainDesigner {
+export function createDomainDesigner(
+  opts?: DomainDesignOptions,
+): DomainDesigner {
   if (!opts) {
     opts = defaultOptions()
   } else {

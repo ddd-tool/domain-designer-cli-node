@@ -1,8 +1,17 @@
 import { computed, reactive, ref } from 'vue'
-import { createBroadcastEvent, createPluginHelperByAggCreator, createSingletonAgg } from 'vue-fn/domain'
+import {
+  createBroadcastEvent,
+  createPluginHelperByAggCreator,
+  createSingletonAgg,
+} from 'vue-fn/domain'
 import type { DomainDesigner } from '@ddd-tool/domain-designer-core'
 import { filterContext, nomnomlCodeGenerator } from './gen-code'
-import { defaultRenderConfig, EMPTY_STORY, type EdgeType, type Ranker } from './define'
+import {
+  defaultRenderConfig,
+  EMPTY_STORY,
+  type EdgeType,
+  type Ranker,
+} from './define'
 export { EMPTY_STORY }
 
 let agg: ReturnType<typeof createAgg>
@@ -10,7 +19,9 @@ let agg: ReturnType<typeof createAgg>
 function createAgg(data: Record<string, DomainDesigner>) {
   return createSingletonAgg(() => {
     const designRecords = ref(data)
-    const currentDesignKey = ref(Object.keys(data).length ? Object.keys(data)[0] : undefined)
+    const currentDesignKey = ref(
+      Object.keys(data).length ? Object.keys(data)[0] : undefined,
+    )
     const design = computed(() => {
       if (!currentDesignKey.value) {
         return undefined
@@ -94,13 +105,22 @@ function createAgg(data: Record<string, DomainDesigner>) {
 
     function focusFlow(workflow: undefined, userStory?: undefined): void
     function focusFlow(workflow: string, userStory: string): void
-    function focusFlow(workflow: string | undefined, userStory: string = EMPTY_STORY) {
+    function focusFlow(
+      workflow: string | undefined,
+      userStory: string = EMPTY_STORY,
+    ) {
       currentStory.value = userStory
       if (
         userStory !== EMPTY_STORY &&
-        (!workflow || !design.value?._getContext()?.getUserStories()?.[userStory]?.includes(workflow))
+        (!workflow ||
+          !design.value
+            ?._getContext()
+            ?.getUserStories()
+            ?.[userStory]?.includes(workflow))
       ) {
-        currentWorkflow.value = design.value?._getContext()?.getUserStories()[userStory]?.[0] || undefined
+        currentWorkflow.value =
+          design.value?._getContext()?.getUserStories()[userStory]?.[0] ||
+          undefined
       } else {
         currentWorkflow.value = workflow
       }

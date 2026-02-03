@@ -3,7 +3,10 @@ import fs from 'fs'
 import path from 'path'
 import { GenCodeCommandArgs, SubcommandEnum } from '../define'
 import { spawnSync } from 'child_process'
-import { DomainDesigner, isDomainDesigner } from '@ddd-tool/domain-designer-core'
+import {
+  DomainDesigner,
+  isDomainDesigner,
+} from '@ddd-tool/domain-designer-core'
 import {
   useGeneratorAgg,
   GeneratorPliginHelper,
@@ -78,7 +81,7 @@ export async function requireGenCodeCommandArgs(params: {
           ],
         },
       ],
-      { onCancel: signal.onCancel }
+      { onCancel: signal.onCancel },
     )
   ).language
   params.args.language = language
@@ -108,48 +111,91 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     fs.readFileSync(versionFilePath, 'utf-8').trim() !== packageInfo.version
   ) {
     log.printWarn('检测到工作目录版本与脚手架版本不匹配')
-    log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
+    log.printWarn(
+      '当前工作目录版本：',
+      fs.readFileSync(versionFilePath, 'utf-8').trim(),
+    )
     log.printWarn('脚手架版本：      ', packageInfo.version)
-    log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
-    log.print(chalk.bgYellow(`${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli update`))
+    log.printWarn(
+      '如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新',
+    )
+    log.print(
+      chalk.bgYellow(
+        `${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli update`,
+      ),
+    )
   }
 
-  log.printInfo('================ Install dependencies: Starting... ================')
+  log.printInfo(
+    '================ Install dependencies: Starting... ================',
+  )
   if (packageManager === 'bun') {
-    spawnSync(`bun i --cwd "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+    spawnSync(`bun i --cwd "${webRoot}"`, {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    })
   } else if (packageManager === 'pnpm') {
-    spawnSync(`pnpm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+    spawnSync(`pnpm i --prefix "${webRoot}"`, {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    })
   } else if (packageManager === 'npm') {
-    spawnSync(`npm i --prefix "${webRoot}"`, { encoding: 'utf-8', stdio: 'inherit', shell: true })
+    spawnSync(`npm i --prefix "${webRoot}"`, {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    })
   } else {
     isNever(packageManager)
   }
-  log.printSuccess('================ Install dependencies: Succeeded ================')
+  log.printSuccess(
+    '================ Install dependencies: Succeeded ================',
+  )
 
-  log.printInfo('================ Compliling ts code: Starting... ================')
+  log.printInfo(
+    '================ Compliling ts code: Starting... ================',
+  )
   const exeCmd = packageManager === 'bun' ? 'bunx' : 'pnpx'
   // spawnSync(`pnpx zx ${webRoot.replace('\\', '/')}/scripts/build-ts.mjs --source=${sourcePath}`, {
-  spawnSync(`${exeCmd} zx ${webRoot.replace(/\\/g, '/')}/scripts/build-ts.mjs --source=${sourcePath}`, {
-    encoding: 'utf-8',
-    stdio: 'inherit',
-    shell: true,
-  })
-  log.printSuccess('================ Compliling ts code: Succeeded ================')
+  spawnSync(
+    `${exeCmd} zx ${webRoot.replace(/\\/g, '/')}/scripts/build-ts.mjs --source=${sourcePath}`,
+    {
+      encoding: 'utf-8',
+      stdio: 'inherit',
+      shell: true,
+    },
+  )
+  log.printSuccess(
+    '================ Compliling ts code: Succeeded ================',
+  )
 
-  log.printInfo('================ Generating code: Starting... ================')
+  log.printInfo(
+    '================ Generating code: Starting... ================',
+  )
 
   const files = fs.readdirSync(path.join(sourcePath, '.output', 'esm'))
 
   let agg: ReturnType<typeof useGeneratorAgg>
   let pluginLoaded = false
 
-  deleteFolderRecursive(`${sourcePath.replace(/\\/g, '/')}/.output/${args.language}`)
+  deleteFolderRecursive(
+    `${sourcePath.replace(/\\/g, '/')}/.output/${args.language}`,
+  )
 
   for (const file of files) {
-    if (fs.statSync(path.join(sourcePath, '.output', 'esm', file)).isDirectory() || !file.endsWith('.mjs')) {
+    if (
+      fs
+        .statSync(path.join(sourcePath, '.output', 'esm', file))
+        .isDirectory() ||
+      !file.endsWith('.mjs')
+    ) {
       continue
     }
-    const m = await import(`file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`)
+    const m = await import(
+      `file://${sourcePath.replace(/\\/g, '/')}/.output/esm/${file}`
+    )
     if (!m || !isDomainDesigner(m.default)) {
       continue
     }
@@ -170,17 +216,30 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     }
     agg = useGeneratorAgg(designer)
     agg.commands.setDomainDesigner(designer)
-    args.context.moduleName = designer._getContext().getDesignerOptions().moduleName || file.split('.')[0]
+    args.context.moduleName =
+      designer._getContext().getDesignerOptions().moduleName ||
+      file.split('.')[0]
     agg.commands.setContext(args.context)
     const codeFiles = agg.commands.genCodeFiles()
     for (const codeFile of codeFiles) {
-      const p = path.join(sourcePath, '.output', args.language, ...codeFile.getParentDir())
+      const p = path.join(
+        sourcePath,
+        '.output',
+        args.language,
+        ...codeFile.getParentDir(),
+      )
       if (!fs.existsSync(p)) {
         fs.mkdirSync(p, { recursive: true })
       }
-      fs.writeFileSync(path.join(p, codeFile.getName()), codeFile.getContent(), 'utf-8')
+      fs.writeFileSync(
+        path.join(p, codeFile.getName()),
+        codeFile.getContent(),
+        'utf-8',
+      )
     }
   }
 
-  log.printSuccess('================ Generating code: Succeeded ================')
+  log.printSuccess(
+    '================ Generating code: Succeeded ================',
+  )
 }

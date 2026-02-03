@@ -91,7 +91,7 @@ export interface CodeSnippets<
     | 'Event'
     | 'FacadeCommand'
     | 'FacadeCommandHandler'
-    | 'ReadMode'
+    | 'ReadMode',
 > {
   type: TYPE
   imports: Set<string>
@@ -156,12 +156,12 @@ export namespace go {
 export type GeneratorAddition<LANG extends Language> = LANG extends 'java'
   ? java.JavaGeneratorAddition
   : LANG extends 'kotlin'
-  ? kotlin.KotlinGeneratorAddition
-  : LANG extends 'csharp'
-  ? csharp.CSharpGeneratorAddition
-  : LANG extends 'go'
-  ? go.GoGeneratorAddition
-  : never
+    ? kotlin.KotlinGeneratorAddition
+    : LANG extends 'csharp'
+      ? csharp.CSharpGeneratorAddition
+      : LANG extends 'go'
+        ? go.GoGeneratorAddition
+        : never
 
 export interface GeneratorContext<LANG extends Language> {
   namespace: string
@@ -169,15 +169,21 @@ export interface GeneratorContext<LANG extends Language> {
   additions: Set<GeneratorAddition<LANG>>
 }
 
-export type InfoCodeProvider = (info: DomainDesignInfo<DomainDesignInfoType, string>) => CodeSnippets<'Info'>[]
+export type InfoCodeProvider = (
+  info: DomainDesignInfo<DomainDesignInfoType, string>,
+) => CodeSnippets<'Info'>[]
 export type CommandCodeProvider = (
-  cmd: DomainDesignCommand<DomainDesignInfoRecord>
+  cmd: DomainDesignCommand<DomainDesignInfoRecord>,
 ) => CodeSnippets<'Command' | 'CommandHandler'>[]
 export type FacadeCommandCodeProvider = (
-  cmd: DomainDesignFacadeCommand<DomainDesignInfoRecord>
+  cmd: DomainDesignFacadeCommand<DomainDesignInfoRecord>,
 ) => CodeSnippets<'FacadeCommand' | 'FacadeCommandHandler'>[]
-export type AggCodeProvider = (agg: DomainDesignAgg<DomainDesignInfoRecord>) => CodeSnippets<'Agg' | 'AggImpl'>[]
-export type EventCodeProvider = (event: DomainDesignEvent<DomainDesignInfoRecord>) => CodeSnippets<'Event'>[]
+export type AggCodeProvider = (
+  agg: DomainDesignAgg<DomainDesignInfoRecord>,
+) => CodeSnippets<'Agg' | 'AggImpl'>[]
+export type EventCodeProvider = (
+  event: DomainDesignEvent<DomainDesignInfoRecord>,
+) => CodeSnippets<'Event'>[]
 export type ReadModelCodeProvider = (
-  readModel: DomainDesignReadModel<DomainDesignInfoRecord>
+  readModel: DomainDesignReadModel<DomainDesignInfoRecord>,
 ) => CodeSnippets<'ReadMode'>[]

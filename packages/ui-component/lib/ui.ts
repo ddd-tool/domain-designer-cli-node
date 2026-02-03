@@ -55,7 +55,10 @@ function parseOthers(node: object, detail: NodeDetail): NodeDetail {
   return detail
 }
 
-function parseInfo(info: DomainDesignInfo<DomainDesignInfoType, string>, detail: NodeDetail): NodeDetail {
+function parseInfo(
+  info: DomainDesignInfo<DomainDesignInfoType, string>,
+  detail: NodeDetail,
+): NodeDetail {
   const type = info._attributes.type
   let typeStr = ''
   let subtype: string[] = []
@@ -63,7 +66,9 @@ function parseInfo(info: DomainDesignInfo<DomainDesignInfoType, string>, detail:
     typeStr = t('constant.type.document').value
   } else if (type === 'Function') {
     typeStr = t('constant.type.function').value
-    subtype = (info as DomainDesignInfo<'Function', string>)._attributes.subtype.map((i) => i._attributes.name)
+    subtype = (
+      info as DomainDesignInfo<'Function', string>
+    )._attributes.subtype.map((i) => i._attributes.name)
   } else if (type === 'Id') {
     typeStr = t('constant.type.id').value
   } else if (type === 'ValueObject') {

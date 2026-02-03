@@ -1,3 +1,3 @@
-import library from './library-module';
+import library from './library-module'
 
-export default library;
+export default library

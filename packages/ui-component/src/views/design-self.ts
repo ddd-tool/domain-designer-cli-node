@@ -54,7 +54,9 @@ d.defineUserStory('开发者对需求进行分析、迭代', [开发者设计流
 
 // ================================ 代码生成 ================================
 const 代码生成流程 = d.startWorkflow('代码生成流程')
-const 生成代码 = d.command('生成代码', [['目标平台', d.note('java/go/csharp/kotlin')]])
+const 生成代码 = d.command('生成代码', [
+  ['目标平台', d.note('java/go/csharp/kotlin')],
+])
 
 开发者.command(生成代码).agg(上下文聚合)
 

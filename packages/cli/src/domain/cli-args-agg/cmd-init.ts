@@ -1,7 +1,13 @@
 import path from 'path'
 import fs from 'fs'
 
-import { getGenCodeScript, getGitignore, getRunWebScript, InitCommandArgs, SubcommandEnum } from './define'
+import {
+  getGenCodeScript,
+  getGitignore,
+  getRunWebScript,
+  InitCommandArgs,
+  SubcommandEnum,
+} from './define'
 import { useI18nAgg } from '../i18n-agg'
 import { copyFolderRecursive } from '@/utils/io'
 import log from '@/utils/log'
@@ -12,7 +18,10 @@ import { useEnvironmentAgg } from '../environment-agg'
 const $t = useI18nAgg().commands.t
 const environmentAgg = useEnvironmentAgg()
 
-export function requireInitCommand(params: { currentCommand: Ref<SubcommandEnum>; args: Reactive<InitCommandArgs> }) {
+export function requireInitCommand(params: {
+  currentCommand: Ref<SubcommandEnum>
+  args: Reactive<InitCommandArgs>
+}) {
   return new Command()
     .name('init')
     .option('--source <sourceDir>', "ts files' dir")
@@ -42,7 +51,9 @@ export async function execute(args: InitCommandArgs) {
   const copyIgnores: string[] = []
   if (existsFiles.length > 0) {
     if (existsFiles.filter((name) => name.endsWith('.ts')).length === 0) {
-      throw new Error($t('error.shouldBeValidWorkspaceOrEmptyDir{dir}', { dir: distDir }))
+      throw new Error(
+        $t('error.shouldBeValidWorkspaceOrEmptyDir{dir}', { dir: distDir }),
+      )
     }
     copyIgnores.push('simple-example.ts')
     copyIgnores.push('complex-example.ts')
@@ -51,17 +62,35 @@ export async function execute(args: InitCommandArgs) {
   }
 
   log.printInfo('================ 初始化工作空间: Starting... ================')
-  copyFolderRecursive(path.join(environmentAgg.states.webRoot.value, 'templates'), distDir, { ignore: copyIgnores })
+  copyFolderRecursive(
+    path.join(environmentAgg.states.webRoot.value, 'templates'),
+    distDir,
+    { ignore: copyIgnores },
+  )
   const runWebScript = getRunWebScript()
   if (runWebScript) {
-    fs.writeFileSync(path.join(distDir, runWebScript.name), runWebScript.content, 'utf-8')
+    fs.writeFileSync(
+      path.join(distDir, runWebScript.name),
+      runWebScript.content,
+      'utf-8',
+    )
   }
   const genCodeScript = getGenCodeScript()
   if (genCodeScript) {
-    fs.writeFileSync(path.join(distDir, genCodeScript.name), genCodeScript.content, 'utf-8')
+    fs.writeFileSync(
+      path.join(distDir, genCodeScript.name),
+      genCodeScript.content,
+      'utf-8',
+    )
   }
   const gitignore = getGitignore()
-  fs.writeFileSync(path.join(distDir, gitignore.name), gitignore.content, 'utf-8')
+  fs.writeFileSync(
+    path.join(distDir, gitignore.name),
+    gitignore.content,
+    'utf-8',
+  )
 
-  log.printSuccess('================ 初始化工作空间: Succeeded ================')
+  log.printSuccess(
+    '================ 初始化工作空间: Succeeded ================',
+  )
 }

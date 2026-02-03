@@ -34,7 +34,7 @@ onBeforeUnmount(
         el.classList.remove('active')
       }
     }
-  })
+  }),
 )
 
 // ======================= focusOnWorkFlow/playWorkflow =======================
@@ -101,7 +101,7 @@ onBeforeUnmount(
     setTimeout(() => {
       startWorkflowAnimation(++currentAnimationTask, items)
     })
-  })
+  }),
 )
 function removeAdjacentDuplicates(arr: readonly string[]): string[] {
   if (arr.length === 0) return []
@@ -126,7 +126,7 @@ onBeforeUnmount(
     tempLink.setAttribute('download', 'diagram.svg')
     tempLink.click()
     URL.revokeObjectURL(svgUrl)
-  })
+  }),
 )
 </script>
 

@@ -1,4 +1,7 @@
-import { createPluginHelperByAggCreator, createSingletonAgg } from 'vue-fn/domain-server'
+import {
+  createPluginHelperByAggCreator,
+  createSingletonAgg,
+} from 'vue-fn/domain-server'
 import {
   AggCodeProvider,
   CodeFile,
@@ -43,37 +46,51 @@ function createAgg(d: DomainDesigner) {
           this.clearCaches()
           designer.value = d
         },
-        _genInfoCode(...args: Parameters<InfoCodeProvider>): ReturnType<InfoCodeProvider> {
+        _genInfoCode(
+          ...args: Parameters<InfoCodeProvider>
+        ): ReturnType<InfoCodeProvider> {
           return InfoCodeProvider(...args)
         },
         _setInfoCodeProvider(provider: InfoCodeProvider): void {
           InfoCodeProvider = provider
         },
-        _genCommandCode(...args: Parameters<CommandCodeProvider>): ReturnType<CommandCodeProvider> {
+        _genCommandCode(
+          ...args: Parameters<CommandCodeProvider>
+        ): ReturnType<CommandCodeProvider> {
           return commandCodeProvider(...args)
         },
         _setCommandCodeProvider(provider: CommandCodeProvider): void {
           commandCodeProvider = provider
         },
-        _genFacadeCommandCode(...args: Parameters<FacadeCommandCodeProvider>): ReturnType<FacadeCommandCodeProvider> {
+        _genFacadeCommandCode(
+          ...args: Parameters<FacadeCommandCodeProvider>
+        ): ReturnType<FacadeCommandCodeProvider> {
           return FacadeCommandCodeProvider(...args)
         },
-        _setFacadeCommandCodeProvider(provider: FacadeCommandCodeProvider): void {
+        _setFacadeCommandCodeProvider(
+          provider: FacadeCommandCodeProvider,
+        ): void {
           FacadeCommandCodeProvider = provider
         },
-        _genAggCode(...args: Parameters<AggCodeProvider>): ReturnType<AggCodeProvider> {
+        _genAggCode(
+          ...args: Parameters<AggCodeProvider>
+        ): ReturnType<AggCodeProvider> {
           return aggCodeProvider(...args)
         },
         _setAggCodeProvider(provider: AggCodeProvider): void {
           aggCodeProvider = provider
         },
-        _genEventCode(...args: Parameters<EventCodeProvider>): ReturnType<EventCodeProvider> {
+        _genEventCode(
+          ...args: Parameters<EventCodeProvider>
+        ): ReturnType<EventCodeProvider> {
           return eventCodeProvider(...args)
         },
         _setEventCodeProvider(provider: EventCodeProvider): void {
           eventCodeProvider = provider
         },
-        _genReadModelCode(...args: Parameters<ReadModelCodeProvider>): ReturnType<ReadModelCodeProvider> {
+        _genReadModelCode(
+          ...args: Parameters<ReadModelCodeProvider>
+        ): ReturnType<ReadModelCodeProvider> {
           return readModelCodeProvider(...args)
         },
         _setReadModelCodeProvider(provider: ReadModelCodeProvider): void {

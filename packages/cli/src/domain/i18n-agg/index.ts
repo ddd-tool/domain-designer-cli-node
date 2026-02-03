@@ -13,8 +13,16 @@ const agg = createSingletonAgg(() => {
   const locale = ref<I18nMessages>(enUS)
 
   function t(key: I18nMessagesKey, defaultValue?: string): string
-  function t(key: I18nMessagesKey, attr: Record<string, string | number>, defaultValue?: string): string
-  function t(key: I18nMessagesKey, attr1?: string | Record<string, string | number>, attr2?: string): string {
+  function t(
+    key: I18nMessagesKey,
+    attr: Record<string, string | number>,
+    defaultValue?: string,
+  ): string
+  function t(
+    key: I18nMessagesKey,
+    attr1?: string | Record<string, string | number>,
+    attr2?: string,
+  ): string {
     let v = locale.value[key]
     if (!v) {
       if (typeof attr1 === 'string') {

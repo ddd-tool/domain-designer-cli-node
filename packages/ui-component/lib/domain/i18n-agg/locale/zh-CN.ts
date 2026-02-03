@@ -23,9 +23,12 @@ const messages: I18nMessages = {
   'menu.settings.dataSource': '数据源',
   'menu.settings.render': '渲染',
   'menu.settings.render.ranker': '排序策略',
-  'menu.settings.render.ranker.NetworkSimplex.note': 'Network-Simplex 更加关注网络中的流量和成本问题',
-  'menu.settings.render.ranker.TightTree.note': 'Tight-Tree 专注于树形结构中节点的紧凑排列，适用于层级关系',
-  'menu.settings.render.ranker.LongestPath.note': 'Longest-Path 强调最长路径，适合需要展示深度或突出重要性的结构',
+  'menu.settings.render.ranker.NetworkSimplex.note':
+    'Network-Simplex 更加关注网络中的流量和成本问题',
+  'menu.settings.render.ranker.TightTree.note':
+    'Tight-Tree 专注于树形结构中节点的紧凑排列，适用于层级关系',
+  'menu.settings.render.ranker.LongestPath.note':
+    'Longest-Path 强调最长路径，适合需要展示深度或突出重要性的结构',
   'menu.settings.render.padding': 'Padding',
   'menu.settings.render.fontSize': '字号大小',
   'menu.settings.render.edgesType': '连接线类型',

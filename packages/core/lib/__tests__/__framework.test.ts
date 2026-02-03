@@ -12,7 +12,11 @@ it('测试默认配置', () => {
 })
 
 it('测试用户配置', () => {
-  const d = createDomainDesigner({ moduleName: 'test', ignoreValueObjects: ['time'], __toFormatType: 'JSON' })
+  const d = createDomainDesigner({
+    moduleName: 'test',
+    ignoreValueObjects: ['time'],
+    __toFormatType: 'JSON',
+  })
   const options = d._getContext().getDesignerOptions()
   expect(options.moduleName).toBe('test')
   expect(options.ignoreValueObjects).toEqual(['time'])
@@ -20,7 +24,9 @@ it('测试用户配置', () => {
 })
 
 it('测试用户配置2', () => {
-  const d = createDomainDesigner({ ignoreValueObjects: [...defaultOptions().ignoreValueObjects, 'sorting'] })
+  const d = createDomainDesigner({
+    ignoreValueObjects: [...defaultOptions().ignoreValueObjects, 'sorting'],
+  })
   const options = d._getContext().getDesignerOptions()
   expect(options.ignoreValueObjects).includes('sorting')
 })

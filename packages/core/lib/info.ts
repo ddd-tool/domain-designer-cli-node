@@ -9,16 +9,27 @@ import type {
 
 export function createInfoProvider(designId: string): DomainDesignInfoProvider {
   return () => {
-    function func<NAME extends string>(name: NAME, note?: string | DomainDesignNote): DomainDesignInfo<'Function', NAME>
     function func<NAME extends string>(
       name: NAME,
-      dependsOn: NonEmptyArray<DomainDesignInfoFuncDependsOn | string | [string, string | DomainDesignNote]>,
+      note?: string | DomainDesignNote,
+    ): DomainDesignInfo<'Function', NAME>
+    function func<NAME extends string>(
+      name: NAME,
+      dependsOn: NonEmptyArray<
+        | DomainDesignInfoFuncDependsOn
+        | string
+        | [string, string | DomainDesignNote]
+      >,
       note?: string | DomainDesignNote,
     ): DomainDesignInfo<'Function', NAME>
     function func<NAME extends string>(
       name: NAME,
       p2?:
-        | NonEmptyArray<DomainDesignInfoFuncDependsOn | string | [string, string | DomainDesignNote]>
+        | NonEmptyArray<
+            | DomainDesignInfoFuncDependsOn
+            | string
+            | [string, string | DomainDesignNote]
+          >
         | string
         | DomainDesignNote,
       p3?: string | DomainDesignNote,
@@ -27,7 +38,9 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
       let subtype: Array<DomainDesignInfoFuncDependsOn> = []
       let note: DomainDesignNote | undefined = undefined
       if (p2 instanceof Array) {
-        subtype = context.customInfoArrToInfoArr(p2) as DomainDesignInfoFuncDependsOn[]
+        subtype = context.customInfoArrToInfoArr(
+          p2,
+        ) as DomainDesignInfoFuncDependsOn[]
         note = p3 as DomainDesignNote | undefined
       } else {
         note = p2 as DomainDesignNote | undefined
@@ -50,7 +63,10 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
     }
 
     return {
-      document<NAME extends string>(name: NAME, note?: string | DomainDesignNote): DomainDesignInfo<'Document', NAME> {
+      document<NAME extends string>(
+        name: NAME,
+        note?: string | DomainDesignNote,
+      ): DomainDesignInfo<'Document', NAME> {
         const context = useInternalContext(designId)
         const result = {
           _attributes: {
@@ -69,7 +85,10 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         return result
       },
       func,
-      id<NAME extends string>(name: NAME, note?: string | DomainDesignNote): DomainDesignInfo<'Id', NAME> {
+      id<NAME extends string>(
+        name: NAME,
+        note?: string | DomainDesignNote,
+      ): DomainDesignInfo<'Id', NAME> {
         const context = useInternalContext(designId)
         const result = {
           _attributes: {
@@ -108,7 +127,10 @@ export function createInfoProvider(designId: string): DomainDesignInfoProvider {
         context.registerInfo(result)
         return result
       },
-      version<NAME extends string>(name: NAME, note?: string | DomainDesignNote): DomainDesignInfo<'Version', NAME> {
+      version<NAME extends string>(
+        name: NAME,
+        note?: string | DomainDesignNote,
+      ): DomainDesignInfo<'Version', NAME> {
         const context = useInternalContext(designId)
         const result = {
           _attributes: {

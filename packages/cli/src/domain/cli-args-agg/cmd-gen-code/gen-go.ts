@@ -23,7 +23,7 @@ export async function requireGenGoContext(): Promise<define.go.GoContext> {
       //   hint: $t('question.subcommand.genCode.additions.hint'),
       // },
     ],
-    { onCancel: signal.onCancel }
+    { onCancel: signal.onCancel },
   )
   context.namespace = namespace
   context.additions = new Set()

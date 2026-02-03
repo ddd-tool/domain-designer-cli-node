@@ -1,5 +1,8 @@
 //函数节流
-export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): T {
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number,
+): T {
   let timer: any = null
   const throttledFunction = function (this: any, ...args: Parameters<T>): void {
     if (!timer) {
@@ -12,7 +15,14 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
   return throttledFunction as T
 }
 
-export function getOSType(): 'Windows Phone' | 'Windows' | 'Android' | 'Linux' | 'iOS' | 'MacOS' | 'Unknown OS' {
+export function getOSType():
+  | 'Windows Phone'
+  | 'Windows'
+  | 'Android'
+  | 'Linux'
+  | 'iOS'
+  | 'MacOS'
+  | 'Unknown OS' {
   const userAgent = window.navigator.userAgent
 
   if (/windows phone/i.test(userAgent)) {

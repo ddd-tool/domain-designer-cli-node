@@ -43,7 +43,7 @@ const renderRanker = bindRef(
   () => diagramAgg.states.renderConfig.ranker,
   (v) => {
     diagramAgg.commands.setRenderRanker(v)
-  }
+  },
 )
 const renderRankerOptions = reactive([
   {
@@ -67,19 +67,19 @@ const renderPadding = bindRef(
   () => diagramAgg.states.renderConfig.padding,
   (v) => {
     diagramAgg.commands.setRenderPadding(v)
-  }
+  },
 )
 const renderFontSize = bindRef(
   () => diagramAgg.states.renderConfig.fontSize,
   (v) => {
     diagramAgg.commands.setRenderFontSize(v)
-  }
+  },
 )
 const renderEdgesType = bindRef(
   () => diagramAgg.states.renderConfig.edges,
   (v) => {
     diagramAgg.commands.setRenderEdgesType(v)
-  }
+  },
 )
 const renderEdgesTypeOptions = reactive([
   {
@@ -96,7 +96,7 @@ const renderBendSize = bindRef(
   () => diagramAgg.states.renderConfig.bendSize,
   (v) => {
     diagramAgg.commands.setRenderBendSize(v)
-  }
+  },
 )
 const currentDesignKey = bindRef(diagramAgg.states.currentDesignKey, (v) => {
   handleNoFocus()
@@ -248,7 +248,7 @@ const dockItems = reactive([
     <template #itemicon="{ item }">
       <Button
         v-tooltip.left="item.label"
-        :disabled="(item.disabled as boolean)"
+        :disabled="item.disabled as boolean"
         :severity="item.severity ?? 'info'"
         :icon="item.icon"
         :src="item.icon"

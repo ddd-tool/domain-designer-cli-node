@@ -16,7 +16,11 @@ it('event 定义', () => {
 
 it('event糖', () => {
   const d = createDomainDesigner()
-  const event = d.event('event', ['field1', d.info.id('field2'), ['field3', '']])
+  const event = d.event('event', [
+    'field1',
+    d.info.id('field2'),
+    ['field3', ''],
+  ])
   const readModel = event.readModel('readModel', ['field1', ['field2', '']])
   const system = event.system('system')
   expect(readModel.inner.field1).not.toBeUndefined()
@@ -28,6 +32,10 @@ it('event糖', () => {
 
 it('toFormat', () => {
   const d = createDomainDesigner()
-  const event = d.event('event', ['field1', d.info.id('field2'), ['field3', '']])
+  const event = d.event('event', [
+    'field1',
+    d.info.id('field2'),
+    ['field3', ''],
+  ])
   expect(event.toFormat()).toBe('<event>')
 })

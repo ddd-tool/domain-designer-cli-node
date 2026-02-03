@@ -1,5 +1,9 @@
 import { reactive, ref } from 'vue'
-import { createBroadcastEvent, createSingletonAgg, createPluginHelperByAgg } from 'vue-fn/domain'
+import {
+  createBroadcastEvent,
+  createSingletonAgg,
+  createPluginHelperByAgg,
+} from 'vue-fn/domain'
 import type { Conversation, SseEvent } from './define'
 import { genId } from './common'
 import { createConversation } from './conversation'
@@ -13,7 +17,11 @@ const agg = createSingletonAgg(() => {
   const conversationMap = reactive<Record<string, Conversation>>({})
   const currentConversationId = ref<null | string>(null)
 
-  const onQueryStartedEvent = createBroadcastEvent<{ conversationId: string; query: string; filesPath: string[] }>()
+  const onQueryStartedEvent = createBroadcastEvent<{
+    conversationId: string
+    query: string
+    filesPath: string[]
+  }>()
   const onConnectedEvent = createBroadcastEvent<{}>()
   const onDisconnectedEvent = createBroadcastEvent<{ error: Event }>()
   const paths = ref(JSON.parse(import.meta.env.VITE_DESIGNER_PATHS || '{}'))
@@ -45,7 +53,12 @@ const agg = createSingletonAgg(() => {
             return
           }
           let data = event.data
-          if (!currentConversationId.value || !data || typeof data !== 'string' || data.startsWith('data:')) {
+          if (
+            !currentConversationId.value ||
+            !data ||
+            typeof data !== 'string' ||
+            data.startsWith('data:')
+          ) {
             return
           }
           data = data.replace('data:', '').trim()
@@ -95,11 +108,25 @@ const agg = createSingletonAgg(() => {
         if (!conversation) {
           throw new Error('conversation not found')
         }
-        conversation.createMessage({ creator: 'User', text: [str], done: true, status: 'Completed' })
-        conversation.createMessage({ creator: 'Ai', text: [], done: true, status: 'Completed' })
+        conversation.createMessage({
+          creator: 'User',
+          text: [str],
+          done: true,
+          status: 'Completed',
+        })
+        conversation.createMessage({
+          creator: 'Ai',
+          text: [],
+          done: true,
+          status: 'Completed',
+        })
         conversation.startWorkflow()
         conversation.startNode()
-        onQueryStartedEvent.publish({ conversationId, query: str, filesPath: paths.value[str] || [] })
+        onQueryStartedEvent.publish({
+          conversationId,
+          query: str,
+          filesPath: paths.value[str] || [],
+        })
       },
       conversationOnMessage(conversationId: string, text: string) {
         const conversation = conversationMap[conversationId]
