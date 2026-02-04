@@ -144,8 +144,8 @@ d.agg(
   'OrderAgg',
   [
     d.info.id('orderId'),
-    d.info.valueObj('orderItems'),
-    d.info.valueObj('orderStatus', 'Order status'),
+    d.info.valueObject('orderItems'),
+    d.info.valueObject('orderStatus', 'Order status'),
   ],
   'Order aggregate'
 )
@@ -166,7 +166,7 @@ Equivalent to
 ```ts
 d.event(
   'OrderPlaced',
-  [d.info.id('orderSequence', 'Order serial number'), d.info.valueObj('orderItems')],
+  [d.info.id('orderSequence', 'Order serial number'), d.info.valueObject('orderItems')],
   'Order placed'
 )
 ```
@@ -236,7 +236,7 @@ const AuthorizationSystem = d.system(
 // "User recharged" doesn't need special notes, so pass a plain string
 const UserRecharged = d.event('UserRecharged', [i.id('userId')], 'User recharged')
 // "User status" is related to the authorization system, so use the note function
-const UserStatus = d.info.valueObj(
+const UserStatus = d.info.valueObject(
   'userStatus',
   d.note`User status
     User status is not maintained by this system but synchronized from ${AuthorizationSystem}`

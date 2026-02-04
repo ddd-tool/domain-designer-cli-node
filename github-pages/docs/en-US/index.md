@@ -36,3 +36,9 @@ features:
 ::: info What You Write Is What You Get
 ![Demo](example1.gif)
 :::
+
+::: info AI Friendly
+![Demo](ai-assist1.png)
+![Demo](ai-assist2.png)
+![Demo](ai-assist3.png)
+:::
