@@ -14,7 +14,6 @@ export default defineConfig({
         nav: [
           { text: '主页', link: '/zh-CN/' },
           { text: '文档', link: '/zh-CN/guide/introduction/getting-started' },
-          { text: 'English', link: '/en-US/' },
           { text: '项目地址', link: 'https://github.com/ddd-tool/domain-designer-cli-node' },
         ],
         sidebar: {
@@ -58,7 +57,6 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/en-US/' },
           { text: 'Guide', link: '/en-US/guide/introduction/getting-started' },
-          { text: '中文', link: '/zh-CN/' },
           { text: 'GitHub', link: 'https://github.com/ddd-tool/domain-designer-cli-node' },
         ],
         sidebar: {
@@ -96,7 +94,10 @@ export default defineConfig({
     },
   },
   head: [
-    ['script', { type: 'text/javascript' }, `
+    [
+      'script',
+      { type: 'text/javascript' },
+      `
       (function() {
         const lang = navigator.language || navigator.userLanguage;
         const path = window.location.pathname;
@@ -111,6 +112,7 @@ export default defineConfig({
           }
         }
       })();
-    `]
+    `,
+    ],
   ],
 })
