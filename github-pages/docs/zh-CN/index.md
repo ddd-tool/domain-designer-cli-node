@@ -36,3 +36,9 @@ features:
 ::: info 所写即所得
 ![演示](example1.gif)
 :::
+
+::: info AI友好
+![演示](ai-assist1.png)
+![演示](ai-assist2.png)
+![演示](ai-assist3.png)
+:::

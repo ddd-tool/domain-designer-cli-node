@@ -33,7 +33,7 @@ function writeEnvFile() {
   copyFolderRecursive(
     path.join(cliRootDir, 'node_modules', '@ddd-tool', 'domain-designer-core'),
     path.join(rootDir, 'templates', 'node_modules', '@ddd-tool', 'domain-designer-core'),
-    { pattern: /^.+\.d\.ts$/ }
+    { pattern: /^.+\.d\.ts$/ },
   )
 }
 

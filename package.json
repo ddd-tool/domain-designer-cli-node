@@ -21,7 +21,7 @@
     "dev:ui": "pnpm -F @ddd-tool/domain-designer-ui-component dev",
     "dev:page": "pnpm -F github-pages dev",
     "build": "pnpm syncver && pnpm -r build && pnpm fmt",
-    "fmt": "pnpm exec prettier --write \"**/*.{vue,ts}\"",
+    "fmt": "pnpm exec prettier --write \"**/*.{vue,ts,mjs}\"",
     "test": "pnpm -r test",
     "test:cli": "pnpm -F cli test",
     "verify": "pnpm -r verify",

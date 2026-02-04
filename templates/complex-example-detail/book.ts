@@ -144,19 +144,22 @@ const 逾期 = d.command(
   ['借书id'],
   d.note`逾期
     1.书被借出，且1个月未还
-    2.增加借书会员的逾期次数`,
+    2.增加借书会员的${userValues.逾期次数}`,
 )
 
 const 书聚合 = d.agg('BookAgg', [bookValues.二维码], '书聚合')
 
 const 用户占用书聚合 = d.agg('UserOcuppyBookAgg', [userValues.用户id, '占用数量'], '用户占用书聚合')
 
-const 增加账户逾期次数规则 = d.policy('SuspendAccountWhenTimeOut', d.note`增加账户逾期次数`)
+const 增加账户逾期次数规则 = d.policy(
+  'SuspendAccountWhenTimeOut',
+  d.note`增加账户${userValues.逾期次数}`,
+)
 
 const 增加逾期次数 = d.command(
   'IncreaseAccountTimeOutCount',
   [userValues.用户id],
-  d.note`增加逾期次数
+  d.note`增加${userValues.逾期次数}
     1.会员累计逾期达到3次暂停账户
     2.会员账户当前是启用才能被暂停`,
 )
