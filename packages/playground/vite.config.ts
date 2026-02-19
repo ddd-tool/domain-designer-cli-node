@@ -14,6 +14,12 @@ export default defineConfig({
       // Allow accessing files from global installation directories
       strict: false,
     },
+    headers: {
+      // 开发环境下禁用浏览器缓存
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
   },
   resolve: {
     alias: {

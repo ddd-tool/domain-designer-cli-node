@@ -148,6 +148,7 @@ async function configSource(webRoot: string, source: string) {
   fs.readdirSync(source).forEach((file) => {
     if (tsSuffixMatcher.test(file)) {
       const name = tsSuffixMatcher.exec(file)![1]
+      console.debug(`Detected design: ${file}`)
       designs.push({
         name,
         identifier: `__d${++i}`,
