@@ -13661,7 +13661,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "cli",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "type": "module",
   "files": [
@@ -13676,7 +13676,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "cli@0.3.2"
+  "_id": "cli@0.3.3"
 };
 
 // src/domain/environment-agg/index.ts
@@ -14339,6 +14339,7 @@ async function configSource(webRoot, source) {
   import_fs5.default.readdirSync(source).forEach((file) => {
     if (tsSuffixMatcher.test(file)) {
       const name = tsSuffixMatcher.exec(file)[1];
+      console.debug(`Detected design: ${file}`);
       designs.push({
         name,
         identifier: `__d${++i}`,

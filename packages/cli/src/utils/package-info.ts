@@ -1,6 +1,6 @@
 export default {
   name: 'cli',
-  version: '0.3.2',
+  version: '0.3.3',
   private: true,
   type: 'module',
   files: ['./src'],
@@ -13,5 +13,5 @@ export default {
   },
   readme: 'ERROR: No README data found!',
   homepage: 'https://github.com/ddd-tool/domain-designer-cli-node#readme',
-  _id: 'cli@0.3.2',
+  _id: 'cli@0.3.3',
 }
