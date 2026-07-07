@@ -2,6 +2,13 @@ packages:
   - packages/**
   - github-pages/**
 
+nodeLinker: hoisted
+
+allowBuilds:
+  '@swc/core': true
+  cypress: true
+  esbuild: true
+
 onlyBuiltDependencies:
   - '@swc/core'
   - cypress

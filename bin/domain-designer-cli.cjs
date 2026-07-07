@@ -1232,6 +1232,7 @@ var require_reactivity_cjs_prod = __commonJS({
     var shared = require_shared();
     var activeEffectScope;
     var EffectScope = class {
+      // TODO isolatedDeclarations "__v_skip"
       constructor(detached = false) {
         this.detached = detached;
         this._active = true;
@@ -1239,11 +1240,18 @@ var require_reactivity_cjs_prod = __commonJS({
         this.effects = [];
         this.cleanups = [];
         this._isPaused = false;
-        this.parent = activeEffectScope;
+        this._warnOnRun = true;
+        this.__v_skip = true;
         if (!detached && activeEffectScope) {
-          this.index = (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(
-            this
-          ) - 1;
+          if (activeEffectScope.active) {
+            this.parent = activeEffectScope;
+            this.index = (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(
+              this
+            ) - 1;
+          } else {
+            this._active = false;
+            this._warnOnRun = false;
+          }
         }
       }
       get active() {
@@ -1309,7 +1317,18 @@ var require_reactivity_cjs_prod = __commonJS({
        */
       off() {
         if (this._on > 0 && --this._on === 0) {
-          activeEffectScope = this.prevScope;
+          if (activeEffectScope === this) {
+            activeEffectScope = this.prevScope;
+          } else {
+            let current = activeEffectScope;
+            while (current) {
+              if (current.prevScope === this) {
+                current.prevScope = this.prevScope;
+                break;
+              }
+              current = current.prevScope;
+            }
+          }
           this.prevScope = void 0;
         }
       }
@@ -1382,8 +1401,12 @@ var require_reactivity_cjs_prod = __commonJS({
         this.next = void 0;
         this.cleanup = void 0;
         this.scheduler = void 0;
-        if (activeEffectScope && activeEffectScope.active) {
-          activeEffectScope.effects.push(this);
+        if (activeEffectScope) {
+          if (activeEffectScope.active) {
+            activeEffectScope.effects.push(this);
+          } else {
+            this.flags &= -2;
+          }
         }
       }
       pause() {
@@ -2029,10 +2052,17 @@ var require_reactivity_cjs_prod = __commonJS({
     }
     function reduce(self2, method, fn3, args) {
       const arr = shallowReadArray(self2);
+      const needsWrap = arr !== self2 && !/* @__PURE__ */ isShallow(self2);
       let wrappedFn = fn3;
+      let wrapInitialAccumulator = false;
       if (arr !== self2) {
-        if (!/* @__PURE__ */ isShallow(self2)) {
+        if (needsWrap) {
+          wrapInitialAccumulator = args.length === 0;
           wrappedFn = function(acc, item, index) {
+            if (wrapInitialAccumulator) {
+              wrapInitialAccumulator = false;
+              acc = toWrapped(self2, acc);
+            }
             return fn3.call(this, acc, toWrapped(self2, item), index, self2);
           };
         } else if (fn3.length > 3) {
@@ -2041,7 +2071,8 @@ var require_reactivity_cjs_prod = __commonJS({
           };
         }
       }
-      return arr[method](wrappedFn, ...args);
+      const result = arr[method](wrappedFn, ...args);
+      return wrapInitialAccumulator ? toWrapped(self2, result) : result;
     }
     function searchProxy(self2, method, args) {
       const arr = /* @__PURE__ */ toRaw(self2);
@@ -2159,7 +2190,7 @@ var require_reactivity_cjs_prod = __commonJS({
           value,
           /* @__PURE__ */ isRef(target) ? target : receiver
         );
-        if (target === /* @__PURE__ */ toRaw(receiver)) {
+        if (target === /* @__PURE__ */ toRaw(receiver) && result) {
           if (!hadKey) {
             trigger(target, "add", key, value);
           } else if (shared.hasChanged(value, oldValue)) {
@@ -2304,15 +2335,14 @@ var require_reactivity_cjs_prod = __commonJS({
           clear: createReadonlyMethod("clear")
         } : {
           add(value) {
-            if (!shallow && !/* @__PURE__ */ isShallow(value) && !/* @__PURE__ */ isReadonly(value)) {
-              value = /* @__PURE__ */ toRaw(value);
-            }
             const target = /* @__PURE__ */ toRaw(this);
             const proto2 = getProto(target);
-            const hadKey = proto2.has.call(target, value);
+            const rawValue = /* @__PURE__ */ toRaw(value);
+            const valueToAdd = !shallow && !/* @__PURE__ */ isShallow(value) && !/* @__PURE__ */ isReadonly(value) ? rawValue : value;
+            const hadKey = proto2.has.call(target, valueToAdd) || shared.hasChanged(value, valueToAdd) && proto2.has.call(target, value) || shared.hasChanged(rawValue, valueToAdd) && proto2.has.call(target, rawValue);
             if (!hadKey) {
-              target.add(value);
-              trigger(target, "add", value, value);
+              target.add(valueToAdd);
+              trigger(target, "add", valueToAdd, valueToAdd);
             }
             return this;
           },
@@ -2425,9 +2455,6 @@ var require_reactivity_cjs_prod = __commonJS({
           return 0;
       }
     }
-    function getTargetType(value) {
-      return value["__v_skip"] || !Object.isExtensible(value) ? 0 : targetTypeMap(shared.toRawType(value));
-    }
     // @__NO_SIDE_EFFECTS__
     function reactive2(target) {
       if (/* @__PURE__ */ isReadonly(target)) {
@@ -2478,13 +2505,16 @@ var require_reactivity_cjs_prod = __commonJS({
       if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
         return target;
       }
-      const targetType = getTargetType(target);
-      if (targetType === 0) {
+      if (target["__v_skip"] || !Object.isExtensible(target)) {
         return target;
       }
       const existingProxy = proxyMap.get(target);
       if (existingProxy) {
         return existingProxy;
+      }
+      const targetType = targetTypeMap(shared.toRawType(target));
+      if (targetType === 0) {
+        return target;
       }
       const proxy = new Proxy(
         target,
@@ -2627,16 +2657,16 @@ var require_reactivity_cjs_prod = __commonJS({
       return ret;
     }
     var ObjectRefImpl = class {
-      constructor(_object, _key, _defaultValue) {
+      constructor(_object, key, _defaultValue) {
         this._object = _object;
-        this._key = _key;
         this._defaultValue = _defaultValue;
         this["__v_isRef"] = true;
         this._value = void 0;
+        this._key = shared.isSymbol(key) ? key : String(key);
         this._raw = /* @__PURE__ */ toRaw(_object);
         let shallow = true;
         let obj = _object;
-        if (!shared.isArray(_object) || !shared.isIntegerKey(String(_key))) {
+        if (!shared.isArray(_object) || shared.isSymbol(this._key) || !shared.isIntegerKey(this._key)) {
           do {
             shallow = !/* @__PURE__ */ isProxy(obj) || /* @__PURE__ */ isShallow(obj);
           } while (shallow && (obj = obj["__v_raw"]));
@@ -2856,8 +2886,9 @@ var require_reactivity_cjs_prod = __commonJS({
       if (once && cb) {
         const _cb = cb;
         cb = (...args) => {
-          _cb(...args);
+          const res = _cb(...args);
           watchHandle();
+          return res;
         };
       }
       let oldValue = isMultiSource ? new Array(source.length).fill(INITIAL_WATCHER_VALUE) : INITIAL_WATCHER_VALUE;
@@ -2867,7 +2898,7 @@ var require_reactivity_cjs_prod = __commonJS({
         }
         if (cb) {
           const newValue = effect2.run();
-          if (deep || forceTrigger || (isMultiSource ? newValue.some((v2, i) => shared.hasChanged(v2, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
+          if (immediateFirstRun || deep || forceTrigger || (isMultiSource ? newValue.some((v2, i) => shared.hasChanged(v2, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
             if (cleanup) {
               cleanup();
             }
@@ -3022,6 +3053,7 @@ var require_reactivity_cjs = __commonJS({
     }
     var activeEffectScope;
     var EffectScope = class {
+      // TODO isolatedDeclarations "__v_skip"
       constructor(detached = false) {
         this.detached = detached;
         this._active = true;
@@ -3029,11 +3061,18 @@ var require_reactivity_cjs = __commonJS({
         this.effects = [];
         this.cleanups = [];
         this._isPaused = false;
-        this.parent = activeEffectScope;
+        this._warnOnRun = true;
+        this.__v_skip = true;
         if (!detached && activeEffectScope) {
-          this.index = (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(
-            this
-          ) - 1;
+          if (activeEffectScope.active) {
+            this.parent = activeEffectScope;
+            this.index = (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(
+              this
+            ) - 1;
+          } else {
+            this._active = false;
+            this._warnOnRun = false;
+          }
         }
       }
       get active() {
@@ -3081,7 +3120,7 @@ var require_reactivity_cjs = __commonJS({
           } finally {
             activeEffectScope = currentEffectScope;
           }
-        } else {
+        } else if (this._warnOnRun) {
           warn(`cannot run an inactive effect scope.`);
         }
       }
@@ -3101,7 +3140,18 @@ var require_reactivity_cjs = __commonJS({
        */
       off() {
         if (this._on > 0 && --this._on === 0) {
-          activeEffectScope = this.prevScope;
+          if (activeEffectScope === this) {
+            activeEffectScope = this.prevScope;
+          } else {
+            let current = activeEffectScope;
+            while (current) {
+              if (current.prevScope === this) {
+                current.prevScope = this.prevScope;
+                break;
+              }
+              current = current.prevScope;
+            }
+          }
           this.prevScope = void 0;
         }
       }
@@ -3178,8 +3228,12 @@ var require_reactivity_cjs = __commonJS({
         this.next = void 0;
         this.cleanup = void 0;
         this.scheduler = void 0;
-        if (activeEffectScope && activeEffectScope.active) {
-          activeEffectScope.effects.push(this);
+        if (activeEffectScope) {
+          if (activeEffectScope.active) {
+            activeEffectScope.effects.push(this);
+          } else {
+            this.flags &= -2;
+          }
         }
       }
       pause() {
@@ -3877,10 +3931,17 @@ var require_reactivity_cjs = __commonJS({
     }
     function reduce(self2, method, fn3, args) {
       const arr = shallowReadArray(self2);
+      const needsWrap = arr !== self2 && !/* @__PURE__ */ isShallow(self2);
       let wrappedFn = fn3;
+      let wrapInitialAccumulator = false;
       if (arr !== self2) {
-        if (!/* @__PURE__ */ isShallow(self2)) {
+        if (needsWrap) {
+          wrapInitialAccumulator = args.length === 0;
           wrappedFn = function(acc, item, index) {
+            if (wrapInitialAccumulator) {
+              wrapInitialAccumulator = false;
+              acc = toWrapped(self2, acc);
+            }
             return fn3.call(this, acc, toWrapped(self2, item), index, self2);
           };
         } else if (fn3.length > 3) {
@@ -3889,7 +3950,8 @@ var require_reactivity_cjs = __commonJS({
           };
         }
       }
-      return arr[method](wrappedFn, ...args);
+      const result = arr[method](wrappedFn, ...args);
+      return wrapInitialAccumulator ? toWrapped(self2, result) : result;
     }
     function searchProxy(self2, method, args) {
       const arr = /* @__PURE__ */ toRaw(self2);
@@ -4013,7 +4075,7 @@ var require_reactivity_cjs = __commonJS({
           value,
           /* @__PURE__ */ isRef(target) ? target : receiver
         );
-        if (target === /* @__PURE__ */ toRaw(receiver)) {
+        if (target === /* @__PURE__ */ toRaw(receiver) && result) {
           if (!hadKey) {
             trigger(target, "add", key, value);
           } else if (shared.hasChanged(value, oldValue)) {
@@ -4177,15 +4239,14 @@ var require_reactivity_cjs = __commonJS({
           clear: createReadonlyMethod("clear")
         } : {
           add(value) {
-            if (!shallow && !/* @__PURE__ */ isShallow(value) && !/* @__PURE__ */ isReadonly(value)) {
-              value = /* @__PURE__ */ toRaw(value);
-            }
             const target = /* @__PURE__ */ toRaw(this);
             const proto2 = getProto(target);
-            const hadKey = proto2.has.call(target, value);
+            const rawValue = /* @__PURE__ */ toRaw(value);
+            const valueToAdd = !shallow && !/* @__PURE__ */ isShallow(value) && !/* @__PURE__ */ isReadonly(value) ? rawValue : value;
+            const hadKey = proto2.has.call(target, valueToAdd) || shared.hasChanged(value, valueToAdd) && proto2.has.call(target, value) || shared.hasChanged(rawValue, valueToAdd) && proto2.has.call(target, rawValue);
             if (!hadKey) {
-              target.add(value);
-              trigger(target, "add", value, value);
+              target.add(valueToAdd);
+              trigger(target, "add", valueToAdd, valueToAdd);
             }
             return this;
           },
@@ -4313,9 +4374,6 @@ var require_reactivity_cjs = __commonJS({
           return 0;
       }
     }
-    function getTargetType(value) {
-      return value["__v_skip"] || !Object.isExtensible(value) ? 0 : targetTypeMap(shared.toRawType(value));
-    }
     // @__NO_SIDE_EFFECTS__
     function reactive2(target) {
       if (/* @__PURE__ */ isReadonly(target)) {
@@ -4373,13 +4431,16 @@ var require_reactivity_cjs = __commonJS({
       if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
         return target;
       }
-      const targetType = getTargetType(target);
-      if (targetType === 0) {
+      if (target["__v_skip"] || !Object.isExtensible(target)) {
         return target;
       }
       const existingProxy = proxyMap.get(target);
       if (existingProxy) {
         return existingProxy;
+      }
+      const targetType = targetTypeMap(shared.toRawType(target));
+      if (targetType === 0) {
+        return target;
       }
       const proxy = new Proxy(
         target,
@@ -4540,16 +4601,16 @@ var require_reactivity_cjs = __commonJS({
       return ret;
     }
     var ObjectRefImpl = class {
-      constructor(_object, _key, _defaultValue) {
+      constructor(_object, key, _defaultValue) {
         this._object = _object;
-        this._key = _key;
         this._defaultValue = _defaultValue;
         this["__v_isRef"] = true;
         this._value = void 0;
+        this._key = shared.isSymbol(key) ? key : String(key);
         this._raw = /* @__PURE__ */ toRaw(_object);
         let shallow = true;
         let obj = _object;
-        if (!shared.isArray(_object) || !shared.isIntegerKey(String(_key))) {
+        if (!shared.isArray(_object) || shared.isSymbol(this._key) || !shared.isIntegerKey(this._key)) {
           do {
             shallow = !/* @__PURE__ */ isProxy(obj) || /* @__PURE__ */ isShallow(obj);
           } while (shallow && (obj = obj["__v_raw"]));
@@ -4793,8 +4854,9 @@ var require_reactivity_cjs = __commonJS({
       if (once && cb) {
         const _cb = cb;
         cb = (...args) => {
-          _cb(...args);
+          const res = _cb(...args);
           watchHandle();
+          return res;
         };
       }
       let oldValue = isMultiSource ? new Array(source.length).fill(INITIAL_WATCHER_VALUE) : INITIAL_WATCHER_VALUE;
@@ -4804,7 +4866,7 @@ var require_reactivity_cjs = __commonJS({
         }
         if (cb) {
           const newValue = effect2.run();
-          if (deep || forceTrigger || (isMultiSource ? newValue.some((v2, i) => shared.hasChanged(v2, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
+          if (immediateFirstRun || deep || forceTrigger || (isMultiSource ? newValue.some((v2, i) => shared.hasChanged(v2, oldValue[i])) : shared.hasChanged(newValue, oldValue))) {
             if (cleanup) {
               cleanup();
             }
@@ -19134,7 +19196,7 @@ async function start() {
 @vue/shared/dist/shared.cjs.prod.js:
 @vue/shared/dist/shared.cjs.js:
   (**
-  * @vue/shared v3.5.27
+  * @vue/shared v3.5.39
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -19142,7 +19204,7 @@ async function start() {
 @vue/reactivity/dist/reactivity.cjs.prod.js:
 @vue/reactivity/dist/reactivity.cjs.js:
   (**
-  * @vue/reactivity v3.5.27
+  * @vue/reactivity v3.5.39
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)

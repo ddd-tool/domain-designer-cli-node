@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import {
   NonEmptyArray,
   DomainDesignAgg,
@@ -43,9 +42,11 @@ type Rule =
   | 'System'
   | 'ReadModel'
 
+let id = 0
+
 export function genId(): string {
   try {
-    return nanoid()
+    return (id++).toString()
   } catch (error) {
     throw new Error(`Failed to generate ID: ${error}`)
   }
