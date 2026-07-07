@@ -17,8 +17,7 @@ import { EMPTY_STORY } from './types'
 import type { LinkType } from '@ddd-tool/domain-designer-core/common'
 
 export type FilterMode =
-  | { mode: 'story'; currentStory: string }
-  | { mode: 'workflows'; customWorkflowNames: string[] }
+  { mode: 'story'; currentStory: string } | { mode: 'workflows'; customWorkflowNames: string[] }
 
 export function* nomnomlCodeGenerator(params: {
   design: DomainDesigner

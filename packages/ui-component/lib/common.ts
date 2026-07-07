@@ -13,13 +13,7 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
 }
 
 export function getOSType():
-  | 'Windows Phone'
-  | 'Windows'
-  | 'Android'
-  | 'Linux'
-  | 'iOS'
-  | 'MacOS'
-  | 'Unknown OS' {
+  'Windows Phone' | 'Windows' | 'Android' | 'Linux' | 'iOS' | 'MacOS' | 'Unknown OS' {
   const userAgent = window.navigator.userAgent
 
   if (/windows phone/i.test(userAgent)) {

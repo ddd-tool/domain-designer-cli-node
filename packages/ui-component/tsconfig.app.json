@@ -10,7 +10,7 @@
   ],
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".",
+    "rootDir": "lib",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",

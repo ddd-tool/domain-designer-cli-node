@@ -112,10 +112,7 @@ export type DomainDesignInfoProvider = () => {
 export type DomainDesignInfoType = 'Document' | 'Function' | 'Id' | 'ValueObject' | 'Version'
 export type DomainDesignInfoSimplify<NAME extends string> = NAME | [NAME, string | DomainDesignNote]
 export type DomainDesignInfoSubtype<TYPE extends DomainDesignInfoType> = TYPE extends
-  | 'Document'
-  | 'Id'
-  | 'Version'
-  | 'ValueObject'
+  'Document' | 'Id' | 'Version' | 'ValueObject'
   ? 'None'
   : TYPE extends 'Function'
     ? DomainDesignInfoFuncDependsOn[]
@@ -144,19 +141,19 @@ export type DomainDesignInfoRecord = NonEmptyObject<
 >
 
 export type CustomInfo<G_NAME extends string> =
-  | DomainDesignInfo<DomainDesignInfoType, G_NAME>
-  | G_NAME
-  | [G_NAME, string | DomainDesignNote]
+  DomainDesignInfo<DomainDesignInfoType, G_NAME> | G_NAME | [G_NAME, string | DomainDesignNote]
 export type CustomInfoArrayToInfoObject<
   ARR extends Array<DomainDesignInfo<any, any> | string | [string, string | DomainDesignNote]>,
 > = {
-  [K in ARR[number] as K extends DomainDesignInfo<any, infer U>
-    ? U
-    : K extends string
-      ? K
-      : K extends [infer U, any]
-        ? U
-        : never]: K extends DomainDesignInfo<any, any>
+  [
+    K in ARR[number] as K extends DomainDesignInfo<any, infer U>
+      ? U
+      : K extends string
+        ? K
+        : K extends [infer U, any]
+          ? U
+          : never
+  ]: K extends DomainDesignInfo<any, any>
     ? K
     : K extends string
       ? DomainDesignInfo<'ValueObject', K>
