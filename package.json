@@ -14,7 +14,8 @@
     "./packages/ui-component/dist",
     "./scripts",
     "./templates",
-    "./tsconfig.json"
+    "./tsconfig.json",
+    "./pnpm-workspace.yaml"
   ],
   "scripts": {
     "dev": "pnpm -F playground dev",
