@@ -43,6 +43,7 @@ export async function execute(args: RunWebCommandArgs) {
   const webRoot = environmentAgg.states.webRoot.value
   log.printDebug('webRoot路径', webRoot)
   const packageManager = environmentAgg.states.packageManager.value
+  const exeCmd = packageManager === 'bun' ? 'bunx' : packageManager === 'pnpm' ? 'pnpx' : 'npx'
 
   log.printInfo('================ 安装运行依赖: Starting... ================')
   if (packageManager === PackageManager.BUN) {
@@ -63,7 +64,7 @@ export async function execute(args: RunWebCommandArgs) {
   log.printSuccess('================ 安装运行依赖: Succeeded ================')
 
   log.printInfo('================ 装配代码与环境变量: Starting... ================')
-  configSource(webRoot, args.source)
+  configSource(webRoot, args.source, exeCmd)
   configEnvironment(webRoot, args.source)
   log.printSuccess('================ 装配代码与环境变量: Succeeded ================')
 
@@ -87,7 +88,7 @@ export async function execute(args: RunWebCommandArgs) {
 
   process.nextTick(() => {
     if (packageManager === PackageManager.BUN) {
-      const cmd = `bun --cwd "${webRoot}" dev`
+      const cmd = `bun --cwd "${webRoot}/packages/playground" dev`
       log.printDebug(cmd)
       spawnSync(cmd, {
         encoding: 'utf-8',
@@ -103,7 +104,7 @@ export async function execute(args: RunWebCommandArgs) {
         shell: true,
       })
     } else if (packageManager === PackageManager.NPM) {
-      const cmd = `npm --prefix "${webRoot}" run dev`
+      const cmd = `npm --prefix "${webRoot}/packages/playground" run dev`
       log.printDebug(cmd)
       spawnSync(cmd, {
         encoding: 'utf-8',
@@ -119,7 +120,7 @@ export async function execute(args: RunWebCommandArgs) {
 const tsSuffixMatcher = new RegExp(/(.+)\.ts$/)
 const detailSuffix = '-detail'
 
-async function configSource(webRoot: string, source: string) {
+async function configSource(webRoot: string, source: string, exeCmd: string) {
   if (!fs.existsSync(source) || !fs.statSync(source).isDirectory()) {
     throw new Error($t('error.shouldBeValidDir{dir}', { dir: source }))
   }
@@ -136,11 +137,7 @@ async function configSource(webRoot: string, source: string) {
         scriptVer: packageInfo.version,
       }),
     )
-    log.print(
-      chalk.bgYellow(
-        `${environmentAgg.states.packageManager.value === 'bun' ? 'bunx ' : ''}domain-designer-cli update`,
-      ),
-    )
+    log.print(chalk.bgYellow(`${exeCmd} domain-designer-cli update`))
   }
 
   const designs: { name: string; identifier: string; importCode: string }[] = []

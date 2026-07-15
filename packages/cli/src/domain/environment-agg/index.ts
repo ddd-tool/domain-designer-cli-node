@@ -73,58 +73,22 @@ const agg = createSingletonAgg(() => {
 
   const webRoot = ref(findWebRoot(osType.value, packageManager.value))
 
+  function checkCommand(name: string): boolean {
+    const cmd = osType.value === 'windows' ? `where.exe ${name}` : `hash ${name}`
+    log.printDebug(cmd)
+    return spawnSync(cmd, { encoding: 'utf-8', shell: true }).status === 0
+  }
+
   function checkBun(): boolean {
-    let status: number | null = null
-    if (osType.value === 'windows') {
-      const cmd = 'where.exe bun'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    } else if (osType.value === 'linux') {
-      const cmd = 'hash bun'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    } else if (osType.value === 'mac') {
-      const cmd = 'hash bun'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    }
-    return status === 0
+    return checkCommand('bun')
   }
 
   function checkPnpm(): boolean {
-    let status: number | null = null
-    if (osType.value === 'windows') {
-      const cmd = 'where.exe pnpm'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    } else if (osType.value === 'linux') {
-      const cmd = 'hash pnpm'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    } else if (osType.value === 'mac') {
-      const cmd = 'hash pnpm'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    }
-    return status === 0
+    return checkCommand('pnpm')
   }
 
   function checkNpm(): boolean {
-    let status: number | null = null
-    if (osType.value === 'windows') {
-      const cmd = 'where.exe npm'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    } else if (osType.value === 'linux') {
-      const cmd = 'hash npm'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    } else if (osType.value === 'mac') {
-      const cmd = 'hash npm'
-      log.printDebug(cmd)
-      status = spawnSync(cmd, { encoding: 'utf-8', shell: true }).status
-    }
-    return status === 0
+    return checkCommand('npm')
   }
 
   return {

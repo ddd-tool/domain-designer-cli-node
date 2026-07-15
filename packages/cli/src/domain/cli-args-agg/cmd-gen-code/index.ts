@@ -100,6 +100,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   const webRoot = environmentAgg.states.webRoot.value
   const sourcePath = args.source
   const packageManager = environmentAgg.states.packageManager.value
+  const exeCmd = packageManager === 'bun' ? 'bunx' : packageManager === 'pnpm' ? 'pnpx' : 'npx'
 
   const versionFilePath = path.join(sourcePath, 'node_modules', 'version.txt')
   if (
@@ -111,9 +112,7 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
     log.printWarn('当前工作目录版本：', fs.readFileSync(versionFilePath, 'utf-8').trim())
     log.printWarn('脚手架版本：      ', packageInfo.version)
     log.printWarn('如果要以本地脚手架版本为准，请执行在工作目录执行update命令进行更新')
-    log.print(
-      chalk.bgYellow(`${packageManager === 'bun' ? 'bunx ' : ''}domain-designer-cli update`),
-    )
+    log.print(chalk.bgYellow(`${exeCmd} domain-designer-cli update`))
   }
 
   log.printInfo('================ Install dependencies: Starting... ================')
@@ -141,7 +140,6 @@ export async function execute(args: Required<GenCodeCommandArgs>) {
   log.printSuccess('================ Install dependencies: Succeeded ================')
 
   log.printInfo('================ Compliling ts code: Starting... ================')
-  const exeCmd = packageManager === 'bun' ? 'bunx' : 'pnpx'
   // spawnSync(`pnpx zx ${webRoot.replace('\\', '/')}/scripts/build-ts.mjs --source=${sourcePath}`, {
   spawnSync(
     `${exeCmd} zx ${webRoot.replace(/\\/g, '/')}/scripts/build-ts.mjs --source=${sourcePath}`,
