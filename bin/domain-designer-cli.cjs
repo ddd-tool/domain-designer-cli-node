@@ -13727,7 +13727,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "cli",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "type": "module",
   "files": [
@@ -13742,7 +13742,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "cli@0.3.3"
+  "_id": "cli@0.3.4"
 };
 
 // src/domain/environment-agg/index.ts
@@ -13911,56 +13911,19 @@ var agg2 = G(() => {
     })()
   );
   const webRoot = (0, import_reactivity3.ref)(findWebRoot(osType.value, packageManager.value));
+  function checkCommand(name) {
+    const cmd = osType.value === "windows" ? `where.exe ${name}` : `hash ${name}`;
+    log_default.printDebug(cmd);
+    return (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status === 0;
+  }
   function checkBun() {
-    let status = null;
-    if (osType.value === "windows") {
-      const cmd = "where.exe bun";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    } else if (osType.value === "linux") {
-      const cmd = "hash bun";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    } else if (osType.value === "mac") {
-      const cmd = "hash bun";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    }
-    return status === 0;
+    return checkCommand("bun");
   }
   function checkPnpm() {
-    let status = null;
-    if (osType.value === "windows") {
-      const cmd = "where.exe pnpm";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    } else if (osType.value === "linux") {
-      const cmd = "hash pnpm";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    } else if (osType.value === "mac") {
-      const cmd = "hash pnpm";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    }
-    return status === 0;
+    return checkCommand("pnpm");
   }
   function checkNpm() {
-    let status = null;
-    if (osType.value === "windows") {
-      const cmd = "where.exe npm";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    } else if (osType.value === "linux") {
-      const cmd = "hash npm";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    } else if (osType.value === "mac") {
-      const cmd = "hash npm";
-      log_default.printDebug(cmd);
-      status = (0, import_child_process2.spawnSync)(cmd, { encoding: "utf-8", shell: true }).status;
-    }
-    return status === 0;
+    return checkCommand("npm");
   }
   return {
     states: {
@@ -13993,10 +13956,11 @@ var Subcommand = Object.freeze({
   GenCode: "GenCode",
   None: "none"
 });
-function getRunWebScript() {
+function getScript(opt) {
   const environmentAgg7 = useEnvironmentAgg();
   const packageManager = environmentAgg7.states.packageManager.value;
   const repoAddr = package_info_default.repository.url.replace(/git\+/g, "");
+  const pmPrefix = packageManager === "bun" ? "bunx " : packageManager === "pnpm" ? "" : "npx ";
   const winScript = `REM App Name: Domain Designer Cli
 REM Script Version: ${package_info_default.version}
 REM Repo Addr: ${repoAddr}
@@ -14006,94 +13970,30 @@ REM Package Manager: ${packageManager}
 setlocal
 set "scriptPath=%~dp0"
 
-${packageManager === "bun" ? "bunx " : ""}domain-designer-cli runWeb --source=%scriptPath%
+${pmPrefix} domain-designer-cli ${opt.subcommand} --source=%scriptPath%
 `;
-  const linuxScript = `#!/bin/bash
+  const unixScript = `#!/bin/bash
 # App Name: Domain Designer Cli
 # Script Version: ${package_info_default.version}
 # Repo Addr: ${repoAddr}
 # Package Manager: ${packageManager}
 
-${packageManager === "bun" ? "bunx " : ""}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
-`;
-  const macScript = `#!/bin/bash
-# App Name: Domain Designer Cli
-# Script Version: ${package_info_default.version}
-# Repo Addr: ${repoAddr}
-# Package Manager: ${packageManager}
-
-${packageManager === "bun" ? "bunx " : ""}domain-designer-cli runWeb --source="$(dirname "$(realpath "$0")")"
+${pmPrefix} domain-designer-cli ${opt.subcommand} --source="$(dirname "$(realpath "$0")")"
 `;
   const osType = environmentAgg7.states.osType.value;
   if (osType === "windows") {
-    return {
-      name: "RunWeb.bat",
-      content: winScript
-    };
-  } else if (osType === "linux") {
-    return {
-      name: "RunWeb.sh",
-      content: linuxScript
-    };
-  } else if (osType === "mac") {
-    return {
-      name: "RunWeb.sh",
-      content: macScript
-    };
+    return { name: `${opt.scriptBaseName}.bat`, content: winScript };
+  } else if (osType === "linux" || osType === "mac") {
+    return { name: `${opt.scriptBaseName}.sh`, content: unixScript };
   } else {
     log_default.printError(`Unsupported OS: ${osType}`);
   }
 }
+function getRunWebScript() {
+  return getScript({ subcommand: "runWeb", scriptBaseName: "RunWeb" });
+}
 function getGenCodeScript() {
-  const environmentAgg7 = useEnvironmentAgg();
-  const packageManager = environmentAgg7.states.packageManager.value;
-  const repoAddr = package_info_default.repository.url.replace(/git\+/g, "");
-  const winScript = `REM App Name: Domain Designer Cli
-REM Script Version: ${package_info_default.version}
-REM Repo Addr: ${repoAddr}
-REM Package Manager: ${packageManager}
-
-@echo off
-setlocal
-set "scriptPath=%~dp0"
-
-${packageManager === "bun" ? "bunx " : ""}domain-designer-cli genCode --source=%scriptPath%
-`;
-  const linuxScript = `#!/bin/bash
-# App Name: Domain Designer Cli
-# Script Version: ${package_info_default.version}
-# Repo Addr: ${repoAddr}
-# Package Manager: ${packageManager}
-
-${packageManager === "bun" ? "bunx " : ""}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
-`;
-  const macScript = `#!/bin/bash
-# App Name: Domain Designer Cli
-# Script Version: ${package_info_default.version}
-# Repo Addr: ${repoAddr}
-# Package Manager: ${packageManager}
-
-${packageManager === "bun" ? "bunx " : ""}domain-designer-cli genCode --source="$(dirname "$(realpath "$0")")"
-`;
-  const osType = environmentAgg7.states.osType.value;
-  if (osType === "windows") {
-    return {
-      name: "GenCode.bat",
-      content: winScript
-    };
-  } else if (osType === "linux") {
-    return {
-      name: "GenCode.sh",
-      content: linuxScript
-    };
-  } else if (osType === "mac") {
-    return {
-      name: "GenCode.sh",
-      content: macScript
-    };
-  } else {
-    log_default.printError(`Unsupported OS: ${osType}`);
-  }
+  return getScript({ subcommand: "genCode", scriptBaseName: "GenCode" });
 }
 function getGitignore() {
   return {
@@ -14313,6 +14213,7 @@ async function execute4(args) {
   const webRoot = environmentAgg4.states.webRoot.value;
   log_default.printDebug("webRoot\u8DEF\u5F84", webRoot);
   const packageManager = environmentAgg4.states.packageManager.value;
+  const exeCmd = packageManager === "bun" ? "bunx" : packageManager === "pnpm" ? "pnpx" : "npx";
   log_default.printInfo("================ \u5B89\u88C5\u8FD0\u884C\u4F9D\u8D56: Starting... ================");
   if (packageManager === PackageManager.BUN) {
     const cmd = `bun i --cwd "${webRoot}"`;
@@ -14331,7 +14232,7 @@ async function execute4(args) {
   }
   log_default.printSuccess("================ \u5B89\u88C5\u8FD0\u884C\u4F9D\u8D56: Succeeded ================");
   log_default.printInfo("================ \u88C5\u914D\u4EE3\u7801\u4E0E\u73AF\u5883\u53D8\u91CF: Starting... ================");
-  configSource(webRoot, args.source);
+  configSource(webRoot, args.source, exeCmd);
   configEnvironment(webRoot, args.source);
   log_default.printSuccess("================ \u88C5\u914D\u4EE3\u7801\u4E0E\u73AF\u5883\u53D8\u91CF: Succeeded ================");
   log_default.printInfo("================ \u8FD0\u884CWeb\u670D\u52A1: Starting... ================");
@@ -14352,7 +14253,7 @@ async function execute4(args) {
   console.debug("worker threadId", worker.threadId);
   process.nextTick(() => {
     if (packageManager === PackageManager.BUN) {
-      const cmd = `bun --cwd "${webRoot}" dev`;
+      const cmd = `bun --cwd "${webRoot}/packages/playground" dev`;
       log_default.printDebug(cmd);
       (0, import_child_process4.spawnSync)(cmd, {
         encoding: "utf-8",
@@ -14368,7 +14269,7 @@ async function execute4(args) {
         shell: true
       });
     } else if (packageManager === PackageManager.NPM) {
-      const cmd = `npm --prefix "${webRoot}" run dev`;
+      const cmd = `npm --prefix "${webRoot}/packages/playground" run dev`;
       log_default.printDebug(cmd);
       (0, import_child_process4.spawnSync)(cmd, {
         encoding: "utf-8",
@@ -14382,7 +14283,7 @@ async function execute4(args) {
 }
 var tsSuffixMatcher = new RegExp(/(.+)\.ts$/);
 var detailSuffix = "-detail";
-async function configSource(webRoot, source) {
+async function configSource(webRoot, source, exeCmd) {
   if (!import_fs5.default.existsSync(source) || !import_fs5.default.statSync(source).isDirectory()) {
     throw new Error($t3("error.shouldBeValidDir{dir}", { dir: source }));
   }
@@ -14394,11 +14295,7 @@ async function configSource(webRoot, source) {
         scriptVer: package_info_default.version
       })
     );
-    log_default.print(
-      source_default.bgYellow(
-        `${environmentAgg4.states.packageManager.value === "bun" ? "bunx " : ""}domain-designer-cli update`
-      )
-    );
+    log_default.print(source_default.bgYellow(`${exeCmd} domain-designer-cli update`));
   }
   const designs = [];
   let i = 0;
@@ -20345,15 +20242,14 @@ async function execute5(args) {
   const webRoot = environmentAgg5.states.webRoot.value;
   const sourcePath = args.source;
   const packageManager = environmentAgg5.states.packageManager.value;
+  const exeCmd = packageManager === "bun" ? "bunx" : packageManager === "pnpm" ? "pnpx" : "npx";
   const versionFilePath = import_path7.default.join(sourcePath, "node_modules", "version.txt");
   if (!import_fs6.default.existsSync(versionFilePath) || !import_fs6.default.statSync(versionFilePath).isFile() || import_fs6.default.readFileSync(versionFilePath, "utf-8").trim() !== package_info_default.version) {
     log_default.printWarn("\u68C0\u6D4B\u5230\u5DE5\u4F5C\u76EE\u5F55\u7248\u672C\u4E0E\u811A\u624B\u67B6\u7248\u672C\u4E0D\u5339\u914D");
     log_default.printWarn("\u5F53\u524D\u5DE5\u4F5C\u76EE\u5F55\u7248\u672C\uFF1A", import_fs6.default.readFileSync(versionFilePath, "utf-8").trim());
     log_default.printWarn("\u811A\u624B\u67B6\u7248\u672C\uFF1A      ", package_info_default.version);
     log_default.printWarn("\u5982\u679C\u8981\u4EE5\u672C\u5730\u811A\u624B\u67B6\u7248\u672C\u4E3A\u51C6\uFF0C\u8BF7\u6267\u884C\u5728\u5DE5\u4F5C\u76EE\u5F55\u6267\u884Cupdate\u547D\u4EE4\u8FDB\u884C\u66F4\u65B0");
-    log_default.print(
-      source_default.bgYellow(`${packageManager === "bun" ? "bunx " : ""}domain-designer-cli update`)
-    );
+    log_default.print(source_default.bgYellow(`${exeCmd} domain-designer-cli update`));
   }
   log_default.printInfo("================ Install dependencies: Starting... ================");
   if (packageManager === "bun") {
@@ -20379,7 +20275,6 @@ async function execute5(args) {
   }
   log_default.printSuccess("================ Install dependencies: Succeeded ================");
   log_default.printInfo("================ Compliling ts code: Starting... ================");
-  const exeCmd = packageManager === "bun" ? "bunx" : "pnpx";
   (0, import_child_process5.spawnSync)(
     `${exeCmd} zx ${webRoot.replace(/\\/g, "/")}/scripts/build-ts.mjs --source=${sourcePath}`,
     {
