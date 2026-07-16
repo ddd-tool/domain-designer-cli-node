@@ -16,13 +16,16 @@ distPackageInfo.private = false
 distPackageInfo.main = 'index.umd.cjs'
 distPackageInfo.module = 'index.js'
 
-// Replace workspace: dependencies with file: relative paths for embedded distribution
 if (distPackageInfo.dependencies) {
   for (const [name, version] of Object.entries(distPackageInfo.dependencies)) {
-    if (version === 'workspace:^' || version === 'workspace:*' || version === 'workspace:~') {
-      // Replace with file: relative path for core package
-      if (name === '@ddd-tool/domain-designer-core') {
-        distPackageInfo.dependencies[name] = 'file:../../core/dist'
+    if (typeof version === 'string' && version.startsWith('workspace:')) {
+      const range = version.replace('workspace:', '')
+      if (range === '^' || range === '~') {
+        distPackageInfo.dependencies[name] = range + distPackageInfo.version
+      } else if (range === '*' || range === '') {
+        distPackageInfo.dependencies[name] = '*'
+      } else {
+        distPackageInfo.dependencies[name] = range
       }
     }
   }

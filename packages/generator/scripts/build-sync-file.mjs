@@ -12,6 +12,8 @@ delete distPackageInfo._id
 delete distPackageInfo.files
 delete distPackageInfo.scripts
 delete distPackageInfo.readme
+delete distPackageInfo.devDependencies
 distPackageInfo.private = false
 distPackageInfo.main = 'index.js'
+
 fs.writeFileSync(path.join(rootDir, 'dist', 'package.json'), JSON.stringify(distPackageInfo, null, 2))
