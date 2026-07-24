@@ -54,7 +54,7 @@ const PutBookInStorage = d.command(
 const BookAgg = d.agg(
   'bookAgg',
   [bookValues.ISBN, bookValues.bookName, bookValues.seriesName],
-  'Order aggregate'
+  'Book aggregate'
 )
 
 const OrderAgg = d.agg(
@@ -68,7 +68,7 @@ In this code snippet, we define two constant pools: `bookValues` and `orderValue
 
 ::: info Benefits of this approach:
 
-- No repetitive definitions. If defined every time
+- All references share the same source, no repetitive definitions needed.
 
 - This "constant pool" also serves as a glossary. For terms that aren't easy to understand or that team members might interpret differently, we can describe them in detail here
 

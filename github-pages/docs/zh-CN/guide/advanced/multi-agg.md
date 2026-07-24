@@ -16,7 +16,7 @@ const 上游系统 = d.system('UpstreamSystem', '上游系统')
 const bookValues = {
   ISBN: i.id(
     'isbn',
-    `国际标注书号
+    `国际标准书号
       这个值作为id，能唯一确定一款图书`
   ),
   图书名称: i.valueObj('bookName', '图书名称'),
@@ -54,7 +54,7 @@ const 入库新书命令 = d.command(
 const 图书聚合 = d.agg(
   'bookAgg',
   [bookValues.ISBN, bookValues.图书名称, bookValues.丛书名称],
-  '订单聚合'
+  '图书聚合'
 )
 
 const 订单聚合 = d.agg(
@@ -68,7 +68,7 @@ const 订单聚合 = d.agg(
 
 ::: info 这样做的好处是：
 
-- 不再需要重复定义。如果每次都定义
+- 所有引用同源、不再需要重复定义。
 
 - 这个“常量池”同时承担了名词解释的职责。对于一些不太容易理解的名词，或者觉得团队成员在理解这个名词时容易有分歧，我们可以在这里把它尽可能描述得详细
 

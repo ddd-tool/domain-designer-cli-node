@@ -47,11 +47,11 @@ const bookValues = {
 const orderValues = {
   订购数量: i.valueObj('quantity', '订购数量'),
 }
-d.func(
+d.info.func(
       '最终价格',
       [bookValues.图书价格, orderValues.订购数量],
       `最终价格 = 图书价格 * 订购数量`
-    ),
+    )
 ```
 
 ### version
@@ -144,8 +144,8 @@ d.agg(
   'OrderAgg',
   [
     d.info.id('orderId'),
-    d.info.valueObject('orderItems'),
-    d.info.valueObject('orderStatus', '订单状态'),
+    d.info.valueObj('orderItems'),
+    d.info.valueObj('orderStatus', '订单状态'),
   ],
   '订单聚合'
 )
@@ -166,7 +166,7 @@ d.event(
 ```ts
 d.event(
   'OrderPlaced',
-  [d.info.id('orderSequence', '订单流水号'), d.info.valueObject('orderItems')],
+  [d.info.id('orderSequence', '订单流水号'), d.info.valueObj('orderItems')],
   '已下单'
 )
 ```
@@ -223,7 +223,7 @@ d.readModel(
 
 ```ts
 const i = d.info
-// “权限系统”需要有换行的、条例清新的备注。所以这里使用ts字符串模板
+// “权限系统”需要有换行的、条理清晰的备注。所以这里使用ts字符串模板
 const 权限系统 = d.system(
   'AuthorizationSystem',
   `权限系统
@@ -236,7 +236,7 @@ const 权限系统 = d.system(
 // “用户已充值”不需要什么特别的备注，所以传入普通的字符串
 const 用户已充值 = d.event('UserRecharged', [i.id('userId')], '用户已充值')
 // “用户状态”和权限系统是有关联的，所以使用note函数
-const 用户状态 = d.info.valueObject(
+const 用户状态 = d.info.valueObj(
   'userStatus',
   d.note`用户状态
     用户状态并不由本系统维护，而是从${权限系统}中同步来的`
