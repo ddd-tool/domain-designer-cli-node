@@ -13745,7 +13745,7 @@ function onCancel() {
 // src/utils/package-info.ts
 var package_info_default = {
   "name": "cli",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "type": "module",
   "files": [
@@ -13760,7 +13760,7 @@ var package_info_default = {
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/ddd-tool/domain-designer-cli-node#readme",
-  "_id": "cli@0.3.4"
+  "_id": "cli@0.3.5"
 };
 
 // src/domain/environment-agg/index.ts
