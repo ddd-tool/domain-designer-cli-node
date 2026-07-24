@@ -117,15 +117,14 @@ function removeAdjacentDuplicates(arr: readonly string[]): string[] {
 // ============================ download ============================
 onBeforeUnmount(
   diagramAgg.events.onDownloadSvg.listen(() => {
-    const el = document.querySelector('svg') as SVGSVGElement
+    const el = svgContainerRef.value?.querySelector('svg') as SVGSVGElement
+    if (!el) return
     const svg = new XMLSerializer().serializeToString(el)
-    const svgBlob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' })
-    const svgUrl = URL.createObjectURL(svgBlob)
+    const dataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
     const tempLink = document.createElement('a')
-    tempLink.href = svgUrl
-    tempLink.setAttribute('download', 'diagram.svg')
+    tempLink.href = dataUrl
+    tempLink.download = 'diagram.svg'
     tempLink.click()
-    URL.revokeObjectURL(svgUrl)
   }),
 )
 </script>
