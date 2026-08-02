@@ -89,10 +89,10 @@ importers:
     devDependencies:
       '@ddd-tool/domain-designer-core':
         specifier: workspace:^
-        version: link:../core/dist
+        version: link:../core
       '@ddd-tool/domain-designer-generator':
         specifier: workspace:^
-        version: link:../generator/dist
+        version: link:../generator
       '@types/prompts':
         specifier: ^2.4.9
         version: 2.4.9
@@ -115,8 +115,6 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
 
-  packages/core/dist: {}
-
   packages/generator:
     dependencies:
       '@vue/reactivity':
@@ -125,16 +123,10 @@ importers:
     devDependencies:
       '@ddd-tool/domain-designer-core':
         specifier: workspace:^
-        version: link:../core/dist
+        version: link:../core
       read-pkg:
         specifier: ^9.0.1
         version: 9.0.1
-
-  packages/generator/dist:
-    dependencies:
-      '@vue/reactivity':
-        specifier: ^3.5.39
-        version: 3.5.40
 
   packages/playground:
     devDependencies:
@@ -155,7 +147,7 @@ importers:
     dependencies:
       '@ddd-tool/domain-designer-core':
         specifier: workspace:^
-        version: link:../core/dist
+        version: link:../core
       '@primeuix/themes':
         specifier: ^2.0.3
         version: 2.0.3

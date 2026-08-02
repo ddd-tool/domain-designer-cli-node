@@ -31,7 +31,7 @@ function writeEnvFile() {
 
   // 递归复制所有.d.ts文件
   copyFolderRecursive(
-    path.join(cliRootDir, 'node_modules', '@ddd-tool', 'domain-designer-core'),
+    path.join(cliRootDir, 'node_modules', '@ddd-tool', 'domain-designer-core', 'dist'),
     path.join(rootDir, 'templates', 'node_modules', '@ddd-tool', 'domain-designer-core'),
     { pattern: /^.+\.d\.ts$/ },
   )

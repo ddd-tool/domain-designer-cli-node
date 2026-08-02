@@ -13,7 +13,7 @@ delete distPackageInfo.files
 delete distPackageInfo.scripts
 delete distPackageInfo.readme
 distPackageInfo.private = false
-distPackageInfo.main = 'index.umd.cjs'
+distPackageInfo.main = 'index.js'
 distPackageInfo.module = 'index.js'
 
 if (distPackageInfo.dependencies) {
