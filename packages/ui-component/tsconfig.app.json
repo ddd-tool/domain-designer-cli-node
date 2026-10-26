@@ -11,6 +11,7 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": "lib",
+    "verbatimModuleSyntax": false,
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
