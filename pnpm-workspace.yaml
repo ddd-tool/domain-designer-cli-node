@@ -1,6 +1,6 @@
 packages:
-  - packages/**
-  - github-pages/**
+  - packages/*
+  - github-pages
 
 nodeLinker: hoisted
 

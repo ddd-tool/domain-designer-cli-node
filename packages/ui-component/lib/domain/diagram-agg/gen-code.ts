@@ -14,7 +14,7 @@ import type {
   DomainDesignReadModel,
 } from '@ddd-tool/domain-designer-core'
 import { EMPTY_STORY } from './types'
-import type { LinkType } from '@ddd-tool/domain-designer-core/common'
+import type { LinkType } from '@ddd-tool/domain-designer-core'
 
 export type FilterMode =
   { mode: 'story'; currentStory: string } | { mode: 'workflows'; customWorkflowNames: string[] }

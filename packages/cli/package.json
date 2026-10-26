@@ -18,9 +18,9 @@
     "@ddd-tool/domain-designer-core": "workspace:^",
     "@ddd-tool/domain-designer-generator": "workspace:^",
     "@types/prompts": "^2.4.9",
-    "chalk": "^5.6.2",
-    "commander": "^12.1.0",
+    "chalk": "^6.0.1",
+    "commander": "^15.0.0",
     "prompts": "^2.4.2",
-    "read-pkg": "^9.0.1"
+    "read-pkg": "^10.1.0"
   }
 }

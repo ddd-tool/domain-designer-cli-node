@@ -4,7 +4,8 @@
     "src/**/*",
     "__tests__",
     "scripts",
-    "vite-env.d.ts"
+    "vite-env.d.ts",
+    "../core/lib/globals.d.ts"
   ],
   "compilerOptions": {
     "strict": true,
@@ -23,6 +24,12 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "#lib/*": [
+        "../ui-component/lib/*"
+      ],
+      "#domain/*": [
+        "../ui-component/lib/domain/*"
       ],
       "@ddd-tool/domain-designer-core": [
         "./node_modules/@ddd-tool/domain-designer-core"

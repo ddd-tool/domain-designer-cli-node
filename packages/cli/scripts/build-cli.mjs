@@ -31,9 +31,7 @@ function writeEnvFile() {
 
   // 递归复制所有.d.ts文件
   // workspace下该路径是junction，指向packages/core源码目录，d.ts在其dist下
-  const coreRealDir = fs.realpathSync(
-    path.join(cliRootDir, 'node_modules', '@ddd-tool', 'domain-designer-core'),
-  )
+  const coreRealDir = fs.realpathSync(path.join(cliRootDir, 'node_modules', '@ddd-tool', 'domain-designer-core'))
   copyFolderRecursive(
     path.join(coreRealDir, 'dist'),
     path.join(rootDir, 'templates', 'node_modules', '@ddd-tool', 'domain-designer-core'),

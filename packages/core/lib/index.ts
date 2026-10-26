@@ -120,3 +120,5 @@ export {
   isDomainDesignSystem,
   isDomainDesigner,
 } from './types'
+
+export type { LinkType } from './common'

@@ -10,7 +10,6 @@
   ],
   "compilerOptions": {
     "strict": true,
-    "composite": true,
     "rootDir": "lib",
     "module": "ESNext",
     "target": "ESNext",
