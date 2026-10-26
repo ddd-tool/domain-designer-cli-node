@@ -23,6 +23,7 @@
     "verify": "tsc -p tsconfig.build.json --composite false"
   },
   "devDependencies": {
-    "read-pkg": "^10.1.0"
+    "read-pkg": "^10.1.0",
+    "typescript": "^7.0.2"
   }
 }

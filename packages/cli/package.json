@@ -21,6 +21,7 @@
     "chalk": "^6.0.1",
     "commander": "^15.0.0",
     "prompts": "^2.4.2",
-    "read-pkg": "^10.1.0"
+    "read-pkg": "^10.1.0",
+    "typescript": "^7.0.2"
   }
 }

@@ -60,7 +60,7 @@
     "prettier": "^3.9.10",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.5",
-    "typescript": "^6.0.3",
+    "typescript": "npm:typescript-native-bridge@latest",
     "vite": "^8.3.5",
     "vite-plugin-vue-devtools": "^8.2.1",
     "vitest": "^5.0.5",
